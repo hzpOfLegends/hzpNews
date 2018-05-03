@@ -21,7 +21,7 @@
 .advertising{
   width: 100%;
   background-color: white;
-  margin-top: 20px;
+  // margin-top: 20px;
   padding: 28px 20px;
   text-align: left;
 

@@ -10,17 +10,17 @@
             <focus_news_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--最近热门-->
-          <vue-lazy-component>
+          <vue-lazy-component @before-init="init" style="margin-top:20px">
             <recent_hot/>
             <recent_hot_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--广告-->
-          <vue-lazy-component>
+          <vue-lazy-component style="margin-top:20px">
             <advertising_aside2/>
             <advertising_aside2_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--大家都在读-->
-          <vue-lazy-component>
+          <vue-lazy-component style="margin-top:20px">
             <all_read/>
             <all_read_skeleton slot="skeleton"/>
           </vue-lazy-component>
@@ -32,12 +32,12 @@
             <advertising_aside1_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--热门文章-->
-          <vue-lazy-component>
+          <vue-lazy-component style="margin-top:20px">
             <aside_hot_article/>
             <aside_hot_article_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--新增文章-->
-          <vue-lazy-component>
+          <vue-lazy-component style="margin-top:20px">
             <aside_add_article/>
             <aside_add_article_skeleton slot="skeleton"/>
           </vue-lazy-component>
@@ -104,6 +104,9 @@
           done()
         }, 1500)
 
+      },
+      init(){
+        console.log(11)
       }
     }
   }
