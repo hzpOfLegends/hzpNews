@@ -35,7 +35,6 @@
     background-color: white;
     text-align: left;
     padding: 0 18px;
-    margin-top: 20px;
     border-top: 7px solid #f1463f;
     .hot_article_title {
       padding: 14px 0;

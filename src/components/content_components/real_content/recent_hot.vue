@@ -71,7 +71,6 @@
   .recent_hot {
     width: 100%;
     height: 100%;
-    margin-top: 20px;
     border-radius: 3px;
     background-color: white;
     border-top: 8px solid #f39900;
