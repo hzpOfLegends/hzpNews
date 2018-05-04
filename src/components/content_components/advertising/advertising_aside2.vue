@@ -1,5 +1,5 @@
 <template>
-    <div class="advertising card">
+    <div class="advertising card" @click="skip_register_page">
         <h5>加入OOPSDAILY,撰寫/分享好文，輕鬆賺現金</h5>
         <div class="photo">
           <img src="../../../../static/img/text.png">
@@ -13,7 +13,12 @@
 
 <script>
     export default {
-        name: "advertising_aside2"
+        name: "advertising_aside2",
+      methods:{
+        skip_register_page(){
+          alert('注冊頁面')
+        }
+      }
     }
 </script>
 

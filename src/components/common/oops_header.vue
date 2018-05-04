@@ -121,14 +121,14 @@
   .oops_header {
     .oops_header_content {
       .container {
-        width: 1180px;
-        max-width: 1180px;
+        width: 73.75rem;
+        max-width: 73.75rem;
         margin: 0;
         padding: 0;
         margin: 0 auto;
       }
       .oops_title {
-        width: 1180px;
+        width: 73.75rem;
         margin: 0 auto;
         height: 72px;
         background-color: #ffffff;
@@ -195,8 +195,8 @@
           }
         }
         .nav_down{
-          max-width: 1180px;
-          width: 1180px;
+          max-width:73.75rem;
+          width: 73.75rem;
           box-shadow: 2px 2px 15px gray;
           z-index: 99;
           .nav_down_content {

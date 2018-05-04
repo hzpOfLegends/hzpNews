@@ -1,5 +1,5 @@
 <template>
-  <div class="focus_news card">
+  <div class="focus_news card" @click="skip_inside_contnet(1)">
     <div class="focus_news_icon">
       <img src="../../../../static/img/focusNews.png" alt="">
     </div>
@@ -25,7 +25,15 @@
 
 <script>
   export default {
-    name: "focus-news"
+    name: "focus-news",
+    methods:{
+      skip_inside_contnet(id){
+        this.$router.push({
+          path:"/particulars",
+          query:{id:id}
+        })
+      }
+    }
   }
 </script>
 
@@ -34,6 +42,7 @@
     width: 100%;
     height: 32.8rem;
     background: white;
+    cursor: pointer;
     .focus_news_icon{
       position: absolute;
       top: 0;

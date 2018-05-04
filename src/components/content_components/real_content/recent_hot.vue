@@ -2,7 +2,7 @@
   <div class="recent_hot card">
     <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
     <div class=" container">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index">
+      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index" @click="skip_inside_content(item.id)">
         <div class="row">
           <div class="col-4">
             <div class="photo">
@@ -41,6 +41,7 @@
     data() {
       return {
         recent_hot: [{
+          id:1,
           img: "../../../../static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
@@ -48,6 +49,7 @@
           author: "魚丸相面",
           times: "2016-08-08"
         },{
+          id:2,
           img: "../../../../static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
@@ -55,6 +57,7 @@
           author: "魚丸相面",
           times: "2016-08-08"
         },{
+          id:3,
           img: "../../../../static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
@@ -62,6 +65,14 @@
           author: "魚丸相面",
           times: "2016-08-08"
         }]
+      }
+    },
+    methods:{
+      skip_inside_content(id){
+        this.$router.push({
+          path:"/index/particulars",
+          query:{id:id}
+        })
       }
     }
   }
@@ -83,6 +94,7 @@
         padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
         margin-top: 15px;
+        cursor: pointer;
         .photo {
           img {
             width: 100%;

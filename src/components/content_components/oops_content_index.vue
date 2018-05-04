@@ -125,8 +125,8 @@
       overflow: hidden;
     }
     .container {
-      max-width: 1180px;
-      width: 1180px;
+      max-width: 73.75rem;
+      width: 73.75rem;
       padding: 0;
       margin: 0;
       .left_content {

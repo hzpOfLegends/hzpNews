@@ -1,6 +1,6 @@
 <template>
     <div class="recent_hot_skeleton">
-      <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i></h5>
+      <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
       <div v-for="(item,index) in recent_hot" :key="index">
 
         <div class="recent_hot_content clearfix">

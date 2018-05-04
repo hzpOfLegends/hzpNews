@@ -1,16 +1,16 @@
 <template>
   <div class="aside_add_article card">
-    <div class="hot_article_title">
+    <div class="hot_article_title" >
       <span><img src="../../../../static/img/hot.png"></span>
       <span style="font-weight: 900">新增文章</span>
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content">
-      <div class="first">
+      <div class="first" @click="skip_inside_page(1)">
         <img src="../../../../static/img/text.png">
         <p>北京昌平衛計委原副主任受審：受審查asdasdasdas</p>
       </div>
-      <div class="other" v-for="(item,index) in hot_article" :key="index">
+      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.id)">
         <p><span>·</span>{{item.content}}</p>
       </div>
     </div>
@@ -23,10 +23,23 @@
     data() {
       return {
         hot_article: [{
+          id: 1,
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
+          id: 2,
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"}]
+        }, {
+          id: 3,
+          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+        }]
+      }
+    },
+    methods:{
+      skip_inside_page(id){
+        this.$router.push({
+          path:"particulars",
+          query:{id:id}
+        })
       }
     }
   }
@@ -59,7 +72,7 @@
     }
     .hot_article_content {
       font-size: 14px;
-
+      cursor: pointer;
       margin-top: 15px;
       img {
         width: 100%;
@@ -67,9 +80,9 @@
       p {
         margin: 5px 0 10px 0;
       }
-      .first{
+      .first {
         position: relative;
-        p{
+        p {
           width: 100%;
           overflow: hidden;
           white-space: nowrap;
@@ -83,9 +96,10 @@
           margin-top: 0;
         }
       }
-      .other{
+      .other {
 
-        p{
+        cursor: pointer;
+        p {
           width: 100%;
           overflow: hidden;
           white-space: nowrap;
@@ -93,7 +107,7 @@
           border-bottom: 3px dashed #f6f6f6;
           padding: 5px 0;
           margin: 0;
-          span{
+          span {
             font-size: 20px;
           }
         }

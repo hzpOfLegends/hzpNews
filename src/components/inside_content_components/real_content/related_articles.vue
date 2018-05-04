@@ -1,8 +1,8 @@
 <template>
-  <div class="aside_hot_article card">
+  <div class="related_articles">
     <div class="hot_article_title">
-      <span><img src="../../../../static/img/hot.png"></span>
-      <span style="font-weight: 900">熱門文章</span>
+      <span><i class="fa fa-file-text"></i></span>
+      <span style="font-weight: 900">相關文章</span>
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index">
@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: "aside_hot_article",
+    name: "related_articles",
     data() {
       return {
         hot_article: [{
@@ -25,7 +25,7 @@
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        },{
+        }, {
           img: "../../../../static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
@@ -33,7 +33,7 @@
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        },{
+        }, {
           img: "../../../../static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
@@ -44,7 +44,7 @@
         }]
       }
     },
-    methods: {
+    methods:{
       skip_inside_content(id) {
         this.$router.push({
           path: "/index/particulars",
@@ -56,7 +56,7 @@
 </script>
 
 <style scoped lang="less">
-  .aside_hot_article {
+  .related_articles {
     width: 100%;
     background-color: white;
     text-align: left;
@@ -67,8 +67,9 @@
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
-        img {
-          vertical-align: middle;
+        i{
+          color: #f0473f;
+          font-size: 20px;
         }
       }
       .hot_article_title_line {
@@ -91,6 +92,5 @@
         margin: 5px 0 10px 0;
       }
     }
-
   }
 </style>
