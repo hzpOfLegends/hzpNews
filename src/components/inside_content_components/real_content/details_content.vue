@@ -16,12 +16,23 @@
       <span>分享至:</span>
       <span>
         <b-button variant="primary">
-          <i class="fa fa-twitter"></i>
-          twitter
+          <a class="twitter-share-button"
+             href="https://twitter.com/intent/tweet?text=Hello%20world"
+             data-size="large">
+            <i class="fa fa-twitter"></i>
+                      twitter
+          </a>
         </b-button>
         <b-button variant="secondary">
-          <i class="fa fa-facebook-f "></i>
-          Facebook
+            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
+                 data-layout="button_count" data-mobile-iframe="false">
+              <a target="_blank"
+                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                 class="fb-xfbml-parse-ignore">
+                <i class="fa fa-facebook-f "></i>
+                  Facebook
+              </a>
+            </div>
         </b-button>
         <b-button variant="danger">
           <i class="fa fa-google-plus-square"></i>
@@ -40,8 +51,15 @@
           twitter
         </b-button>
         <b-button variant="secondary">
-          <i class="fa fa-facebook-f "></i>
-          Facebook
+            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
+                 data-layout="button_count"  data-mobile-iframe="false">
+              <a target="_blank"
+                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                 class="fb-xfbml-parse-ignore">
+                <i class="fa fa-facebook-f "></i>
+                  Facebook
+              </a>
+            </div>
         </b-button>
         <b-button variant="danger">
           <i class="fa fa-google-plus-square"></i>
@@ -98,16 +116,20 @@
       border-bottom: 1px solid #eeeeee;
       margin: 12px 0 18px 0;
     }
-    .share{
+    .share {
       text-align: left;
-      button{
+      button {
         margin-left: 10px;
+        a {
+          color: white;
+          text-decoration: none;
+        }
       }
-      i{
+      i {
         font-size: 25px;
       }
     }
-    .article_conten{
+    .article_conten {
       margin: 20px 0;
     }
   }
