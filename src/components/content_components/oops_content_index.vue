@@ -5,7 +5,7 @@
       <div class="container clearfix">
         <div class="float-left left_content">
           <!--焦点新闻-->
-          <vue-lazy-component>
+          <vue-lazy-component @before-init="init">
             <focus_news/>
             <focus_news_skeleton slot="skeleton"/>
           </vue-lazy-component>
@@ -28,7 +28,7 @@
         <div class="float-right right_content">
           <!--广告-->
           <vue-lazy-component>
-          <advertising_aside1/>
+            <advertising_aside1/>
             <advertising_aside1_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--热门文章-->
@@ -78,6 +78,8 @@
   import advertising_aside1 from '@/components/content_components/advertising/advertising_aside1'
   // 位于文章中心广告
   import advertising_aside2 from '@/components/content_components/advertising/advertising_aside2'
+  // 引入路由
+  import index_message from '@/axios_joggle/axios_index'
 
   export default {
     name: "oops_content_index",
@@ -88,8 +90,8 @@
       "all_read_skeleton": all_read_skeleton,//大家都在读骨架
       "aside_hot_article_skeleton": aside_hot_article_skeleton,//侧边栏热门文章骨架
       "aside_add_article_skeleton": aside_add_article_skeleton,//侧边栏新增文章骨架
-      "advertising_aside2_skeleton":advertising_aside2_skeleton, // 位于文章中心广告骨架
-      "advertising_aside1_skeleton":advertising_aside1_skeleton, //侧边栏广告骨架
+      "advertising_aside2_skeleton": advertising_aside2_skeleton, // 位于文章中心广告骨架
+      "advertising_aside1_skeleton": advertising_aside1_skeleton, //侧边栏广告骨架
       "all_read": all_read,//大家都在读实际内容
       "focus_news": focus_news,//焦点新闻实际内容
       "recent_hot": recent_hot,//最新热门实际内容
@@ -98,12 +100,22 @@
       advertising_aside1,// 侧边栏广告
       advertising_aside2// 位于文章中心广告
     },
+    created() {
+
+    },
     methods: {
       infinite(done) {
         setTimeout(() => {
           done()
         }, 1500)
-
+      },
+      init(){
+        // 焦点新闻请求
+        index_message.focus_news().then(res => {
+          this.$store.state.focus_news_data = res.data.Data[0]
+        }).catch(err => {
+          console.log(err)
+        })
       }
     }
   }
@@ -111,8 +123,8 @@
 
 <style scoped lang="less">
   .oops_content_index {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 1.0625rem;
+    padding-bottom: 1.0625rem;
     .scroll-view {
       /* -- Attention: This line is extremely important in chrome 55+! -- */
       touch-action: none;
@@ -130,12 +142,14 @@
       padding: 0;
       margin: 0;
       .left_content {
-        width: 53.1rem;
-        max-width: 52.1rem;
+        width: 53rem;
+        max-width: 53em;
+        padding: 0.1875rem;
       }
       .right_content {
-        width: 18.75rem;
-        max-width: 18.75rem;
+        width: 20rem;
+        max-width: 20rem;
+        padding: 0.1875rem;
       }
     }
   }

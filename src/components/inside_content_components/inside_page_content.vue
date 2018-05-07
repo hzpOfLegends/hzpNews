@@ -45,8 +45,8 @@
 
 <style scoped lang="less">
   .inside_page_content{
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 1.0625rem;
+    padding-bottom: 1.0625rem;
     .container {
       max-width: 73.75rem;
       width: 73.75rem;
@@ -55,10 +55,12 @@
       .left_content {
         width: 53.1rem;
         max-width: 52.1rem;
+        padding: 0.1875rem;
       }
       .right_content {
-        width: 18.75rem;
-        max-width: 18.75rem;
+        width: 20rem;
+        max-width: 20rem;
+        padding: 0.1875rem;
       }
     }
   }

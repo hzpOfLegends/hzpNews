@@ -13,7 +13,7 @@
 <style scoped lang="less">
   .advertising{
     width: 100%;
-    height: 250px;
-    background: #f6f6f6;
+    height: 15.625rem;
+    background: #f6f6f6 ;
   }
 </style>

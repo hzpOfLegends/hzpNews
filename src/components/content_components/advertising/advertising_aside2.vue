@@ -26,7 +26,7 @@
 .advertising{
   width: 100%;
   background-color: white;
-  padding: 28px 20px;
+  padding: 1.75rem 1.25rem;
   text-align: left;
 
   .photo{
@@ -36,13 +36,13 @@
     }
   }
   .lab{
-    width: 42px;
-    height: 24px;
+    width: 2.625rem;
+    height: 1.5rem;
     border-top-right-radius: 5px;
     background-color: rgba(0,0,0,.6);
     color: white;
     font-size: 12px;
-    line-height: 24px;
+    line-height: 1.5rem;
     text-align: center;
     position: absolute;
     bottom: 0;

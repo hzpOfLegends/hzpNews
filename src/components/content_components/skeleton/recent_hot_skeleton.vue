@@ -1,16 +1,16 @@
 <template>
     <div class="recent_hot_skeleton">
       <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
-      <div v-for="(item,index) in recent_hot" :key="index">
-
-        <div class="recent_hot_content clearfix">
-          <div class="float-left photo">
-
-          </div>
-          <div class="float-left charater">
-            <div class="top"></div>
-            <div class="center"></div>
-            <div class="bottom"></div>
+      <div class="container">
+        <div v-for="(item,index) in recent_hot" :key="index">
+          <div class="recent_hot_content clearfix">
+            <div class="float-left photo">
+            </div>
+            <div class="float-left charater">
+              <div class="top"></div>
+              <div class="center"></div>
+              <div class="bottom"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -60,10 +60,11 @@
     text-align: left;
     .recent_hot_content{
       padding-bottom: 20px;
+      margin-top: 15px;
       border-bottom: 1px solid #f6f6f6;
       .photo{
-        width: 230px;
-        height: 160px;
+        width: 14.375rem;
+        height: 10rem;
         background-color: #f6f6f6;
       }
       .charater{

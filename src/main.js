@@ -15,7 +15,10 @@ import '../static/css/common.css'
 import VueScroller from 'vue-scroller'
 Vue.use(VueScroller)
 import IScrollView from 'vue-iscroll-view'
-
+// axios拦截
+import axios from './axios_joggle/axios'
+//vueX
+import store from './store/store'
 // IScroll 滾動加載
 import IScroll from 'iscroll'
 // import IScroll from 'iscroll/build/iscroll-infinite.js
@@ -27,12 +30,14 @@ Vue.use(IScrollView, IScroll)
 Vue.use(BootstrapVue);
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import axios_index from "./axios_joggle/axios_index";
 
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router, // vue router
+  store, //vuex
   components: { App },
   template: '<App/>'
 })

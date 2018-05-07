@@ -24,8 +24,8 @@
           </a>
         </b-button>
         <b-button variant="secondary">
-            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
-                 data-layout="button_count" data-mobile-iframe="false">
+            <div class="fb-share-button" data-href="123"
+                 data-layout="button_count" data-mobile-iframe="true">
               <a target="_blank"
                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                  class="fb-xfbml-parse-ignore">
@@ -52,7 +52,7 @@
         </b-button>
         <b-button variant="secondary">
             <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
-                 data-layout="button_count"  data-mobile-iframe="false">
+                 data-layout="button_count"  data-mobile-iframe="true">
               <a target="_blank"
                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                  class="fb-xfbml-parse-ignore">
@@ -89,8 +89,8 @@
       color: #999999;
       text-align: left;
       :nth-child(1) {
-        width: 45px;
-        height: 45px;
+        width: 2.8125rem;
+        height: 2.8125rem;
         display: inline-block;
         border: 1px solid gray;
         border-radius: 50%;
@@ -101,25 +101,25 @@
       :nth-child(2) {
         font-size: 12px;
         font-weight: 600;
-        padding-left: 5px;
-        padding-right: 10px;
+        padding-left: 0.3125rem;
+        padding-right: 0.625rem;
         color: #4ba3f8;
       }
       :nth-child(3) {
-        margin: 0 5px 0 15px
+        margin: 0 0.3125rem 0 0.9375rem
       }
       :nth-child(6) {
-        margin: 0 5px 0 15px
+        margin: 0 0.3125rem 0 0.9375rem
       }
     }
     .line {
       border-bottom: 1px solid #eeeeee;
-      margin: 12px 0 18px 0;
+      margin: 0.75rem 0 1.125rem 0;
     }
     .share {
       text-align: left;
       button {
-        margin-left: 10px;
+        margin-left: 0.625rem;
         a {
           color: white;
           text-decoration: none;
@@ -130,7 +130,7 @@
       }
     }
     .article_conten {
-      margin: 20px 0;
+      margin: 1.25rem 0;
     }
   }
 </style>

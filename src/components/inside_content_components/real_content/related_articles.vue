@@ -60,10 +60,10 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 18px;
+    padding: 0 1.125rem;
     border-top: 7px solid #f1463f;
     .hot_article_title {
-      padding: 14px 0;
+      padding: 0.875rem 0;
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
@@ -73,7 +73,7 @@
         }
       }
       .hot_article_title_line {
-        width: 94px;
+        width: 5.875rem;
         border-bottom: 3px solid #f24740;
         position: absolute;
         bottom: 0;
@@ -84,12 +84,12 @@
     .hot_article_content {
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
-      margin-top: 15px;
+      margin-top: 0.9375rem;
       img {
         width: 100%;
       }
       p {
-        margin: 5px 0 10px 0;
+        margin: 0.3125rem 0 0.625rem 0;
       }
     }
   }

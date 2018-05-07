@@ -83,12 +83,12 @@
     .hot_article_content {
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
-      margin-top: 15px;
+      margin-top: 0.9375rem;
       img {
         width: 100%;
       }
       p {
-        margin: 5px 0 10px 0;
+        margin: 0.3125rem 0 0.625rem 0;
       }
     }
 

@@ -85,13 +85,13 @@
     border-radius: 3px;
     background-color: white;
     border-top: 8px solid #f39900;
-    padding: 20px;
+    padding: 1.25rem;
     text-align: left;
     .container {
       padding: 0;
       margin: 0;
       .recent_hot_content {
-        padding-bottom: 20px;
+        padding-bottom: 1.25rem;
         border-bottom: 1px solid #f6f6f6;
         margin-top: 15px;
         cursor: pointer;
@@ -101,24 +101,24 @@
           }
         }
         .charater {
-          height: 162px;
-          padding-left: 15px;
+          height: 10.125rem;
+          padding-left: 0.9375rem;
           .top {
             :nth-child(1) {
               display: inline-block;
-              width: 48px;
-              height: 22px;
+              width: 3rem;
+              height: 1.375rem;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
               text-align: center;
-              line-height: 22px;
+              line-height: 1.375rem;
               border-radius: 3px;
             }
             :nth-child(2) {
               font-weight: 900;
               font-size: 18px;
-              margin-left: 10px;
+              margin-left: 0.625rem;
             }
           }
           .center {
@@ -133,8 +133,8 @@
               font-size: 12px;
               color: #999999;
               :nth-child(1) {
-                width: 26px;
-                height: 26px;
+                width: 1.625rem;
+                height: 1.625rem;
                 display: inline-block;
                 border-radius: 50%;
                 vertical-align: middle;
@@ -144,12 +144,12 @@
               :nth-child(2) {
                 font-size: 12px;
                 font-weight: 600;
-                padding-left: 5px;
-                padding-right: 10px;
+                padding-left: 0.3125rem;
+                padding-right: 0.0625rem;
                 border-right: 1px solid #999999;
               }
               :nth-child(3) {
-                margin: 0 5px 0 15px
+                margin: 0 0.3125rem 0 0.0625rem
               }
             }
           }
