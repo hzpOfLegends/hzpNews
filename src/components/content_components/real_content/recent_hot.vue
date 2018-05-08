@@ -2,29 +2,30 @@
   <div class="recent_hot card">
     <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
     <div class=" container">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index" @click="skip_inside_content(item.id)">
+      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
+           @click="skip_inside_content(item.RelationID)">
         <div class="row">
           <div class="col-4">
             <div class="photo">
-              <img :src="item.img" alt="">
+              <img :src="item.CoverImges" alt="">
             </div>
           </div>
           <div class="col-8">
             <div class="charater">
               <div class="top">
-                <span>{{item.contrys}}</span>
-                <span>{{item.title}}</span>
+                <span>{{item.CategoryName}}</span>
+                <span>{{item.NewsTitle}}</span>
               </div>
               <div class="center">
-                <p>{{item.synopsis}}</p>
+                <p>{{item.Content}}</p>
               </div>
               <div class="bottom">
                 <div class="author">
-                  <span></span>
-                  <span>{{item.author}}</span>
+                  <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
+                  <span>{{item.AuthorName}}</span>
                   <i class="fa fa-clock-o"></i>
                   <span>發表時間：</span>
-                  <span>{{item.times}}</span>
+                  <span>{{item.PublishTime | timezone_filter}}</span>
                 </div>
               </div>
             </div>
@@ -36,42 +37,59 @@
 </template>
 
 <script>
+  // 引入路由
+  import index_message from '@/axios_joggle/axios_index'
+  // 时区转换
+  import filtration from '../../../assets/filtration'
   export default {
     name: "recent_hot",
     data() {
       return {
         recent_hot: [{
-          id:1,
+          id: 1,
           img: "../../../../static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
           author: "魚丸相面",
           times: "2016-08-08"
-        },{
-          id:2,
+        }, {
+          id: 2,
           img: "../../../../static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
           author: "魚丸相面",
           times: "2016-08-08"
-        },{
-          id:3,
+        }, {
+          id: 3,
           img: "../../../../static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
           author: "魚丸相面",
           times: "2016-08-08"
-        }]
+        }],
+        default_photo:"../../../../static/img/timg.jpg"
       }
     },
-    methods:{
-      skip_inside_content(id){
+    created() {
+      index_message.recent_hot().then(res => {
+        this.recent_hot = res.data.Data
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    filters: {
+      timezone_filter: function (value) {
+        return filtration.timezone_filter(value)
+      }
+    },
+    methods: {
+      skip_inside_content(id) {
         this.$router.push({
-          path:"/index/particulars",
-          query:{id:id}
+          path: "/index/particulars",
+          query: {id: id}
         })
       }
     }
@@ -98,6 +116,7 @@
         .photo {
           img {
             width: 100%;
+            height: 10.125rem;
           }
         }
         .charater {
@@ -132,6 +151,7 @@
             .author {
               font-size: 12px;
               color: #999999;
+              padding-left:1.125rem;
               :nth-child(1) {
                 width: 1.625rem;
                 height: 1.625rem;
@@ -145,7 +165,7 @@
                 font-size: 12px;
                 font-weight: 600;
                 padding-left: 0.3125rem;
-                padding-right: 0.0625rem;
+                padding-right: 0.625rem;
                 border-right: 1px solid #999999;
               }
               :nth-child(3) {

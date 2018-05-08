@@ -4,7 +4,10 @@
 
 <script>
     export default {
-      components:{}
+      components:{},
+      mounted(){
+
+      }
     }
 </script>
 

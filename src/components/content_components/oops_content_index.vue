@@ -1,11 +1,9 @@
 <template>
   <div class="oops_content_index">
-    <scroller style="top: 0;position: relative"
-              :on-infinite="infinite">
       <div class="container clearfix">
         <div class="float-left left_content">
           <!--焦点新闻-->
-          <vue-lazy-component @before-init="init">
+          <vue-lazy-component>
             <focus_news/>
             <focus_news_skeleton slot="skeleton"/>
           </vue-lazy-component>
@@ -43,11 +41,11 @@
           </vue-lazy-component>
         </div>
       </div>
-    </scroller>
   </div>
 </template>
 
 <script>
+  import MugenScroll from 'vue-mugen-scroll'
   //引入组件  用于加载时 先显示骨架 后显示加载回来的内容----优化性能
   import {component as VueLazyComponent} from '@xunlei/vue-lazy-component'
   //焦点新闻骨架
@@ -78,11 +76,15 @@
   import advertising_aside1 from '@/components/content_components/advertising/advertising_aside1'
   // 位于文章中心广告
   import advertising_aside2 from '@/components/content_components/advertising/advertising_aside2'
-  // 引入路由
-  import index_message from '@/axios_joggle/axios_index'
 
   export default {
     name: "oops_content_index",
+    data(){
+      return {
+        scroll:"",
+        innerHeight:""
+      }
+    },
     components: {
       'vue-lazy-component': VueLazyComponent,  // 引入组件  用于加载时 先显示骨架 后显示加载回来的内容----优化性能
       "focus_news_skeleton": focus_news_skeleton,//焦点新闻骨架
@@ -98,9 +100,22 @@
       "aside_hot_article": aside_hot_article,//侧边栏热门文章实际内容
       "aside_add_article": aside_add_article,//侧边栏新增文章实际内容
       advertising_aside1,// 侧边栏广告
-      advertising_aside2// 位于文章中心广告
+      advertising_aside2,// 位于文章中心广告
     },
-    created() {
+    created(){
+      var isbool = true
+      $(window).scroll(function() {
+        if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool==true) {
+          // isbool=false;
+          // $.get("url",function(data){
+          //   $("#content").append(data);//把新的内容加载到内容的后面
+          //   isbool=true;
+          // })
+          console.log(111)
+        }
+      })
+    },
+    mounted() {
 
     },
     methods: {
@@ -108,14 +123,6 @@
         setTimeout(() => {
           done()
         }, 1500)
-      },
-      init(){
-        // 焦点新闻请求
-        index_message.focus_news().then(res => {
-          this.$store.state.focus_news_data = res.data.Data[0]
-        }).catch(err => {
-          console.log(err)
-        })
       }
     }
   }

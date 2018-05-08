@@ -2,7 +2,7 @@
     <div class="recent_hot_skeleton">
       <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
       <div class="container">
-        <div v-for="(item,index) in recent_hot" :key="index">
+        <div v-for="(item,index) in recent_hot" :key="item.id">
           <div class="recent_hot_content clearfix">
             <div class="float-left photo">
             </div>
@@ -23,26 +23,15 @@
       data(){
         return {
           recent_hot: [{
-            img: "../../../../static/img/text.png",
-            contrys: '國際',
-            title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
-            synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
-            author: "魚丸相面",
-            times: "2016-08-08"
+            id:1,
           },{
-            img: "../../../../static/img/text.png",
-            contrys: '國際',
-            title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
-            synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
-            author: "魚丸相面",
-            times: "2016-08-08"
+            id:2,
           },{
-            img: "../../../../static/img/text.png",
-            contrys: '國際',
-            title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
-            synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
-            author: "魚丸相面",
-            times: "2016-08-08"
+            id:3,
+          },{
+            id:4,
+          },{
+            id:5
           }]
         }
       }

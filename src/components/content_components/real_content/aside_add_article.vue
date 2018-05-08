@@ -1,6 +1,6 @@
 <template>
   <div class="aside_add_article card">
-    <div class="hot_article_title" >
+    <div class="hot_article_title">
       <span><img src="../../../../static/img/hot.png"></span>
       <span style="font-weight: 900">新增文章</span>
       <span class="hot_article_title_line"></span>
@@ -10,7 +10,7 @@
         <img src="../../../../static/img/text.png">
         <p>北京昌平衛計委原副主任受審：受審查asdasdasdas</p>
       </div>
-      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.id)">
+      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.RelationID)">
         <p><span>·</span>{{item.content}}</p>
       </div>
     </div>
@@ -18,6 +18,9 @@
 </template>
 
 <script>
+  // 引入路由
+  import index_message from '@/axios_joggle/axios_index'
+
   export default {
     name: "aside_add_article",
     data() {
@@ -34,11 +37,19 @@
         }]
       }
     },
-    methods:{
-      skip_inside_page(id){
+    created() {
+      //新增文章
+      index_message.add_article().then(res => {
+        // console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    methods: {
+      skip_inside_page(id) {
         this.$router.push({
-          path:"particulars",
-          query:{id:id}
+          path: "particulars",
+          query: {id: id}
         })
       }
     }
@@ -76,6 +87,7 @@
       margin-top: 15px;
       img {
         width: 100%;
+        height: 8.125rem;
       }
       p {
         margin: 0.3125rem 0 0.625rem 0;

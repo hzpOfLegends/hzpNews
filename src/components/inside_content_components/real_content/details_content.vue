@@ -14,66 +14,111 @@
     <div class="line"></div>
     <div class="share">
       <span>分享至:</span>
-      <span>
-        <b-button variant="primary">
-          <a class="twitter-share-button"
-             href="https://twitter.com/intent/tweet?text=Hello%20world"
-             data-size="large">
-            <i class="fa fa-twitter"></i>
-                      twitter
-          </a>
-        </b-button>
-        <b-button variant="secondary">
-            <div class="fb-share-button" data-href="123"
-                 data-layout="button_count" data-mobile-iframe="true">
-              <a target="_blank"
-                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                 class="fb-xfbml-parse-ignore">
-                <i class="fa fa-facebook-f "></i>
-                  Facebook
+      <div style="display: inline-block">
+          <span class="twitter">
+              <a class="twitter-share-button"
+                 href="https://twitter.com/intent/tweet?text=Hello%20world"
+                 data-size="large">
+                <i class="fa fa-twitter"></i>
+                          twitter
               </a>
-            </div>
-        </b-button>
-        <b-button variant="danger">
-          <i class="fa fa-google-plus-square"></i>
-          Google+
-        </b-button>
-      </span>
+          </span>
+        <span class="facebook">
+          <span class="fb-share-button" data-href="123"
+                data-layout="button_count" data-mobile-iframe="true">
+            <a target="_blank"
+               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+               class="fb-xfbml-parse-ignore">
+            </a>
+
+          </span>
+          <span class="charater">
+            <i class="fa fa-facebook-f "></i>
+            Facebook
+          </span>
+        </span>
+        <span class="google">
+            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+              <i class="fa fa-google-plus-square"></i>
+              Google+
+            </a>
+          </span>
+      </div>
     </div>
     <div class="article_conten">
-      ...
+      <label v-html="content" style="width: 100%">
+
+      </label>
     </div>
     <div class="share">
       <span>分享至:</span>
-      <span>
-        <b-button variant="primary">
-          <i class="fa fa-twitter"></i>
-          twitter
-        </b-button>
-        <b-button variant="secondary">
-            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
-                 data-layout="button_count"  data-mobile-iframe="true">
-              <a target="_blank"
-                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                 class="fb-xfbml-parse-ignore">
-                <i class="fa fa-facebook-f "></i>
-                  Facebook
+      <div style="display: inline-block">
+       <span class="twitter">
+              <a class="twitter-share-button"
+                 href="https://twitter.com/intent/tweet?text=Hello%20world"
+                 data-size="large">
+                <i class="fa fa-twitter"></i>
+                          twitter
               </a>
-            </div>
-        </b-button>
-        <b-button variant="danger">
-          <i class="fa fa-google-plus-square"></i>
-          Google+
-        </b-button>
-      </span>
+          </span>
+        <span class="facebook">
+          <span class="fb-share-button" data-href="123"
+                data-layout="button_count" data-mobile-iframe="true">
+            <a target="_blank"
+               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+               class="fb-xfbml-parse-ignore">
+            </a>
+
+          </span>
+          <span class="charater">
+            <i class="fa fa-facebook-f "></i>
+            Facebook
+          </span>
+        </span>
+        <span class="google">
+            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+              <i class="fa fa-google-plus-square"></i>
+                            Google+
+            </a>
+          </span>
+      </div>
     </div>
     <div class="line"></div>
   </div>
 </template>
 
 <script>
+  // 引入路由
+  import inside_page_message from '@/axios_joggle/axios_inside'
+
   export default {
-    name: "details_content"
+    name: "details_content",
+    data() {
+      return {
+        content: ""
+      }
+    },
+    created() {
+
+
+    },
+    mounted() {
+      console.log(this.$route.query.id)
+      inside_page_message.get_new_info({RelationID: this.$route.query.id}).then(res => {
+        this.content = res.data.Data.Content
+        setTimeout(()=>{
+          let imgs = document.querySelectorAll('img')
+          for (let i = 0; i < imgs.length; i++) {
+            imgs[i].style.width = '100%'
+          }
+        },1)
+
+      }).catch(err => {
+      })
+
+    }
   }
 </script>
 
@@ -84,6 +129,9 @@
     background-color: white;
     box-shadow: 0 0 15px gray;
     text-align: left;
+    a {
+      text-decoration: none;
+    }
     .author {
       font-size: 14px;
       color: #999999;
@@ -120,6 +168,7 @@
       text-align: left;
       button {
         margin-left: 0.625rem;
+        padding: 10px;
         a {
           color: white;
           text-decoration: none;
@@ -128,9 +177,65 @@
       i {
         font-size: 25px;
       }
+      .twitter {
+        display: inline-block;
+        width: 6.75rem;
+        height: 2.5rem;
+        background-color: #28a2f0;
+        border-radius: 3px;
+        line-height: 2.5rem;
+        text-align: center;
+        a {
+          color: white;
+        }
+      }
+      .google {
+        display: inline-block;
+        width: 6.75rem;
+        height: 2.5rem;
+        background-color: #db443e;
+        border-radius: 3px;
+        line-height: 2.5rem;
+        text-align: center;
+        a {
+          color: white;
+        }
+      }
+      .facebook {
+        position: relative;
+        display: inline-block;
+        width: 6.75rem;
+        height: 2.5rem;
+        background-color: #2d4671;
+        border-radius: 3px;
+        line-height: 2.5rem;
+        text-align: center;
+        .fb-share-button {
+          z-index: 999;
+          opacity: 0;
+          a {
+
+          }
+        }
+        .charater {
+          position: absolute;
+          left: 0;
+          transform: translateX(10%);
+          top: 0;
+          color: white;
+          z-index: 0
+        }
+      }
     }
     .article_conten {
       margin: 1.25rem 0;
+      width: 100%;
+      label {
+
+        img {
+          width: 100px !important;
+        }
+      }
     }
   }
 </style>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+axios.path = "/apis"
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
 

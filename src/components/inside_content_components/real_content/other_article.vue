@@ -20,7 +20,7 @@
                 </div>
                 <div class="bottom">
                   <div class="author">
-                    <span></span>
+                    <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
                     <span>{{item.author}}</span>
                     <i class="fa fa-clock-o"></i>
                     <span>發表時間：</span>
@@ -64,7 +64,8 @@
             synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
             author: "魚丸相面",
             times: "2016-08-08"
-          }]
+          }],
+          default_photo:"../../../../static/img/timg.jpg"
         }
       },
       methods:{
@@ -132,6 +133,7 @@
           .author {
             font-size: 12px;
             color: #999999;
+            padding-left:1.125rem;
             :nth-child(1) {
               width: 1.625rem;
               height: 1.625rem;

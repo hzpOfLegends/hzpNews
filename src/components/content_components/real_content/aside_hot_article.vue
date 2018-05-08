@@ -13,6 +13,9 @@
 </template>
 
 <script>
+  // 引入路由
+  import index_message from '@/axios_joggle/axios_index'
+
   export default {
     name: "aside_hot_article",
     data() {
@@ -25,7 +28,7 @@
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        },{
+        }, {
           img: "../../../../static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
@@ -33,7 +36,7 @@
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        },{
+        }, {
           img: "../../../../static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
@@ -51,6 +54,14 @@
           query: {id: id}
         })
       }
+    },
+    created() {
+      // 热门文章
+      index_message.hot_article().then(res => {
+
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 </script>
@@ -86,6 +97,7 @@
       margin-top: 0.9375rem;
       img {
         width: 100%;
+        height: 8.125rem;
       }
       p {
         margin: 0.3125rem 0 0.625rem 0;

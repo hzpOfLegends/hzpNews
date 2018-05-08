@@ -1,5 +1,5 @@
 <template>
-  <div class="focus_news card" @click="skip_inside_contnet(1)">
+  <div class="focus_news card" @click="skip_inside_contnet(focus_news_data.RelationID)">
     <div class="focus_news_icon">
       <img src="../../../../static/img/focusNews.png" alt="">
     </div>
@@ -17,7 +17,7 @@
         <span>{{focus_news_data.AuthorName}}</span>
         <i class="fa fa-clock-o"></i>
         <span>發表時間：</span>
-        <span>{{focus_news_data.PublishTime}}</span>
+        <span>{{focus_news_data.PublishTime | timezone_filter}}</span>
       </div>
     </div>
   </div>
@@ -27,12 +27,17 @@
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
   // 时区转换
-  let times = require('../../../assets/time_format')
+  import filtration from '../../../assets/filtration'
   export default {
     name: "focus-news",
     data(){
       return {
-        focus_news_data:this.$store.state.focus_news_data
+        focus_news_data:""
+      }
+    },
+    filters:{
+      timezone_filter:function (value) {
+        return filtration.timezone_filter(value)
       }
     },
     methods:{
@@ -47,13 +52,14 @@
       // 焦点新闻请求
       index_message.focus_news().then(res => {
         this.focus_news_data = res.data.Data[0]
-        console.log(this.focus_news_data)
       }).catch(err => {
         console.log(err)
       })
     },
     mounted(){
-      console.log(times.default.timezone_transition(new Date()))
+      // console.log(times.defaulttimezone_transition(new Date()))
+
+      // console.log(new Date().getTimezoneOffset()/60)
     }
   }
 </script>

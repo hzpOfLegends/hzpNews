@@ -121,6 +121,15 @@
           }
           .web_share {
             padding-top: 48px !important;
+            a{
+              display: inline-block;
+              width: 3rem;
+              height: 3rem;
+              img{
+                width: 100%;
+              }
+            }
+
           }
         }
       }

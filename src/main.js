@@ -15,6 +15,8 @@ import '../static/css/common.css'
 import VueScroller from 'vue-scroller'
 Vue.use(VueScroller)
 import IScrollView from 'vue-iscroll-view'
+// jquery 的引用
+import $ from 'jquery'
 // axios拦截
 import axios from './axios_joggle/axios'
 //vueX
