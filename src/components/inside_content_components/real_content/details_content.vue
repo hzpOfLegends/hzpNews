@@ -1,15 +1,15 @@
 <template>
   <div class="details_content">
-    <h3>美國校園搶襲案嫌疑犯獲釋 師生陷入“死亡名單”恐慌</h3>
+    <h3>{{details.NewsTitle}}</h3>
     <div class="author">
-      <span></span>
-      <span>123</span>
+      <span><img :src="details.Avatar?details.Avatar:default_photo"></span>
+      <span>{{details.AuthorName}}</span>
       <i class="fa fa-clock-o"></i>
       <span>發表時間：</span>
-      <span>2017-12-08</span>
+      <span>{{details.PublishTime | timezone_filter}}</span>
       <i class="fa fa-eye"></i>
       <span>閲讀量:</span>
-      <span>9999</span>
+      <span>{{details.ClickRate}}</span>
     </div>
     <div class="line"></div>
     <div class="share">
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="content" style="width: 100%">
+      <label v-html="details.Content" style="width: 100%">
 
       </label>
     </div>
@@ -92,12 +92,19 @@
 <script>
   // 引入路由
   import inside_page_message from '@/axios_joggle/axios_inside'
-
+  // 时区转换
+  import filtration from '../../../assets/filtration'
   export default {
     name: "details_content",
     data() {
       return {
-        content: ""
+        details:"",
+        default_photo:"../../../../static/img/timg.jpg"
+      }
+    },
+    filters: {
+      timezone_filter: function (value) {
+        return filtration.timezone_filter(value)
       }
     },
     created() {
@@ -107,7 +114,8 @@
     mounted() {
       console.log(this.$route.query.id)
       inside_page_message.get_new_info({RelationID: this.$route.query.id}).then(res => {
-        this.content = res.data.Data.Content
+        this.details = res.data.Data
+        console.log(res)
         setTimeout(()=>{
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {
