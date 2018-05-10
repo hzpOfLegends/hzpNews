@@ -1,5 +1,5 @@
 <template>
-  <div class="oops_footer">
+  <div class="oops_footer" v-show="judge_login">
     <div class="oops_footer_wrap ">
       <div class="container">
         <div class="row">
@@ -74,7 +74,16 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    data(){
+      return {
+        judge_login:false
+      }
+    },
+    created(){
+
+    }
+  }
 </script>
 
 <style scoped lang="less">

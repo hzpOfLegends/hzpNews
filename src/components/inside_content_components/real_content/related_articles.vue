@@ -5,14 +5,17 @@
       <span style="font-weight: 900">相關文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index">
-      <img :src="item.img">
-      <p>{{item.content}}</p>
+    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
+      <img :src="item.CoverImges">
+      <p>{{item.NewsTitle}}</p>
     </div>
   </div>
 </template>
 
 <script>
+  // 引入路由
+  import inside_page_message from '@/axios_joggle/axios_inside'
+
   export default {
     name: "related_articles",
     data() {
@@ -44,13 +47,31 @@
         }]
       }
     },
-    methods:{
-      skip_inside_content(id) {
-        this.$router.push({
-          path: "/index/particulars",
-          query: {id: id}
+    watch:{
+      "$route":function () {
+        inside_page_message.relevance_article({newsId:this.$route.query.RelationID,size:20}).then(res => {
+          this.hot_article = res.data.Data
+        }).catch(err => {
+          console.log(err)
         })
       }
+    },
+    methods: {
+      skip_inside_content(RelationID,CategoryID) {
+        if(RelationID) {
+          this.$router.push({
+            path: "/particulars",
+            query: {RelationID: RelationID, CategoryID: CategoryID}
+          })
+        }
+      }
+    },
+    created() {
+      inside_page_message.relevance_article({newsId:this.$route.query.RelationID,size:20}).then(res => {
+        this.hot_article = res.data.Data
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 </script>
@@ -67,7 +88,7 @@
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
-        i{
+        i {
           color: #f0473f;
           font-size: 20px;
         }
@@ -85,8 +106,10 @@
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
       margin-top: 0.9375rem;
+      cursor: pointer;
       img {
         width: 100%;
+        height: 8.125rem;
       }
       p {
         margin: 0.3125rem 0 0.625rem 0;

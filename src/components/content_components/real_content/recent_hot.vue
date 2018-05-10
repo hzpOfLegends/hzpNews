@@ -3,7 +3,7 @@
     <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
     <div class=" container">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
-           @click="skip_inside_content(item.RelationID)">
+           @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <div class="row">
           <div class="col-4">
             <div class="photo">
@@ -86,11 +86,13 @@
       }
     },
     methods: {
-      skip_inside_content(id) {
-        this.$router.push({
-          path: "/index/particulars",
-          query: {id: id}
-        })
+      skip_inside_content(RelationID,CategoryID) {
+        if(RelationID){
+          this.$router.push({
+            path: "/particulars",
+            query: {RelationID: RelationID,CategoryID:CategoryID}
+          })
+        }
       }
     }
   }

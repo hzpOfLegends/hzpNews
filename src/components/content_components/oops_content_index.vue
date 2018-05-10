@@ -106,12 +106,7 @@
       var isbool = true
       $(window).scroll(function() {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool==true) {
-          // isbool=false;
-          // $.get("url",function(data){
-          //   $("#content").append(data);//把新的内容加载到内容的后面
-          //   isbool=true;
-          // })
-          console.log(111)
+
         }
       })
     },

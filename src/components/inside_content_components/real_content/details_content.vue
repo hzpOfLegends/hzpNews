@@ -86,6 +86,9 @@
       </div>
     </div>
     <div class="line"></div>
+    <div>
+      <facebook_comment/>
+    </div>
   </div>
 </template>
 
@@ -94,6 +97,8 @@
   import inside_page_message from '@/axios_joggle/axios_inside'
   // 时区转换
   import filtration from '../../../assets/filtration'
+  // facebook 评论插件
+  import facebook_comment from './facebook_comment'
   export default {
     name: "details_content",
     data() {
@@ -102,9 +107,26 @@
         default_photo:"../../../../static/img/timg.jpg"
       }
     },
+    components:{
+      facebook_comment
+    },
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      }
+    },
+    watch:{
+      "$route":function () {
+        inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
+          this.details = res.data.Data
+          setTimeout(()=>{
+            let imgs = document.querySelectorAll('img')
+            for (let i = 0; i < imgs.length; i++) {
+              imgs[i].style.width = '100%'
+            }
+          },1)
+        }).catch(err => {
+        })
       }
     },
     created() {
@@ -112,10 +134,9 @@
 
     },
     mounted() {
-      console.log(this.$route.query.id)
-      inside_page_message.get_new_info({RelationID: this.$route.query.id}).then(res => {
+      console.log(this.$route.query.RelationID)
+      inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
         this.details = res.data.Data
-        console.log(res)
         setTimeout(()=>{
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {
@@ -183,7 +204,7 @@
         }
       }
       i {
-        font-size: 25px;
+        font-size: 20px;
       }
       .twitter {
         display: inline-block;
@@ -221,17 +242,13 @@
         .fb-share-button {
           z-index: 999;
           opacity: 0;
-          a {
-
-          }
-        }
-        .charater {
           position: absolute;
           left: 0;
-          transform: translateX(10%);
-          top: 0;
+          transform: translateX(30%);
+          top: -20%;
+        }
+        .charater {
           color: white;
-          z-index: 0
         }
       }
     }

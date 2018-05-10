@@ -5,9 +5,9 @@
       <span style="font-weight: 900">熱門文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index">
-      <img :src="item.img">
-      <p>{{item.content}}</p>
+    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
+      <img :src="item.CoverImges">
+      <p>{{item.NewsTitle}}</p>
     </div>
   </div>
 </template>
@@ -48,17 +48,21 @@
       }
     },
     methods: {
-      skip_inside_content(id) {
-        this.$router.push({
-          path: "/index/particulars",
-          query: {id: id}
-        })
+      skip_inside_content(RelationID,CategoryID) {
+        if(RelationID){
+          this.$router.push({
+            path: "/particulars",
+            query: {RelationID: RelationID,CategoryID:CategoryID}
+          })
+        }
+
       }
     },
     created() {
       // 热门文章
       index_message.hot_article().then(res => {
-
+        // console.log(1,res)
+        this.hot_article = res.data.Data
       }).catch(err => {
         console.log(err)
       })
@@ -71,8 +75,9 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 18px;
+    padding: 0 1.125rem;
     border-top: 7px solid #f1463f;
+    padding-bottom: 3.75rem;
     .hot_article_title {
       padding: 14px 0;
       border-bottom: 3px solid #eeeeee;
@@ -95,6 +100,7 @@
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
       margin-top: 0.9375rem;
+      cursor: pointer;
       img {
         width: 100%;
         height: 8.125rem;

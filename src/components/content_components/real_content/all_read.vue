@@ -3,7 +3,7 @@
     <h5 style="font-weight: 900"><i class="fa fa-eye" style="color: #f39900;margin-right: 20px"></i>大家都在讀</h5>
     <div class=" container">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
-           @click="skip_inside_content(item.RelationID)">
+           @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <div class="row">
           <!--<router-link to="index/particulars">-->
           <div class="col-4">
@@ -34,6 +34,7 @@
           <!--</router-link>-->
         </div>
       </div>
+      <loading/>
     </div>
   </div>
 </template>
@@ -43,7 +44,8 @@
   import index_message from '@/axios_joggle/axios_index'
   // 时区转换
   import filtration from '../../../assets/filtration'
-
+  // loading 引入
+  import loading from '../../oneself/loading'
   export default {
     name: "all_read",
     data() {
@@ -73,14 +75,17 @@
           author: "魚丸相面",
           times: "2016-08-08"
         }],
-        default_photo:"../../../../static/img/timg.jpg"
+        default_photo:"../../../../static/img/timg.jpg",
+        pageNum:1
       }
+    },
+    components:{
+      loading //loading组件引入
     },
     created() {
       //大家都在读
-      index_message.all_read({"pageSize": "5", "pageIndex": "1"}).then(res => {
+      index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
         this.recent_hot = res.data.Data.news
-        console.log(res)
       }).catch(err => {
       })
     }, filters: {
@@ -89,9 +94,35 @@
       }
     },
     methods: {
-      skip_inside_content(id) {
-        console.log(id)
+      skip_inside_content(RelationID,CategoryID) {
+        if(RelationID){
+          this.$router.push({
+            path: "/particulars",
+            query: {RelationID: RelationID,CategoryID:CategoryID}
+          })
+        }
       }
+    },
+    mounted(){
+      var isbool = true
+      var that = this
+      $(window).scroll(function() {
+        if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool==true) {
+          that.pageNum = that.pageNum+1
+          //大家都在读
+          if(isbool){
+            index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
+              for(let i = 0 ; i <res.data.Data.news.length ; i++){
+                that.recent_hot.push(res.data.Data.news[i])
+              }
+              isbool = true
+            }).catch(err => {
+            })
+          }
+          isbool = false
+          console.log(111)
+        }
+      })
     }
   }
 </script>

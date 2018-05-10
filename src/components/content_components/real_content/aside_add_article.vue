@@ -6,12 +6,12 @@
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content">
-      <div class="first" @click="skip_inside_page(1)">
-        <img src="../../../../static/img/text.png">
-        <p>北京昌平衛計委原副主任受審：受審查asdasdasdas</p>
+      <div class="first" @click="skip_inside_page(hot_article_first.RelationID)">
+        <img :src="hot_article_first.CoverImges">
+        <div class="Profile">{{hot_article_first.Profile}}</div>
       </div>
-      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.RelationID)">
-        <p><span>·</span>{{item.content}}</p>
+      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.RelationID,item.CategoryID)">
+        <p><span>·</span>{{item.NewsTitle}}</p>
       </div>
     </div>
   </div>
@@ -25,6 +25,9 @@
     name: "aside_add_article",
     data() {
       return {
+        //新增文章 1
+        hot_article_first:"",
+        // 新增文章 2-20
         hot_article: [{
           id: 1,
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
@@ -35,22 +38,27 @@
           id: 3,
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }]
+
       }
     },
     created() {
       //新增文章
       index_message.add_article().then(res => {
-        // console.log(res)
+        console.log(1,res)
+        this.hot_article_first = res.data.Data.shift()
+        this.hot_article = res.data.Data
       }).catch(err => {
         console.log(err)
       })
     },
     methods: {
-      skip_inside_page(id) {
-        this.$router.push({
-          path: "particulars",
-          query: {id: id}
-        })
+      skip_inside_page(RelationID,CategoryID) {
+        if(RelationID){
+          this.$router.push({
+            path: "/particulars",
+            query: {RelationID: RelationID,CategoryID:CategoryID}
+          })
+        }
       }
     }
   }
@@ -94,8 +102,9 @@
       }
       .first {
         position: relative;
-        p {
+        .Profile {
           width: 100%;
+          padding-bottom: 5px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;

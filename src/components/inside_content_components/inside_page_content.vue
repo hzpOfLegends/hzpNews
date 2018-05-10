@@ -23,6 +23,7 @@
   import other_article from '@/components/inside_content_components/real_content/other_article'
   // 相關文章
   import related_articles from '@/components/inside_content_components/real_content/related_articles'
+
     export default {
         name: "inside_page_content",
       components:{

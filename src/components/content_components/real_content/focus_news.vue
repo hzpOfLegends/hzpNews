@@ -1,5 +1,5 @@
 <template>
-  <div class="focus_news card" @click="skip_inside_contnet(focus_news_data.RelationID)">
+  <div class="focus_news card" @click="skip_inside_contnet(focus_news_data.RelationID,focus_news_data.CategoryID)">
     <div class="focus_news_icon">
       <img src="../../../../static/img/focusNews.png" alt="">
     </div>
@@ -13,7 +13,7 @@
       <span>{{focus_news_data.NewsTitle}}</span>
       <p>{{focus_news_data.Content}}</p>
       <div class="author">
-        <span><img :src="focus_news_data.Avatar" alt=""></span>
+        <span><img :src="focus_news_data.Avatar?focus_news_data.Avatar:default_photo"></span>
         <span>{{focus_news_data.AuthorName}}</span>
         <i class="fa fa-clock-o"></i>
         <span>發表時間：</span>
@@ -32,7 +32,8 @@
     name: "focus-news",
     data(){
       return {
-        focus_news_data:""
+        focus_news_data:"",
+        default_photo:"../../../../static/img/timg.jpg"
       }
     },
     filters:{
@@ -41,11 +42,13 @@
       }
     },
     methods:{
-      skip_inside_contnet(id){
-        this.$router.push({
-          path:"/particulars",
-          query:{id:id}
-        })
+      skip_inside_contnet(RelationID,CategoryID){
+        if(RelationID){
+          this.$router.push({
+            path:"/particulars",
+            query:{RelationID:RelationID,CategoryID:CategoryID}
+          })
+        }
       }
     },
     created(){
