@@ -9,7 +9,6 @@
         <div><span style="font-size:14px">
           <p id="back-to-top">
             <a href="#top">
-              <span></span>
               ∧
             </a>
           </p>
@@ -76,9 +75,13 @@
     p#back-to-top a{
       text-align:center;
       text-decoration:none;
-      color:#d1d1d1;
+      color:white;
+      background: #b7b7b7;
       display:block;
-      width:64px;
+      width:3rem;
+      height: 3rem;
+      line-height: 3rem;
+      font-size: 40px;
       /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
       -moz-transition:color 1s;
       -webkit-transition:color 1s;
@@ -86,21 +89,6 @@
     }
     p#back-to-top a:hover{
       color:#979797;
-    }
-    p#back-to-top a span{
-      background:transparent url(/static/imgs/sprite.png?1202) no-repeat -25px -290px;
-      border-radius:6px;
-      display:block;
-      height:64px;
-      width:56px;
-      margin-bottom:5px;
-      /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/
-      -moz-transition:background 1s;
-      -webkit-transition:background 1s;
-      -o-transition:background 1s;
-    }
-    #back-to-top a:hover span{
-      background:transparent url(/static/imgs/sprite.png?1202) no-repeat -25px -290px;
     }
     .oops_content_wrap{
       background: #f4f4f4;
