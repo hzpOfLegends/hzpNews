@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-4">
             <div class="photo">
-              <img :src="item.CoverImges" alt="">
+              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
             </div>
           </div>
           <div class="col-8">
@@ -76,6 +76,7 @@
         }],
         default_photo: "../../../../static/img/timg.jpg",
         pageNum: 1, // 同区文章 页数
+        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg"
       }
     },
     components: {

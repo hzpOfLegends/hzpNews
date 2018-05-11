@@ -6,7 +6,7 @@
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
-      <img :src="item.CoverImges">
+      <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
       <p>{{item.NewsTitle}}</p>
     </div>
   </div>
@@ -44,7 +44,8 @@
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }]
+        }],
+        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg"
       }
     },
     watch:{

@@ -15,35 +15,9 @@
     <div class="share">
       <span>分享至:</span>
       <div style="display: inline-block">
-          <span class="twitter">
-              <a class="twitter-share-button"
-                 href="https://twitter.com/intent/tweet?text=Hello%20world"
-                 data-size="large">
-                <i class="fa fa-twitter"></i>
-                          twitter
-              </a>
-          </span>
-        <span class="facebook">
-          <span class="fb-share-button" data-href="123"
-                data-layout="button_count" data-mobile-iframe="true">
-            <a target="_blank"
-               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-               class="fb-xfbml-parse-ignore">
-            </a>
-
-          </span>
-          <span class="charater">
-            <i class="fa fa-facebook-f "></i>
-            Facebook
-          </span>
-        </span>
-        <span class="google">
-            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
-              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-              <i class="fa fa-google-plus-square"></i>
-              Google+
-            </a>
-          </span>
+        <facebook_btn/>
+        <google_btn/>
+        <twitter_btn/>
       </div>
     </div>
     <div class="article_conten">
@@ -54,35 +28,9 @@
     <div class="share">
       <span>分享至:</span>
       <div style="display: inline-block">
-       <span class="twitter">
-              <a class="twitter-share-button"
-                 href="https://twitter.com/intent/tweet?text=Hello%20world"
-                 data-size="large">
-                <i class="fa fa-twitter"></i>
-                          twitter
-              </a>
-          </span>
-        <span class="facebook">
-          <span class="fb-share-button" data-href="123"
-                data-layout="button_count" data-mobile-iframe="true">
-            <a target="_blank"
-               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-               class="fb-xfbml-parse-ignore">
-            </a>
-
-          </span>
-          <span class="charater">
-            <i class="fa fa-facebook-f "></i>
-            Facebook
-          </span>
-        </span>
-        <span class="google">
-            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
-              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-              <i class="fa fa-google-plus-square"></i>
-                            Google+
-            </a>
-          </span>
+        <facebook_btn/>
+        <google_btn/>
+        <twitter_btn/>
       </div>
     </div>
     <div class="line"></div>
@@ -99,6 +47,10 @@
   import filtration from '../../../assets/filtration'
   // facebook 评论插件
   import facebook_comment from './facebook_comment'
+  // google、facebook、twitter 分享按钮
+  import facebook_btn from './facebook_share_btn'
+  import twitter_btn from './twitter_share_btn'
+  import google_btn from './google_share_btn'
   export default {
     name: "details_content",
     data() {
@@ -128,6 +80,11 @@
         }).catch(err => {
         })
       }
+    },
+    components:{
+      facebook_btn,
+      google_btn,
+      twitter_btn
     },
     created() {
 

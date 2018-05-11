@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-4">
             <div class="photo">
-              <img :src="item.CoverImges" alt="">
+              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
             </div>
           </div>
           <div class="col-8">
@@ -70,7 +70,8 @@
           author: "魚丸相面",
           times: "2016-08-08"
         }],
-        default_photo:"../../../../static/img/timg.jpg"
+        default_photo:"../../../../static/img/timg.jpg",  // 默认头像
+        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg" //默认背景图
       }
     },
     created() {
@@ -116,6 +117,8 @@
         margin-top: 15px;
         cursor: pointer;
         .photo {
+          text-align: center;
+          background-color: rgba(0,0,0,.1);
           img {
             width: 100%;
             height: 10.125rem;

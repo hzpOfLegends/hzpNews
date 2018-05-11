@@ -8,7 +8,7 @@
           <!--<router-link to="index/particulars">-->
           <div class="col-4">
             <div class="photo">
-              <img :src="item.CoverImges" alt="">
+              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
             </div>
           </div>
           <div class="col-8">
@@ -76,7 +76,8 @@
           times: "2016-08-08"
         }],
         default_photo:"../../../../static/img/timg.jpg",
-        pageNum:1
+        pageNum:1,
+        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg" //默认背景图
       }
     },
     components:{
@@ -145,6 +146,8 @@
         margin-top: 0.9375rem;
         cursor: pointer;
         .photo {
+          text-align: center;
+          background-color: rgba(0,0,0,.1);
           img {
             width: 100%;
             height: 10.125rem;

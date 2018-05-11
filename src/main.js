@@ -17,18 +17,11 @@ Vue.use(VueScroller)
 import IScrollView from 'vue-iscroll-view'
 // jquery 的引用
 import $ from 'jquery'
+
 // axios拦截
 import axios from './axios_joggle/axios'
 //vueX
 import store from './store/store'
-// IScroll 滾動加載
-import IScroll from 'iscroll'
-// import IScroll from 'iscroll/build/iscroll-infinite.js
-// import IScroll from 'iscroll/build/iscroll-probe.js
-// import IScroll from 'iscroll/build/iscroll-view.js
-// import IScroll from 'iscroll/build/iscroll-zoom.js
-// import IScroll from 'iscroll/build/iscroll-lite.js
-Vue.use(IScrollView, IScroll)
 Vue.use(BootstrapVue);
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
