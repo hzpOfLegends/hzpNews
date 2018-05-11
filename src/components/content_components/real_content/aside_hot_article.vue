@@ -48,6 +48,22 @@
         default_backgrund_photo:"../../../../static/img/OopsDaily.jpg" //默认背景图
       }
     },
+    // 寫一個計算屬性 利用watch 監聽
+    computed: {
+      get_nav_id() {
+        return this.$store.state.nav_id;
+      }
+    },
+    watch: {
+      get_nav_id(val) {
+        // 热门文章
+        index_message.hot_article({CategoryID:val}).then(res => {
+          this.hot_article = res.data.Data
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+    },
     methods: {
       skip_inside_content(RelationID,CategoryID) {
         if(RelationID){
@@ -61,7 +77,7 @@
     },
     created() {
       // 热门文章
-      index_message.hot_article().then(res => {
+      index_message.hot_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
         // console.log(1,res)
         this.hot_article = res.data.Data
       }).catch(err => {

@@ -46,6 +46,22 @@
         return filtration.timezone_filter(value)
       }
     },
+    // 寫一個計算屬性 利用watch 監聽
+    computed: {
+      get_nav_id() {
+        return this.$store.state.nav_id;
+      }
+    },
+    watch: {
+      get_nav_id(val) {
+        index_message.focus_news({CategoryID:val}).then(res => {
+          this.focus_news_data = res.data.Data[0]
+
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+    },
     mounted() {
       // console.log(times.defaulttimezone_transition(new Date()))
       // let photo = document.querySelector('.photo')
@@ -65,7 +81,7 @@
     },
     created() {
       // 焦点新闻请求
-      index_message.focus_news().then(res => {
+      index_message.focus_news({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
         this.focus_news_data = res.data.Data[0]
 
       }).catch(err => {

@@ -2,6 +2,10 @@
   <div id="app">
     <!--導航-->
     <oops-header></oops-header>
+    <!--面包屑-->
+      <!--<div class="breadcrumb_wrap">-->
+        <!--<b-breadcrumb :items="items"/>-->
+      <!--</div>-->
     <!--内容-->
     <div class="oops_content_wrap">
       <div class="oops_content">
@@ -32,6 +36,17 @@
     components: {
       oopsHeader,
       oopsFooter
+    },
+    data(){
+      return {
+        items: [{
+          text: '首頁',
+          href: '/'
+        }, {
+          text: 'Library',
+          active: true
+        }]
+      }
     },
     mounted(){
       //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
@@ -66,6 +81,16 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    .breadcrumb_wrap{
+      width: 73.75rem;
+      margin: 0 auto;
+      background-color: white;
+      .breadcrumb{
+        background-color: white;
+        margin:  0;
+        padding-left: 0;
+      }
+    }
     p#back-to-top{
       position:fixed;
       display:none;

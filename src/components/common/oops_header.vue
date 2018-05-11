@@ -63,8 +63,8 @@
             <div class="col-11" style="overflow: hidden">
               <ul>
                 <li class="float-left" v-for="(item,index) in nav_select" :key="index">
-                  <a href="javascript:;" @click="skip_type(item.ID)">
-                    {{item.CategoryName}}
+                  <a href="javascript:;" @click="skip_type(item.CategoryID)">
+                    {{item.name}}
                   </a>
                 </li>
               </ul>
@@ -120,7 +120,7 @@
   export default {
     data() {
       return {
-        nav_select: ['國際', '社會', '軍事', '娛樂', '歷史', '國際', '社會', '軍事', '娛樂', '歷史', '國際', '社會', '軍事'],
+        nav_select: [{name:'娛樂',CategoryID:1},{name:'興趣',CategoryID:2},{name:'生活',CategoryID:3},{name:'科技',CategoryID:4},{name:'奇趣',CategoryID:5},{name:'新聞',CategoryID:-1}],
         nav_other_select: {
           item1: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item2: ['國際', '國際', '國際', '國際', '國際', '國際'],
@@ -136,12 +136,12 @@
       }
     },
     created() {
-      header_message.nav_type().then(res => {
-        this.nav_select = res.data.Data
-        this.nav_other_select = res.data.Data
-      }).catch(err => {
-        console.log(err)
-      })
+      // header_message.nav_type().then(res => {
+      //   this.nav_select = res.data.Data
+      //   this.nav_other_select = res.data.Data
+      // }).catch(err => {
+      //   console.log(err)
+      // })
     },
     methods: {
       // 显示 / 隐藏
@@ -158,7 +158,9 @@
       },
       // 选择分类
       skip_type(id) {
+        this.$store.state.nav_id = id
         console.log(id)
+        sessionStorage.setItem('CategoryID',id)
       },
       // 跳转
       skip_center(){

@@ -75,7 +75,7 @@
       }
     },
     created() {
-      index_message.recent_hot().then(res => {
+      index_message.recent_hot({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
         this.recent_hot = res.data.Data
       }).catch(err => {
         console.log(err)
@@ -84,6 +84,21 @@
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      }
+    },
+    // 寫一個計算屬性 利用watch 監聽
+    computed: {
+      get_nav_id() {
+        return this.$store.state.nav_id;
+      }
+    },
+    watch: {
+      get_nav_id(val) {
+        index_message.recent_hot({CategoryID:val}).then(res => {
+          this.recent_hot = res.data.Data
+        }).catch(err => {
+          console.log(err)
+        })
       }
     },
     methods: {
