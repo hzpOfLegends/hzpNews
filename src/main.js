@@ -11,10 +11,6 @@ import BootstrapVue from 'bootstrap-vue'
 import 'font-awesome/css/font-awesome.css'
 // 公共樣式
 import '../static/css/common.css'
-// vue-scroller
-import VueScroller from 'vue-scroller'
-Vue.use(VueScroller)
-import IScrollView from 'vue-iscroll-view'
 // jquery 的引用
 import $ from 'jquery'
 

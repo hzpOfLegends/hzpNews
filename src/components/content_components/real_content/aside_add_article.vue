@@ -61,7 +61,6 @@
     created() {
       //新增文章
       index_message.add_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
-        console.log(1,res)
         this.hot_article_first = res.data.Data.shift()
         this.hot_article = res.data.Data
       }).catch(err => {
