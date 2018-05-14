@@ -8,10 +8,10 @@
             </a>
 
           </span>
-          <!--<span class="charater">-->
-            <!--<i class="fa fa-facebook-f "></i>-->
-            <!--Facebook-->
-          <!--</span>-->
+          <span class="charater">
+            <i class="fa fa-facebook-f "></i>
+            Facebook
+          </span>
         </span>
 </template>
 
@@ -23,24 +23,24 @@
 
 <style scoped lang="less">
   .facebook {
-    /*position: relative;*/
-    /*display: inline-block;*/
-    /*width: 6.75rem;*/
-    /*height: 2.5rem;*/
-    /*background-color: #2d4671;*/
-    /*border-radius: 3px;*/
-    /*line-height: 2.5rem;*/
-    /*text-align: center;*/
-    /*.fb-share-button {*/
-      /*z-index: 999;*/
-      /*opacity: 0;*/
-      /*position: absolute;*/
-      /*left: 0;*/
-      /*transform: translateX(30%);*/
-      /*top: -20%;*/
-    /*}*/
-    /*.charater {*/
-      /*color: white;*/
-    /*}*/
+    position: relative;
+    display: inline-block;
+    width: 6.75rem;
+    height: 2.5rem;
+    background-color: #2d4671;
+    border-radius: 3px;
+    line-height: 2.5rem;
+    text-align: center;
+    .fb-share-button {
+      z-index: 999;
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      transform: translateX(30%);
+      top: -20%;
+    }
+    .charater {
+      color: white;
+    }
   }
 </style>

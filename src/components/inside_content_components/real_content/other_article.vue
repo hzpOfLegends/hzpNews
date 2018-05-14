@@ -108,7 +108,7 @@
       })
     },
     methods: {
-      skip_inside_content(RelationID) {
+      skip_inside_content(RelationID,CategoryID) {
         if (RelationID) {
           this.$router.push({
             path: "/particulars",

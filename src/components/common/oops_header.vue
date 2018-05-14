@@ -8,17 +8,17 @@
             <span>|</span>
             <span>文章創作分享平台</span>
           </div>
-          <div v-show="judge_login_page" class="col-6"></div>
-          <div class="col-2 pr-0" v-show="judge_login_page">
+          <div v-show="judge_login" class="col-6"></div>
+          <div class="col-2 pr-0" v-show="judge_login">
             <div class="row">
               <div class="col-6 pr-0 pl-0" id="login">
-                <b-button variant="secondary">
+                <b-button variant="secondary" @click="skip_login">
                   <i class="fa fa-user"></i>
                   <span>登錄</span>
                 </b-button>
               </div>
               <div class="col-6 pr-0 pl-0" id="register">
-                <b-button variant="primary">
+                <b-button variant="primary" @click="skip_register">
                   <i class="fa fa-plus-circle"></i>
                   <span>注冊</span>
                 </b-button>
@@ -130,8 +130,10 @@
           item6: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item7: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item8: ['國際', '國際', '國際', '國際', '國際', '國際'],
-          judge_login_page:true
+
         },
+        judge_login_page:false,
+        judge_login:true,
         nav_down: false,
         nav_down_icon: "fa fa-bars"
       }
@@ -166,7 +168,7 @@
       // 选择分类
       skip_type(id) {
         this.$store.state.nav_id = id
-        console.log(id)
+        this.$router.push({path:"/"})
         sessionStorage.setItem('CategoryID',id)
       },
       // 跳转
@@ -176,6 +178,13 @@
       },
       skip_index(){
         this.$router.push({path:"/"})
+      },
+      //跳轉登錄
+      skip_login(){
+        this.$router.push({path:'/login'})
+      },
+      skip_register(){
+        this.$router.push({path:'/register'})
       }
     }
 

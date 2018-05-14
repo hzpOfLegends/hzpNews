@@ -77,6 +77,7 @@
     created() {
       index_message.recent_hot({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
         this.recent_hot = res.data.Data
+        console.log(1,res)
       }).catch(err => {
         console.log(err)
       })

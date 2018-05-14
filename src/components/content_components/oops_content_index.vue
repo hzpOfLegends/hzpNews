@@ -110,6 +110,16 @@
         }
       })
     },
+    watch:{
+      "$route":function () {
+        // 將滾輪 滾到 頂部
+        if ($('html').scrollTop()) {
+          $('html').animate({ scrollTop: 0 }, 1000);
+          return false;
+        }
+        $('body').animate({ scrollTop: 0 }, 1000);
+      }
+    },
     mounted() {
 
     },

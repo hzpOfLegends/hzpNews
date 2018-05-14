@@ -59,9 +59,6 @@
         default_photo:"../../../../static/img/timg.jpg"
       }
     },
-    components:{
-      facebook_comment
-    },
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
@@ -84,16 +81,17 @@
     components:{
       facebook_btn,
       google_btn,
-      twitter_btn
+      twitter_btn,
+      facebook_comment
     },
     created() {
 
 
     },
     mounted() {
-      console.log(this.$route.query.RelationID)
       inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
         this.details = res.data.Data
+        console.log(res)
         setTimeout(()=>{
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {
