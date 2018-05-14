@@ -76,7 +76,7 @@
         }],
         default_photo: "../../../../static/img/timg.jpg",
         pageNum: 1, // 同区文章 页数
-        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg"
+        default_backgrund_photo:"../../../../static/img/OopsDaily.png"
       }
     },
     components: {

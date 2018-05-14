@@ -9,7 +9,7 @@
             <span>文章創作分享平台</span>
           </div>
           <div v-show="false" class="col-6"></div>
-          <div class="col-2 pr-0" v-show="false">
+          <div class="col-2 pr-0" v-show="judge_login_page">
             <div class="row">
               <div class="col-6 pr-0 pl-0" id="login">
                 <b-button variant="secondary">
@@ -28,7 +28,7 @@
           <div class="col-2">
 
           </div>
-          <div class="col-6">
+          <div class="col-6" v-show="judge_login_page">
             <div class="float-right user_message">
               <i class="fa fa-user"></i>
               當前用戶：
@@ -38,7 +38,7 @@
               <span class="subscript" >
                 <b-dropdown variant="link" size="sm">
                   <b-dropdown-item href="#">登出</b-dropdown-item>
-                  <b-dropdown-item href="#">个人中心</b-dropdown-item>
+                  <b-dropdown-item href="/personal_center">个人中心</b-dropdown-item>
                   <!--<b-dropdown-item href="#"></b-dropdown-item>-->
                 </b-dropdown>
               </span>
@@ -57,7 +57,7 @@
         </div>
 
       </div>
-      <div class="oops_navs">
+      <div class="oops_navs" v-show="judge_login_page">
         <div class="container">
           <div class="row">
             <div class="col-11" style="overflow: hidden">
@@ -108,7 +108,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </div>
   </div>
 </template>
@@ -129,7 +129,8 @@
           item5: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item6: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item7: ['國際', '國際', '國際', '國際', '國際', '國際'],
-          item8: ['國際', '國際', '國際', '國際', '國際', '國際']
+          item8: ['國際', '國際', '國際', '國際', '國際', '國際'],
+          judge_login_page:true
         },
         nav_down: false,
         nav_down_icon: "fa fa-bars"
@@ -142,6 +143,12 @@
       // }).catch(err => {
       //   console.log(err)
       // })
+      let router_path = this.$route.path
+      if(router_path.indexOf('/login') || router_path.indexOf('register')){
+        this.judge_login_page = false
+      }else{
+        this.judge_login_page = true
+      }
     },
     methods: {
       // 显示 / 隐藏

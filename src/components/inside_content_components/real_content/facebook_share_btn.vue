@@ -1,7 +1,7 @@
 <template>
     <span class="facebook">
           <span class="fb-share-button" data-href="123"
-                data-layout="button_count" data-mobile-iframe="true">
+                data-layout="box_count" data-mobile-iframe="true">
             <a target="_blank"
                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                class="fb-xfbml-parse-ignore">

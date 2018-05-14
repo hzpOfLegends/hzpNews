@@ -71,7 +71,7 @@
           times: "2016-08-08"
         }],
         default_photo:"../../../../static/img/timg.jpg",  // 默认头像
-        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg" //默认背景图
+        default_backgrund_photo:"../../../../static/img/OopsDaily.png" //默认背景图
       }
     },
     created() {

@@ -45,7 +45,7 @@
         }, {
           img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }],
-        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg"
+        default_backgrund_photo:"../../../../static/img/OopsDaily.png"
       }
     },
     watch:{

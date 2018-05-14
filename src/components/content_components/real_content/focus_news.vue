@@ -21,6 +21,7 @@
         <i class="fa fa-clock-o"></i>
         <span>發表時間：</span>
         <span>{{focus_news_data.PublishTime | timezone_filter}}</span>
+
       </div>
     </div>
   </div>
@@ -38,7 +39,7 @@
       return {
         focus_news_data: "",
         default_photo: "../../../../static/img/timg.jpg",
-        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg"
+        default_backgrund_photo:"../../../../static/img/OopsDaily.png"
       }
     },
     filters: {

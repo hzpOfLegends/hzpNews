@@ -10,7 +10,8 @@
     <div class="oops_content_wrap">
       <div class="oops_content">
         <router-view></router-view>
-        <div><span style="font-size:14px">
+        <!--點擊到頂部-->
+        <div v-show="skip_top"><span style="font-size:14px">
           <p id="back-to-top">
             <a href="#top">
               ∧
@@ -19,7 +20,6 @@
         </span>
         </div>
       </div>
-
     </div>
 
     <!--底部-->
@@ -37,6 +37,7 @@
       oopsHeader,
       oopsFooter
     },
+
     data(){
       return {
         items: [{
@@ -45,7 +46,8 @@
         }, {
           text: 'Library',
           active: true
-        }]
+        }],
+        skip_top:true //點擊到頂部按鈕
       }
     },
     mounted(){
@@ -70,6 +72,17 @@
           $('body').animate({ scrollTop: 0 }, 1000);
           return false;
         });
+
+        // 判断是不是login / register 页面
+      let router_path = this.$route.path
+      if(router_path.indexOf('/login') || router_path.indexOf('register')){
+        let oops_content_wrap = document.querySelector('.oops_content_wrap')
+        // console.log(oops_content_wrap)
+        oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+        this.skip_top = false
+      }else{
+        this.skip_top = true
+      }
     }
   }
 </script>
@@ -91,11 +104,12 @@
         padding-left: 0;
       }
     }
+    // 点击到顶部  按钮样式
     p#back-to-top{
       position:fixed;
       display:none;
-      bottom:100px;
-      right:80px;
+      bottom:6.25rem;
+      right:5rem;
     }
     p#back-to-top a{
       text-align:center;

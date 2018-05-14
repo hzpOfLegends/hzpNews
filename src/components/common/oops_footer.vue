@@ -1,6 +1,6 @@
 <template>
   <div class="oops_footer" v-show="judge_login">
-    <div class="oops_footer_wrap ">
+    <div class="oops_footer_wrap " v-show="judge_login_page">
       <div class="container">
         <div class="row">
           <div class="col-3 ">
@@ -77,12 +77,21 @@
   export default {
     data(){
       return {
-        judge_login:false
+        judge_login:true,
+        judge_login_page:true
       }
+
     },
     created(){
+      console.log(this.$route.path)
+      let router_path = this.$route.path
+      if(router_path.indexOf('/login') || router_path.indexOf('register')){
+        this.judge_login_page = false
+      }else{
+        this.judge_login_page = true
+      }
+    },
 
-    }
   }
 </script>
 

@@ -77,7 +77,7 @@
         }],
         default_photo:"../../../../static/img/timg.jpg",
         pageNum:1,
-        default_backgrund_photo:"../../../../static/img/OopsDaily.jpg" //默认背景图
+        default_backgrund_photo:"../../../../static/img/OopsDaily.png" //默认背景图
       }
     },
     components:{
