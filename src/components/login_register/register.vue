@@ -150,6 +150,7 @@
         if (this.btnActive) {
           users_page.register({Email: this.email, Password: this.new_password}).then(res => {
             if(res.status==200 && res.data.ResultCode==200){
+              this.$router.push({path:'/login'})
               this.reset_input()
             }
           }).catch(err => {

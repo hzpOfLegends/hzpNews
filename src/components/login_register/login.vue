@@ -37,10 +37,9 @@
               <a href="#" v-b-modal.modal>忘記密碼？</a>
               <b-modal size="xs" id="modal" :hide-header="true" :hide-footer="true">
                 <h5>找回密碼</h5>
-
               </b-modal>
             </div>
-            <button class="btn" :class="{'active':btnActive}">
+            <button class="btn" @click="submit_mess" :class="{'active':btnActive}">
               登錄
             </button>
           </div>
@@ -60,6 +59,8 @@
 </template>
 
 <script>
+  import users_page from '../../axios_joggle/axios_users'
+
   export default {
     name: "login",
     data() {
@@ -75,16 +76,18 @@
         btnActive: false //按鈕顔色
       }
     },
-    mounted(){
+    mounted() {
       // 去除模態框padding
-      let modal_padding = document.getElementById('modal1___BV_modal_body_')
-      modal_padding.style.padding = 0 ;
+      setTimeout(() => {
+        let modal_padding = document.getElementById('modal1___BV_modal_body_')
+        modal_padding.style.padding = '0';
+      }, 1)
     },
     computed: {},
     methods: {
       //郵箱驗證
       emailVerify() {
-        let reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+        let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
         // return  reg.test(this.email)?true:false
         if (reg.test(this.email)) {
           this.email_hint = ""
@@ -118,6 +121,23 @@
         } else {
           this.btnActive = false
         }
+      },
+      submit_mess() {
+        if (this.btnActive) {
+          users_page.login({loginName: this.email, loginPwd: this.password}).then(res => {
+            if(res.status==200 && res.data.ResultCode==200){
+              this.$router.push({path:'/'})
+              this.reset_input()
+            }
+          }).catch(err => {
+          })
+        }
+      },
+      // 清空 input
+      reset_input(){
+        this.email = ""
+        this.password = ""
+        this.btnActive = false
       }
     }
   }
@@ -176,20 +196,20 @@
       margin-bottom: 1.875rem;
     }
     // 模態框
-  #modal{
-    .modal-body{
-      padding: 0 ;
-      h5{
-        text-align: center;
-        font-weight: 600;
-        font-size: 16px;
-        color: rgb(10, 83, 162);
-        border-bottom: 5px solid  rgb(10, 83, 162);
-        padding: 1.75rem 0 1.375rem;
+    #modal {
+      .modal-body {
+        padding: 0;
+        h5 {
+          text-align: center;
+          font-weight: 600;
+          font-size: 16px;
+          color: rgb(10, 83, 162);
+          border-bottom: 5px solid rgb(10, 83, 162);
+          padding: 1.75rem 0 1.375rem;
+        }
       }
-    }
 
-  }
+    }
 
   }
 </style>

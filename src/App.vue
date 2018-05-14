@@ -75,12 +75,15 @@
 
         // 判断是不是login / register 页面
       let router_path = this.$route.path
-      if(router_path.indexOf('/login') || router_path.indexOf('register')){
-        let oops_content_wrap = document.querySelector('.oops_content_wrap')
+        // 獲取元素 用來設置登陸 注冊頁面的背景圖
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      console.log(router_path.indexOf('/'))
+      if(router_path.indexOf('/login')==0 || router_path.indexOf('register')==0){
         // console.log(oops_content_wrap)
         oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
         this.skip_top = false
       }else{
+        oops_content_wrap.style.background = "none"
         this.skip_top = true
       }
     }

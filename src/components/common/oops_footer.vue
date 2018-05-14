@@ -85,7 +85,7 @@
     created(){
       console.log(this.$route.path)
       let router_path = this.$route.path
-      if(router_path.indexOf('/login') || router_path.indexOf('register')){
+      if(router_path.indexOf('/login')==0 || router_path.indexOf('register')==0){
         this.judge_login_page = false
       }else{
         this.judge_login_page = true

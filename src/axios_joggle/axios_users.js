@@ -8,5 +8,13 @@ class users_page {
       console.log('参数不规范')
     }
   }
+  // 用戶登錄
+  login(data={}){
+    if (data || Object.keys(data).length) {
+      return axios.post(axios.path+'api/Index/Login',data)
+    } else {
+      console.log('参数不规范')
+    }
+  }
 }
 export default new users_page()

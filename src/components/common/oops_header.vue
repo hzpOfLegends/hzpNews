@@ -8,7 +8,7 @@
             <span>|</span>
             <span>文章創作分享平台</span>
           </div>
-          <div v-show="false" class="col-6"></div>
+          <div v-show="judge_login_page" class="col-6"></div>
           <div class="col-2 pr-0" v-show="judge_login_page">
             <div class="row">
               <div class="col-6 pr-0 pl-0" id="login">
@@ -144,7 +144,7 @@
       //   console.log(err)
       // })
       let router_path = this.$route.path
-      if(router_path.indexOf('/login') || router_path.indexOf('register')){
+      if(router_path.indexOf('/login')==0 || router_path.indexOf('register')==0){
         this.judge_login_page = false
       }else{
         this.judge_login_page = true
