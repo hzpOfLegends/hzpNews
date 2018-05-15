@@ -83,7 +83,7 @@
         oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
         this.skip_top = false
       }else{
-        oops_content_wrap.style.background = "none"
+        oops_content_wrap.style.background = "#f4f4f4"
         this.skip_top = true
       }
     }

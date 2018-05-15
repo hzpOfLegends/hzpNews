@@ -4,40 +4,43 @@
       <div class="container">
         <div class="oops_title row">
           <div class="col-4 oops_title_left" @click="skip_index" style="cursor: pointer">
-            <span>OOPSDAILY</span>
-            <span>|</span>
-            <span>文章創作分享平台</span>
+            <a href="/">
+              <span>OOPSDAILY</span>
+              <span>|</span>
+              <span>文章創作分享平台</span>
+            </a>
           </div>
-          <div v-show="judge_login" class="col-6"></div>
-          <div class="col-2 pr-0" v-show="judge_login">
+          <div  v-if="judge_login==false" class="col-6"></div>
+          <div class="col-2 pr-0" v-if="judge_login==false">
             <div class="row">
               <div class="col-6 pr-0 pl-0" id="login">
-                <b-button variant="secondary" @click="skip_login">
+                <a href="/login" class="login_btn">
                   <i class="fa fa-user"></i>
                   <span>登錄</span>
-                </b-button>
+                </a>
               </div>
               <div class="col-6 pr-0 pl-0" id="register">
-                <b-button variant="primary" @click="skip_register">
+
+                <a href="/register" class="register_btn">
                   <i class="fa fa-plus-circle"></i>
                   <span>注冊</span>
-                </b-button>
+                </a>
               </div>
             </div>
           </div>
           <div class="col-2">
 
           </div>
-          <div class="col-6" v-show="judge_login_page">
+          <div class="col-6" v-if="judge_login==true">
             <div class="float-right user_message">
               <i class="fa fa-user"></i>
               當前用戶：
-              <span style="color:#37abe3">
-                  鱼丸
+              <span>
+                  <a href="/personal_center"  style="color:#37abe3">鱼丸</a>
               </span>
               <span class="subscript" >
                 <b-dropdown variant="link" size="sm">
-                  <b-dropdown-item href="#">登出</b-dropdown-item>
+                  <b-dropdown-item href="#" @click="login_out">登出</b-dropdown-item>
                   <b-dropdown-item href="/personal_center">个人中心</b-dropdown-item>
                   <!--<b-dropdown-item href="#"></b-dropdown-item>-->
                 </b-dropdown>
@@ -57,7 +60,7 @@
         </div>
 
       </div>
-      <div class="oops_navs" v-show="judge_login_page">
+      <div class="oops_navs" v-show="judge_login_page" >
         <div class="container">
           <div class="row">
             <div class="col-11" style="overflow: hidden">
@@ -78,7 +81,7 @@
           <div v-show="nav_down" class="nav_down row position-absolute">
             <div class="nav_down_content">
               <ul class="float-left" v-for="(item,index) in nav_other_select" :key="index">
-                <li><a href="javascripte:;">{{item.CategoryName}}</a></li>
+                <li><a href="javascripte:;" >{{item.CategoryName}}</a></li>
               </ul>
             </div>
             <div class="nav_down_footer">
@@ -121,6 +124,7 @@
     data() {
       return {
         nav_select: [{name:'娛樂',CategoryID:1},{name:'興趣',CategoryID:2},{name:'生活',CategoryID:3},{name:'科技',CategoryID:4},{name:'奇趣',CategoryID:5},{name:'新聞',CategoryID:-1}],
+
         nav_other_select: {
           item1: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item2: ['國際', '國際', '國際', '國際', '國際', '國際'],
@@ -130,11 +134,10 @@
           item6: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item7: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item8: ['國際', '國際', '國際', '國際', '國際', '國際'],
-
         },
-        judge_login_page:false,
-        judge_login:true,
-        nav_down: false,
+        judge_login_page:false, // 用來判斷 切換到登錄頁面時 一些樣式的隱藏
+        judge_login:false,  // 用來判斷是否登錄 一些樣式的隱藏
+        nav_down: false,  // 用來切換導航欄的隱藏
         nav_down_icon: "fa fa-bars"
       }
     },
@@ -150,6 +153,15 @@
         this.judge_login_page = false
       }else{
         this.judge_login_page = true
+      }
+    },
+    mounted(){
+      // 判斷是否存在shareID  也就是是否登錄
+      let shareID = sessionStorage.getItem('ShareID')
+      if(shareID){
+        this.judge_login = true
+      }else{
+        this.judge_login = false
       }
     },
     methods: {
@@ -185,6 +197,10 @@
       },
       skip_register(){
         this.$router.push({path:'/register'})
+      },
+      login_out(){
+        sessionStorage.setItem('ShareID',"")
+        window.location.href = "/"
       }
     }
 
@@ -218,9 +234,18 @@
         height: 4.5rem;
         background-color: #ffffff;
         line-height: 4.5rem;
+        /*.login_btn{*/
+          /*display: inline-block;*/
+          /*width: 4.5rem;*/
+          /*height: 1.625rem;*/
+          /*background: rgb(238, 238, 238);*/
+        /*}*/
         .oops_title_left {
           text-align: left;
           padding-left: 0;
+          a{
+            text-decoration: none;
+          }
           :nth-child(1) {
             font-size: 24px;
             font-weight: 600;
@@ -235,17 +260,25 @@
           }
         }
         #register {
-          button {
+          .register_btn {
+            display: inline-block;
             width: 5.125rem;
             height: 1.75rem;
             line-height: 1.75rem;
             padding: 0;
             background-color: #468bed;
             font-size: 14px;
+            color: white;
+            border-radius: 3px;
+            text-decoration: none;
+            span{
+              padding-left: 0.625rem;
+            }
           }
         }
         #login {
-          button {
+          .login_btn {
+            display: inline-block;
             width: 5.125rem;
             height: 1.75rem;
             line-height: 1.75rem;
@@ -253,6 +286,10 @@
             background-color: #eeeeee;
             color: #656565;
             font-size: 14px;
+            text-decoration: none;
+            span{
+              padding-left: 0.625rem;
+            }
           }
         }
       }

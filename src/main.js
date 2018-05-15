@@ -18,7 +18,12 @@ import $ from 'jquery'
 import axios from './axios_joggle/axios'
 //vueX
 import store from './store/store'
+
 Vue.use(BootstrapVue);
+// 上传头像
+import Croppa from 'vue-croppa'
+import 'vue-croppa/dist/vue-croppa.css'
+Vue.use(Croppa)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios_index from "./axios_joggle/axios_index";

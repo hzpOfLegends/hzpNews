@@ -11,17 +11,17 @@ import inside_page_content from "@/components/inside_content_components/inside_p
 import personal_center_content from '@/components/personal_center/personal_center_content'
   // 个人中心 子组件
     // 总览
-import pandect from '@/components/personal_center/real_content/pandect'
+import pandect from '@/components/personal_center/real_content/pandect/pandect'
     // 资料
-import user_data from '@/components/personal_center/real_content/user_data'
+import user_data from '@/components/personal_center/real_content/user_data/user_data'
     // 文章
-import user_article from '@/components/personal_center/real_content/user_article'
+import user_article from '@/components/personal_center/real_content/user_article/user_article'
     // 点开
-import clickOn from '@/components/personal_center/real_content/clickOn'
+import clickOn from '@/components/personal_center/real_content/clickOn/clickOn'
     // 好文
-import good_article from '@/components/personal_center/real_content/good_article'
+import good_article from '@/components/personal_center/real_content/good_article/good_article'
     //收益
-import earnings from '@/components/personal_center/real_content/earnings'
+import earnings from '@/components/personal_center/real_content/earnings/earnings'
 
 // 注册
 import register from '@/components/login_register/register'

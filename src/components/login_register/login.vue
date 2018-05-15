@@ -80,7 +80,9 @@
       // 去除模態框padding
       setTimeout(() => {
         let modal_padding = document.getElementById('modal1___BV_modal_body_')
-        modal_padding.style.padding = '0';
+        if(modal_padding){
+          modal_padding.style.padding = '0';
+        }
       }, 1)
     },
     computed: {},
@@ -125,9 +127,12 @@
       submit_mess() {
         if (this.btnActive) {
           users_page.login({loginName: this.email, loginPwd: this.password}).then(res => {
+            console.log(res)
             if(res.status==200 && res.data.ResultCode==200){
-              this.$router.push({path:'/'})
+              sessionStorage.setItem('ShareID',res.data.Data.ShareID)
+              window.location.href = "/"
               this.reset_input()
+
             }
           }).catch(err => {
           })
