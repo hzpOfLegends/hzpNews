@@ -62,7 +62,7 @@
         </div>
 
       </div>
-      <div class="oops_navs" v-if="$store.state.nav_style">
+      <!--<div class="oops_navs" v-if="$store.state.nav_style">
         <div class="container">
           <div class="row">
             <div class="col-11" style="overflow: hidden">
@@ -116,7 +116,7 @@
           </div>
         </div>
 
-      </div>
+      </div>-->
     </div>
   </div>
   <!--<div>-->

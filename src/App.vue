@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!--導航-->
-    <!--<oops-header></oops-header>-->
+    <oops-header></oops-header>
     <!--面包屑-->
       <!--<div class="breadcrumb_wrap">-->
         <!--<b-breadcrumb :items="items"/>-->
@@ -23,7 +23,7 @@
     </div>
 
     <!--底部-->
-    <!--<oops-footer></oops-footer>-->
+    <oops-footer></oops-footer>
     </div>
 </template>
 
@@ -129,12 +129,13 @@
       }
     }
     .oops_content_wrap{
-      max-width:73.75rem;
-      width: 73.75rem;
+      // max-width:73.75rem;
+      // width: 73.75rem;
       margin: 0 auto;
       .oops_content{
-        max-width:73.75rem;
-        width: 73.75rem;
+        min-height:333px;
+        // max-width:73.75rem;
+        // width: 73.75rem;
         /*width: 1180px;*/
         /*max-width: 1180px;*/
         margin: 0 auto;

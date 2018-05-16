@@ -1,26 +1,45 @@
 <template>
   <div class="oops_footer" v-if="$store.state.foot_all_style">
     <div class="oops_footer_wrap " v-if="$store.state.footer_style1">
-      <div class="container">
+      <div class="">
         <div class="row">
-          <div class="col-3 ">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="web_name">
               <h2>OOPSDAILY</h2>
               <P>文章創作分享平臺</P>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 type-all">
             <div class="web_type">
               <h5>全部分類</h5>
-              <span>123</span>
-              <span>123</span>
-              <span>123</span>
-              <span>123</span>
-              <span>123</span>
-              <span>123</span>
+              <div>
+                <div class="types">
+                   <ul>
+                     <li>type1</li>
+                     <li>type1</li>
+                     <li>type1</li>
+                     <li>type1</li>
+                     <li>type1</li>
+                   </ul>
+                   <ul>
+                     <li>type2</li>
+                     <li>type2</li>
+                     <li>type2</li>
+                     <li>type2</li>
+                     <li>type2</li>
+                   </ul>
+                   <ul>
+                     <li>type3</li>
+                     <li>type3</li>
+                     <li>type3</li>
+                     <li>type3</li>
+                     <li>type3</li>
+                   </ul>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-3 web_share">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 web_share">
             <router-link to="">
               <img src="../../../static/img/team1.png" alt="">
             </router-link>
@@ -37,13 +56,14 @@
         </div>
       </div>
     </div>
+
     <div class="oops_footer2" v-if="$store.state.footer_style2" >
       <div class="oops_footer_wrap2 clearfix">
-        <div class="float-left">
-          <router-link to="">@2018OopsDaily</router-link>
-          <router-link to="">隱私政策</router-link>
-          <router-link to="">服務條款</router-link>
-          <router-link to="">京ICP證080268號</router-link>
+        <div class="float-left " id="copy">
+          <router-link to=""><span>@2018OopsDaily</span></router-link>
+          <router-link to=""><span>隱私政策</span></router-link>
+          <router-link to=""><span>服務條款</span></router-link>
+          <router-link to=""><span>京ICP證080268號</span></router-link>
 
         </div>
         <div class="float-right">
@@ -92,38 +112,35 @@
 <style scoped lang="less">
   .oops_footer {
     background-color: white;
-    height: 20.25rem;
+    // height: 20.25rem;
     .oops_footer_wrap {
-      max-width: 73.75rem;
-      width: 73.75rem;
       margin: 0 auto;
       height: 100%;
-      .container {
         margin: 0;
         padding: 0;
-        max-width: 73.75rem;
-        width: 100%;
-        height: 100%;
         .row {
           height: 100%;
           .web_name {
-            padding-top: 48px !important;
+            padding-top: 36px !important;
             height: 100%;
-            border-right: 1px solid #f6f6f6;
             h2 {
               font-weight: 900;
               color: #888888;
             }
           }
           .web_type {
-            height: 100%;
+            height: 270px;
             border-right: 1px solid #f6f6f6;
-            padding: 3rem 6.6rem 4.37rem 6.6rem !important;
+            border-left: 1px solid #f6f6f6;
             text-align: left;
             h5 {
               font-size: 16px;
               color: #888888;
               font-weight: 900;
+              padding:15px 12% 3px;
+              @media screen and  (max-width:768px) {
+                  text-align:center;
+              }
             }
             span {
               display: inline-block;
@@ -131,26 +148,28 @@
               text-align: left;
             }
           }
+
           .web_share {
-            padding-top: 48px !important;
+            margin-top:48px;
+            height:70px;
+            // background-color:red;;
             a{
               display: inline-block;
               width: 3rem;
               height: 3rem;
+              margin: 0 4px;
               img{
                 width: 100%;
               }
             }
 
           }
-        }
       }
     }
+
     .oops_footer2 {
       background-color: #313131;
       .oops_footer_wrap2 {
-        max-width: 73.75rem;
-        width: 73.75rem;
         margin: 0 auto;
         height: 3rem;
         a{
@@ -165,6 +184,26 @@
           line-height: 3rem;
         }
       }
+    }
+    .types {
+        display:flex;
+        &>ul {
+           flex:0 0 33%;
+           li{
+             text-align:center;
+             padding:5px 0;
+           }
+        }
+    }
+    @media screen and  (max-width:414px) {
+        #copy {
+          span {
+            font-size:12px !important;
+          }
+        }
+        .type-all {
+          font-size:12px;
+        }
     }
 
   }
