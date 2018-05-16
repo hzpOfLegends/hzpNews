@@ -123,10 +123,15 @@
       color:#979797;
     }
     @media screen and(max-width: 768px){
-      .oops_content{
-        width: 100%;
+      .oops_content_wrap{
+        max-width: 768px !important;
         margin: 0 auto;
+        .oops_content{
+          max-width: 768px !important;
+          margin: 0 auto;
+        }
       }
+
     }
     .oops_content_wrap{
       max-width:73.75rem;
