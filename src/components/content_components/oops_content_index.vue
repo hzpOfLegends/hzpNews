@@ -7,25 +7,31 @@
             <focus_news/>
             <focus_news_skeleton slot="skeleton"/>
           </vue-lazy-component>
+          <!--广告 (适配)-->
+          <vue-lazy-component class="advertising_aside1_phone" style="display: none">
+            <advertising_aside1/>
+            <advertising_aside1_skeleton slot="skeleton"/>
+          </vue-lazy-component>
+
           <!--最近热门-->
           <vue-lazy-component style="margin-top: 20px">
             <recent_hot/>
             <recent_hot_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--广告-->
-          <vue-lazy-component style="margin-top: 20px">
+          <vue-lazy-component style="margin-top: 20px" class="advertising_aside2_browser">
             <advertising_aside2/>
             <advertising_aside2_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--大家都在读-->
-          <vue-lazy-component style="margin-top: 20px">
+          <vue-lazy-component style="margin-top: 20px"  class="all_read_browser">
             <all_read/>
             <all_read_skeleton slot="skeleton"/>
           </vue-lazy-component>
         </div>
         <div class="float-right right_content">
           <!--广告-->
-          <vue-lazy-component>
+          <vue-lazy-component class="advertising_aside1_browser">
             <advertising_aside1/>
             <advertising_aside1_skeleton slot="skeleton"/>
           </vue-lazy-component>
@@ -34,10 +40,20 @@
             <aside_hot_article/>
             <aside_hot_article_skeleton slot="skeleton"/>
           </vue-lazy-component>
+          <!--广告 (适配)-->
+          <vue-lazy-component style="margin-top: 20px;display: none" class="advertising_aside2_phone">
+            <advertising_aside2/>
+            <advertising_aside2_skeleton slot="skeleton"/>
+          </vue-lazy-component>
           <!--新增文章-->
           <vue-lazy-component style="margin-top: 20px">
             <aside_add_article/>
             <aside_add_article_skeleton slot="skeleton"/>
+          </vue-lazy-component>
+          <!--大家都在读 (适配)-->
+          <vue-lazy-component style="margin-top: 20px ;display: none" class="all_read_phone">
+            <all_read/>
+            <all_read_skeleton slot="skeleton"/>
           </vue-lazy-component>
         </div>
 
@@ -145,10 +161,34 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and  (min-width: 1200px){
+    .container{
+      max-width: 1180px;
+    }
+    .right_content{
+      width: 320px;
+    }
+  }
   @media screen and (max-width: 768px){
     .left_content{
       width: 100%;
       display: block;
+      float: none !important;
+    }
+    .advertising_aside2_phone{
+      display: block !important;
+    }
+    .advertising_aside1_phone{
+      display: block !important;
+    }
+    .advertising_aside2_browser{
+      display: none !important;
+    }
+    .all_read_browser{
+      display: none !important;
+    }
+    .all_read_phone{
+      display: block !important;
     }
     .oops_content_index{
       .container{
@@ -158,31 +198,31 @@
     }
 
     .right_content{
-      display: none;
+      max-width: 768px!important;
+      display: block;
+      float: none !important;
     }
   }
-  /*.oops_content_index {*/
-    /*padding-top: 1.0625rem;*/
-    /*padding-bottom: 1.0625rem;*/
-    /*.container {*/
-      /*!*max-width: 73.75rem;*!*/
-      /*!*width: 73.75rem;*!*/
-      /*!*width: 1180px;*!*/
-      /*!*max-width: 1180px;*!*/
-      /*padding: 0;*/
-      /*margin: 0;*/
-      /*.left_content {*/
-        /*!*width: 53rem;*!*/
-        /*!*max-width: 53em;*!*/
-        /*width: 848px;*/
-        /*padding: 0.1875rem;*/
-      /*}*/
-      /*.right_content {*/
-        /*!*width: 20rem;*!*/
-        /*!*max-width: 20rem;*!*/
-        /*width: 320px;*/
-        /*padding: 0.1875rem;*/
-      /*}*/
-    /*}*/
-  /*}*/
+  .oops_content_index {
+    padding-top: 1.0625rem;
+    padding-bottom: 1.0625rem;
+    .container {
+      /*max-width: 73.75rem;*/
+      /*width: 73.75rem;*/
+      /*width: 1180px;*/
+      /*max-width: 1180px;*/
+      padding: 0;
+      margin: 0;
+      margin: 0 auto;
+      .left_content {
+        max-width: 53em;
+        padding: 0.1875rem;
+      }
+      .right_content {
+        /*max-width: 20rem;*/
+        max-width: 320px ;
+        padding: 0.1875rem;
+      }
+    }
+  }
 </style>

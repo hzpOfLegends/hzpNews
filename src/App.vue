@@ -129,17 +129,21 @@
         .oops_content{
           max-width: 768px !important;
           margin: 0 auto;
+          .container{
+            max-width: 768px;
+            margin: 0 auto !important;
+          }
         }
       }
 
     }
     .oops_content_wrap{
-      max-width:73.75rem;
-      width: 73.75rem;
+      /*max-width:73.75rem;*/
+      /*width: 73.75rem;*/
       margin: 0 auto;
       .oops_content{
-        max-width:73.75rem;
-        width: 73.75rem;
+        /*max-width:73.75rem;*/
+        /*width: 73.75rem;*/
         /*width: 1180px;*/
         /*max-width: 1180px;*/
         margin: 0 auto;

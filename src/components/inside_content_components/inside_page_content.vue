@@ -4,11 +4,15 @@
       <div class="float-left left_content">
         <!--詳情内容-->
         <details_content/>
+        <div class="float-right right_content related_articles_phone" style="display: none">
+          <!--相關文章(适配)-->
+          <related_articles/>
+        </div>
         <!--同區的其他文章-->
         <other_article style="margin-top: 20px"/>
         <!--<div id="fb-root"><div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div></div>-->
       </div>
-      <div class="float-right right_content">
+      <div class="float-right right_content related_articles_browser">
         <!--相關文章-->
         <related_articles/>
       </div>
@@ -72,22 +76,34 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and(max-width: 768px){
+    .left_content{
+      float: none !important;
+    }
+    .related_articles_phone{
+      max-width: 768px !important;
+      float: none !important;
+      display: block !important;
+    }
+    .right_content_browser{
+      display: none !important;
+    }
+  }
   .inside_page_content {
     padding-top: 1.0625rem;
     padding-bottom: 1.0625rem;
+    margin: 0 auto;
     .container {
       max-width: 73.75rem;
-      width: 73.75rem;
       padding: 0;
       margin: 0;
+      margin: 0 auto ;
       .left_content {
-        width: 53.1rem;
-        max-width: 52.1rem;
+        max-width: 834px;
         padding: 0.1875rem;
       }
       .right_content {
-        width: 20rem;
-        max-width: 20rem;
+        max-width: 320px;
         padding: 0.1875rem;
       }
     }
