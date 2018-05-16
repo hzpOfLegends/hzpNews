@@ -34,7 +34,7 @@
           <!--</router-link>-->
         </div>
       </div>
-      <loading/>
+      <loading v-if="$store.state.loading_style"/>
     </div>
   </div>
 </template>
@@ -105,25 +105,31 @@
       }
     },
     mounted(){
+      // 用于判断 防止重复请求
       var isbool = true
       var that = this
-      $(window).scroll(function() {
-        if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool==true) {
-          that.pageNum = that.pageNum+1
-          //大家都在读
-          if(isbool){
-            index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
-              for(let i = 0 ; i <res.data.Data.news.length ; i++){
-                that.recent_hot.push(res.data.Data.news[i])
-              }
-              isbool = true
-            }).catch(err => {
-            })
+      // 如果有shareID  代表已经登录 无需 无限加载
+      if(sessionStorage.getItem('ShareID')){
+        this.$store.state.loading_style = false
+      }else{
+        $(window).scroll(function() {
+          if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool==true) {
+            that.pageNum = that.pageNum+1
+            //大家都在读
+            if(isbool){
+              index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
+                for(let i = 0 ; i <res.data.Data.news.length ; i++){
+                  that.recent_hot.push(res.data.Data.news[i])
+                }
+                isbool = true
+              }).catch(err => {
+              })
+            }
+            isbool = false
           }
-          isbool = false
-          console.log(111)
-        }
-      })
+        })
+      }
+
     }
   }
 </script>

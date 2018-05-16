@@ -3,7 +3,8 @@
     <div class="col-12">
       <div class="user_article">
         <div class="title">
-          <h4>全部文章</h4>
+          <span class="title1">全部文章</span>
+          <span class="edit_article"><i class="fa fa-plus-square" style="margin-right: 5px"></i>文章撰寫</span>
           <div class="line">
             <div class="small_line"></div>
           </div>
@@ -65,10 +66,25 @@
     border: 1px solid #eeeeee;
     .title {
       width: 100%;
-      h4 {
+      text-align: left;
+      position: relative;
+      .title1 {
         font-size: 14px;
         text-align: left;
         font-weight: 600;
+      }
+      .edit_article{
+        position: absolute;
+        right: 0;
+        bottom: 1rem;
+        display: inline-block;
+        background: rgb(251, 133, 7);
+        color: white;
+        padding: .375rem 1rem;
+        border-radius: 20px;
+        font-size: 12px;
+        cursor: pointer;
+
       }
       .line {
         width: 100%;
@@ -98,6 +114,7 @@
       }
       tbody{
         tr{
+          border-bottom: 1px solid #f2f2f2;
           td{
             padding: 1rem 1.125rem;
             font-weight: 300;

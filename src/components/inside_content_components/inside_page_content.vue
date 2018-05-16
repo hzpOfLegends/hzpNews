@@ -42,7 +42,7 @@
       }
     },
     mounted() {
-    // 將滾輪 滾到 頂部
+      // 將滾輪 滾到 頂部
       if ($('html').scrollTop()) {
         $('html').animate({scrollTop: 0}, 1000);
         return false;
@@ -57,6 +57,16 @@
         js.src = 'https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.0';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'))
+      // 更换背景
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      oops_content_wrap.style.background = "#f4f4f4"
+
+    },
+    created() {
+      //展示导航栏
+      this.$store.state.nav_style = true
+      //隐藏底部
+      this.$store.state.foot_all_style = false
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!--導航-->
-    <oops-header></oops-header>
+    <!--<oops-header></oops-header>-->
     <!--面包屑-->
       <!--<div class="breadcrumb_wrap">-->
         <!--<b-breadcrumb :items="items"/>-->
@@ -23,8 +23,8 @@
     </div>
 
     <!--底部-->
-    <oops-footer></oops-footer>
-  </div>
+    <!--<oops-footer></oops-footer>-->
+    </div>
 </template>
 
 <script>
@@ -73,19 +73,7 @@
           return false;
         });
 
-        // 判断是不是login / register 页面
-      let router_path = this.$route.path
-        // 獲取元素 用來設置登陸 注冊頁面的背景圖
-      let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      console.log(router_path.indexOf('/'))
-      if(router_path.indexOf('/login')==0 || router_path.indexOf('register')==0){
-        // console.log(oops_content_wrap)
-        oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
-        this.skip_top = false
-      }else{
-        oops_content_wrap.style.background = "#f4f4f4"
-        this.skip_top = true
-      }
+
     }
   }
 </script>
@@ -97,16 +85,18 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    .breadcrumb_wrap{
-      width: 73.75rem;
-      margin: 0 auto;
-      background-color: white;
-      .breadcrumb{
-        background-color: white;
-        margin:  0;
-        padding-left: 0;
-      }
-    }
+    background: #f4f4f4;
+    /*.breadcrumb_wrap{*/
+      /*width: 73.75rem;*/
+      /*!*width: 1180px;*!*/
+      /*margin: 0 auto;*/
+      /*background-color: white;*/
+      /*.breadcrumb{*/
+        /*background-color: white;*/
+        /*margin:  0;*/
+        /*padding-left: 0;*/
+      /*}*/
+    /*}*/
     // 点击到顶部  按钮样式
     p#back-to-top{
       position:fixed;
@@ -132,11 +122,21 @@
     p#back-to-top a:hover{
       color:#979797;
     }
+    @media screen and(max-width: 768px){
+      .oops_content{
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
     .oops_content_wrap{
-      background: #f4f4f4;
+      max-width:73.75rem;
+      width: 73.75rem;
+      margin: 0 auto;
       .oops_content{
         max-width:73.75rem;
         width: 73.75rem;
+        /*width: 1180px;*/
+        /*max-width: 1180px;*/
         margin: 0 auto;
       }
     }

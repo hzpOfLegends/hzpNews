@@ -1,6 +1,6 @@
 <template>
-  <div class="oops_footer" v-show="judge_login">
-    <div class="oops_footer_wrap " v-show="judge_login_page">
+  <div class="oops_footer" v-if="$store.state.foot_all_style">
+    <div class="oops_footer_wrap " v-if="$store.state.footer_style1">
       <div class="container">
         <div class="row">
           <div class="col-3 ">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="oops_footer2">
+    <div class="oops_footer2" v-if="$store.state.footer_style2" >
       <div class="oops_footer_wrap2 clearfix">
         <div class="float-left">
           <router-link to="">@2018OopsDaily</router-link>
@@ -83,13 +83,7 @@
 
     },
     created(){
-      console.log(this.$route.path)
-      let router_path = this.$route.path
-      if(router_path.indexOf('/login')==0 || router_path.indexOf('register')==0){
-        this.judge_login_page = false
-      }else{
-        this.judge_login_page = true
-      }
+      //展示底部一
     },
 
   }

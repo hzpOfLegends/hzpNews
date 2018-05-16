@@ -1,47 +1,49 @@
 <template>
   <div class="oops_header" onselectstart="return false">
     <div class="oops_header_content">
-      <div class="container">
+      <div class="container head1">
         <div class="oops_title row">
           <div class="col-4 oops_title_left" @click="skip_index" style="cursor: pointer">
-            <a href="/">
+            <router-link to="/">
               <span>OOPSDAILY</span>
               <span>|</span>
               <span>文章創作分享平台</span>
-            </a>
+            </router-link>
           </div>
-          <div  v-if="judge_login==false" class="col-6"></div>
-          <div class="col-2 pr-0" v-if="judge_login==false">
+          <div v-if="$store.state.judge_login==false" class="col-6"></div>
+          <div class="col-2 pr-0" v-if="$store.state.judge_login==false">
             <div class="row">
               <div class="col-6 pr-0 pl-0" id="login">
-                <a href="/login" class="login_btn">
+                <router-link to="/login" class="login_btn">
                   <i class="fa fa-user"></i>
                   <span>登錄</span>
-                </a>
+                </router-link>
               </div>
               <div class="col-6 pr-0 pl-0" id="register">
-
-                <a href="/register" class="register_btn">
+                <router-link to="/register" class="register_btn">
                   <i class="fa fa-plus-circle"></i>
                   <span>注冊</span>
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
           <div class="col-2">
 
           </div>
-          <div class="col-6" v-if="judge_login==true">
+          <div class="col-6" v-if="$store.state.judge_login==true">
             <div class="float-right user_message">
               <i class="fa fa-user"></i>
               當前用戶：
               <span>
-                  <a href="/personal_center"  style="color:#37abe3">鱼丸</a>
+                <router-link to="/personal_center" style="color:#37abe3">鱼丸</router-link>
               </span>
-              <span class="subscript" >
+              <span class="subscript">
                 <b-dropdown variant="link" size="sm">
-                  <b-dropdown-item href="#" @click="login_out">登出</b-dropdown-item>
-                  <b-dropdown-item href="/personal_center">个人中心</b-dropdown-item>
+                  <b-dropdown-item @click="login_out">登出</b-dropdown-item>
+                  <b-dropdown-item>
+                    <router-link to="/personal_center"></router-link>
+                    个人中心
+                  </b-dropdown-item>
                   <!--<b-dropdown-item href="#"></b-dropdown-item>-->
                 </b-dropdown>
               </span>
@@ -54,13 +56,13 @@
             <div class="float-right user_message">
               <i class="fa fa-money"></i>
               已賺取金額：
-              <span style="color:red"  @click="skip_center()">123456</span>
+              <span style="color:red" @click="skip_center()">123456</span>
             </div>
           </div>
         </div>
 
       </div>
-      <div class="oops_navs" v-show="judge_login_page" >
+      <div class="oops_navs" v-if="$store.state.nav_style">
         <div class="container">
           <div class="row">
             <div class="col-11" style="overflow: hidden">
@@ -71,17 +73,19 @@
                   </a>
                 </li>
               </ul>
+
             </div>
             <div class="col-1 clearfix">
               <div class="float-right" @click="nav_toggle">
                 <i :class="nav_down_icon" id="nav_down_icon" style="color:white"></i>
               </div>
             </div>
+
           </div>
           <div v-show="nav_down" class="nav_down row position-absolute">
             <div class="nav_down_content">
-              <ul class="float-left" v-for="(item,index) in nav_other_select" :key="index">
-                <li><a href="javascripte:;" >{{item.CategoryName}}</a></li>
+              <ul class="float-left" v-for="(item,index) in nav_select" :key="index">
+                <li><a href="javascripte:;">{{item.name}}</a></li>
               </ul>
             </div>
             <div class="nav_down_footer">
@@ -111,9 +115,52 @@
             </div>
           </div>
         </div>
-      </div >
+
+      </div>
     </div>
   </div>
+  <!--<div>-->
+  <!--<b-navbar toggleable="md" type="dark" variant="info">-->
+
+  <!--<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>-->
+
+  <!--<b-navbar-brand href="#">NavBar</b-navbar-brand>-->
+
+  <!--<b-collapse is-nav id="nav_collapse">-->
+
+  <!--<b-navbar-nav>-->
+  <!--<b-nav-item href="#">Link</b-nav-item>-->
+  <!--<b-nav-item href="#" disabled>Disabled</b-nav-item>-->
+  <!--</b-navbar-nav>-->
+
+  <!--&lt;!&ndash; Right aligned nav items &ndash;&gt;-->
+  <!--<b-navbar-nav class="ml-auto">-->
+
+  <!--<b-nav-form>-->
+  <!--<b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>-->
+  <!--<b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>-->
+  <!--</b-nav-form>-->
+
+  <!--<b-nav-item-dropdown text="Lang" right>-->
+  <!--<b-dropdown-item href="#">EN</b-dropdown-item>-->
+  <!--<b-dropdown-item href="#">ES</b-dropdown-item>-->
+  <!--<b-dropdown-item href="#">RU</b-dropdown-item>-->
+  <!--<b-dropdown-item href="#">FA</b-dropdown-item>-->
+  <!--</b-nav-item-dropdown>-->
+
+  <!--<b-nav-item-dropdown right>-->
+  <!--&lt;!&ndash; Using button-content slot &ndash;&gt;-->
+  <!--<template slot="button-content">-->
+  <!--<em>User</em>-->
+  <!--</template>-->
+  <!--<b-dropdown-item href="#">Profile</b-dropdown-item>-->
+  <!--<b-dropdown-item href="#">Signout</b-dropdown-item>-->
+  <!--</b-nav-item-dropdown>-->
+  <!--</b-navbar-nav>-->
+
+  <!--</b-collapse>-->
+  <!--</b-navbar>-->
+  <!--</div>-->
 </template>
 
 <script>
@@ -123,7 +170,10 @@
   export default {
     data() {
       return {
-        nav_select: [{name:'娛樂',CategoryID:1},{name:'興趣',CategoryID:2},{name:'生活',CategoryID:3},{name:'科技',CategoryID:4},{name:'奇趣',CategoryID:5},{name:'新聞',CategoryID:-1}],
+        nav_select: [{name: '娛樂', CategoryID: 1}, {name: '興趣', CategoryID: 2}, {name: '生活', CategoryID: 3}, {
+          name: '科技',
+          CategoryID: 4
+        }, {name: '奇趣', CategoryID: 5}, {name: '新聞', CategoryID: -1}],
 
         nav_other_select: {
           item1: ['國際', '國際', '國際', '國際', '國際', '國際'],
@@ -135,32 +185,25 @@
           item7: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item8: ['國際', '國際', '國際', '國際', '國際', '國際'],
         },
-        judge_login_page:false, // 用來判斷 切換到登錄頁面時 一些樣式的隱藏
-        judge_login:false,  // 用來判斷是否登錄 一些樣式的隱藏
         nav_down: false,  // 用來切換導航欄的隱藏
         nav_down_icon: "fa fa-bars"
       }
     },
     created() {
-      // header_message.nav_type().then(res => {
-      //   this.nav_select = res.data.Data
-      //   this.nav_other_select = res.data.Data
-      // }).catch(err => {
-      //   console.log(err)
-      // })
-      let router_path = this.$route.path
-      if(router_path.indexOf('/login')==0 || router_path.indexOf('register')==0){
-        this.judge_login_page = false
-      }else{
-        this.judge_login_page = true
+      // vuex是状态管理 一刷新就没了  此步骤当记录
+      if (sessionStorage.getItem('ShareID')) {
+        this.$store.state.judge_login = true
+      } else {
+        this.$store.state.judge_login = false
       }
+
     },
-    mounted(){
+    mounted() {
       // 判斷是否存在shareID  也就是是否登錄
       let shareID = sessionStorage.getItem('ShareID')
-      if(shareID){
+      if (shareID) {
         this.judge_login = true
-      }else{
+      } else {
         this.judge_login = false
       }
     },
@@ -180,26 +223,26 @@
       // 选择分类
       skip_type(id) {
         this.$store.state.nav_id = id
-        this.$router.push({path:"/"})
-        sessionStorage.setItem('CategoryID',id)
+        this.$router.push({path: "/"})
+        sessionStorage.setItem('CategoryID', id)
       },
       // 跳转
-      skip_center(){
+      skip_center() {
         // this.$route.push()
         alert('跳转个人中心')
       },
-      skip_index(){
-        this.$router.push({path:"/"})
+      skip_index() {
+        this.$router.push({path: "/"})
       },
       //跳轉登錄
-      skip_login(){
-        this.$router.push({path:'/login'})
+      skip_login() {
+        this.$router.push({path: '/login'})
       },
-      skip_register(){
-        this.$router.push({path:'/register'})
+      skip_register() {
+        this.$router.push({path: '/register'})
       },
-      login_out(){
-        sessionStorage.setItem('ShareID',"")
+      login_out() {
+        sessionStorage.setItem('ShareID', "")
         window.location.href = "/"
       }
     }
@@ -208,22 +251,29 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (max-width:768px) {
+    .head1{
+      display: none;
+    }
+  }
   .oops_header {
     .oops_header_content {
-      .user_message{
+      background: white;
+      .user_message {
         margin-left: 1.5rem;
         font-size: 14px;
         color: #9a9a9a;
       }
-      .subscript{
-        a{
+      .subscript {
+        a {
           line-height: 1rem;
-
         }
       }
       .container {
         width: 73.75rem;
         max-width: 73.75rem;
+        /*width: 1180px;*/
+        /*max-width: 1180px;*/
         margin: 0;
         padding: 0;
         margin: 0 auto;
@@ -235,15 +285,15 @@
         background-color: #ffffff;
         line-height: 4.5rem;
         /*.login_btn{*/
-          /*display: inline-block;*/
-          /*width: 4.5rem;*/
-          /*height: 1.625rem;*/
-          /*background: rgb(238, 238, 238);*/
+        /*display: inline-block;*/
+        /*width: 4.5rem;*/
+        /*height: 1.625rem;*/
+        /*background: rgb(238, 238, 238);*/
         /*}*/
         .oops_title_left {
           text-align: left;
           padding-left: 0;
-          a{
+          a {
             text-decoration: none;
           }
           :nth-child(1) {
@@ -271,7 +321,7 @@
             color: white;
             border-radius: 3px;
             text-decoration: none;
-            span{
+            span {
               padding-left: 0.625rem;
             }
           }
@@ -287,7 +337,7 @@
             color: #656565;
             font-size: 14px;
             text-decoration: none;
-            span{
+            span {
               padding-left: 0.625rem;
             }
           }
@@ -303,11 +353,17 @@
         .container {
           background-color: #0954a2;
           li {
-            margin-right: 3.125rem;
+            width: 90px;
+            height: 100%;
+            text-align: center;
+
             a {
               color: white;
               font-size: 14px;
             }
+          }
+          li:hover{
+            background: rgb(70, 138, 237);
           }
           .col-1 {
             div {

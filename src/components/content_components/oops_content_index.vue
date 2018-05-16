@@ -40,6 +40,7 @@
             <aside_add_article_skeleton slot="skeleton"/>
           </vue-lazy-component>
         </div>
+
       </div>
   </div>
 </template>
@@ -109,6 +110,14 @@
 
         }
       })
+      //展示导航栏
+      this.$store.state.nav_style = true
+      //隐藏底部
+      this.$store.state.foot_all_style = false
+      this.$store.state.footer_style1 = true
+      if(sessionStorage.getItem('ShareID')){
+        this.$store.state.foot_all_style = true
+      }
     },
     watch:{
       "$route":function () {
@@ -121,7 +130,9 @@
       }
     },
     mounted() {
-
+      // 更换背景
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      oops_content_wrap.style.background = "#f4f4f4"
     },
     methods: {
       infinite(done) {
@@ -134,35 +145,44 @@
 </script>
 
 <style scoped lang="less">
-  .oops_content_index {
-    padding-top: 1.0625rem;
-    padding-bottom: 1.0625rem;
-    .scroll-view {
-      /* -- Attention: This line is extremely important in chrome 55+! -- */
-      touch-action: none;
-      /* -- Attention-- */
-      position: relative;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      overflow: hidden;
+  @media screen and (max-width: 768px){
+    .left_content{
+      width: 100%;
+      display: block;
     }
-    .container {
-      max-width: 73.75rem;
-      width: 73.75rem;
-      padding: 0;
-      margin: 0;
-      .left_content {
-        width: 53rem;
-        max-width: 53em;
-        padding: 0.1875rem;
+    .oops_content_index{
+      .container{
+        max-width: 768px;
+        display: block;
       }
-      .right_content {
-        width: 20rem;
-        max-width: 20rem;
-        padding: 0.1875rem;
-      }
+    }
+
+    .right_content{
+      display: none;
     }
   }
+  /*.oops_content_index {*/
+    /*padding-top: 1.0625rem;*/
+    /*padding-bottom: 1.0625rem;*/
+    /*.container {*/
+      /*!*max-width: 73.75rem;*!*/
+      /*!*width: 73.75rem;*!*/
+      /*!*width: 1180px;*!*/
+      /*!*max-width: 1180px;*!*/
+      /*padding: 0;*/
+      /*margin: 0;*/
+      /*.left_content {*/
+        /*!*width: 53rem;*!*/
+        /*!*max-width: 53em;*!*/
+        /*width: 848px;*/
+        /*padding: 0.1875rem;*/
+      /*}*/
+      /*.right_content {*/
+        /*!*width: 20rem;*!*/
+        /*!*max-width: 20rem;*!*/
+        /*width: 320px;*/
+        /*padding: 0.1875rem;*/
+      /*}*/
+    /*}*/
+  /*}*/
 </style>

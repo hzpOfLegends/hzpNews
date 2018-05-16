@@ -46,7 +46,8 @@
         </div>
         <div class="step2">
           <p>
-            還沒有賬號？<a href="/register">前往注冊>></a>
+            還沒有賬號？
+            <router-link to="/register">前往注冊>></router-link>
           </p>
         </div>
       </div>
@@ -76,16 +77,33 @@
         btnActive: false //按鈕顔色
       }
     },
+    created(){
+      //隐藏导航栏
+      this.$store.state.nav_style = false
+      // 显示底部
+      this.$store.state.foot_all_style = true
+      // 隐藏底部1
+      this.$store.state.footer_style1 = false
+    },
+    watch: {
+      getWrap: function (val) {
+        console.log(val)
+      }
+    },
     mounted() {
       // 去除模態框padding
       setTimeout(() => {
         let modal_padding = document.getElementById('modal1___BV_modal_body_')
-        if(modal_padding){
+        if (modal_padding) {
           modal_padding.style.padding = '0';
         }
       }, 1)
+      // 更换背景
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+
     },
-    computed: {},
+
     methods: {
       //郵箱驗證
       emailVerify() {
@@ -125,21 +143,30 @@
         }
       },
       submit_mess() {
-        if (this.btnActive) {
+        // 锁 防止重复提交
+        let lock = true
+        if (this.btnActive && lock) {
+          lock = false
           users_page.login({loginName: this.email, loginPwd: this.password}).then(res => {
             console.log(res)
-            if(res.status==200 && res.data.ResultCode==200){
-              sessionStorage.setItem('ShareID',res.data.Data.ShareID)
-              window.location.href = "/"
+            if (res.status == 200 && res.data.ResultCode == 200) {
+              lock = true
+              sessionStorage.setItem('ShareID', res.data.Data.ShareID)
+              // window.location.href = "/"
+              this.$router.push({path: "/"})
+              // 判断是否登录  用来改变样式
+              this.$store.state.judge_login = true
               this.reset_input()
-
+            }else{
+              lock = true
             }
           }).catch(err => {
+            lock = true
           })
         }
       },
       // 清空 input
-      reset_input(){
+      reset_input() {
         this.email = ""
         this.password = ""
         this.btnActive = false

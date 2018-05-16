@@ -23,6 +23,17 @@ import good_article from '@/components/personal_center/real_content/good_article
     //收益
 import earnings from '@/components/personal_center/real_content/earnings/earnings'
 
+// 个人中心
+import account from '@/components/account/account'
+import account_home from '@/components/account/account_home'
+import account_data from '@/components/account/account_data'
+import account_doc from '@/components/account/account_doc'
+import account_gains from '@/components/account/account_gains'
+import account_gooddoc from '@/components/account/account_gooddoc'
+import account_message from '@/components/account/account_message'
+import account_open from '@/components/account/account_open'
+
+
 // 注册
 import register from '@/components/login_register/register'
 // 登录
@@ -53,6 +64,20 @@ export default new Router({
         {path:"login",component:login}, //登录
         {path:"register",component:register}, //注册
         {path:"forget_password",component:forget_password} // 忘记密码
+      ]
+    },
+    // 个人中心
+    {
+      path:'/account',
+      component:account,
+      children:[
+        {path:'data', component:account_data},
+        {path:'doc', component:account_doc},
+        {path:'gains', component:account_gains},
+        {path:'gooddoc', component:account_gooddoc},
+        {path:'home', component:account_home},
+        {path:'message', component:account_message},
+        {path:'open', component:account_open},
       ]
     }
   ]

@@ -53,7 +53,7 @@
         </div>
         <div class="step2">
           <p>
-            已有賬號？<a href="/login">前往登錄>></a>
+            已有賬號？<router-link to="/login">前往登錄>></router-link>
           </p>
         </div>
       </div>
@@ -87,7 +87,12 @@
         new_password_hint: "", //郵箱提示
       }
     },
-    computed: {},
+    created(){
+      //隐藏导航栏
+      this.$store.state.nav_style = false
+      // 隐藏底部1
+      this.$store.state.footer_style1 = false
+    },
     methods: {
       //郵箱驗證
       emailVerify() {
@@ -147,14 +152,21 @@
       },
       //發送注冊
       submit_mess() {
-        if (this.btnActive) {
+        // 锁 防止重复提交
+        let lock = true
+        if (this.btnActive && lock) {
+          lock = false
           users_page.register({Email: this.email, Password: this.new_password}).then(res => {
             if(res.status==200 && res.data.ResultCode==200){
+
               this.$router.push({path:'/login'})
               this.reset_input()
+            }else{
+              lock = true
             }
           }).catch(err => {
             console.log(err)
+            lock = true
           })
         }
       },
@@ -165,6 +177,11 @@
         this.new_password = ""
         this.btnActive = false
       }
+    },
+    mounted(){
+      // 更换背景
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
     }
   }
 </script>

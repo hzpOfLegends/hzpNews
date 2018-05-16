@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+
 Vue.config.productionTip = false
 // 關於bootstrap-vue 文件的引入
 import BootstrapVue from 'bootstrap-vue'
@@ -25,15 +26,18 @@ import Croppa from 'vue-croppa'
 import 'vue-croppa/dist/vue-croppa.css'
 Vue.use(Croppa)
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios_index from "./axios_joggle/axios_index";
 
 
+
 /* eslint-disable no-new */
-new Vue({
+let that = new Vue({
   el: '#app',
   router, // vue router
   store, //vuex
   components: { App },
   template: '<App/>'
 })
+
