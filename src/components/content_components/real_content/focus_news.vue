@@ -11,7 +11,7 @@
     </div>
     <div class="character">
         <span>
-          {{focus_news_data.CategoryName}}
+          {{focus_news_data.CategoryID | type_filter}}
         </span>
       <span>{{focus_news_data.NewsTitle}}</span>
       <p>{{focus_news_data.Content}}</p>
@@ -30,9 +30,8 @@
 <script>
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
-  // 时区转换
+  // 时区转换 / 文章類型轉換
   import filtration from '../../../assets/filtration'
-
   export default {
     name: "focus-news",
     data() {
@@ -45,6 +44,9 @@
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      },
+      type_filter:function (value) {
+        return filtration.type_filter(value)
       }
     },
     // 寫一個計算屬性 利用watch 監聽
@@ -73,16 +75,18 @@
     methods: {
       skip_inside_contnet(RelationID, CategoryID) {
         if (RelationID) {
+          let q = this.$route.query
+          q.RelationID = RelationID
           this.$router.push({
-            path: "/particulars",
-            query: {RelationID: RelationID, CategoryID: CategoryID}
+            path: "/index/"+ RelationID,
+            query: q
           })
         }
       }
     },
     created() {
       // 焦点新闻请求
-      index_message.focus_news({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
+      index_message.focus_news({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
         this.focus_news_data = res.data.Data[0]
 
       }).catch(err => {
@@ -128,13 +132,13 @@
       max-height: 180px;
       :nth-child(1) {
         display: inline-block;
-        width: 3rem;
-        height: 1.375rem;
+        width: 48px;
+        height: 22px;
         color: #f89c98;
         border: 1px solid #f89c98;
         font-size: 12px;
         text-align: center;
-        line-height: 1.375rem;
+        line-height: 22px;
         border-radius: 3px;
       }
       :nth-child(2) {
@@ -149,8 +153,8 @@
         font-size: 12px;
         color: #999999;
         :nth-child(1) {
-          width: 1.625rem;
-          height: 1.625rem;
+          width: 26px;
+          height: 26px;
           display: inline-block;
           border-radius: 50%;
           vertical-align: middle;

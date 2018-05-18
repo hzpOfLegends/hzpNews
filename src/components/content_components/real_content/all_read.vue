@@ -12,7 +12,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryName}}</span>
+              <span>{{item.CategoryID | type_filter}}</span>
               <span>{{item.NewsTitle}}</span>
             </div>
             <div class="center">
@@ -90,14 +90,19 @@
     }, filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      },
+      type_filter:function (value) {
+        return filtration.type_filter(value)
       }
     },
     methods: {
       skip_inside_content(RelationID, CategoryID) {
         if (RelationID) {
+          let q = this.$route.query
+          q.RelationID = RelationID
           this.$router.push({
-            path: "/particulars",
-            query: {RelationID: RelationID, CategoryID: CategoryID}
+            path: "/index/"+ RelationID,
+            query: q
           })
         }
       }
@@ -146,6 +151,7 @@
     }
     .charater{
       max-width: 69% !important;
+      width: 100%;
     }
   }
   @media screen and(max-width: 414px){
@@ -161,8 +167,8 @@
     height: 100%;
     border-radius: 3px;
     background-color: white;
-    border-top: 0.5rem solid #f39900;
-    padding: 1.25rem;
+    border-top: 8px solid #f39900;
+    padding: 20px;
     text-align: left;
     .all_read_wrap {
       padding: 0;
@@ -172,9 +178,9 @@
         margin: 0;
       }
       .recent_hot_content {
-        padding-bottom: 1.25rem;
+        padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
-        margin-top: 0.9375rem;
+        margin-top: 3px;
         cursor: pointer;
         .photo {
           background-color: rgba(0, 0, 0, .1);
@@ -192,6 +198,7 @@
         }
         .charater {
           max-width: 69%;
+          width: 100%;
           max-height: 160px;
           display: inline-block;
           position: relative;
@@ -200,18 +207,18 @@
             :nth-child(1) {
               display: inline-block;
               width: 3rem;
-              height: 1.375rem;
+              height:22px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
               text-align: center;
-              line-height: 1.375rem;
+              line-height: 22px;
               border-radius: 3px;
             }
             :nth-child(2) {
               font-weight: 900;
               font-size: 18px;
-              margin-left: 0.625rem;
+              margin-left: 10px;
             }
           }
           .center {
@@ -226,10 +233,10 @@
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 1.125rem;
+              padding-left: 18px;
               :nth-child(1) {
-                width: 1.625rem;
-                height: 1.625rem;
+                width: 26px;
+                height: 26px;
                 display: inline-block;
                 border-radius: 50%;
                 vertical-align: middle;
@@ -239,12 +246,12 @@
               :nth-child(2) {
                 font-size: 12px;
                 font-weight: 600;
-                padding-left: 0.3125rem;
-                padding-right: 0.625rem;
+                padding-left: 5px;
+                padding-right: 10px;
                 border-right: 1px solid #999999;
               }
               :nth-child(3) {
-                margin: 0 0.3125rem 0 0.9375rem
+                margin: 0 5px 0 15px
               }
             }
           }

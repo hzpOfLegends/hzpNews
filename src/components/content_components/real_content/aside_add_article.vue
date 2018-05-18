@@ -30,13 +30,7 @@
         // 新增文章 2-20
         hot_article: [{
           id: 1,
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          id: 2,
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          id: 3,
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: ""
         }]
 
       }
@@ -60,19 +54,21 @@
     },
     created() {
       //新增文章
-      // index_message.add_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
-      //   this.hot_article_first = res.data.Data.shift()
-      //   this.hot_article = res.data.Data
-      // }).catch(err => {
-      //   console.log(err)
-      // })
+      index_message.add_article({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
+        this.hot_article_first = res.data.Data.shift()
+        this.hot_article = res.data.Data
+      }).catch(err => {
+        console.log(err)
+      })
     },
     methods: {
       skip_inside_page(RelationID,CategoryID) {
         if(RelationID){
+          let q = this.$route.query
+          q.RelationID = RelationID
           this.$router.push({
-            path: "/particulars",
-            query: {RelationID: RelationID,CategoryID:CategoryID}
+            path: "/index/"+ RelationID,
+            query: q
           })
         }
       }
@@ -143,7 +139,7 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           border-bottom: 3px dashed #f6f6f6;
-          padding: 0.3125rem 0;
+          padding: 5px 0;
           margin: 0;
           span {
             font-size: 20px;

@@ -20,37 +20,37 @@
             <ul class="nav navbar-nav nav-list">
               <li index='0' class="active">
                 <!--<router-link to='/index/7'>-->
-                <router-link to="/index?type=7">
+                <router-link to="/index?CategoryID=7">
                   总览
                 </router-link>
               </li>
               <li index='1'>
-                <router-link  to='/index?type=6'>
+                <router-link  to='/index?CategoryID=6'>
                   娛樂
                 </router-link>
               </li>
               <li index='2'>
-                <router-link  to='/index?type=5'>
+                <router-link  to='/index?CategoryID=5'>
                   興趣
                 </router-link>
               </li>
               <li index='3'>
-                <router-link to='/index?type=4'>
+                <router-link to='/index?CategoryID=4'>
                   生活
                 </router-link>
               </li>
               <li index='4'>
-                <router-link  to='/index?type=3'>
+                <router-link  to='/index?CategoryID=3'>
                   科技
                 </router-link>
               </li>
               <li index='5'>
-                <router-link  to='/index?type=2'>
+                <router-link  to='/index?CategoryID=2'>
                   奇趣
                 </router-link>
               </li>
               <li  index='6'>
-                <router-link to='/index?type=1'>
+                <router-link to='/index?CategoryID=1'>
                   新聞
                 </router-link>
               </li>
@@ -109,7 +109,57 @@
             <!--<li><a href="javascripte:;">{{item.name}}</a></li>-->
             <!--</ul>-->
           </div>
-          <div class="nav_down_footer">
+          <div class="nav_down_footer" >
+            <div class="row all_type">
+              <ul class="col-lg-2">
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+              </ul>
+              <ul class="col-lg-2">
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+              </ul>
+              <ul class="col-lg-2">
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+              </ul>
+              <ul class="col-lg-2">
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+              </ul>
+              <ul class="col-lg-2">
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+              </ul>
+              <ul class="col-lg-2" style="border-right: none">
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
+              </ul>
+            </div>
             <div class="clearfix">
               <ul class="float-left">
                 <li class="float-left"><a href="javascript:;">聯係我們</a></li>
@@ -139,7 +189,7 @@
     </div>
     </div>
       <!--children components 视图-->
-     <router-view></router-view>  
+     <router-view></router-view>
   </div>
 </template>
 <!--[{name: '娛樂', CategoryID: 1}, {name: '興趣', CategoryID: 2}, {name: '生活', CategoryID: 3}, {-->
@@ -177,13 +227,13 @@
     components: {
     },
     watch: {
-      '$route.query.type':'changeRoute',
+      '$route.query.CategoryID':'changeRoute',
     },
     methods: {
       //路由改变处理
       changeRoute(){
         //获取第一个//中的字段
-        let currentType = this.$route.query.type ;
+        let currentType = this.$route.query.CategoryID ;
         let index = '';
         for(let key in this.routeObj){
           if(this.routeObj[key] ==currentType){
@@ -221,6 +271,7 @@
       this.changeRoute();
     },
     created(){
+
     }
   }
 </script>
@@ -232,7 +283,7 @@
     }
   }
   .index {
-    
+
   }
   .my-nav {
     background-color: #0a53a2;
@@ -266,6 +317,18 @@
         background: #f4f4f4;
         padding: 3.125rem 3.375rem;
         width: 100%;
+        .all_type{
+          padding-bottom: 20px;
+          ul{
+            border-right: 1px solid rgb(220, 213, 210);
+            li{
+              padding: 5px 0;
+              a{
+                font-size: 16px;
+              }
+            }
+          }
+        }
         ul {
           margin-bottom: 0;
           li {

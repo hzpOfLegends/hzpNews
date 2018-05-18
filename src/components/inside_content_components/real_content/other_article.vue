@@ -1,32 +1,33 @@
 <template>
   <div class="other_article">
-    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
+    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart"
+                                                    style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
     <div class="other_article_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <div class="row">
           <!--<div class="float-left">-->
-            <div class="photo">
-              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
-            </div>
+          <div class="photo">
+            <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
+          </div>
           <!--</div>-->
           <!--<div class="float-left">-->
-            <div class="charater">
-              <div class="top">
-                <span>{{item.CategoryName}}</span>
-                <span>{{item.NewsTitle}}</span>
+          <div class="charater">
+            <div class="top">
+              <span>{{item.CategoryID | type_filter}}</span>
+              <span>{{item.NewsTitle}}</span>
+            </div>
+            <div class="center">
+              <p>{{item.Content}}</p>
+            </div>
+            <div class="bottom">
+              <div class="author">
+                <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
+                <span>{{item.AuthorName}}</span>
+                <i class="fa fa-clock-o"></i>
+                <span>發表時間：</span>
+                <span>{{item.PublishTime | timezone_filter}}</span>
               </div>
-              <div class="center">
-                <p>{{item.Content}}</p>
-              </div>
-              <div class="bottom">
-                <div class="author">
-                  <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
-                  <span>{{item.AuthorName}}</span>
-                  <i class="fa fa-clock-o"></i>
-                  <span>發表時間：</span>
-                  <span>{{item.PublishTime}}</span>
-                </div>
               <!--</div>-->
             </div>
           </div>
@@ -44,7 +45,8 @@
   import inside_page_message from '@/axios_joggle/axios_inside'
   // loading 引入
   import loading from '../../oneself/loading'
-
+  // 时区转换 / 類型轉化
+  import filtration from '../../../assets/filtration'
   export default {
     name: "other_article",
     data() {
@@ -76,7 +78,7 @@
         }],
         default_photo: "../../../../static/img/timg.jpg",
         pageNum: 1, // 同区文章 页数
-        default_backgrund_photo:"../../../../static/img/OopsDaily.png"
+        default_backgrund_photo: "../../../../static/img/OopsDaily.png"
       }
     },
     components: {
@@ -107,8 +109,16 @@
         console.log(err)
       })
     },
+    filters: {
+      timezone_filter: function (value) {
+        return filtration.timezone_filter(value)
+      },
+      type_filter: function (value) {
+        return filtration.type_filter(value)
+      }
+    },
     methods: {
-      skip_inside_content(RelationID,CategoryID) {
+      skip_inside_content(RelationID, CategoryID) {
         if (RelationID) {
           this.$router.push({
             path: "/particulars",
@@ -146,23 +156,27 @@
 </script>
 
 <style scoped lang="less">
-  @media screen and(max-width: 768px){
-    .photo{
+  @media screen and(max-width: 768px) {
+    .photo {
       max-width: 30% !important;
       vertical-align: top;
     }
-    .charater{
+
+    .charater {
       max-width: 69% !important;
     }
   }
-  @media screen and(max-width: 414px){
-    .photo{
+
+  @media screen and(max-width: 414px) {
+    .photo {
       max-width: 100% !important;
     }
-    .charater{
+
+    .charater {
       max-width: 100% !important;
     }
   }
+
   .other_article {
     width: 100%;
     height: 100%;
@@ -175,16 +189,16 @@
       padding: 0;
       margin: 0;
       max-width: 846px;
-      .row{
+      .row {
         margin: 0;
       }
       .recent_hot_content {
-        padding-bottom:20px;
+        padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
         margin-top: 15px;
         cursor: pointer;
         .photo {
-          background-color: rgba(0,0,0,.1);
+          background-color: rgba(0, 0, 0, .1);
           max-width: 30%;
           max-height: 160px;
           overflow: hidden;
@@ -246,7 +260,7 @@
               :nth-child(2) {
                 font-size: 12px;
                 font-weight: 600;
-                padding-left: 5px ;
+                padding-left: 5px;
                 padding-right: 10px;
                 border-right: 1px solid #999999;
               }

@@ -4,9 +4,9 @@
     <div v-for="(item,index) in recent_hot" :key="index">
 
       <div class="recent_hot_content clearfix">
-        <div class="float-left photo">
+        <div class="photo">
         </div>
-        <div class="float-left charater">
+        <div class="charater">
           <div class="top"></div>
           <div class="center"></div>
           <div class="bottom"></div>
@@ -72,30 +72,40 @@
     text-align: left;
     .recent_hot_content{
       padding-bottom: 20px;
+      padding-top: 20px;
       border-bottom: 1px solid #f6f6f6;
       .photo{
         max-width: 230px;
+        width: 30%;
+        height:160px;
+        display: inline-block;
         max-height: 160px;
         background-color: #f6f6f6;
-
+        vertical-align: top;
       }
       .charater{
         margin-left: 20px;
         max-width: 582px;
-        width: 100%;
+        width: 68%;
+        display: inline-block;
         .top{
           max-width: 200px;
-          max-height: 20px;
+          width: 100%;
+          height: 20px;
           background-color: #f6f6f6;
         }
         .center{
           max-width: 400px;
+          width: 100%;
+          height: 20px;
           margin-top: 10px;
           max-height: 20px;
           background-color: #f6f6f6;
         }
         .bottom{
           margin-top: 80px;
+          width: 100%;
+          height: 20px;
           max-width: 200px;
           max-height: 20px;
           background-color: #f6f6f6;

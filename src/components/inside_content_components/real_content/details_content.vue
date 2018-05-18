@@ -91,7 +91,7 @@
     mounted() {
       inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
         this.details = res.data.Data
-        console.log(res)
+
         setTimeout(()=>{
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {
