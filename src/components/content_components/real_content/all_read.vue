@@ -12,7 +12,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <div><span>{{item.CategoryID | type_filter}}</span></div>
+              <div><p>{{item.CategoryID | type_filter}}</p></div>
               <div><p>{{item.NewsTitle}}</p></div>
             </div>
             <div class="center">
@@ -199,16 +199,19 @@
         .charater {
           max-width: 69%;
           width: 100%;
-          max-height: 160px;
+          min-height: 100px;
           display: inline-block;
           position: relative;
           padding-left: 15px;
           .top {
             display:flex;
-            :nth-child(1)>span {
-
-              display: inline-block;
-              width: 3rem;
+            :nth-child(1)>p {
+              margin-top:2px;
+              display: block;
+              min-width: 42px;
+              max-width:66px;
+              overflow: hidden;
+              word-break: keep-all;
               height:22px;
               color: #f89c98;
               border: 1px solid #f89c98;
