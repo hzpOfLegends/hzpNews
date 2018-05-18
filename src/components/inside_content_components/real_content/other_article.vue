@@ -99,10 +99,11 @@
     }
     ,
     created() {
+      console.log(this.$route.query.CategoryID)
       inside_page_message.other_article({
         pageSize: 20,
         pageIndex: this.pageNum,
-        CategoryID: this.$route.query.CategoryID
+        CategoryID: this.$route.query.CategoryID?this.$route.query.CategoryID:"1"
       }).then(res => {
         this.recent_hot = res.data.Data.news
       }).catch(err => {
@@ -136,10 +137,11 @@
           that.pageNum = that.pageNum + 1
           //大家都在读
           if (isbool) {
+            console.log(that.$route.query.CategoryID)
             inside_page_message.other_article({
               "pageSize": "20",
               "pageIndex": that.pageNum,
-              CategoryID: that.$route.query.CategoryID
+              "CategoryID": that.$route.query.CategoryID
             }).then(res => {
               for (let i = 0; i < res.data.Data.news.length; i++) {
                 that.recent_hot.push(res.data.Data.news[i])
@@ -159,21 +161,25 @@
   @media screen and(max-width: 768px) {
     .photo {
       max-width: 30% !important;
+      width: 100%;
       vertical-align: top;
     }
 
     .charater {
       max-width: 69% !important;
+      width: 100%;
     }
   }
 
   @media screen and(max-width: 414px) {
     .photo {
       max-width: 100% !important;
+      width: 100%;
     }
 
     .charater {
       max-width: 100% !important;
+      width: 100%;
     }
   }
 
@@ -200,6 +206,7 @@
         .photo {
           background-color: rgba(0, 0, 0, .1);
           max-width: 30%;
+          width: 100%;
           max-height: 160px;
           overflow: hidden;
           position: relative;
@@ -213,6 +220,7 @@
         }
         .charater {
           max-width: 69%;
+          width: 100%;
           padding-left: 15px;
           position: relative;
           display: inline-block;

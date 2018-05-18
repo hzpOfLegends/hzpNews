@@ -61,6 +61,9 @@ class filtration {
       case 11:
         return '養生'
         break;
+      case 23:
+        return '生活'
+        break;
     }
   }
 }

@@ -12,8 +12,8 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryID | type_filter}}</span>
-              <span>{{item.NewsTitle}}</span>
+              <div><span>{{item.CategoryID | type_filter}}</span></div>
+              <div><p>{{item.NewsTitle}}</p></div>
             </div>
             <div class="center">
               <p>{{item.Content}}</p>
@@ -204,7 +204,9 @@
           position: relative;
           padding-left: 15px;
           .top {
-            :nth-child(1) {
+            display:flex;
+            :nth-child(1)>span {
+
               display: inline-block;
               width: 3rem;
               height:22px;
@@ -215,10 +217,10 @@
               line-height: 22px;
               border-radius: 3px;
             }
-            :nth-child(2) {
+            :nth-child(2)>p {
               font-weight: 900;
               font-size: 18px;
-              margin-left: 10px;
+              padding-left: 10px;
             }
           }
           .center {

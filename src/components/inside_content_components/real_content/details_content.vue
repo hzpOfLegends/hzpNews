@@ -43,6 +43,7 @@
 <script>
   // 引入路由
   import inside_page_message from '@/axios_joggle/axios_inside'
+  import verify_time from '@/axios_joggle/axios_verify_10'
   // 时区转换
   import filtration from '../../../assets/filtration'
   // facebook 评论插件
@@ -51,12 +52,13 @@
   import facebook_btn from './facebook_share_btn'
   import twitter_btn from './twitter_share_btn'
   import google_btn from './google_share_btn'
+
   export default {
     name: "details_content",
     data() {
       return {
-        details:"",
-        default_photo:"../../../../static/img/timg.jpg"
+        details: "",
+        default_photo: "../../../../static/img/timg.jpg"
       }
     },
     filters: {
@@ -64,21 +66,21 @@
         return filtration.timezone_filter(value)
       }
     },
-    watch:{
-      "$route":function () {
+    watch: {
+      "$route": function () {
         inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
           this.details = res.data.Data
-          setTimeout(()=>{
+          setTimeout(() => {
             let imgs = document.querySelectorAll('img')
             for (let i = 0; i < imgs.length; i++) {
               imgs[i].style.width = '100%'
             }
-          },1)
+          }, 1)
         }).catch(err => {
         })
       }
     },
-    components:{
+    components: {
       facebook_btn,
       google_btn,
       twitter_btn,
@@ -92,13 +94,19 @@
       inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
         this.details = res.data.Data
 
-        setTimeout(()=>{
+        setTimeout(() => {
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {
             imgs[i].style.width = '100%'
           }
-        },1)
-
+        }, 1)
+        setTimeout(() => {
+          verify_time.timed_10({"RelationID":this.$route.query.RelationID,"ShareID":sessionStorage.getItem("ShareID")}).then(res => {
+            console.log(res)
+          }).catch(err => {
+            console.log(err)
+          })
+        }, 10000)
       }).catch(err => {
       })
 

@@ -168,9 +168,9 @@
       //   // this.$route.push()
       //   alert('跳转个人中心')
       // },
-      // skip_index() {
-      //   this.$router.push({path: "/"})
-      // },
+      skip_index() {
+        this.$router.push({path: "/"})
+      },
       // //跳轉登錄
       // skip_login() {
       //   this.$router.push({path: '/login'})
@@ -249,6 +249,9 @@
           padding-left: 0;
           a {
             text-decoration: none;
+            display:flex;
+            justify-content: flex-start;
+            align-items: center;
           }
           :nth-child(1) {
             font-size: 24px;
@@ -257,6 +260,7 @@
           }
           :nth-child(2) {
             color: #a4a4a4;
+            margin: 0 8px;
           }
           :nth-child(3) {
             color: #a4a4a4;

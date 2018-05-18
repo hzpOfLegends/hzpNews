@@ -21,32 +21,32 @@
               <li index='0' class="active">
                 <!--<router-link to='/index/7'>-->
                 <router-link to="/index?CategoryID=7">
-                  总览
+                  問答
                 </router-link>
               </li>
               <li index='1'>
                 <router-link  to='/index?CategoryID=6'>
-                  娛樂
+                  體育
                 </router-link>
               </li>
               <li index='2'>
                 <router-link  to='/index?CategoryID=5'>
-                  興趣
+                  軍事
                 </router-link>
               </li>
               <li index='3'>
                 <router-link to='/index?CategoryID=4'>
-                  生活
+                  科技
                 </router-link>
               </li>
               <li index='4'>
                 <router-link  to='/index?CategoryID=3'>
-                  科技
+                  娛樂
                 </router-link>
               </li>
               <li index='5'>
                 <router-link  to='/index?CategoryID=2'>
-                  奇趣
+                  國際
                 </router-link>
               </li>
               <li  index='6'>
