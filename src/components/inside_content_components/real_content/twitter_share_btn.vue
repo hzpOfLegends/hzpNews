@@ -1,17 +1,26 @@
 <template>
     <span class="twitter">
-              <a class="twitter-share-button"
-                 href="https://twitter.com/intent/tweet?text=Hello%20world"
-                 data-size="large">
+              <a
+                class="twitter-share-button"
+                 href="javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));"
+                target="_blank"
+                data-size="large">
                 <i class="fa fa-twitter"></i>
                           twitter
               </a>
           </span>
 </template>
-
 <script>
     export default {
-        name: "twitter_share_btn"
+        name: "twitter_share_btn",
+      data(){
+          return {
+            web_url:""
+          }
+      },
+      created(){
+          this.web_url = window.location.href
+      }
     }
 </script>
 

@@ -40,6 +40,18 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (max-width: 768px){
+    p#back-to-top {
+      position: fixed;
+      display: none;
+      bottom: 10px !important;
+      right: 0 !important;
+    }
+    p#back-to-top a{
+      background: transparent !important;
+      color: gray !important;
+    }
+  }
   // 点击到顶部  按钮样式
   p#back-to-top {
     position: fixed;

@@ -1,7 +1,7 @@
 <template>
   <div class="aside_hot_article card">
     <div class="hot_article_title">
-      <span><img src="../../../../static/img/hot.png"></span>
+      <span ><img src="../../../../static/img/hot.png"></span>
       <span style="font-weight: 900">熱門文章</span>
       <span class="hot_article_title_line"></span>
     </div>
@@ -117,7 +117,11 @@
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
+        width: 16px;
+        height: 18px;
+        display: inline-block;
         img {
+          width: 100%;
           vertical-align: middle;
         }
       }
