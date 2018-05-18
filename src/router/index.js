@@ -28,6 +28,7 @@ import account from '@/components/account/account'
 import account_home from '@/components/account/account_home'
 import account_data from '@/components/account/account_data'
 import account_doc from '@/components/account/account_doc'
+import account_doc_editor from '@/components/account/account_doc_editor'
 import account_gains from '@/components/account/account_gains'
 import account_gooddoc from '@/components/account/account_gooddoc'
 import account_message from '@/components/account/account_message'
@@ -73,6 +74,7 @@ export default new Router({
       children:[
         {path:'data', component:account_data},
         {path:'doc', component:account_doc},
+        {path:'doc/editor', component:account_doc_editor},
         {path:'gains', component:account_gains},
         {path:'gooddoc', component:account_gooddoc},
         {path:'home', component:account_home},
