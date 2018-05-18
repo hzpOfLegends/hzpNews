@@ -14,13 +14,13 @@
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pr-0" v-if="$store.state.judge_login==false">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  pr-0 pl-0" id="login">
-                <router-link to="/login" class="login_btn">
+                <router-link to="/user/login" class="login_btn">
                   <i class="fa fa-user"></i>
                   <span>登錄</span>
                 </router-link>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pl-0" id="register">
-                <router-link to="/register" class="register_btn">
+                <router-link to="/user/register" class="register_btn">
                   <i class="fa fa-plus-circle"></i>
                   <span>注冊</span>
                 </router-link>
@@ -102,9 +102,9 @@
       </div>
 
     </div>
-    <div class="nav_bar">
+    <!--<div class="nav_bar">
       <nav_bar/>
-    </div>
+    </div>-->
   </div>
 
 </template>
@@ -159,32 +159,32 @@
     },
     methods: {
 
-      // 选择分类
-      skip_type(id) {
-        this.$store.state.nav_id = id
-        this.$router.push({path: "/"})
-        sessionStorage.setItem('CategoryID', id)
-      },
-      // 跳转
-      skip_center() {
-        // this.$route.push()
-        alert('跳转个人中心')
-      },
-      skip_index() {
-        this.$router.push({path: "/"})
-      },
-      //跳轉登錄
-      skip_login() {
-        this.$router.push({path: '/login'})
-      },
-      skip_register() {
-        this.$router.push({path: '/register'})
-      },
-      login_out() {
-        sessionStorage.setItem('ShareID', "")
-        // this.$router.push({path:"/"})
-        window.location.href = "/"
-      }
+      // // 选择分类
+      // skip_type(id) {
+      //   this.$store.state.nav_id = id
+      //   this.$router.push({path: "/"})
+      //   sessionStorage.setItem('CategoryID', id)
+      // },
+      // // 跳转
+      // skip_center() {
+      //   // this.$route.push()
+      //   alert('跳转个人中心')
+      // },
+      // skip_index() {
+      //   this.$router.push({path: "/"})
+      // },
+      // //跳轉登錄
+      // skip_login() {
+      //   this.$router.push({path: '/login'})
+      // },
+      // skip_register() {
+      //   this.$router.push({path: '/register'})
+      // },
+      // login_out() {
+      //   sessionStorage.setItem('ShareID', "")
+      //   // this.$router.push({path:"/"})
+      //   window.location.href = "/"
+      // }
     }
 
   }

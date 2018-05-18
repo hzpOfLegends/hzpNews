@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 //内容區域
+import index from '@/components/content_components/index'
 import oops_content from '@/components/common/oops_content'
 import oops_content_index from '@/components/content_components/oops_content_index'
 // 内頁 詳情頁面
@@ -49,11 +50,12 @@ export default new Router({
       redirect: '/index'
     },
     {
-      path: '/',
-      component: oops_content,
+      path: '/index',
+      component: index,
       children: [
-        {path: "index", component: oops_content_index},
-        {path: "particulars", component: inside_page_content},
+        {path: "", component: oops_content_index},
+        // {path: ":id", component: oops_content_index},
+        {path: ":id", component: inside_page_content},
         {path:"personal_center",component:personal_center_content,redirect: '/personal_center/pandect',children:[
             {path:"pandect",component:pandect},// 总览
             {path:"user_data",component:user_data},// 资料
@@ -62,14 +64,16 @@ export default new Router({
             {path:"good_article",component:good_article},// 好文
             {path:"earnings",component:earnings},//收益
           ]},
-        {path:"login",component:login}, //登录
-        {path:"register",component:register}, //注册
-        {path:"forget_password",component:forget_password} // 忘记密码
       ]
     },
+    // 登錄或註冊
+    {path:"/user/login",component:login}, //登录
+    {path:"/user/register",component:register}, //注册
+    {path:"/user/forget_password",component:forget_password}, // 忘记密码
     // 个人中心
     {
       path:'/account',
+      redirect:'/account/home',
       component:account,
       children:[
         {path:'data', component:account_data},
@@ -81,6 +85,8 @@ export default new Router({
         {path:'message', component:account_message},
         {path:'open', component:account_open},
       ]
-    }
+    },
+    // 此配置的位置不可移动
+    {path:'*',redirect:'/index'} 
   ]
 })
