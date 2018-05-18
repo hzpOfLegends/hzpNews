@@ -31,12 +31,40 @@
             <ul class="nav navbar-nav nav-list">
               <li index='0' class="active">
                 <router-link to="/account/home">
-                   总览
+                   總覽
                 </router-link>
               </li>
+              <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+              <!--<li class="dropdown  " index='1'>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <router-link to="/mbti">
+                    资料
+                  </router-link>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">文章</a>
+                  </li>
+                  <li>
+                    <a href="#">点开</a>
+                  </li>
+                  <li>
+                    <a href="#">555</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a href="#">Separated link</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a href="#">One more separated link</a>
+                  </li>
+                </ul>
+              </li>-->
               <li index='1'>
                 <router-link to="/account/data">
-                   资料
+                   資料
                 </router-link>
               </li>
               <li index='2'>
@@ -46,7 +74,7 @@
               </li>
               <li index='3'>
                 <router-link to="/account/open">
-                   点开
+                   點開
                 </router-link>
               </li>
               <li class=""  index='4'>

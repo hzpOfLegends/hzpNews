@@ -111,15 +111,15 @@
 
 <style scoped lang="less">
   .oops_footer {
-    background-color: white;
+    background-color: #f8f8f8;
     // height: 20.25rem;
     .oops_footer_wrap {
+      max-width:1180px;
       margin: 0 auto;
       height: 100%;
-        margin: 0;
-        padding: 0;
         .row {
           height: 100%;
+          margin:0;
           .web_name {
             padding-top: 36px !important;
             height: 100%;
@@ -137,10 +137,7 @@
               font-size: 16px;
               color: #888888;
               font-weight: 900;
-              padding:15px 12% 3px;
-              @media screen and  (max-width:768px) {
-                  text-align:center;
-              }
+              padding:30px 12% 3px;
             }
             span {
               display: inline-block;
@@ -195,6 +192,14 @@
            }
         }
     }
+    @media screen and  (max-width:768px) {
+        .web_type h5 {
+            text-align:center !important;
+        }
+        .web_share {
+            margin-top:-10px !important;
+        }
+    }
     @media screen and  (max-width:414px) {
         #copy {
           span {
@@ -204,7 +209,8 @@
         .type-all {
           font-size:12px;
         }
+
     }
 
-  }
+}
 </style>
