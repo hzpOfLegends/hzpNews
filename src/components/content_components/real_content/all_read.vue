@@ -12,7 +12,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryName | type_filter}}</span>
+              <span>{{item.CategoryID | type_filter}}</span>
               <span>{{item.NewsTitle}}</span>
             </div>
             <div class="center">
@@ -83,10 +83,10 @@
     },
     created() {
       //大家都在读
-      // index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
-      //   this.recent_hot = res.data.Data.news
-      // }).catch(err => {
-      // })
+      index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
+        this.recent_hot = res.data.Data.news
+      }).catch(err => {
+      })
     }, filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
@@ -98,9 +98,11 @@
     methods: {
       skip_inside_content(RelationID, CategoryID) {
         if (RelationID) {
+          let q = this.$route.query
+          q.RelationID = RelationID
           this.$router.push({
-            path: "/particulars",
-            query: {RelationID: RelationID, CategoryID: CategoryID}
+            path: "/index/"+ RelationID,
+            query: q
           })
         }
       }
@@ -205,18 +207,18 @@
             :nth-child(1) {
               display: inline-block;
               width: 3rem;
-              height: 1.375rem;
+              height:22px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
               text-align: center;
-              line-height: 1.375rem;
+              line-height: 22px;
               border-radius: 3px;
             }
             :nth-child(2) {
               font-weight: 900;
               font-size: 18px;
-              margin-left: 0.625rem;
+              margin-left: 10px;
             }
           }
           .center {
@@ -231,10 +233,10 @@
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 1.125rem;
+              padding-left: 18px;
               :nth-child(1) {
-                width: 1.625rem;
-                height: 1.625rem;
+                width: 26px;
+                height: 26px;
                 display: inline-block;
                 border-radius: 50%;
                 vertical-align: middle;
@@ -244,12 +246,12 @@
               :nth-child(2) {
                 font-size: 12px;
                 font-weight: 600;
-                padding-left: 0.3125rem;
-                padding-right: 0.625rem;
+                padding-left: 5px;
+                padding-right: 10px;
                 border-right: 1px solid #999999;
               }
               :nth-child(3) {
-                margin: 0 0.3125rem 0 0.9375rem
+                margin: 0 5px 0 15px
               }
             }
           }

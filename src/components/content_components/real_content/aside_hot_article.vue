@@ -67,9 +67,11 @@
     methods: {
       skip_inside_content(RelationID,CategoryID) {
         if(RelationID){
+          let q = this.$route.query
+          q.RelationID = RelationID
           this.$router.push({
-            path: "/particulars",
-            query: {RelationID: RelationID,CategoryID:CategoryID}
+            path: "/index/"+ RelationID,
+            query: q
           })
         }
 
@@ -77,7 +79,7 @@
     },
     created() {
       // 热门文章
-      index_message.hot_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
+      index_message.hot_article({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
         // console.log(1,res)
         this.hot_article = res.data.Data
       }).catch(err => {
@@ -132,7 +134,7 @@
     .hot_article_content {
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
-      margin-top: 0.9375rem;
+      margin-top: 15px;
       cursor: pointer;
       text-align: center;
       background-color: rgba(0,0,0,.1);
@@ -141,7 +143,7 @@
         height: 8.125rem;
       }
       p {
-        margin: 0.3125rem 0 0.625rem 0;
+        margin: 5px 0 10px 0;
       }
     }
 

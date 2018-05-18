@@ -18,37 +18,37 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-list">
               <li index='0' class="active">
-                <router-link :to="{path:'/index',query: {type: 7}}">
+                <router-link :to="{path:'/index',query: {CategoryID: 7}}">
                   总览
                 </router-link>
               </li>
               <li index='1'>
-                <router-link  :to="{path:'/index',query: {type: 6}}">
+                <router-link  :to="{path:'/index',query: {CategoryID: 6}}">
                   娛樂
                 </router-link>
               </li>
               <li index='2'>
-                <router-link  :to="{path:'/index',query: {type: 5}}">
+                <router-link  :to="{path:'/index',query: {CategoryID: 5}}">
                   興趣
                 </router-link>
               </li>
               <li index='3'>
-                <router-link :to="{path:'/index',query: {type: 4}}">
+                <router-link :to="{path:'/index',query: {CategoryID: 4}}">
                   生活
                 </router-link>
               </li>
               <li index='4'>
-                <router-link  :to="{path:'/index',query: {type: 3}}">
+                <router-link  :to="{path:'/index',query: {CategoryID: 3}}">
                   科技
                 </router-link>
               </li>
               <li index='5'>
-                <router-link  :to="{path:'/index',query: {type: 2}}">
+                <router-link  :to="{path:'/index',query: {CategoryID: 2}}">
                   奇趣
                 </router-link>
               </li>
               <li  index='6'>
-                <router-link :to="{path:'/index',query: {type: -1}}">
+                <router-link :to="{path:'/index',query: {CategoryID: 1}}">
                   新聞
                 </router-link>
               </li>
@@ -142,7 +142,7 @@
           '3':"4",
           '4':"3",
           '5':"2",
-          '6':"-1",
+          '6':"1",
 
         },
         nav_down_icon: "fa fa-bars",
@@ -161,13 +161,13 @@
     components: {
     },
     watch: {
-      '$route.query.type':'changeRoute',
+      '$route.query.CategoryID':'changeRoute',
     },
     methods: {
       //路由改变处理
       changeRoute(){
         //获取第一个//中的字段
-        let currentQuery = this.$route.query.type ;
+        let currentQuery = this.$route.query.CategoryID ;
         console.log(currentQuery)
         let index = '';
         for(let key in this.routeObj){
