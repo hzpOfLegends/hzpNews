@@ -11,7 +11,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryName}}</span>
+              <span>{{item.CategoryName | type_filter}}</span>
               <span>{{item.NewsTitle}}</span>
             </div>
             <div class="center">
@@ -86,6 +86,9 @@
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      },
+      type_filter:function (value) {
+        return filtration.type_filter(value)
       }
     },
     // 寫一個計算屬性 利用watch 監聽

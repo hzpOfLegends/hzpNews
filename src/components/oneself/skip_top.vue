@@ -44,8 +44,8 @@
   p#back-to-top {
     position: fixed;
     display: none;
-    bottom: 6.25rem;
-    right: 5rem;
+    bottom: 100px;
+    right: 80px;
   }
 
   p#back-to-top a {
@@ -54,9 +54,9 @@
     color: white;
     background: #b7b7b7;
     display: block;
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
     font-size: 40px;
     /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
     -moz-transition: color 1s;

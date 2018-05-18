@@ -60,12 +60,12 @@
     },
     created() {
       //新增文章
-      // index_message.add_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
-      //   this.hot_article_first = res.data.Data.shift()
-      //   this.hot_article = res.data.Data
-      // }).catch(err => {
-      //   console.log(err)
-      // })
+      index_message.add_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
+        this.hot_article_first = res.data.Data.shift()
+        this.hot_article = res.data.Data
+      }).catch(err => {
+        console.log(err)
+      })
     },
     methods: {
       skip_inside_page(RelationID,CategoryID) {

@@ -55,18 +55,15 @@
   @media screen and (min-width: 1200px){
     .all_read_skeleton{
       max-width: 848px;
-      width: 100%;
     }
   }
   @media screen and (max-width: 768px){
     .all_read_skeleton{
       max-width: 768px;
-      width: 100%;
     }
   }
   .all_read_skeleton{
     max-width: 848px;
-    width: 100%;
     height: 100%;
     border-radius: 3px;
     background-color: white;
@@ -74,34 +71,41 @@
     padding: 20px;
     text-align: left;
     .recent_hot_content{
-      width: 100%;
       padding-bottom: 20px;
+      padding-top: 20px;
       border-bottom: 1px solid #f6f6f6;
       .photo{
         max-width: 230px;
-        width: 100%;
+        width: 30%;
+        height:160px;
+        display: inline-block;
         max-height: 160px;
         background-color: #f6f6f6;
-
+        vertical-align: top;
       }
       .charater{
         margin-left: 20px;
         max-width: 582px;
-        width: 100%;
+        width: 68%;
+        display: inline-block;
         .top{
           max-width: 200px;
           width: 100%;
-          max-height: 20px;
+          height: 20px;
           background-color: #f6f6f6;
         }
         .center{
           max-width: 400px;
+          width: 100%;
+          height: 20px;
           margin-top: 10px;
           max-height: 20px;
           background-color: #f6f6f6;
         }
         .bottom{
           margin-top: 80px;
+          width: 100%;
+          height: 20px;
           max-width: 200px;
           max-height: 20px;
           background-color: #f6f6f6;

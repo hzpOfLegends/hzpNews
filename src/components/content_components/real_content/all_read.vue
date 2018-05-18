@@ -12,7 +12,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryName}}</span>
+              <span>{{item.CategoryName | type_filter}}</span>
               <span>{{item.NewsTitle}}</span>
             </div>
             <div class="center">
@@ -83,13 +83,16 @@
     },
     created() {
       //大家都在读
-      index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
-        this.recent_hot = res.data.Data.news
-      }).catch(err => {
-      })
+      // index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
+      //   this.recent_hot = res.data.Data.news
+      // }).catch(err => {
+      // })
     }, filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      },
+      type_filter:function (value) {
+        return filtration.type_filter(value)
       }
     },
     methods: {
@@ -146,6 +149,7 @@
     }
     .charater{
       max-width: 69% !important;
+      width: 100%;
     }
   }
   @media screen and(max-width: 414px){
@@ -161,8 +165,8 @@
     height: 100%;
     border-radius: 3px;
     background-color: white;
-    border-top: 0.5rem solid #f39900;
-    padding: 1.25rem;
+    border-top: 8px solid #f39900;
+    padding: 20px;
     text-align: left;
     .all_read_wrap {
       padding: 0;
@@ -172,9 +176,9 @@
         margin: 0;
       }
       .recent_hot_content {
-        padding-bottom: 1.25rem;
+        padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
-        margin-top: 0.9375rem;
+        margin-top: 3px;
         cursor: pointer;
         .photo {
           background-color: rgba(0, 0, 0, .1);
@@ -192,6 +196,7 @@
         }
         .charater {
           max-width: 69%;
+          width: 100%;
           max-height: 160px;
           display: inline-block;
           position: relative;

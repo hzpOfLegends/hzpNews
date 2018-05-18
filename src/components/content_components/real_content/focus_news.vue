@@ -11,7 +11,7 @@
     </div>
     <div class="character">
         <span>
-          {{focus_news_data.CategoryName}}
+          {{focus_news_data.CategoryName | type_filter}}
         </span>
       <span>{{focus_news_data.NewsTitle}}</span>
       <p>{{focus_news_data.Content}}</p>
@@ -30,9 +30,8 @@
 <script>
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
-  // 时区转换
+  // 时区转换 / 文章類型轉換
   import filtration from '../../../assets/filtration'
-
   export default {
     name: "focus-news",
     data() {
@@ -45,6 +44,9 @@
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
+      },
+      type_filter:function (value) {
+        return filtration.type_filter(value)
       }
     },
     // 寫一個計算屬性 利用watch 監聽
