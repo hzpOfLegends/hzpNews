@@ -1,6 +1,6 @@
 <template>
     <span class="google">
-            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+            <a :href="web_url" onclick="javascript:window.open(this.href,
               '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
               <i class="fa fa-google-plus-square"></i>
               Google+
@@ -9,9 +9,17 @@
 </template>
 
 <script>
-    export default {
-        name: "google_share_btn"
+  export default {
+    name: "google_share_btn",
+    data() {
+      return {
+        web_url: ""
+      }
+    },
+    created() {
+      this.web_url ="https://plus.google.com/share?url="+ window.location.href
     }
+  }
 </script>
 
 <style scoped lang="less">

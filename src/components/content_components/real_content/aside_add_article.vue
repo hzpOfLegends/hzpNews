@@ -88,6 +88,8 @@
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
+        width: 16px;
+        height: 18px;
         img {
           vertical-align: middle;
         }

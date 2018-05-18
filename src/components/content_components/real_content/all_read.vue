@@ -222,7 +222,8 @@
             }
           }
           .center {
-            margin-top: 1rem;
+            margin-top: 16px;
+            margin-bottom: 16px;
             font-size: 14px;
             min-height: 20px;
           }
