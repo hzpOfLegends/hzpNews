@@ -25,11 +25,11 @@
   .facebook {
     position: relative;
     display: inline-block;
-    width: 6.75rem;
-    height: 2.5rem;
+    width: 108px;
+    height: 40px;
     background-color: #2d4671;
     border-radius: 3px;
-    line-height: 2.5rem;
+    line-height: 40px;
     text-align: center;
     .fb-share-button {
       z-index: 999;
