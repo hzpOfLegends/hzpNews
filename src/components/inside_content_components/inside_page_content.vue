@@ -3,20 +3,30 @@
     <div class="container clearfix">
       <div class="float-left left_content">
         <!--詳情内容-->
-        <details_content/>
+        <vue-lazy-component>
+          <details_content/>
+          <details_content_skeleton slot="skeleton"/>
+        </vue-lazy-component>
         <div class="float-right right_content related_articles_phone" style="display: none">
           <!--相關文章(适配)-->
           <related_articles/>
         </div>
         <!--同區的其他文章-->
-        <other_article style="margin-top: 20px"/>
+        <vue-lazy-component>
+          <other_article style="margin-top: 20px"/>
+          <other_article_skeleton slot="skeleton" style="margin-top: 20px"/>
+        </vue-lazy-component>
         <!--<div id="fb-root"><div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div></div>-->
       </div>
       <div class="float-right right_content related_articles_browser">
-        <!--相關文章-->
-        <related_articles/>
+        <!--&lt;!&ndash;相關文章&ndash;&gt;-->
+        <vue-lazy-component>
+          <related_articles/>
+          <related_articles_skeleton slot="skeleton"/>
+        </vue-lazy-component>
       </div>
     </div>
+    <skip_top/>
   </div>
 </template>
 
@@ -27,6 +37,16 @@
   import other_article from '@/components/inside_content_components/real_content/other_article'
   // 相關文章
   import related_articles from '@/components/inside_content_components/real_content/related_articles'
+  // 點擊到頂部
+  import skip_top from '@/components/oneself/skip_top'
+  //引入组件  用于加载时 先显示骨架 后显示加载回来的内容----优化性能
+  import {component as VueLazyComponent} from '@xunlei/vue-lazy-component'
+  // 詳情骨架
+  import details_content_skeleton from '@/components/inside_content_components/skeleton/details_content_skeleton'
+  // 其他文章骨架
+  import other_article_skeleton from '@/components/inside_content_components/skeleton/other_article_skeleton'
+  // 相關文章 骨架
+  import related_articles_skeleton from '@/components/inside_content_components/skeleton/related_articles_skeleton'
 
   export default {
     name: "inside_page_content",
@@ -34,6 +54,11 @@
       details_content, // 詳情内容
       other_article, // 同區的其他文章
       related_articles, // 相關文章
+      details_content_skeleton, //詳情内容骨架
+      other_article_skeleton,  // 其他文章骨架
+      related_articles_skeleton, // 相關文章骨架
+      'vue-lazy-component': VueLazyComponent,
+      skip_top //點擊到頂部
     },
     watch: {
       '$route': function () {
@@ -76,63 +101,77 @@
 </script>
 
 <style scoped lang="less">
-  @media screen and (min-width: 1200px){
-    .container{
+  @media screen and (min-width: 1200px) {
+    .container {
       max-width: 1180px;
       width: 100%;
       margin: 0 auto;
+      .left_content {
+        max-width: 848px;
+        width: 100%;
+      }
     }
   }
-  @media screen and (max-width:1200px ) {
-    .related_articles_phone{
+
+  @media screen and (max-width: 1200px ) {
+    .related_articles_phone {
       max-width: 1180px !important;
       float: none !important;
       display: block !important;
     }
-    .related_articles_browser{
+
+    .related_articles_browser {
       display: none !important;
     }
   }
-  @media screen and(max-width: 768px){
-    .container{
+
+  @media screen and(max-width: 768px) {
+    .container {
       max-width: 768px;
     }
-    .left_content{
+
+    .left_content {
       float: none !important;
     }
-    .related_articles_phone{
+
+    .related_articles_phone {
       max-width: 768px !important;
       float: none !important;
       display: block !important;
     }
-    .related_articles_browser{
+
+    .related_articles_browser {
       display: none !important;
     }
-    .right_content_browser{
+
+    .right_content_browser {
       display: none !important;
     }
   }
+
   @media screen and (max-width: 414px) {
-    .container{
+    .container {
       max-width: 414px;
       width: 100%;
     }
   }
+
   .inside_page_content {
-    padding-top: 1.0625rem;
-    padding-bottom: 1.0625rem;
+    padding-top: 17px;
+    padding-bottom: 17px;
     margin: 0 auto;
     .container {
       padding: 0;
       margin: 0;
-      margin: 0 auto ;
+      margin: 0 auto;
       .left_content {
-        max-width: 834px;
-        padding: 0.1875rem;
+        max-width: 848px;
+        padding: 3px;
       }
       .right_content {
         max-width: 320px;
-        padding: 0.1875rem;
+        width: 100%;
+        padding: 3px;
       }
     }
   }

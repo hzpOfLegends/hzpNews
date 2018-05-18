@@ -8,7 +8,7 @@
             <focus_news_skeleton slot="skeleton"/>
           </vue-lazy-component>
           <!--广告 (适配)-->
-          <vue-lazy-component class="advertising_aside1_phone" style="display: none">
+          <vue-lazy-component class="advertising_aside1_phone" style="display: none ;margin-top: 20px" >
             <advertising_aside1/>
             <advertising_aside1_skeleton slot="skeleton"/>
           </vue-lazy-component>
@@ -58,11 +58,11 @@
         </div>
 
       </div>
+    <skip_top/>
   </div>
 </template>
 
 <script>
-  import MugenScroll from 'vue-mugen-scroll'
   //引入组件  用于加载时 先显示骨架 后显示加载回来的内容----优化性能
   import {component as VueLazyComponent} from '@xunlei/vue-lazy-component'
   //焦点新闻骨架
@@ -93,7 +93,8 @@
   import advertising_aside1 from '@/components/content_components/advertising/advertising_aside1'
   // 位于文章中心广告
   import advertising_aside2 from '@/components/content_components/advertising/advertising_aside2'
-
+  // 點擊到頂部
+  import skip_top from '@/components/oneself/skip_top'
   export default {
     name: "oops_content_index",
     data(){
@@ -118,6 +119,7 @@
       "aside_add_article": aside_add_article,//侧边栏新增文章实际内容
       advertising_aside1,// 侧边栏广告
       advertising_aside2,// 位于文章中心广告
+      skip_top //點擊到頂部
     },
     created(){
       var isbool = true
@@ -167,7 +169,7 @@
       width: 100%;
     }
     .left_content{
-      max-width: 848px;
+      width: 100%;
     }
     .right_content{
       max-width: 320px;
@@ -176,6 +178,9 @@
   }
   @media screen and (max-width: 1200px){
     .right_content{
+      max-width: 1180px !important;
+    }
+    .left_content{
       max-width: 1180px !important;
     }
     .advertising_aside2_phone{
@@ -212,8 +217,8 @@
     }
   }
   .oops_content_index {
-    padding-top: 1.0625rem;
-    padding-bottom: 1.0625rem;
+    padding-top: 17px;
+    padding-bottom: 17px;
 
     .container {
       /*max-width: 73.75rem;*/
@@ -227,14 +232,14 @@
       .left_content {
         max-width: 848px;
         width: 100%;
-        padding: 0.1875rem;
+        padding: 3px;
 
       }
       .right_content {
         /*max-width: 20rem;*/
         max-width: 320px;
         width: 100%;
-        padding: 0.1875rem;
+        padding: 3px;
       }
     }
   }

@@ -94,6 +94,11 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and(max-width: 1200px) {
+    .focus_news{
+      max-width: 100%;
+    }
+  }
   .focus_news {
     width: 100%;
     max-height: 520px;

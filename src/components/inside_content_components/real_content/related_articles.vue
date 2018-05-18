@@ -23,27 +23,6 @@
         hot_article: [{
           img: "../../../../static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }],
         default_backgrund_photo:"../../../../static/img/OopsDaily.png"
       }
@@ -78,6 +57,14 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (min-width: 1200px){
+    .related_articles{
+      max-width: 320px;
+    }
+    .hot_article_content{
+      max-width: 320px;
+    }
+  }
   @media screen and (max-width: 1200px) {
     .hot_article_content{
       max-width: 48%;
@@ -102,10 +89,12 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 1.125rem;
+    padding: 0 18px;
     border-top: 7px solid #f1463f;
+    border-radius: 3px;
     .hot_article_title {
-      padding: 0.875rem 0;
+      width: 100%;
+      padding: 14px 0;
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
@@ -115,7 +104,8 @@
         }
       }
       .hot_article_title_line {
-        width: 5.875rem;
+        max-width: 94px;
+        width: 100%;
         border-bottom: 3px solid #f24740;
         position: absolute;
         bottom: 0;
@@ -124,6 +114,7 @@
       }
     }
     .hot_article_content {
+      width: 100%;
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
       margin-top: 0.9375rem;
@@ -131,10 +122,10 @@
       img {
         width: 100%;
         object-fit: cover;
-        height: 8.125rem;
+        max-height: 130px;
       }
       p {
-        margin: 0.3125rem 0 0.625rem 0;
+        margin: 5px 0 10px 0;
       }
     }
   }
