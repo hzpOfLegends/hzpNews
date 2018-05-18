@@ -11,21 +11,19 @@
             </router-link>
           </div>
           <div v-if="$store.state.judge_login==false" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pr-0" v-if="$store.state.judge_login==false">
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  pr-0 pl-0" id="login">
+          <div class="" id="login-register" v-if="$store.state.judge_login==false">
+              <div class="" id="login">
                 <router-link to="/user/login" class="login_btn">
                   <i class="fa fa-user"></i>
                   <span>登錄</span>
                 </router-link>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pl-0" id="register">
+              <div class="" id="register">
                 <router-link to="/user/register" class="register_btn">
                   <i class="fa fa-plus-circle"></i>
                   <span>注冊</span>
                 </router-link>
               </div>
-            </div>
           </div>
           <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2" v-if="$store.state.judge_login==true"></div>
           <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8 user_select" v-if="$store.state.judge_login==true">
@@ -209,8 +207,8 @@
   }
 
   .oops_header {
-    .oops_header_content {
       background: white;
+    .oops_header_content {
       .user_message {
         margin-left: 1.5rem;
         font-size: 14px;
@@ -266,6 +264,7 @@
           }
         }
         #register {
+            margin-left:10px;
           .register_btn {
             display: inline-block;
             width: 82px;
@@ -334,6 +333,17 @@
         }
 
       }
+    }
+    #login-register {
+      display:flex;
+      justify-content: flex-end;
+    }
+    @media screen and (max-width:768px){
+        .login_btn,.register_btn {
+            width: 62px !important;
+        }
+        padding-left:2% !important;
+        padding-right:2% !important;
     }
   }
 </style>

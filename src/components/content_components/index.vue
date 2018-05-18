@@ -59,28 +59,41 @@
               </li>
             </ul>
 
-            <!--<ul>-->
-              <!--<li class="dropdown" v-if="0">-->
-                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
-                  <!--<span class="caret"></span>-->
-                <!--</a>-->
-                <!--<ul class="dropdown-menu">-->
-                  <!--<li>-->
-                    <!--<a href="#"><i class="glyphicon glyphicon-user"></i> 个人中心</a>-->
-                  <!--</li>-->
-                  <!--<li>-->
-                    <!--<a href="#"><i class="glyphicon glyphicon-wrench"></i> 修改密码</a>-->
-                  <!--</li>-->
-                  <!--&lt;!&ndash;<li>-->
-                    <!--<a href="#">Something else here</a>-->
-                  <!--</li>&ndash;&gt;-->
-                  <!--<li role="separator" class="divider"></li>-->
-                  <!--<li>-->
-                    <!--<a href="#" @click="exitLogin()"><i class="glyphicon glyphicon-log-out"></i> 退出</a>-->
-                  <!--</li>-->
-                <!--</ul>-->
-              <!--</li>-->
-            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+              <li v-if="!true">
+                  <router-link to="/user/login">
+                      登录
+                  </router-link>
+              </li>
+              <li v-if="!true">
+                  <router-link to="/user/register">
+                      注册
+                  </router-link>
+              </li>
+              <li class="dropdown" v-if="!true">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用戶名and用戶資料
+                  <span class="caret"></span>
+                </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="#"><i class="glyphicon glyphicon-user"></i> 个人中心</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="glyphicon glyphicon-wrench"></i> 修改密码</a>
+                    </li>
+                    <!--<li>
+                      <a href="#">Something else here</a>
+                    </li>-->
+                    <li role="separator" class="divider"></li>
+                    <li>
+                      <a href="#" @click="exitLogin()"><i class="glyphicon glyphicon-log-out"></i> 退出</a>
+                    </li>
+                </ul>
+              </li>
+            </ul>
+
+
+
             <div class="clearfix">
               <div @click="nav_toggle" style="position: absolute;top: 10px;right: 10px">
                 <i :class="nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px"></i>
@@ -123,7 +136,6 @@
           </div>
         </div>
       </nav>
-
     </div>
     </div>
       <!--children components 视图-->
@@ -362,5 +374,7 @@
     .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
       color: #fff;
     }
+
+
   }
 </style>
