@@ -18,11 +18,11 @@
 <style scoped lang="less">
   .twitter {
     display: inline-block;
-    width: 6.75rem;
-    height: 2.5rem;
+    width: 108px;
+    height: 40px;
     background-color: #28a2f0;
     border-radius: 3px;
-    line-height: 2.5rem;
+    line-height: 40px;
     text-align: center;
     a {
       color: white;

@@ -212,6 +212,11 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and(max-width: 768px){
+    #nav_down_icon{
+      display: none;
+    }
+  }
   .my-nav {
     background-color: #0a53a2;
     // 導航欄 點擊下拉樣式

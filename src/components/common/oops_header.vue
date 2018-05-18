@@ -11,7 +11,7 @@
             </router-link>
           </div>
           <div v-if="$store.state.judge_login==false" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
-          <div class="col-lg-2  col-md-2 col-sm-2 col-xs-2 pr-0" v-if="$store.state.judge_login==false">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pr-0" v-if="$store.state.judge_login==false">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  pr-0 pl-0" id="login">
                 <router-link to="/login" class="login_btn">
@@ -27,6 +27,7 @@
               </div>
             </div>
           </div>
+          <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2" v-if="$store.state.judge_login==true"></div>
           <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8 user_select" v-if="$store.state.judge_login==true">
             <div class="row media_user_none" style="margin: 0;">
               <div class="float-right user_message">
@@ -39,7 +40,7 @@
                   <div class="btn-group">
                     <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
                     <ul class="dropdown-menu">
-                      <li><router-link to="/">登出</router-link></li>
+                      <li><a href="javascript:;"  @click="login_out">登出</a></li>
                       <li><router-link to="/">個人中心</router-link></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#">Separated link</a></li>
@@ -181,6 +182,7 @@
       },
       login_out() {
         sessionStorage.setItem('ShareID', "")
+        // this.$router.push({path:"/"})
         window.location.href = "/"
       }
     }
