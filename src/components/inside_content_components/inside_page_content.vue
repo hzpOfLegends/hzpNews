@@ -76,7 +76,27 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (min-width: 1200px){
+    .container{
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  @media screen and (max-width:1200px ) {
+    .related_articles_phone{
+      max-width: 1180px !important;
+      float: none !important;
+      display: block !important;
+    }
+    .related_articles_browser{
+      display: none !important;
+    }
+  }
   @media screen and(max-width: 768px){
+    .container{
+      max-width: 768px;
+    }
     .left_content{
       float: none !important;
     }
@@ -85,8 +105,17 @@
       float: none !important;
       display: block !important;
     }
+    .related_articles_browser{
+      display: none !important;
+    }
     .right_content_browser{
       display: none !important;
+    }
+  }
+  @media screen and (max-width: 414px) {
+    .container{
+      max-width: 414px;
+      width: 100%;
     }
   }
   .inside_page_content {
@@ -94,7 +123,6 @@
     padding-bottom: 1.0625rem;
     margin: 0 auto;
     .container {
-      max-width: 73.75rem;
       padding: 0;
       margin: 0;
       margin: 0 auto ;

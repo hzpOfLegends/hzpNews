@@ -164,16 +164,19 @@
   @media screen and  (min-width: 1200px){
     .container{
       max-width: 1180px;
+      width: 100%;
+    }
+    .left_content{
+      max-width: 848px;
     }
     .right_content{
-      width: 320px;
+      max-width: 320px;
+      width: 100%;
     }
   }
-  @media screen and (max-width: 768px){
-    .left_content{
-      width: 100%;
-      display: block;
-      float: none !important;
+  @media screen and (max-width: 1200px){
+    .right_content{
+      max-width: 1180px !important;
     }
     .advertising_aside2_phone{
       display: block !important;
@@ -190,6 +193,12 @@
     .all_read_phone{
       display: block !important;
     }
+  }
+  @media screen and (max-width: 768px){
+    .left_content{
+      max-width: 768px;
+      float: none !important;
+    }
     .oops_content_index{
       .container{
         max-width: 768px;
@@ -199,13 +208,13 @@
 
     .right_content{
       max-width: 768px!important;
-      display: block;
       float: none !important;
     }
   }
   .oops_content_index {
     padding-top: 1.0625rem;
     padding-bottom: 1.0625rem;
+
     .container {
       /*max-width: 73.75rem;*/
       /*width: 73.75rem;*/
@@ -214,13 +223,17 @@
       padding: 0;
       margin: 0;
       margin: 0 auto;
+
       .left_content {
-        max-width: 53em;
+        max-width: 848px;
+        width: 100%;
         padding: 0.1875rem;
+
       }
       .right_content {
         /*max-width: 20rem;*/
-        max-width: 320px ;
+        max-width: 320px;
+        width: 100%;
         padding: 0.1875rem;
       }
     }

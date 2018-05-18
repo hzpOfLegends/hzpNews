@@ -5,7 +5,7 @@
       <span style="font-weight: 900">相關文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
+    <div class="hot_article_content clearfix" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
       <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
       <p>{{item.NewsTitle}}</p>
     </div>
@@ -78,6 +78,26 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (max-width: 1200px) {
+    .hot_article_content{
+      max-width: 48%;
+      display: inline-block;
+      margin-right: 2%;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .hot_article_content{
+      max-width: 48%;
+      display: inline-block;
+      margin-right: 2%;
+    }
+  }
+  @media screen and (max-width: 414px) {
+    .hot_article_content{
+      max-width: 100%;
+      display: inline-block;
+    }
+  }
   .related_articles {
     width: 100%;
     background-color: white;
@@ -110,6 +130,7 @@
       cursor: pointer;
       img {
         width: 100%;
+        object-fit: cover;
         height: 8.125rem;
       }
       p {

@@ -146,10 +146,5 @@
       margin: 0 auto;
     }
     }
-
-    .row{
-      /*margin:*/
-      margin:0;
-    }
   }
 </style>

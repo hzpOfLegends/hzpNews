@@ -10,6 +10,7 @@
       watch:{
        "$route" :function () {
          // this.router_path = this.$route.path
+
          document.querySelector('.fb-comments').setAttribute('data-href',window.location.href)
        }
       }

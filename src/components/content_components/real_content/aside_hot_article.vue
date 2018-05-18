@@ -22,28 +22,28 @@
       return {
         hot_article: [{
           img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
-          img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          img: "../../../../static/img/text.png", NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+        }, {
+          img: "../../../../static/img/text.png", NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           img: "../../../../static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
-          img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          img: "../../../../static/img/text.png",
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+        }, {
+          img: "../../../../static/img/text.png", NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }],
         default_backgrund_photo:"../../../../static/img/OopsDaily.png" //默认背景图
       }
@@ -88,6 +88,20 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (max-width:768px ){
+    .hot_article_content{
+      width: 48%;
+      display: inline-block;
+      margin-right: 2%;
+    }
+  }
+  @media screen and (max-width:1200px ){
+    .hot_article_content{
+      width: 48%;
+      display: inline-block;
+      margin-right: 2%;
+    }
+  }
   .aside_hot_article {
     width: 100%;
     background-color: white;

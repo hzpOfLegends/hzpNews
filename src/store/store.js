@@ -9,7 +9,8 @@ const state = {
   foot_all_style:true, // 底部全部样式
   nav_style:true, //导航栏
   loading_style:true, // loading的样式
-  judge_login:false // 判断是否登录
+  judge_login:false, // 判断是否登录
+  nav_down:false, // 首頁導航欄點擊下拉
 }
 export default new Vuex.Store({
   state,

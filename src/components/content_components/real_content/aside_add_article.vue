@@ -30,13 +30,13 @@
         // 新增文章 2-20
         hot_article: [{
           id: 1,
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           id: 2,
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
           id: 3,
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
+          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }]
 
       }
@@ -60,12 +60,12 @@
     },
     created() {
       //新增文章
-      index_message.add_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
-        this.hot_article_first = res.data.Data.shift()
-        this.hot_article = res.data.Data
-      }).catch(err => {
-        console.log(err)
-      })
+      // index_message.add_article({CategoryID:sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):'-1'}).then(res => {
+      //   this.hot_article_first = res.data.Data.shift()
+      //   this.hot_article = res.data.Data
+      // }).catch(err => {
+      //   console.log(err)
+      // })
     },
     methods: {
       skip_inside_page(RelationID,CategoryID) {
@@ -111,6 +111,7 @@
       margin-top: 15px;
       img {
         width: 100%;
+        object-fit: cover;
         height: 8.125rem;
       }
       p {

@@ -179,24 +179,25 @@
   .container {
     padding: 0;
     margin: 0;
+    margin: 0 auto;
     .login_wrap {
       background: white;
       width: 100%;
-      margin: 7rem auto 11.75rem;
-      width: 29.375rem;
+      margin: 112px auto 188px;
+      width: 470px;
       border-radius: 3px;
     }
     .step1 {
-      padding: 1.6875rem;
+      padding: 27px;
       h4 {
         font-weight: 900;
-        padding: 1rem;
+        padding: 16px;
       }
     }
     .step2 {
       border-top: 1px solid #eee;
       p {
-        margin: 0.75rem auto;
+        padding: 12px 0;
         font-size: 14px;
         color: #989898;
       }
@@ -225,7 +226,7 @@
       margin: 1rem 0;
     }
     .forget_password {
-      margin-bottom: 1.875rem;
+      margin-bottom: 30px;
     }
     // 模態框
     #modal {
@@ -237,7 +238,7 @@
           font-size: 16px;
           color: rgb(10, 83, 162);
           border-bottom: 5px solid rgb(10, 83, 162);
-          padding: 1.75rem 0 1.375rem;
+          padding: 28px 0 22px;
         }
       }
 

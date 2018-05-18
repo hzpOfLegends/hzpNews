@@ -1,16 +1,16 @@
 <template>
   <div class="other_article">
-    <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
-    <div class=" container">
+    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
+    <div class="other_article_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <div class="row">
-          <div class="col-4">
+          <!--<div class="float-left">-->
             <div class="photo">
               <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
             </div>
-          </div>
-          <div class="col-8">
+          <!--</div>-->
+          <!--<div class="float-left">-->
             <div class="charater">
               <div class="top">
                 <span>{{item.CategoryName}}</span>
@@ -27,7 +27,7 @@
                   <span>發表時間：</span>
                   <span>{{item.PublishTime}}</span>
                 </div>
-              </div>
+              <!--</div>-->
             </div>
           </div>
         </div>
@@ -146,6 +146,23 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and(max-width: 768px){
+    .photo{
+      max-width: 30% !important;
+      vertical-align: top;
+    }
+    .charater{
+      max-width: 69% !important;
+    }
+  }
+  @media screen and(max-width: 414px){
+    .photo{
+      max-width: 100% !important;
+    }
+    .charater{
+      max-width: 100% !important;
+    }
+  }
   .other_article {
     width: 100%;
     height: 100%;
@@ -154,23 +171,38 @@
     border-top: 0.5rem solid #f39900;
     padding: 1.25rem;
     text-align: left;
-    .container {
+    .other_article_wrap {
       padding: 0;
       margin: 0;
+      max-width: 846px;
+      .row{
+        margin: 0;
+      }
       .recent_hot_content {
         padding-bottom: 1.25rem;
         border-bottom: 1px solid #f6f6f6;
         margin-top: 0.9375rem;
         cursor: pointer;
         .photo {
+          background-color: rgba(0,0,0,.1);
+          max-width: 30%;
+          max-height: 160px;
+          overflow: hidden;
+          position: relative;
+          display: inline-block;
+          vertical-align: top;
           img {
             width: 100%;
-            height: 10.125rem;
+            height: 100%;
+            object-fit: cover;
           }
         }
         .charater {
-          height: 10.125rem;
-          padding-left: 0.9375rem;
+          max-width: 69%;
+          padding-left: 15px;
+          position: relative;
+          display: inline-block;
+          position: relative;
           .top {
             :nth-child(1) {
               display: inline-block;
@@ -192,6 +224,7 @@
           .center {
             margin-top: 1rem;
             font-size: 14px;
+            min-height: 20px;
           }
           .bottom {
             position: absolute;

@@ -1,11 +1,10 @@
 <template>
   <div class="all_read_skeleton">
-    <h5 style="font-weight: 900"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>大家都在讀</h5>
+    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>大家都在讀</h5>
     <div v-for="(item,index) in recent_hot" :key="index">
 
       <div class="recent_hot_content clearfix">
         <div class="float-left photo">
-
         </div>
         <div class="float-left charater">
           <div class="top"></div>
@@ -53,8 +52,18 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (min-width: 1200px){
+    .all_read_skeleton{
+      max-width: 848px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .all_read_skeleton{
+      max-width: 768px;
+    }
+  }
   .all_read_skeleton{
-    width: 100%;
+    max-width: 848px;
     height: 100%;
     border-radius: 3px;
     background-color: white;
@@ -65,27 +74,30 @@
       padding-bottom: 20px;
       border-bottom: 1px solid #f6f6f6;
       .photo{
-        width: 230px;
-        height: 160px;
+        max-width: 230px;
+        max-height: 160px;
         background-color: #f6f6f6;
+
       }
       .charater{
         margin-left: 20px;
+        max-width: 582px;
+        width: 100%;
         .top{
-          width: 200px;
-          height: 20px;
+          max-width: 200px;
+          max-height: 20px;
           background-color: #f6f6f6;
         }
         .center{
-          width: 400px;
+          max-width: 400px;
           margin-top: 10px;
-          height: 20px;
+          max-height: 20px;
           background-color: #f6f6f6;
         }
         .bottom{
           margin-top: 80px;
-          width: 200px;
-          height: 20px;
+          max-width: 200px;
+          max-height: 20px;
           background-color: #f6f6f6;
         }
       }

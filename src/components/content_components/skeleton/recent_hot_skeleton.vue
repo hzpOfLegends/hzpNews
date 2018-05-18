@@ -39,8 +39,20 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (min-width: 1200px){
+    .recent_hot_skeleton{
+      width: 848px;
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .container{
+      max-width: 768px;
+      width: 100%;
+    }
+  }
   .recent_hot_skeleton{
-    width: 100%;
+    max-width: 848px;
     height: 100%;
     border-radius: 3px;
     background-color: white;
@@ -52,27 +64,28 @@
       margin-top: 15px;
       border-bottom: 1px solid #f6f6f6;
       .photo{
-        width: 14.375rem;
-        height: 10rem;
+        max-width: 230px;
+        max-height: 160px;
         background-color: #f6f6f6;
       }
       .charater{
         margin-left: 20px;
+        max-width: 582px;
         .top{
-          width: 200px;
-          height: 20px;
+          max-width: 200px;
+          max-height: 20px;
           background-color: #f6f6f6;
         }
         .center{
-          width: 400px;
+          max-width: 400px;
           margin-top: 10px;
-          height: 20px;
+          max-height: 20px;
           background-color: #f6f6f6;
         }
         .bottom{
           margin-top: 80px;
-          width: 200px;
-          height: 20px;
+          max-width: 200px;
+          max-height: 20px;
           background-color: #f6f6f6;
         }
       }

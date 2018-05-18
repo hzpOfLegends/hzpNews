@@ -3,23 +3,23 @@
     <div class="oops_header_content">
       <div class="container head1">
         <div class="oops_title row">
-          <div class="col-4 oops_title_left" @click="skip_index" style="cursor: pointer">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 oops_title_left" @click="skip_index" style="cursor: pointer">
             <router-link to="/">
               <span>OOPSDAILY</span>
-              <span>|</span>
-              <span>文章創作分享平台</span>
+              <span class="media_none">|</span>
+              <span class="media_none">文章創作分享平台</span>
             </router-link>
           </div>
-          <div v-if="$store.state.judge_login==false" class="col-6"></div>
-          <div class="col-2 pr-0" v-if="$store.state.judge_login==false">
+          <div v-if="$store.state.judge_login==false" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+          <div class="col-lg-2  col-md-2 col-sm-2 col-xs-2 pr-0" v-if="$store.state.judge_login==false">
             <div class="row">
-              <div class="col-6 pr-0 pl-0" id="login">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  pr-0 pl-0" id="login">
                 <router-link to="/login" class="login_btn">
                   <i class="fa fa-user"></i>
                   <span>登錄</span>
                 </router-link>
               </div>
-              <div class="col-6 pr-0 pl-0" id="register">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pl-0" id="register">
                 <router-link to="/register" class="register_btn">
                   <i class="fa fa-plus-circle"></i>
                   <span>注冊</span>
@@ -27,145 +27,92 @@
               </div>
             </div>
           </div>
-          <div class="col-2">
-
-          </div>
-          <div class="col-6" v-if="$store.state.judge_login==true">
-            <div class="float-right user_message">
-              <i class="fa fa-user"></i>
-              當前用戶：
-              <span>
+          <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8 user_select" v-if="$store.state.judge_login==true">
+            <div class="row media_user_none" style="margin: 0;">
+              <div class="float-right user_message">
+                <i class="fa fa-user"></i>
+                當前用戶：
+                <span>
                 <router-link to="/personal_center" style="color:#37abe3">鱼丸</router-link>
               </span>
-              <span class="subscript">
-                <b-dropdown variant="link" size="sm">
-                  <b-dropdown-item @click="login_out">登出</b-dropdown-item>
-                  <b-dropdown-item>
-                    <router-link to="/personal_center"></router-link>
-                    个人中心
-                  </b-dropdown-item>
-                  <!--<b-dropdown-item href="#"></b-dropdown-item>-->
-                </b-dropdown>
+                <span class="subscript">
+                  <div class="btn-group">
+                    <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
+                    <ul class="dropdown-menu">
+                      <li><router-link to="/">登出</router-link></li>
+                      <li><router-link to="/">個人中心</router-link></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </div>
               </span>
+              </div>
+              <div class="float-right user_message">
+                <i class="fa fa-file-text-o"></i>
+                發表文章：
+                <span style="color:red" @click="skip_center()">123456</span>
+              </div>
+              <div class="float-right user_message">
+                <i class="fa fa-money"></i>
+                已賺取金額：
+                <span style="color:red" @click="skip_center()">123456</span>
+              </div>
             </div>
-            <div class="float-right user_message">
-              <i class="fa fa-file-text-o"></i>
-              發表文章：
-              <span style="color:red" @click="skip_center()">123456</span>
-            </div>
-            <div class="float-right user_message">
-              <i class="fa fa-money"></i>
-              已賺取金額：
-              <span style="color:red" @click="skip_center()">123456</span>
+            <div class="media_user_block" style="display: none;text-align: right;padding-right: 20px">
+              <div class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><i class="fa fa-ellipsis-h" style="font-size: 40px"></i></a>
+                <ul class="dropdown-menu">
+                  <li><div class="user_message" style="margin-left: 0;text-align: center">
+                    <i class="fa fa-money"></i>
+                    已賺取金額：
+                    <span style="color:red" @click="skip_center()">123456</span>
+                  </div></li>
+                  <li><div class="user_message" style="margin-left: 0;text-align: center">
+                    <i class="fa fa-file-text-o"></i>
+                    發表文章：
+                    <span style="color:red" @click="skip_center()">123456</span>
+                  </div></li>
+                  <li><div class="user_message" style="margin-left: 0;text-align: center">
+                    <i class="fa fa-user"></i>
+                    當前用戶：
+                    <span>
+                <router-link to="/personal_center" style="color:#37abe3">鱼丸</router-link>
+              </span>
+                    <span class="subscript">
+                  <div class="btn-group">
+                    <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
+                    <ul class="dropdown-menu">
+                      <li><router-link to="/">登出</router-link></li>
+                      <li><router-link to="/">個人中心</router-link></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </div>
+              </span>
+                  </div></li>
+                  <li role="separator" class="divider"></li>
+                  <li><router-link to="">個人中心</router-link></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
-      <!--<div class="oops_navs" v-if="$store.state.nav_style">
-        <div class="container">
-          <div class="row">
-            <div class="col-11" style="overflow: hidden">
-              <ul>
-                <li class="float-left" v-for="(item,index) in nav_select" :key="index">
-                  <a href="javascript:;" @click="skip_type(item.CategoryID)">
-                    {{item.name}}
-                  </a>
-                </li>
-              </ul>
 
-            </div>
-            <div class="col-1 clearfix">
-              <div class="float-right" @click="nav_toggle">
-                <i :class="nav_down_icon" id="nav_down_icon" style="color:white"></i>
-              </div>
-            </div>
-
-          </div>
-          <div v-show="nav_down" class="nav_down row position-absolute">
-            <div class="nav_down_content">
-              <ul class="float-left" v-for="(item,index) in nav_select" :key="index">
-                <li><a href="javascripte:;">{{item.name}}</a></li>
-              </ul>
-            </div>
-            <div class="nav_down_footer">
-              <div class="clearfix">
-                <ul class="float-left">
-                  <li class="float-left"><a href="javascript:;">聯係我們</a></li>
-                  <li class="float-left division">|</li>
-                  <li class="float-left"><a href="javascript:;">幫助中心</a></li>
-                  <li class="float-left division">|</li>
-                  <li class="float-left"><a href="javascript:;">2018OopsDaily 隱私政策 服務條款 京ICP証080268號</a></li>
-                </ul>
-                <ul class="float-right">
-                  <li class="float-right" style="margin-left: 12px">
-                    <img src="../../../static/img/team1.png" alt="">
-                  </li>
-                  <li class="float-right" style="margin-left: 12px">
-                    <img src="../../../static/img/team2.png" alt="">
-                  </li>
-                  <li class="float-right" style="margin-left: 12px">
-                    <img src="../../../static/img/team3.png" alt="">
-                  </li>
-                  <li class="float-right" style="margin-left: 12px">
-                    <img src="../../../static/img/team4.png" alt="">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>-->
+    </div>
+    <div class="nav_bar">
+      <nav_bar/>
     </div>
   </div>
-  <!--<div>-->
-  <!--<b-navbar toggleable="md" type="dark" variant="info">-->
 
-  <!--<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>-->
-
-  <!--<b-navbar-brand href="#">NavBar</b-navbar-brand>-->
-
-  <!--<b-collapse is-nav id="nav_collapse">-->
-
-  <!--<b-navbar-nav>-->
-  <!--<b-nav-item href="#">Link</b-nav-item>-->
-  <!--<b-nav-item href="#" disabled>Disabled</b-nav-item>-->
-  <!--</b-navbar-nav>-->
-
-  <!--&lt;!&ndash; Right aligned nav items &ndash;&gt;-->
-  <!--<b-navbar-nav class="ml-auto">-->
-
-  <!--<b-nav-form>-->
-  <!--<b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>-->
-  <!--<b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>-->
-  <!--</b-nav-form>-->
-
-  <!--<b-nav-item-dropdown text="Lang" right>-->
-  <!--<b-dropdown-item href="#">EN</b-dropdown-item>-->
-  <!--<b-dropdown-item href="#">ES</b-dropdown-item>-->
-  <!--<b-dropdown-item href="#">RU</b-dropdown-item>-->
-  <!--<b-dropdown-item href="#">FA</b-dropdown-item>-->
-  <!--</b-nav-item-dropdown>-->
-
-  <!--<b-nav-item-dropdown right>-->
-  <!--&lt;!&ndash; Using button-content slot &ndash;&gt;-->
-  <!--<template slot="button-content">-->
-  <!--<em>User</em>-->
-  <!--</template>-->
-  <!--<b-dropdown-item href="#">Profile</b-dropdown-item>-->
-  <!--<b-dropdown-item href="#">Signout</b-dropdown-item>-->
-  <!--</b-nav-item-dropdown>-->
-  <!--</b-navbar-nav>-->
-
-  <!--</b-collapse>-->
-  <!--</b-navbar>-->
-  <!--</div>-->
 </template>
 
 <script>
   // 引入路由
   import header_message from '@/axios_joggle/axios_header'
+  // 引入导航栏
+  import nav_bar from '../content_components/real_content/nav_bar'
 
   export default {
     data() {
@@ -174,7 +121,6 @@
           name: '科技',
           CategoryID: 4
         }, {name: '奇趣', CategoryID: 5}, {name: '新聞', CategoryID: -1}],
-
         nav_other_select: {
           item1: ['國際', '國際', '國際', '國際', '國際', '國際'],
           item2: ['國際', '國際', '國際', '國際', '國際', '國際'],
@@ -188,6 +134,9 @@
         nav_down: false,  // 用來切換導航欄的隱藏
         nav_down_icon: "fa fa-bars"
       }
+    },
+    components: {
+      nav_bar
     },
     created() {
       // vuex是状态管理 一刷新就没了  此步骤当记录
@@ -208,18 +157,7 @@
       }
     },
     methods: {
-      // 显示 / 隐藏
-      nav_toggle() {
-        let nav_down = document.querySelector('.nav_down')
-        let nav_down_icon = document.querySelector('#nav_down_icon')
-        if (this.nav_down_icon == "fa fa-bars") {
-          this.nav_down = true
-          this.nav_down_icon = "fa fa-close"
-        } else {
-          this.nav_down = false
-          this.nav_down_icon = "fa fa-bars"
-        }
-      },
+
       // 选择分类
       skip_type(id) {
         this.$store.state.nav_id = id
@@ -251,11 +189,23 @@
 </script>
 
 <style scoped lang="less">
-  @media screen and (max-width:768px) {
-    .head1{
+  @media screen and (max-width: 768px) {
+    .head1 {
+      /*display: none;*/
+    }
+    .media_user_none{
+      display: none;
+    }
+    .media_user_block{
+      display: block !important;
+    }
+  }
+  @media screen and(max-width: 1000px) {
+    .media_none{
       display: none;
     }
   }
+
   .oops_header {
     .oops_header_content {
       background: white;
@@ -264,14 +214,18 @@
         font-size: 14px;
         color: #9a9a9a;
       }
+
+      // 用戶 下拉
+      .dropdown-menu{
+        left: -150px;
+      }
       .subscript {
         a {
           line-height: 1rem;
         }
       }
       .container {
-        width: 73.75rem;
-        max-width: 73.75rem;
+        max-width: 1180px;
         /*width: 1180px;*/
         /*max-width: 1180px;*/
         margin: 0;
@@ -279,7 +233,7 @@
         margin: 0 auto;
       }
       .oops_title {
-        width: 73.75rem;
+        max-width: 1180px;
         margin: 0 auto;
         height: 4.5rem;
         background-color: #ffffff;
@@ -312,9 +266,9 @@
         #register {
           .register_btn {
             display: inline-block;
-            width: 5.125rem;
-            height: 1.75rem;
-            line-height: 1.75rem;
+            width: 82px;
+            height: 28px;
+            line-height: 28px;
             padding: 0;
             background-color: #468bed;
             font-size: 14px;
@@ -329,9 +283,9 @@
         #login {
           .login_btn {
             display: inline-block;
-            width: 5.125rem;
-            height: 1.75rem;
-            line-height: 1.75rem;
+            width: 82px;
+            height: 28px;
+            line-height: 28px;
             padding: 0;
             background-color: #eeeeee;
             color: #656565;
@@ -362,7 +316,7 @@
               font-size: 14px;
             }
           }
-          li:hover{
+          li:hover {
             background: rgb(70, 138, 237);
           }
           .col-1 {
@@ -374,51 +328,7 @@
               cursor: pointer;
             }
           }
-          .nav_down {
-            max-width: 73.75rem;
-            width: 73.75rem;
-            box-shadow: 2px 2px 15px gray;
-            z-index: 99;
-            .nav_down_content {
-              background: white;
-              width: 100%;
-              border-bottom: 1px solid #e5e5e5;
-              ul {
-                padding: 0 3.6875rem;
-                margin: 1.875rem 0;
-                border-right: 1px solid #eeeeee;
-                text-align: center;
-                li {
-                  margin: 0;
-                  a {
-                    color: #888888;
-                  }
-                }
-              }
-              :last-child {
-                border-right: none;
-              }
-            }
-            .nav_down_footer {
-              background: #f4f4f4;
-              padding: 3.125rem 3.375rem;
-              width: 100%;
-              ul {
-                margin-bottom: 0;
-                li {
-                  margin: 0;
-                  color: #d2d2d2;
-                  a {
-                    color: #9a9a9a;
-                    font-size: 12px;
-                  }
-                }
-                .division {
-                  margin: 0 15px;
-                }
-              }
-            }
-          }
+
         }
 
       }

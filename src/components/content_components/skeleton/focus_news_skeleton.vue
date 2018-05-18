@@ -25,10 +25,41 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and(min-width: 1200px){
+    .focus_news_skeleton{
+      min-width: 848px;
+      min-height: 524px;
+      .photo{
+        height: 338px;
+      }
+    }
+  }
+  @media screen and(min-width: 768px){
+    .focus_news_skeleton{
+      min-width: 768px;
+      min-height: 524px;
+      .photo{
+        min-width: 768px;
+        height: 238px !important;
+      }
+    }
+  }
+  @media screen and(max-width: 768px){
+    .focus_news_skeleton{
+      max-width: 768px;
+      max-height: 524px;
+      .photo{
+        max-width: 768px;
+        height: 238px !important;
+      }
+    }
+  }
   .focus_news_skeleton{
-    width: 52.1rem;
-    height: 32.8rem;
+    max-width: 100%;
+    max-height: 524px;
     background: white;
+    position: relative;
+    border: 1px solid #f9f9f9;
     .focus_news_icon{
       position: absolute;
       top: 0;
@@ -36,16 +67,20 @@
     }
     .photo{
       width: 100%;
-      height: 342px;
+      max-height: 338px;
       background-color: #f4f4f4;
       img{
         width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     .character{
       padding: 20px;
       text-align: left;
       font-size:13px;
+      max-height: 180px;
+      overflow:hidden;
       :nth-child(1){
         display: inline-block;
         width: 48px;

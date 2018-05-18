@@ -1,33 +1,30 @@
 <template>
   <div class="all_read card">
-    <h5 style="font-weight: 900"><i class="fa fa-eye" style="color: #f39900;margin-right: 20px"></i>大家都在讀</h5>
-    <div class=" container">
+    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-eye" style="color: #f39900;margin-right: 20px"></i>大家都在讀
+    </h5>
+    <div class=" all_read_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <div class="row">
           <!--<router-link to="index/particulars">-->
-          <div class="col-4">
-            <div class="photo">
-              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
-            </div>
+          <div class="photo">
+            <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
           </div>
-          <div class="col-8">
-            <div class="charater">
-              <div class="top">
-                <span>{{item.CategoryName}}</span>
-                <span>{{item.NewsTitle}}</span>
-              </div>
-              <div class="center">
-                <p>{{item.Content}}</p>
-              </div>
-              <div class="bottom">
-                <div class="author">
-                  <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
-                  <span>{{item.AuthorName}}</span>
-                  <i class="fa fa-clock-o"></i>
-                  <span>發表時間：</span>
-                  <span>{{item.PublishTime | timezone_filter}}</span>
-                </div>
+          <div class="charater">
+            <div class="top">
+              <span>{{item.CategoryName}}</span>
+              <span>{{item.NewsTitle}}</span>
+            </div>
+            <div class="center">
+              <p>{{item.Content}}</p>
+            </div>
+            <div class="bottom">
+              <div class="author">
+                <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
+                <span>{{item.AuthorName}}</span>
+                <i class="fa fa-clock-o"></i>
+                <span>發表時間：</span>
+                <span>{{item.PublishTime | timezone_filter}}</span>
               </div>
             </div>
           </div>
@@ -46,6 +43,7 @@
   import filtration from '../../../assets/filtration'
   // loading 引入
   import loading from '../../oneself/loading'
+
   export default {
     name: "all_read",
     data() {
@@ -75,12 +73,12 @@
           author: "魚丸相面",
           times: "2016-08-08"
         }],
-        default_photo:"../../../../static/img/timg.jpg",
-        pageNum:1,
-        default_backgrund_photo:"../../../../static/img/OopsDaily.png" //默认背景图
+        default_photo: "../../../../static/img/timg.jpg",
+        pageNum: 1,
+        default_backgrund_photo: "../../../../static/img/OopsDaily.png" //默认背景图
       }
     },
-    components:{
+    components: {
       loading //loading组件引入
     },
     created() {
@@ -95,30 +93,30 @@
       }
     },
     methods: {
-      skip_inside_content(RelationID,CategoryID) {
-        if(RelationID){
+      skip_inside_content(RelationID, CategoryID) {
+        if (RelationID) {
           this.$router.push({
             path: "/particulars",
-            query: {RelationID: RelationID,CategoryID:CategoryID}
+            query: {RelationID: RelationID, CategoryID: CategoryID}
           })
         }
       }
     },
-    mounted(){
+    mounted() {
       // 用于判断 防止重复请求
       var isbool = true
       var that = this
       // 如果有shareID  代表已经登录 无需 无限加载
-      if(sessionStorage.getItem('ShareID')){
+      if (sessionStorage.getItem('ShareID')) {
         this.$store.state.loading_style = false
-      }else{
-        $(window).scroll(function() {
-          if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool==true) {
-            that.pageNum = that.pageNum+1
+      } else {
+        $(window).scroll(function () {
+          if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
+            that.pageNum = that.pageNum + 1
             //大家都在读
-            if(isbool){
+            if (isbool) {
               index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
-                for(let i = 0 ; i <res.data.Data.news.length ; i++){
+                for (let i = 0; i < res.data.Data.news.length; i++) {
                   that.recent_hot.push(res.data.Data.news[i])
                 }
                 isbool = true
@@ -135,6 +133,29 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and (min-width: 1200px) {
+    .container {
+      max-width: 848px;
+      width: 100%;
+    }
+  }
+  @media screen and(max-width: 768px){
+    .photo{
+      max-width: 30% !important;
+      vertical-align: top;
+    }
+    .charater{
+      max-width: 69% !important;
+    }
+  }
+  @media screen and(max-width: 414px){
+    .photo{
+      max-width: 100% !important;
+    }
+    .charater{
+      max-width: 100% !important;
+    }
+  }
   .all_read {
     width: 100%;
     height: 100%;
@@ -143,24 +164,37 @@
     border-top: 0.5rem solid #f39900;
     padding: 1.25rem;
     text-align: left;
-    .container {
+    .all_read_wrap {
       padding: 0;
       margin: 0;
+      max-width: 846px;
+      .row {
+        margin: 0;
+      }
       .recent_hot_content {
         padding-bottom: 1.25rem;
         border-bottom: 1px solid #f6f6f6;
         margin-top: 0.9375rem;
         cursor: pointer;
         .photo {
-          text-align: center;
-          background-color: rgba(0,0,0,.1);
+          background-color: rgba(0, 0, 0, .1);
+          max-width: 30%;
+          max-height: 160px;
+          overflow: hidden;
+          display: inline-block;
+          position: relative;
+          vertical-align: top;
           img {
             width: 100%;
-            height: 10.125rem;
+            height: 100%;
+            object-fit: cover;
           }
         }
         .charater {
-          height: 10.125rem;
+          max-width: 69%;
+          max-height: 160px;
+          display: inline-block;
+          position: relative;
           padding-left: 15px;
           .top {
             :nth-child(1) {
@@ -183,6 +217,7 @@
           .center {
             margin-top: 1rem;
             font-size: 14px;
+            min-height: 20px;
           }
           .bottom {
             position: absolute;
@@ -191,7 +226,7 @@
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left:1.125rem;
+              padding-left: 1.125rem;
               :nth-child(1) {
                 width: 1.625rem;
                 height: 1.625rem;

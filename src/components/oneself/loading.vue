@@ -17,7 +17,7 @@
 <style scoped >
   .spinner {
     margin: 0 auto;
-    width: 3.125rem;
+    width: 100%;
     height: 3.75rem;
     text-align: center;
     font-size: 10px;

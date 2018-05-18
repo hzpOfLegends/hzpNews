@@ -96,7 +96,7 @@
 <style scoped lang="less">
   .focus_news {
     width: 100%;
-    height: 32.8rem;
+    max-height: 520px;
     background: white;
     cursor: pointer;
     .focus_news_icon {
@@ -106,20 +106,21 @@
     }
     .photo {
       width: 100%;
-      height: 21.375rem;
+      max-height: 338px;
       text-align: center;
       background-color: rgba(0,0,0,.1);
+      overflow: hidden;
       img {
-        /*width: 100%;*/
-        /*height: 100%;*/
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
     }
     .character {
       padding: 20px;
       text-align: left;
       font-size: 13px;
+      max-height: 180px;
       :nth-child(1) {
         display: inline-block;
         width: 3rem;
