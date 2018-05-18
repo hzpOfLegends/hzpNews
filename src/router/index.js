@@ -70,6 +70,7 @@ export default new Router({
     // 个人中心
     {
       path:'/account',
+      redirect:'/account/home',
       component:account,
       children:[
         {path:'data', component:account_data},
@@ -81,6 +82,8 @@ export default new Router({
         {path:'message', component:account_message},
         {path:'open', component:account_open},
       ]
-    }
+    },
+    // 此配置的位置不可移动
+    {path:'*',redirect:'/index'} 
   ]
 })
