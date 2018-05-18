@@ -38,10 +38,12 @@
     },
     methods: {
       skip_inside_content(RelationID,CategoryID) {
-        if(RelationID) {
+        if (RelationID) {
+          let q = this.$route.query
+          q.RelationID = RelationID
           this.$router.push({
-            path: "/particulars",
-            query: {RelationID: RelationID, CategoryID: CategoryID}
+            path: "/index/"+ RelationID,
+            query: q
           })
         }
       }
