@@ -30,6 +30,10 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios_index from "./axios_joggle/axios_index";
 
+//loading組件（只能使用v-loading指令）
+import 'element-ui/lib/theme-chalk/loading.css'
+import {Loading} from 'element-ui'
+Vue.use(Loading.directive) 
 
 
 /* eslint-disable no-new */

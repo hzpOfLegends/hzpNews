@@ -12,6 +12,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^2.3.9",
     "font-awesome": "^4.7.0",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
