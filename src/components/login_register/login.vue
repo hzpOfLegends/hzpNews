@@ -47,7 +47,7 @@
         <div class="step2">
           <p>
             還沒有賬號？
-            <router-link to="/register">前往注冊>></router-link>
+            <router-link to="/user/register">前往注冊>></router-link>
           </p>
         </div>
       </div>
@@ -180,11 +180,14 @@
     padding: 0;
     margin: 0;
     margin: 0 auto;
+    .row {
+      margin:0;
+    }
     .login_wrap {
       background: white;
-      width: 100%;
+      // width: 100%;
       margin: 112px auto 188px;
-      width: 470px;
+      max-width: 470px;
       border-radius: 3px;
     }
     .step1 {

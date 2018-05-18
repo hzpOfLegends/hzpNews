@@ -59,14 +59,14 @@
 
     <div class="oops_footer2" v-if="$store.state.footer_style2" >
       <div class="oops_footer_wrap2 clearfix">
-        <div class="float-left " id="copy">
+        <div class=" " id="copy">
           <router-link to=""><span>@2018OopsDaily</span></router-link>
           <router-link to=""><span>隱私政策</span></router-link>
           <router-link to=""><span>服務條款</span></router-link>
           <router-link to=""><span>京ICP證080268號</span></router-link>
 
         </div>
-        <div class="float-right">
+        <div class="">
           <span class="want_line">
             <router-link to="">
               關於我們
@@ -111,15 +111,18 @@
 
 <style scoped lang="less">
   .oops_footer {
-    background-color: #f8f8f8;
+    .row {
+      margin:0;
+    }
+    background-color: white;
     // height: 20.25rem;
     .oops_footer_wrap {
-      max-width:1180px;
       margin: 0 auto;
       height: 100%;
+        margin: 0;
+        padding: 0;
         .row {
           height: 100%;
-          margin:0;
           .web_name {
             padding-top: 36px !important;
             height: 100%;
@@ -129,7 +132,7 @@
             }
           }
           .web_type {
-            height: 270px;
+            min-height: 220px;
             border-right: 1px solid #f6f6f6;
             border-left: 1px solid #f6f6f6;
             text-align: left;
@@ -137,7 +140,10 @@
               font-size: 16px;
               color: #888888;
               font-weight: 900;
-              padding:30px 12% 3px;
+              padding:15px 12% 3px;
+              @media screen and  (max-width:768px) {
+                  text-align:center;
+              }
             }
             span {
               display: inline-block;
@@ -192,14 +198,6 @@
            }
         }
     }
-    @media screen and  (max-width:768px) {
-        .web_type h5 {
-            text-align:center !important;
-        }
-        .web_share {
-            margin-top:-10px !important;
-        }
-    }
     @media screen and  (max-width:414px) {
         #copy {
           span {
@@ -209,8 +207,10 @@
         .type-all {
           font-size:12px;
         }
-
+        .web_share {
+            margin-top:0px !important;
+        }
     }
 
-}
+  }
 </style>
