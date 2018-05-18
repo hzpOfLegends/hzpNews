@@ -53,7 +53,7 @@
         </div>
         <div class="step2">
           <p>
-            已有賬號？<router-link to="/login">前往登錄>></router-link>
+            已有賬號？<router-link to="/user/login">前往登錄>></router-link>
           </p>
         </div>
       </div>
@@ -190,11 +190,14 @@
   .container {
     padding: 0;
     margin: 0 auto;
+    .row {
+      margin:0;
+    }
     .login_wrap {
       background: white;
       width: 100%;
       margin: 7rem auto 11.75rem;
-      width: 470px;
+      max-width: 470px;
       border-radius: 3px;
     }
     .step1 {

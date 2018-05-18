@@ -173,6 +173,11 @@
         }
       }
     }
+    @media screen and (max-width:768px) {
+        .photo {
+          height:74vw !important;
+        }
+    }
 
   }
 </style>
