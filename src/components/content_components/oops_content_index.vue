@@ -145,7 +145,8 @@
           return false;
         }
         $('body').animate({ scrollTop: 0 }, 1000);
-      }
+      },
+      "$route.path":"listenType"
     },
     mounted() {
       // 更换背景
@@ -157,6 +158,11 @@
         setTimeout(() => {
           done()
         }, 1500)
+      },
+      listenType(){
+          let type = this.$route.path.split('/')[2]
+          
+          console.log(type);
       }
     }
   }

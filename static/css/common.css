@@ -59,6 +59,7 @@ table {
 
 body {
   overflow-x: hidden;
+  overflow-y: scroll;
   background-color: #f6f6f6;
   font-family: 'Microsoft YaHei', 'Arial', 'Verdana';
   color: #1a1a1a;
