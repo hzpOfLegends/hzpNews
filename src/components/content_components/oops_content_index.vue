@@ -147,7 +147,7 @@
         }
         $('body').animate({scrollTop: 0}, 1000);
       },
-      "$route.query.CategoryID": "listenType"
+      "$route.path": "listenType"
     },
     mounted() {
       // 更换背景
@@ -161,9 +161,11 @@
         }, 1500)
       },
       listenType() {
-        let CategoryID = this.$route.query.CategoryID
-        // 傳到vuex中 用來實現同步 切換類型
-        this.$store.state.nav_id = CategoryID
+        if(this.$route.path){
+            let CategoryID = this.$route.path.split('/')[2]
+            // 傳到vuex中 用來實現同步 切換類型
+            this.$store.state.nav_id = CategoryID
+        }
       }
     }
   }

@@ -18,39 +18,39 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-list">
-              <li index='0' class="active">
+              <li index='0'>
                 <!--<router-link to='/index/7'>-->
-                <router-link to="/index?CategoryID=7">
+                <router-link to="/category/7">
                   問答
                 </router-link>
               </li>
               <li index='1'>
-                <router-link  to='/index?CategoryID=6'>
+                <router-link  to='/category/6'>
                   體育
                 </router-link>
               </li>
               <li index='2'>
-                <router-link  to='/index?CategoryID=5'>
+                <router-link  to='/category/5'>
                   軍事
                 </router-link>
               </li>
               <li index='3'>
-                <router-link to='/index?CategoryID=4'>
+                <router-link to='/category/4'>
                   科技
                 </router-link>
               </li>
               <li index='4'>
-                <router-link  to='/index?CategoryID=3'>
+                <router-link  to='/category/3'>
                   娛樂
                 </router-link>
               </li>
               <li index='5'>
-                <router-link  to='/index?CategoryID=2'>
+                <router-link  to='/category/2'>
                   國際
                 </router-link>
               </li>
               <li  index='6'>
-                <router-link to='/index?CategoryID=1'>
+                <router-link to='/category/1'>
                   新聞
                 </router-link>
               </li>
@@ -200,17 +200,6 @@
   export default {
     data(){
       return {
-        //配置路由正则
-        routeObj:{
-          '0':"7",
-          '1':"6",
-          '2':"5",
-          '3':"4",
-          '4':"3",
-          '5':"2",
-          '6':"1",
-
-        },
         nav_down_icon: "fa fa-bars",
         nav_other_select: {
           item1: ['國際', '國際', '國際', '國際', '國際', '國際'],
@@ -227,22 +216,8 @@
     components: {
     },
     watch: {
-      '$route.query.CategoryID':'changeRoute',
     },
     methods: {
-      //路由改变处理
-      changeRoute(){
-        //获取第一个//中的字段
-        let currentType = this.$route.query.CategoryID ;
-        let index = '';
-        for(let key in this.routeObj){
-          if(this.routeObj[key] ==currentType){
-            index = key;
-          }
-        }
-        this.setNavStyle(index);
-        // this.activeIndex = index;
-      },
       // 显示 / 隐藏
       nav_toggle() {
         let nav_down = document.querySelector('.nav_down')
@@ -255,20 +230,9 @@
           this.nav_down_icon = "fa fa-bars"
         }
       },
-      //设置主导航
-      setNavStyle(currentIndex){
-        document.querySelectorAll('.nav-list>li').forEach((v,i)=>{
-          if(v.getAttribute('index')===currentIndex){
-            v.classList.add('active');
-          }else{
-            v.classList.remove('active');
-          }
 
-        })
-      },
     },
     mounted() {
-      this.changeRoute();
     },
     created(){
 
@@ -378,9 +342,10 @@
       border: none;
     }
     .navbar-default .navbar-nav>li>a {
-
-      text-align:left;
-      color: #fff;
+      color:#fff !important;
+    }
+    .router-link-exact-active {
+        background-color: #053871 !important;
     }
     .navbar-default .navbar-nav>.active>a {
       background-color: #456ea5;
