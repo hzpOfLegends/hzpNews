@@ -29,8 +29,8 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-list">
-              <li index='0' class="active">
-                <router-link to="/account/home">
+              <li index='0'>
+                <router-link to="/my/user/dashboard">
                    總覽
                 </router-link>
               </li>
@@ -63,32 +63,32 @@
                 </ul>
               </li>-->
               <li index='1'>
-                <router-link to="/account/data">
+                <router-link to="/my/user/info">
                    資料
                 </router-link>
               </li>
               <li index='2'>
-                <router-link to="/account/doc">
+                <router-link to="/my/article/list">
                    文章
                 </router-link>
               </li>
               <li index='3'>
-                <router-link to="/account/open">
-                   點開
+                <router-link to="/my/record">
+                   點阅
                 </router-link>
               </li>
               <li class=""  index='4'>
-                <router-link to="/account/gooddoc">
+                <router-link to="/my/share">
                 好文
                 </router-link>
               </li>
               <li class=""  index='5'>
-                <router-link to="/account/gains">
+                <router-link to="/my/payment/income">
                 收益
                 </router-link>
               </li>
               <li class=""  index='6'>
-                <router-link to="/account/message">
+                <router-link to="/my/message">
                 消息
                 </router-link>
               </li>
@@ -131,52 +131,17 @@
 export default {
   data(){
       return {
-          //配置路由正则
-          routeObj:{
-            '0':/^\/account\/home/,
-            '1':/^\/account\/data/,
-            '2':/^\/account\/doc/,
-            '3':/^\/account\/open/,
-            '4':/^\/account\/gooddoc/,
-            '5':/^\/account\/gains/,
-            '6':/^\/account\/message/,
 
-          },
       }
   },
   components: {
   },
   watch: {
-      '$route.path':'changeRoute',
   },
   methods: {
-      //路由改变处理
-      changeRoute(){
-          //获取第一个//中的字段
-          let currentPath = this.$route.path;
-          let index = '';
-          for(let key in this.routeObj){
-              if(this.routeObj[key].test(currentPath)){
-                  index = key;
-              }
-          }
-          this.setNavStyle(index);
-          // this.activeIndex = index;
-      },
-      //设置主导航
-      setNavStyle(currentIndex){
-          document.querySelectorAll('.nav-list>li').forEach((v,i)=>{
-              if(v.getAttribute('index')===currentIndex){
-                  v.classList.add('active');
-              }else{
-                  v.classList.remove('active');
-              }
 
-          })
-      },
   },
   mounted() {
-      this.changeRoute();
   },
   created(){
   }
@@ -219,14 +184,20 @@ export default {
         background-color: #0a53a2;
         border: none;
       }
-      .navbar-default .navbar-nav>li>a {
 
+      .navbar-default .navbar-nav>li>a {
+        color:#fff !important;
+      }
+      .router-link-exact-active {
+          background-color: #053871 !important;
+      }
+      .router-link-active{
         text-align:left;
-        color: #fff;
+        color: red;
       }
-      .navbar-default .navbar-nav>.active>a {
-        background-color: #456ea5;
-      }
+      // .navbar-default .navbar-nav>.active>a {
+      //   background-color: #456ea5;
+      // }
       .navbar-default .navbar-nav>.open>a,
       .navbar-default .navbar-nav>.open>a:focus,
       .navbar-default .navbar-nav>.open>a:hover {

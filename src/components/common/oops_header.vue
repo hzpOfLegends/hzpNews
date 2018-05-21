@@ -191,7 +191,7 @@
 <style scoped lang="less">
   @media screen and (max-width: 768px) {
     .head1 {
-      /*display: none;*/
+      display: none;
     }
     .media_user_none{
       display: none;
