@@ -143,7 +143,7 @@
             inside_page_message.other_article({
               "pageSize": "20",
               "pageIndex": that.pageNum,
-              "CategoryID": that.$route.query.CategoryID
+              "CategoryID": sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):"-1"
             }).then(res => {
               for (let i = 0; i < res.data.Data.news.length; i++) {
                 that.recent_hot.push(res.data.Data.news[i])

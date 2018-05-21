@@ -29,7 +29,7 @@
     },
     watch:{
       "$route":function () {
-        inside_page_message.relevance_article({newsId:this.$route.query.RelationID,size:20}).then(res => {
+        inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
           this.hot_article = res.data.Data
         }).catch(err => {
           console.log(err)
@@ -39,17 +39,14 @@
     methods: {
       skip_inside_content(RelationID,CategoryID) {
         if (RelationID) {
-          let q = this.$route.query
-          q.RelationID = RelationID
           this.$router.push({
-            path: "/index/"+ RelationID,
-            query: q
+            path: "/article/"+ RelationID
           })
         }
       }
     },
     created() {
-      inside_page_message.relevance_article({newsId:this.$route.query.RelationID,size:20}).then(res => {
+      inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
         this.hot_article = res.data.Data
       }).catch(err => {
         console.log(err)

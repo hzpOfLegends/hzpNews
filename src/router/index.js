@@ -51,7 +51,7 @@ export default new Router({
       children: [
         {path: "", component: oops_content_index},
         {path: "category/:categoryId", component: oops_content_index},
-        {path: "article/:articleId", component: inside_page_content},
+        {path: "article/:RelationID", component: inside_page_content},
         // {path:"personal_center",component:personal_center_content,redirect: '/personal_center/pandect',children:[
         //     {path:"pandect",component:pandect},// 总览
         //     {path:"user_data",component:user_data},// 资料
@@ -78,11 +78,11 @@ export default new Router({
         {path:'article/new', component:account_doc_editor}, // 新增文章
         {path:'payment/income', component:account_gains}, //收益紀錄
         {path:'share', component:account_gooddoc}, // 好文
-        {path:'message', component:account_message}, 
+        {path:'message', component:account_message},
         {path:'record', component:account_open}, //点阅
       ]
     },
     // 此配置的位置不可移动
-    {path:'*',redirect:'/'} 
+    {path:'*',redirect:'/'}
   ]
 })

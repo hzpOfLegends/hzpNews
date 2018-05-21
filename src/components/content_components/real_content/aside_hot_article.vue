@@ -66,12 +66,14 @@
     },
     methods: {
       skip_inside_content(RelationID,CategoryID) {
+        if(CategoryID){
+          sessionStorage.setItem("CategoryID",CategoryID)
+        }
         if(RelationID){
           let q = this.$route.query
           q.RelationID = RelationID
           this.$router.push({
-            path: "/index/"+ RelationID,
-            query: q
+            path: "/article/"+ RelationID,
           })
         }
 

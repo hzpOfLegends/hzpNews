@@ -165,6 +165,7 @@
             let CategoryID = this.$route.path.split('/')[2]
             // 傳到vuex中 用來實現同步 切換類型
             this.$store.state.nav_id = CategoryID
+        }else{
         }
       }
     }
