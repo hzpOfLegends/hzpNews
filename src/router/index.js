@@ -51,7 +51,7 @@ export default new Router({
       children: [
         {path: "", component: oops_content_index},
         {path: "category/:categoryId", component: oops_content_index},
-        {path: "article/:articleId", component: inside_page_content},
+        {path: "article/:RelationID", component: inside_page_content},
         // {path:"personal_center",component:personal_center_content,redirect: '/personal_center/pandect',children:[
         //     {path:"pandect",component:pandect},// 总览
         //     {path:"user_data",component:user_data},// 资料

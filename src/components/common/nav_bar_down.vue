@@ -131,7 +131,7 @@
         注冊
       </router-link>
     </div>
-    <div class="clearfix media_none">
+    <div class="clearfix media_none contact" v-show="$store.state.nav_bar_down_contack">
       <ul class="float-left">
         <li class="float-left"><a href="javascript:;">聯係我們</a></li>
         <li class="float-left division">|</li>
@@ -205,7 +205,7 @@
       .btn {
         display: block !important;
       }
-      .media_none {
+      .contact {
         /*display: none;*/
         >.float-left {
           float: none;
@@ -262,15 +262,18 @@
     background: #f4f4f4;
     padding: 50px 50px;
     width: 100%;
+    .row{
+      margin: 0;
+    }
     .all_type {
       padding-bottom: 20px;
       ul {
         border-right: 1px solid rgb(220, 213, 210);
         li {
           padding: 5px 0;
+          text-align: center;
           a {
             font-size: 16px;
-
           }
         }
       }

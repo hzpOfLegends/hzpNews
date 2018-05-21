@@ -68,7 +68,7 @@
     },
     watch: {
       "$route": function () {
-        inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
+        inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
           this.details = res.data.Data
           setTimeout(() => {
             let imgs = document.querySelectorAll('img')
@@ -91,7 +91,8 @@
 
     },
     mounted() {
-      inside_page_message.get_new_info({RelationID: this.$route.query.RelationID}).then(res => {
+      console.log(1,this.$route.path.split('/')[2])
+      inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data
         setTimeout(() => {
           let imgs = document.querySelectorAll('img')
@@ -100,7 +101,7 @@
           }
         }, 1)
         setTimeout(() => {
-          verify_time.timed_10({"RelationID":this.$route.query.RelationID,"ShareID":sessionStorage.getItem("ShareID")}).then(res => {
+          verify_time.timed_10({"RelationID":this.$route.path.split('/')[2],"ShareID":sessionStorage.getItem("ShareID")}).then(res => {
             console.log(res)
           }).catch(err => {
             console.log(err)

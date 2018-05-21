@@ -178,11 +178,10 @@
       // skip_register() {
       //   this.$router.push({path: '/register'})
       // },
-      // login_out() {
-      //   sessionStorage.setItem('ShareID', "")
-      //   // this.$router.push({path:"/"})
-      //   window.location.href = "/"
-      // }
+      login_out() {
+        sessionStorage.setItem('ShareID', "")
+        this.$router.push({path:"/"})
+      }
     }
 
   }

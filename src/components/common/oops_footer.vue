@@ -12,7 +12,7 @@
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 type-all">
             <div class="web_type">
               <h5>全部分類</h5>
-
+              <type_name/>
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 web_share">
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+  import type_name from "@/components/common/nav_bar_down"
   export default {
     data(){
       return {
@@ -78,10 +79,21 @@
       }
 
     },
-    created(){
-      //展示底部一
+    components:{
+      "type_name":type_name
     },
-
+    created(){
+      //
+      this.$store.state.nav_bar_down_contack = false
+    },
+    mounted(){
+      setTimeout(()=>{
+       let ulList = document.querySelectorAll('.all_type>ul')
+        for (let i = 0 ; i<ulList.length ; i++){
+         ulList[i].style.borderRight = "none"
+        }
+      },1)
+    }
   }
 </script>
 
@@ -188,5 +200,9 @@
         }
     }
 
+  }
+  .nav_down_footer{
+    background: white;
+    padding: 20px;
   }
 </style>
