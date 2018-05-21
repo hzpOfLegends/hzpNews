@@ -12,31 +12,7 @@
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 type-all">
             <div class="web_type">
               <h5>全部分類</h5>
-              <div>
-                <div class="types">
-                   <ul>
-                     <li>type1</li>
-                     <li>type1</li>
-                     <li>type1</li>
-                     <li>type1</li>
-                     <li>type1</li>
-                   </ul>
-                   <ul>
-                     <li>type2</li>
-                     <li>type2</li>
-                     <li>type2</li>
-                     <li>type2</li>
-                     <li>type2</li>
-                   </ul>
-                   <ul>
-                     <li>type3</li>
-                     <li>type3</li>
-                     <li>type3</li>
-                     <li>type3</li>
-                     <li>type3</li>
-                   </ul>
-                </div>
-              </div>
+
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 web_share">

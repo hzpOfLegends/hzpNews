@@ -1,192 +1,113 @@
 <template>
   <div class="index">
     <div class="my-nav">
-    <div class="bx" style="position: relative">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="javascript:;" v-if="1">
-            </a>
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav nav-list">
-              <li index='0' class="active">
-                <!--<router-link to='/index/7'>-->
-                <router-link to="/index?CategoryID=7">
-                  問答
-                </router-link>
-              </li>
-              <li index='1'>
-                <router-link  to='/index?CategoryID=6'>
-                  體育
-                </router-link>
-              </li>
-              <li index='2'>
-                <router-link  to='/index?CategoryID=5'>
-                  軍事
-                </router-link>
-              </li>
-              <li index='3'>
-                <router-link to='/index?CategoryID=4'>
-                  科技
-                </router-link>
-              </li>
-              <li index='4'>
-                <router-link  to='/index?CategoryID=3'>
-                  娛樂
-                </router-link>
-              </li>
-              <li index='5'>
-                <router-link  to='/index?CategoryID=2'>
-                  國際
-                </router-link>
-              </li>
-              <li  index='6'>
-                <router-link to='/index?CategoryID=1'>
-                  新聞
-                </router-link>
-              </li>
-              <li>
-
-              </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li v-if="!true">
-                  <router-link to="/user/login">
-                      登录
-                  </router-link>
-              </li>
-              <li v-if="!true">
-                  <router-link to="/user/register">
-                      注册
-                  </router-link>
-              </li>
-              <li class="dropdown" v-if="!true">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用戶名and用戶資料
-                  <span class="caret"></span>
-                </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#"><i class="glyphicon glyphicon-user"></i> 个人中心</a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="glyphicon glyphicon-wrench"></i> 修改密码</a>
-                    </li>
-                    <!--<li>
-                      <a href="#">Something else here</a>
-                    </li>-->
-                    <li role="separator" class="divider"></li>
-                    <li>
-                      <a href="#" @click="exitLogin()"><i class="glyphicon glyphicon-log-out"></i> 退出</a>
-                    </li>
-                </ul>
-              </li>
-            </ul>
-
-
-
-            <div class="clearfix">
-              <div @click="nav_toggle" style="position: absolute;top: 10px;right: 10px">
-                <i :class="nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px"></i>
-              </div>
-            </div>
-          </div>
-          <!-- /.navbar-collapse -->
+    <!--<div class="bx" style="position: relative">-->
+      <!--<nav class="navbar navbar-default">-->
+        <div class="navbar">
+        <nav_bar/>
         </div>
-        <!-- /.container-fluid -->
-        <div v-show="$store.state.nav_down" class="nav_down " style="position: absolute;transform: translateY(0%);">
-          <div class="nav_down_content">
-            <!--<ul class="float-left" v-for="(item,index) in nav_select" :key="index">-->
-            <!--<li><a href="javascripte:;">{{item.name}}</a></li>-->
+        <!--<div class="container-fluid">-->
+          <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+          <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+              <!--<span class="sr-only">Toggle navigation</span>-->
+              <!--<span class="icon-bar"></span>-->
+              <!--<span class="icon-bar"></span>-->
+              <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="javascript:;" v-if="1">-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+          <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav nav-list">-->
+              <!--<li index='0' class="active">-->
+                <!--&lt;!&ndash;<router-link to='/index/7'>&ndash;&gt;-->
+                <!--<router-link to="/index?CategoryID=7">-->
+                  <!--問答-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li index='1'>-->
+                <!--<router-link  to='/index?CategoryID=6'>-->
+                  <!--體育-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li index='2'>-->
+                <!--<router-link  to='/index?CategoryID=5'>-->
+                  <!--軍事-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li index='3'>-->
+                <!--<router-link to='/index?CategoryID=4'>-->
+                  <!--科技-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li index='4'>-->
+                <!--<router-link  to='/index?CategoryID=3'>-->
+                  <!--娛樂-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li index='5'>-->
+                <!--<router-link  to='/index?CategoryID=2'>-->
+                  <!--國際-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li  index='6'>-->
+                <!--<router-link to='/index?CategoryID=1'>-->
+                  <!--新聞-->
+                <!--</router-link>-->
+              <!--</li>-->
+              <!--<li>-->
+
+              <!--</li>-->
             <!--</ul>-->
-          </div>
-          <div class="nav_down_footer" >
-            <div class="row all_type">
-              <ul class="col-lg-2">
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-              </ul>
-              <ul class="col-lg-2">
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-              </ul>
-              <ul class="col-lg-2">
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-              </ul>
-              <ul class="col-lg-2">
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-              </ul>
-              <ul class="col-lg-2">
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-              </ul>
-              <ul class="col-lg-2" style="border-right: none">
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-                <li><router-link  :to="{path:'/index',query: {CategoryID: 10}}">總覽</router-link></li>
-              </ul>
-            </div>
-            <div class="clearfix">
-              <ul class="float-left">
-                <li class="float-left"><a href="javascript:;">聯係我們</a></li>
-                <li class="float-left division">|</li>
-                <li class="float-left"><a href="javascript:;">幫助中心</a></li>
-                <li class="float-left division">|</li>
-                <li class="float-left"><a href="javascript:;">2018OopsDaily 隱私政策 服務條款 京ICP証080268號</a></li>
-              </ul>
-              <ul class="float-right">
-                <li class="float-right" style="margin-left: 12px">
-                  <img src="/static/img/team1.png" alt="">
-                </li>
-                <li class="float-right" style="margin-left: 12px">
-                  <img src="/static/img/team2.png" alt="">
-                </li>
-                <li class="float-right" style="margin-left: 12px">
-                  <img src="/static/img/team3.png" alt="">
-                </li>
-                <li class="float-right" style="margin-left: 12px">
-                  <img src="/static/img/team4.png" alt="">
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
+
+            <!--<ul class="nav navbar-nav navbar-right">-->
+              <!--<li v-if="!true">-->
+                  <!--<router-link to="/user/login">-->
+                      <!--登录-->
+                  <!--</router-link>-->
+              <!--</li>-->
+              <!--<li v-if="!true">-->
+                  <!--<router-link to="/user/register">-->
+                      <!--注册-->
+                  <!--</router-link>-->
+              <!--</li>-->
+              <!--<li class="dropdown" v-if="!true">-->
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用戶名and用戶資料-->
+                  <!--<span class="caret"></span>-->
+                <!--</a>-->
+                  <!--<ul class="dropdown-menu">-->
+                    <!--<li>-->
+                      <!--<a href="#"><i class="glyphicon glyphicon-user"></i> 个人中心</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="#"><i class="glyphicon glyphicon-wrench"></i> 修改密码</a>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash;<li>-->
+                      <!--<a href="#">Something else here</a>-->
+                    <!--</li>&ndash;&gt;-->
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li>-->
+                      <!--<a href="#" @click="exitLogin()"><i class="glyphicon glyphicon-log-out"></i> 退出</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+              <!--</li>-->
+            <!--</ul>-->
+
+
+
+            <!--<div class="clearfix">-->
+              <!--<div @click="nav_toggle" style="position: absolute;top: 10px;right: 10px">-->
+                <!--<i :class="nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px"></i>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+        <!--</div>-->
+        <!-- /.container-fluid -->
+      <!--</nav>-->
+    <!--</div>-->
     </div>
       <!--children components 视图-->
      <router-view></router-view>
@@ -197,6 +118,7 @@
 <!--CategoryID: 4-->
 <!--}, {name: '奇趣', CategoryID: 5}, {name: '新聞', CategoryID: -1}],-->
 <script>
+  import nav_bar from "@/components/common/nav_bar"
   export default {
     data(){
       return {
@@ -225,6 +147,7 @@
       }
     },
     components: {
+      "nav_bar":nav_bar, // 導航
     },
     watch: {
       '$route.query.CategoryID':'changeRoute',
