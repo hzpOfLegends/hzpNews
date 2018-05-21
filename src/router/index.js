@@ -69,7 +69,7 @@ export default new Router({
     // 个人中心
     {
       path:'/my',
-      redirect:'/my/user/dashboard',
+      // redirect:'/my/user/dashboard',
       component:account,
       children:[
         {path:'user/dashboard', component:account_home}, //仪表板

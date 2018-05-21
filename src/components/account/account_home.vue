@@ -39,7 +39,7 @@
                 <th>自推</th>
                 <th>共推</th>
                 <th>撰寫</th>
-                <th>總點開</th>
+                <th>總點閱</th>
                 <th>收益</th>
                 </tr>
             </thead>
@@ -81,14 +81,23 @@
 
 <script>
     export default {
-      data(){
-        return {
-        }
-      },
-      components:{},
-      mounted(){
+        data(){
+            return {
+            }
+        },
+        metaInfo: {
+            title: "hello!vue-meta",
+            // titleTemplate: '%s - by vue-meta',
+            // htmlAttrs: {
+            // lang: 'zh'
+            // },
+            // script: [{innerHTML: 'console.log("hello hello!")', type: 'text/javascript'}],
+            // __dangerouslyDisableSanitizers: ['script']
+        },
+        components:{},
+        mounted(){
 
-      }
+        }
     }
 </script>
 

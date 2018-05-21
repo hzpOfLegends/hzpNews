@@ -74,7 +74,7 @@
               </li>
               <li index='3'>
                 <router-link to="/my/record">
-                   點阅
+                   點閱
                 </router-link>
               </li>
               <li class=""  index='4'>
