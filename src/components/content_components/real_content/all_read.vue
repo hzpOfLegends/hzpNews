@@ -141,12 +141,11 @@
   @media screen and (min-width: 1200px) {
     .container {
       max-width: 848px;
-      width: 100%;
     }
   }
   @media screen and(max-width: 768px){
-    .photo{
-      max-width: 30% !important;
+    .all_read_wrap .photo{
+      width: 30%;
       vertical-align: top;
     }
     .charater{
@@ -155,8 +154,8 @@
     }
   }
   @media screen and(max-width: 414px){
-    .photo{
-      max-width: 100% !important;
+    .all_read_wrap .photo{
+      width: 100% !important;
     }
     .charater{
       max-width: 100% !important;
@@ -184,7 +183,7 @@
         cursor: pointer;
         .photo {
           background-color: rgba(0, 0, 0, .1);
-          max-width: 30%;
+          width: 30%;
           max-height: 160px;
           overflow: hidden;
           display: inline-block;
@@ -192,7 +191,7 @@
           vertical-align: top;
           img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
           }
         }
