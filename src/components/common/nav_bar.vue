@@ -1,7 +1,7 @@
 <template>
   <div class="nav_bar">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" style="overflow: hidden">
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 nav_name">
           <ul class="clearfix nav_list">
             <li>
@@ -39,6 +39,21 @@
                 新聞
               </router-link>
             </li>
+            <li>
+              <router-link to="/category/8">旅游</router-link>
+            </li>
+            <li>
+              <router-link to="/category/9">任務</router-link>
+            </li>
+            <li>
+              <router-link to="/category/10">音樂</router-link>
+            </li>
+            <li>
+              <router-link to="/category/11">影視</router-link>
+            </li>
+            <li>
+              <router-link to="/category/12">軟件</router-link>
+            </li>
           </ul>
         </div>
         <div class="col-sm-10 col-xs-10 media_block">
@@ -55,7 +70,8 @@
         </div>
       </div>
       <div style="height: 100%">
-        <div v-show="$store.state.nav_down" class="nav_bar_down " style="position: absolute;transform: translateY(0%);left: 0">
+        <div v-show="$store.state.nav_down" class="nav_bar_down "
+             style="position: absolute;transform: translateY(0%);left: 0">
           <nav_bar_down/>
         </div>
       </div>
@@ -96,10 +112,13 @@
       setNavStyle(currentIndex) {
         let list = document.querySelectorAll('.nav_list>li')
         let index = this.$route.path.split('/')[2] //以路由 當作 li的index 給他加樣式
-
+        // 因爲下拉導航 點擊后隱藏  所以導航欄的字體圖標 要改回來
+        if(!this.$store.state.nav_down){
+          this.nav_down_icon = "fa fa-bars"
+        }
         for (let i = 0; i < list.length; i++) {
-          list[i].classList.remove('active')
-          if(index<list.length){
+          if (index <= list.length) {
+            list[i].classList.remove('active')
             list[index - 1].classList.add('active')
           }
 
@@ -109,17 +128,21 @@
     mounted() {
       let index = parseInt(this.$route.path.split('/')[2])
       let list = document.querySelectorAll('.nav_list>li')
-      list[index+1].classList.add('active')
+
+      if (index <= list.length) { // 因爲導航衹顯示 12個 可能index 會比他大 所以會報錯 加一個判斷
+        list[index + 1].classList.add('active')
+      }
     }
   }
 </script>
 
 <style scoped lang="less">
-  @media screen and(min-width:768px ){
+  @media screen and(min-width: 768px ) {
     .media_block {
       display: none;
     }
   }
+
   @media screen and(max-width: 768px) {
     .nav_name {
       display: none;

@@ -180,6 +180,11 @@
       let index = parseInt(this.$route.path.split('/')[2]) //以路由 當作 li的index 給他加樣式
       let list = document.querySelectorAll('.all_type>ul>li>a')
       list[index+1].classList.add('active')
+      for(let i = 0 ;i<list.length ;i++){
+        list[i].onclick = ()=>{
+          this.$store.state.nav_down = false
+        }
+      }
     }
   }
 </script>
