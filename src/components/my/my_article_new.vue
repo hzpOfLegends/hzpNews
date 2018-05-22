@@ -4,7 +4,7 @@
           <div class="title">
               <h5>文章撰寫</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
-                <router-link to="/account/doc">
+                <router-link to="/my/article/list">
                 <ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="background:#fb8608">
                         <a href="javascript:;" style="background:#fff;color:#777;">

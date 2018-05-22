@@ -160,9 +160,11 @@ export default {
             }
             .user-info {
                 display:flex;
+                padding:2%;
             }
             .u-left {
-                flex:0  0 50%;
+                flex:0  0 46%;
+                padding-top:35px;
                 .form-horizontal .form-group {
                     margin-right: 0px;
                     margin-left: 0px;
@@ -173,8 +175,10 @@ export default {
 
             }
             .u-right {
-                flex:0  0 50%;
-                padding:0 2%;
+                flex:0  0 54%;
+                padding:0 2.5%;
+                margin-left:4%;
+                border-left:1px solid #eeeeee;
                ul {
                  padding: -0px 15px;
                  li {
@@ -218,6 +222,18 @@ export default {
     @media screen and (max-width:768px) {
             .form-group label {
               line-height:20px !important;
+            }
+            .user-info {
+                flex-wrap:wrap;
+                padding:2% 5% !important;
+                .u-left {
+                    flex:0  0 100% !important;
+                }
+                .u-right {
+                    flex:0  0 100% !important;
+                    margin:11% 0 !important;
+                    border-left:none !important;
+                }
             }
     }
     @media screen and (max-width:475px) {

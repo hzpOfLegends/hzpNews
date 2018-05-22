@@ -25,15 +25,16 @@ import good_article from '@/components/personal_center/real_content/good_article
 import earnings from '@/components/personal_center/real_content/earnings/earnings'
 
 // 个人中心
-import account from '@/components/account/account'
-import account_home from '@/components/account/account_home'
-import account_data from '@/components/account/account_data'
-import account_doc from '@/components/account/account_doc'
-import account_doc_editor from '@/components/account/account_doc_editor'
-import account_gains from '@/components/account/account_gains'
-import account_gooddoc from '@/components/account/account_gooddoc'
-import account_message from '@/components/account/account_message'
-import account_open from '@/components/account/account_open'
+import my from '@/components/my/my'
+import my_dashbord from '@/components/my/my_dashbord'
+import my_info from '@/components/my/my_info'
+// import my_article from '@/components/my/my_article'
+import my_article_list from '@/components/my/my_article_list'
+import my_article_new from '@/components/my/my_article_new'
+import my_payment from '@/components/my/my_payment'
+import my_share from '@/components/my/my_share'
+import my_message from '@/components/my/my_message'
+import my_record from '@/components/my/my_record'
 
 
 // 注册
@@ -69,17 +70,24 @@ export default new Router({
     // 个人中心
     {
       path:'/my',
-      // redirect:'/my/user/dashboard',
-      component:account,
+      redirect:'/my/user/dashboard',
+      component:my,
       children:[
-        {path:'user/dashboard', component:account_home}, //仪表板
-        {path:'user/info', component:account_data}, //资料
-        {path:'article/list', component:account_doc}, //文章列表
-        {path:'article/new', component:account_doc_editor}, // 新增文章
-        {path:'payment/income', component:account_gains}, //收益紀錄
-        {path:'share', component:account_gooddoc}, // 好文
-        {path:'message', component:account_message},
-        {path:'record', component:account_open}, //点阅
+        {path:'user/dashboard', component:my_dashbord}, //仪表板
+        {path:'user/info', component:my_info}, //资料
+        // {
+        //   path:'article', 
+        //   component:my_article,
+        //   children:[
+        //      {path:'list',component: my_article_list}
+        //   ]
+        // }, //文章列表
+        {path:'article/list', component:my_article_list}, //文章列表
+        {path:'article/new', component:my_article_new}, // 新增文章
+        {path:'payment/income', component:my_payment}, //收益紀錄
+        {path:'share', component:my_share}, // 好文
+        {path:'message', component:my_message},
+        {path:'record', component:my_record}, //点阅
       ]
     },
     // 此配置的位置不可移动
