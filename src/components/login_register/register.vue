@@ -69,7 +69,7 @@
 </template>
 
 <script>
-  import users_page from '../../axios_joggle/axios_users'
+  import users_page from '@/axios_joggle/axios_users'
 
   export default {
     name: "register",

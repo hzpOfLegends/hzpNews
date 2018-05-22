@@ -20,7 +20,8 @@
             </div>
             <p style="color: red">{{password_hint}}</p>
             <div class="forget_password" style="text-align: right">
-              <a href="#" v-b-modal.modal>忘記密碼？</a>
+              <!--<a href="#" v-b-modal.modal ></a>-->
+              <router-link to="/user/forgetpassword">忘記密碼？</router-link>
               <b-modal size="xs" id="modal" :hide-header="true" :hide-footer="true">
                 <h5>找回密碼</h5>
               </b-modal>
@@ -50,7 +51,7 @@
 </template>
 
 <script>
-  import users_page from '../../axios_joggle/axios_users'
+  import users_page from '@/axios_joggle/axios_users'
 
   export default {
     name: "login",
