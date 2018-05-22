@@ -3,13 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import VueMeta from 'vue-meta'
+Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 // 關於bootstrap-vue 文件的引入
 import BootstrapVue from 'bootstrap-vue'
 // 字体样式
-// import 'font-awesome/css/font-awesome.css'
+import 'font-awesome/css/font-awesome.css'
 // 公共樣式
 import '../static/css/common.css'
 // jquery 的引用

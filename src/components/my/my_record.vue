@@ -2,7 +2,7 @@
   <div class="accountdoc">
       <div class="gains item row">
           <div class="title">
-              <h5>全部文章</h5>
+              <h5>點閱記錄</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
                 <router-link to="/account/doc/editor">
                 <ul class="pager write-btn" style="margin:0">
@@ -20,8 +20,11 @@
             <thead>
                 <tr>
                     <th class="title-header">標題</th>
-                    <th style="width:190px">時間</th>
-                    <th style="width:220px">點開</th>
+                    <th style="width:180px">日期</th>
+                    <th style="width:125px">自推數</th>
+                    <th style="width:125px">公推數</th>
+                    <th style="width:125px">撰寫數</th>
+                    <th style="width:125px">總點閱</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -39,23 +42,12 @@
                         </div>
                     </td>
                     <td>2012/3/3</td>
-                    <td>5</td>
+                    <td>22</td>
+                    <td>12</td>
+                    <td>666</td>
+                    <td>100</td>
                     <td>
-                        <div class="hidden-xs">
-                            <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
-                            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-duplicate"></i> 複製鏈接</button>
-                        </div>
-                        <!--<div class="btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" style="max-width:300px;min-width:100px">
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i><span class="btn-text hidden-xs"> 編輯</span></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i><span class="btn-text hidden-xs"> 刪除</span></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-duplicate"></i><span class="btn-text hidden-xs"> 複製鏈接</span></a>
-                        </div>-->
-                        <div class="visible-xs btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" >
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-duplicate"></i></a>
-                        </div>
+                            <router-link to="">全部</router-link>
                     </td>
                 </tr>
 
