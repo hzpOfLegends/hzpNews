@@ -12,6 +12,7 @@ const state = {
   judge_login:false, // 判断是否登录
   nav_down:false, // 首頁導航欄點擊下拉
   nav_bar_down_contack:true, // 下拉聯係我們 // 在底部 不讓他顯示
+  nav_type:[], // 導航分類
 }
 export default new Vuex.Store({
   state,

@@ -1,7 +1,7 @@
 <template>
   <div class="focus_news card" @click="skip_inside_contnet(focus_news_data.RelationID,focus_news_data.CategoryID)">
     <div class="focus_news_icon">
-      <img src="../../../../static/img/focusNews.png" alt="">
+      <img src="/static/img/focusNews.png" alt="">
     </div>
     <div class="photo">
       <!--<div class="img-box">-->
@@ -31,14 +31,14 @@
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
   // 时区转换 / 文章類型轉換
-  import filtration from '../../../assets/filtration'
+  import filtration from '@/assets/filtration'
   export default {
     name: "focus-news",
     data() {
       return {
         focus_news_data: "",
-        default_photo: "../../../../static/img/timg.jpg",
-        default_backgrund_photo:"../../../../static/img/OopsDaily.png"
+        default_photo: "/static/img/timg.jpg",
+        default_backgrund_photo:"/static/img/OopsDaily.png"
       }
     },
     filters: {

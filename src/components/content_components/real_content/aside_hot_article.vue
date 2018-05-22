@@ -1,7 +1,7 @@
 <template>
   <div class="aside_hot_article card">
     <div class="hot_article_title">
-      <span ><img src="../../../../static/img/hot.png"></span>
+      <span ><img src="/static/img/hot.png"></span>
       <span style="font-weight: 900">熱門文章</span>
       <span class="hot_article_title_line"></span>
     </div>
@@ -21,31 +21,10 @@
     data() {
       return {
         hot_article: [{
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png",
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {
-          img: "../../../../static/img/text.png", NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }],
-        default_backgrund_photo:"../../../../static/img/OopsDaily.png" //默认背景图
+        default_backgrund_photo:"/static/img/OopsDaily.png" //默认背景图
       }
     },
     // 寫一個計算屬性 利用watch 監聽

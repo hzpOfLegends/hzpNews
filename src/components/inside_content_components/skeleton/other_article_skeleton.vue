@@ -22,21 +22,21 @@
     data(){
       return {
         recent_hot: [{
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
           author: "魚丸相面",
           times: "2016-08-08"
         },{
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
           author: "魚丸相面",
           times: "2016-08-08"
         },{
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",

@@ -1,6 +1,7 @@
 <template>
     <span class="google">
-            <a :href="web_url" onclick="javascript:window.open(this.href,
+            <a target="_blank"
+              :href="web_url" onclick="javascript:window.open(this.href,
               '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
               <i class="fa fa-google-plus-square"></i>
               Google+

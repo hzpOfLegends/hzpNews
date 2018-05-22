@@ -18,12 +18,12 @@
     data() {
       return {
         hot_article: [{
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
         }, {
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }, {img: "../../../../static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"}]
+        }, {img: "/static/img/text.png", content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"}]
       }
     }
   }
