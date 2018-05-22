@@ -38,7 +38,7 @@
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
   // 时区转换
-  import filtration from '../../../assets/filtration'
+  import filtration from '@/assets/filtration'
 
   export default {
     name: "recent_hot",
@@ -46,7 +46,7 @@
       return {
         recent_hot: [{
           id: 1,
-          Avatar: "../../../../static/img/text.png",
+          Avatar: "/static/img/text.png",
           CategoryName: '國際',
           NewsTitle: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
@@ -71,8 +71,8 @@
           //   times: "2016-08-08"
           // }
         ],
-        default_photo: "../../../../static/img/timg.jpg",  // 默认头像
-        default_backgrund_photo: "../../../../static/img/OopsDaily.png" //默认背景图
+        default_photo: "/static/img/timg.jpg",  // 默认头像
+        default_backgrund_photo: "/static/img/OopsDaily.png" //默认背景图
       }
     },
     created() {

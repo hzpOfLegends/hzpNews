@@ -119,7 +119,10 @@
         for (let i = 0; i < list.length; i++) {
           if (index <= list.length) {
             list[i].classList.remove('active')
-            list[index - 1].classList.add('active')
+            if(index){
+              list[index - 1].classList.add('active')
+            }
+
           }
 
         }

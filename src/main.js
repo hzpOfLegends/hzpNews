@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 // 關於bootstrap-vue 文件的引入
 import BootstrapVue from 'bootstrap-vue'
 // 字体样式
-import 'font-awesome/css/font-awesome.css'
+// import 'font-awesome/css/font-awesome.css'
 // 公共樣式
 import '../static/css/common.css'
 // jquery 的引用
@@ -33,7 +33,7 @@ import axios_index from "./axios_joggle/axios_index";
 //loading組件（只能使用v-loading指令）
 import 'element-ui/lib/theme-chalk/loading.css'
 import {Loading} from 'element-ui'
-Vue.use(Loading.directive) 
+Vue.use(Loading.directive)
 
 
 /* eslint-disable no-new */

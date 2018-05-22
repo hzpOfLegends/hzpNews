@@ -44,16 +44,16 @@
   // 引入路由
   import inside_page_message from '@/axios_joggle/axios_inside'
   // loading 引入
-  import loading from '../../oneself/loading'
+  import loading from '@/components/oneself/loading'
   // 时区转换 / 類型轉化
-  import filtration from '../../../assets/filtration'
+  import filtration from '@/assets/filtration'
   export default {
     name: "other_article",
     data() {
       return {
         recent_hot: [{
           id: 1,
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
@@ -61,7 +61,7 @@
           times: "2016-08-08"
         }, {
           id: 2,
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
@@ -69,16 +69,16 @@
           times: "2016-08-08"
         }, {
           id: 3,
-          img: "../../../../static/img/text.png",
+          img: "/static/img/text.png",
           contrys: '國際',
           title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
           synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
           author: "魚丸相面",
           times: "2016-08-08"
         }],
-        default_photo: "../../../../static/img/timg.jpg",
+        default_photo: "/static/img/timg.jpg",
         pageNum: 1, // 同区文章 页数
-        default_backgrund_photo: "../../../../static/img/OopsDaily.png"
+        default_backgrund_photo: "/static/img/OopsDaily.png"
       }
     },
     components: {

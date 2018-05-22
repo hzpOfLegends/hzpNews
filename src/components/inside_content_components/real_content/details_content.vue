@@ -45,20 +45,20 @@
   import inside_page_message from '@/axios_joggle/axios_inside'
   import verify_time from '@/axios_joggle/axios_verify_10'
   // 时区转换
-  import filtration from '../../../assets/filtration'
+  import filtration from '@/assets/filtration'
   // facebook 评论插件
-  import facebook_comment from './facebook_comment'
+  import facebook_comment from '@/components/inside_content_components/real_content/facebook_comment'
   // google、facebook、twitter 分享按钮
-  import facebook_btn from './facebook_share_btn'
-  import twitter_btn from './twitter_share_btn'
-  import google_btn from './google_share_btn'
+  import facebook_btn from '@/components/inside_content_components/real_content/facebook_share_btn'
+  import twitter_btn from '@/components/inside_content_components/real_content/twitter_share_btn'
+  import google_btn from '@/components/inside_content_components/real_content/google_share_btn'
 
   export default {
     name: "details_content",
     data() {
       return {
         details: "",
-        default_photo: "../../../../static/img/timg.jpg"
+        default_photo: "/static/img/timg.jpg"
       }
     },
     filters: {

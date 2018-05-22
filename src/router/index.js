@@ -8,22 +8,6 @@ import oops_content from '@/components/common/oops_content'
 import oops_content_index from '@/components/content_components/oops_content_index'
 // 内頁 詳情頁面
 import inside_page_content from "@/components/inside_content_components/inside_page_content"
-//個人中心 頁面
-import personal_center_content from '@/components/personal_center/personal_center_content'
-  // 个人中心 子组件
-    // 总览
-import pandect from '@/components/personal_center/real_content/pandect/pandect'
-    // 资料
-import user_data from '@/components/personal_center/real_content/user_data/user_data'
-    // 文章
-import user_article from '@/components/personal_center/real_content/user_article/user_article'
-    // 点开
-import clickOn from '@/components/personal_center/real_content/clickOn/clickOn'
-    // 好文
-import good_article from '@/components/personal_center/real_content/good_article/good_article'
-    //收益
-import earnings from '@/components/personal_center/real_content/earnings/earnings'
-
 // 个人中心
 import account from '@/components/account/account'
 import account_home from '@/components/account/account_home'
@@ -34,14 +18,14 @@ import account_gains from '@/components/account/account_gains'
 import account_gooddoc from '@/components/account/account_gooddoc'
 import account_message from '@/components/account/account_message'
 import account_open from '@/components/account/account_open'
-
-
 // 注册
 import register from '@/components/login_register/register'
 // 登录
 import login from '@/components/login_register/login'
 // 忘记密码
 import forget_password from '@/components/login_register/forget_password'
+// 聯係我們
+import contact_us from "@/components/contact/contact_us"
 export default new Router({
   mode: 'history',
   routes: [
@@ -81,6 +65,10 @@ export default new Router({
         {path:'message', component:account_message},
         {path:'record', component:account_open}, //点阅
       ]
+    },
+    // 聯係我們
+    {
+      path:"/contactus",component:contact_us
     },
     // 此配置的位置不可移动
     {path:'*',redirect:'/'}

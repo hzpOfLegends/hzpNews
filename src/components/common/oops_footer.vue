@@ -49,7 +49,7 @@
             </router-link>
           </span>
           <span class="want_line">
-            <router-link to="">
+            <router-link to="/contactus">
               聯係我們
             </router-link>
           </span>
@@ -98,6 +98,11 @@
 </script>
 
 <style scoped lang="less">
+  @media screen and(max-width: 768px){
+    .oops_footer_wrap{
+      display: none;
+    }
+  }
   .oops_footer {
     .row {
       margin:0;
