@@ -2,7 +2,7 @@
     <div class="advertising card" @click="skip_register_page">
         <h5 style="font-size: 17px">加入OOPSDAILY,撰寫/分享好文，輕鬆賺現金</h5>
         <div class="photo">
-          <img src="../../../../static/img/text.png">
+          <img src="/static/img/text.png">
           <div class="lab">
             廣告
           </div>

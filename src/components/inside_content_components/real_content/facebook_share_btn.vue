@@ -5,8 +5,7 @@
             <a target="_blank"
                href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"
                class="fb-xfbml-parse-ignore">
-              <i class="fa fa-facebook-f "></i>
-            Facebook
+
             </a>
 
           </span>

@@ -15,7 +15,7 @@
                             aria-describedby="emailInput inputLiveFeedback"
                             placeholder="Enter your email" @change="emailVerify">
               </b-form-input>
-              <b-form-invalid-feedback id="inputLiveFeedback">
+              <b-form-invalid-feedback id="inputLiveFeedback" style="color: red">
                 <!-- This will only be shown if the preceeding input has an invalid state -->
                 {{email_hint}}
               </b-form-invalid-feedback>
@@ -28,7 +28,7 @@
                             aria-describedby="passwordInput passwordInputFeedback"
                             placeholder="Enter your password" @change="passwordVerify">
               </b-form-input>
-              <b-form-invalid-feedback id="passwordInputFeedback">
+              <b-form-invalid-feedback id="passwordInputFeedback" style="color: red">
                 <!-- This will only be shown if the preceeding input has an invalid state -->
                 {{password_hint}}
               </b-form-invalid-feedback>
@@ -41,7 +41,7 @@
                             aria-describedby="new_passwordInput new_passwordInputFeedback"
                             placeholder="Enter your password" @change="newpasswordVerify">
               </b-form-input>
-              <b-form-invalid-feedback id="new_passwordInputFeedback">
+              <b-form-invalid-feedback id="new_passwordInputFeedback" style="color: red">
                 <!-- This will only be shown if the preceeding input has an invalid state -->
                 {{new_password_hint}}
               </b-form-invalid-feedback>
@@ -55,6 +55,9 @@
           <p>
             已有賬號？<router-link to="/user/login">前往登錄>></router-link>
           </p>
+        </div>
+        <div class="shade" v-show="shade_boo">
+          <i class="fa fa-spin fa-spinner"></i>
         </div>
       </div>
 
@@ -85,6 +88,7 @@
         new_password_state: true, //郵箱框狀態
         btn_boo3: false, //用來判斷btnactive顔色
         new_password_hint: "", //郵箱提示
+        shade_boo:false, // 點擊登錄時的遮罩
       }
     },
     created(){
@@ -156,15 +160,22 @@
         let lock = true
         if (this.btnActive && lock) {
           lock = false
+          // 遮罩
+          this.shade_boo = true
           users_page.register({Email: this.email, Password: this.new_password}).then(res => {
             if(res.status==200 && res.data.ResultCode==200){
-
+              // 遮罩
+              this.shade_boo = false
               this.$router.push({path:'/login'})
               this.reset_input()
             }else{
+              // 遮罩
+              this.shade_boo = false
               lock = true
             }
           }).catch(err => {
+            // 遮罩
+            this.shade_boo = false
             console.log(err)
             lock = true
           })
@@ -199,6 +210,20 @@
       margin: 7rem auto 11.75rem;
       max-width: 470px;
       border-radius: 3px;
+      /*遮罩*/
+      .shade{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        text-align: center;
+        line-height: 400px;
+        i{
+          font-size: 50px;
+        }
+      }
     }
     .step1 {
       padding: 27px;

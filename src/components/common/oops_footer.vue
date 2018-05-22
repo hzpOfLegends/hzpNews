@@ -107,7 +107,7 @@
     .row {
       margin:0;
     }
-    background-color: white;
+    background-color: white !important;
     // height: 20.25rem;
     .oops_footer_wrap {
       margin: 0 auto;
