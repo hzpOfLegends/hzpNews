@@ -17,8 +17,8 @@
         <div class="content" style="text-align:left">
 <form>
   <div class="form-group">
-        <label for="">分類：</label>
-        <select class="form-control" style="max-width:320px" v-model="article.category">
+        <label for="category">分類：</label>
+        <select class="form-control" id="cotegory" style="max-width:320px" v-model="article.category">
             <option value="" selected style="color:#ccc">請選擇分類</option>
             <option value="1">新闻</option>
             <option value="2">娱乐</option>
@@ -28,8 +28,8 @@
         </select>
   </div>
   <div class="form-group">
-        <label for="">標題：</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="文章標題" v-model="this.article.title">
+        <label for="1">標題：</label>
+        <input type="text" class="form-control" id="exampleTitle" placeholder="文章標題" v-model="article.title">
   </div>
   <div class="form-group">
         <label for="">內容：</label>
@@ -46,6 +46,7 @@
  
   <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">發 表</button>
 </form>
+<div v-html="xss"></div>
 
 
 
@@ -66,9 +67,10 @@ export default {
         return {
             editor:null,
             article:{
-                category:'0',
+                category:'',
                 title:''
-            }
+            },
+            xss:''
         }
       },
       components:{},
@@ -76,10 +78,11 @@ export default {
             this.editor = new E('#editor') 
             this.editor.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
             // 配置服务器端地址
-            this.editor.customConfig.uploadImgServer = 'http://35.194.241.228/api/Upload/Imges'
+            // this.editor.customConfig.uploadImgServer = 'http://35.194.241.228/api/Upload/Imges'
+            this.editor.customConfig.uploadImgServer = accountAxios.path  +'api/Upload/Imges'
             this.editor.create()
 
-            editor.customConfig.uploadImgHooks = {
+            this.editor.customConfig.uploadImgHooks = {
                 before: function (xhr, editor, files) {
                     // 图片上传之前触发
                     // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
@@ -119,23 +122,34 @@ export default {
                     // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
                     // var url = result.url
                     // insertImg(url)
-                    console.log('配置',result);
+                    // console.log('配置',result);
 
                     // result 必须是一个 JSON 格式字符串！！！否则报错
                 }
+
             }
+
       },
       methods:{
           submitArticle(){
             console.log(this.editor.txt.html());
-            console.log(this.article.category);
-            return;
+            if( !this.article.category){
+                return alert('請輸入類別');
+            }
+            if( !this.article.title){
+                return alert('請輸入標題');
+            }
+            if( !this.editor.txt.html().replace(/&nbsp;|<p>|<\/p>|<br>|\s/g,'')){
+                return alert('請輸入內容');
+            }
             accountAxios.publish({
                 Title: this.article.title,
                 Content: this.editor.txt.html(),
                 CategoryID: this.article.category
             }).then(res=>{
-                console.log(res);
+                if(res.data.ResultCode==200){
+                    alert("發表成功！")
+                }
             }).catch(err=>{
                 console.log('error!',err);
             })
@@ -156,6 +170,23 @@ export default {
       },
       created(){
           this.login();
+                    //   this.xss = '<button onclick="eval(alert(/12345/))">xss</button>'
+                    //   this.xss = '<button onmouseenter="eval(alert(/12345/))">xss</button>'
+                    //   this.xss = '<anytag onmouseover=alert(15)>M'
+                    //   this.xss = '<a href="javascript:alert(/test/)">link</a>'
+                    //   this.xss = '<a href="java&#115;cript:alert(/xss/)">link</a>'
+                    //   this.xss = '<button style="padding:10px" onmouseover=write(20)>M<button>'
+                    //   this.xss = '<iframe src="http://www.baidu.com"></iframe>'
+                    //   this.xss = '<iframe/onload=alert(document.domain)></iframe>'
+                    //   this.xss = '<object data="alert(/123/)">'
+                    //   this.xss = '<meta http-equiv="refresh" content="0; url=data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%2830%29%3C%2%73%63%72%69%70%74%3E"> <object data=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+></object>'
+                    //   this.xss = '<marquee onstart=alert(30)>v</marquee>'  //動畫
+                    //   this.xss = `<svg/onload=eval(alert(7878));>` //!!!
+                    //   this.xss = `<select autofocus onfocus=alert(ttttttttttttttttttttt)>` //!!!  <textarea autofocus onfocus=alert(1)>
+                    //   this.xss = `<select autofocus onfocus=setTimeout(function(){write('xss劫持')},2300))>` //!!!  <textarea autofocus onfocus=alert(1)>
+                    //   this.xss = `<video><source onerror="eval(alert(123 ))">`
+                    //   this.xss = `<a onmouseover=location=eval(alert(1))>click`
+                    //   this.xss = `<img src="http://localhost:3300/test.js" >`
       }
     }
 </script>
