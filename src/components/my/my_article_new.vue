@@ -157,19 +157,9 @@ export default {
           editorConfig(){
 
           },
-          login(){
-            accountAxios.login({
-                loginName:"18566086988@163.com",
-                loginPwd:"123456"
-            }).then(res=>{
-                console.log(res);
-            }).catch(err=>{
-                console.log('error!',err);
-            })
-          }
+
       },
       created(){
-          this.login();
                     //   this.xss = '<button onclick="eval(alert(/12345/))">xss</button>'
                     //   this.xss = '<button onmouseenter="eval(alert(/12345/))">xss</button>'
                     //   this.xss = '<anytag onmouseover=alert(15)>M'

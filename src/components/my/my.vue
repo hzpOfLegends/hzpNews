@@ -123,15 +123,19 @@
     </div>
 
   </div>
-    <router-view></router-view>
+  <div  style="min-height:300px;width:100%;" v-loading="loading">
+      <router-view v-if="show"></router-view>
+  </div>
   </div>
 </template>
 
 <script>
+import accountAxios from '../../axios_joggle/axios_account'
 export default {
   data(){
       return {
-
+          show:false,
+          loading:false
       }
   },
   components: {
@@ -139,11 +143,33 @@ export default {
   watch: {
   },
   methods: {
+      login(){
+        accountAxios.login({
+            loginName:"18566086988@163.com",
+            loginPwd:"123456"
+        }).then(res=>{
+            console.log(res);
+            this.getUserInfo()
+
+        }).catch(err=>{
+            console.log('error!',err);
+        })
+      },
+      //获取个人资料
+      getUserInfo(){
+          accountAxios.userInfo({}).then(res=>{
+              if(res.data.ResultCode==200){
+                  localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
+                  this.show = true;
+              }
+          })
+      },
 
   },
   mounted() {
   },
   created(){
+    this.login()
   }
 }
 </script>

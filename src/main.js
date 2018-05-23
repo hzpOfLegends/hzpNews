@@ -33,12 +33,18 @@ import axios_index from "./axios_joggle/axios_index";
 
 //loading組件（只能使用v-loading指令）
 import 'element-ui/lib/theme-chalk/loading.css'
+import 'element-ui/lib/theme-chalk/pagination.css'
+import 'element-ui/lib/theme-chalk/icon.css'
+import 'element-ui/lib/theme-chalk/message.css'
 import 'element-ui/lib/theme-chalk/Steps.css'
 import 'element-ui/lib/theme-chalk/Step.css'
-import {Loading,Steps,Step} from 'element-ui'
+import {Loading,Steps,Step,Pagination,Icon,Message} from 'element-ui'
 Vue.use(Loading.directive)
+Vue.use(Pagination)
+Vue.use(Icon)
 Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
+Vue.prototype.$message = Message;
 /* eslint-disable no-new */
 let that = new Vue({
   el: '#app',

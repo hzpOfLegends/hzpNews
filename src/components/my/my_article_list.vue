@@ -67,14 +67,16 @@
 
             </tbody>
             </table>
-            <nav aria-label="" style="text-align:center;">
-                <ul class="pagination">
-                    <li class="disabled"><a href="javascript:;" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <!--<li class="active"><a href="javascript:;">1<span class="sr-only">(current)</span></a></li>-->
-                    <li><a href="javascript:;" v-for="(v,i) in pages" :key="i" @click="changePage(i+1)">{{i+1}}</a></li>
-                    <li><a href="javascript:;" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                </ul>
-            </nav>
+            <div style="text-align:center">
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    :page-size="pageSize"
+                    :total="total"
+                    @current-change="changePage"
+                >
+                </el-pagination>
+            </div>
         </div>
           
       </div>
@@ -90,6 +92,7 @@ import accountAxios from '../../axios_joggle/axios_account'
             loading:false,
             pages:1, //分页数
             pageSize:15, //默认分页数
+            total:1,
         }
       },
       watch:{
@@ -106,6 +109,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 this.loading = false
                 if(res.data.ResultCode==200){
                     this.newsList = res.data.Data.news
+                    this.total = res.data.Data.total
                     this.pages = Math.ceil(res.data.Data.total/this.pageSize)
                 }
             }).catch(err=>{
@@ -114,7 +118,7 @@ import accountAxios from '../../axios_joggle/axios_account'
         },
         changePage(pageIndex){
             console.log(pageIndex);
-            let query = this.$route.query
+            let query = Object.assign({},this.$route.query)
             query.pageIndex = pageIndex
             this.$router.push({query:query})
         },
@@ -192,8 +196,9 @@ import accountAxios from '../../axios_joggle/axios_account'
                 // border-bottom:1px solid #dddddd;
                 img {
                     width:33%;
-                    object-fit: scale-down;
+                    object-fit: cover;
                     flex:0 0 33%;
+                    max-height:70px;
                 }
                 .tit {
                     font-size:13px;

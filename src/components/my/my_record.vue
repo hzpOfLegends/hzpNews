@@ -14,7 +14,7 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left" v-loading="loading">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -29,23 +29,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="v in 5">
+                <tr v-for="(v,i) in articleList" :key="i">
                     <!--<th scope="row">1</th>-->
                     <td>
                         <div id="doc-title">
-                            <img src="/static/img/text.png" alt="">
+                            <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
+                            <img v-else src="/static/img/text.png" alt="">
                             <div class="tit">
                                 <!--注：22汉字以内-->
-                                <p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>
-                                <p class="type">類別：政治</p>
+                                <p>{{v.Title}}</p>
+                                <p class="type">類別：{{v.CategoryID}}</p>
                             </div>
                         </div>
                     </td>
-                    <td>2012/3/3</td>
-                    <td>22</td>
-                    <td>12</td>
-                    <td>666</td>
-                    <td>100</td>
+                    <td>{{v.Date}}</td>
+                    <td>{{v.SelfSpread}}</td>
+                    <td>{{v.Spread}}</td>
+                    <td>{{v.Writeing}}</td>
+                    <td>{{v.ViewCount}}</td>
                     <td>
                             <router-link to="">全部</router-link>
                     </td>
@@ -53,16 +54,15 @@
 
             </tbody>
             </table>
-            <nav aria-label="" style="text-align:center;">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                </ul>
+            <nav style="text-align:center;">
+                <el-pagination
+                background
+                layout="prev, pager, next"
+                :page-size="pageSize"
+                @current-change="getCurrentPage"
+                :current-page="2" 
+                :total="total">
+                </el-pagination>
             </nav>
         </div>
           
@@ -71,17 +71,63 @@
 </template>
 
 <script>
+import accountAxios from '../../axios_joggle/axios_account'
     export default {
-      data(){
-        return {
+        data(){
+            return {
+                loading:false,
+                articleList:'',
+                pageSize:2,
+                total:1,
+                currentPage:1
+            }
+        },
+        watch:{
+            '$route.query':'getRecord'
+        },
+        components:{},
+        methods:{
+            getRecord(){
+                this.loading = true
+                // this.currentPage = Number(this.$route.query.pageIndex)
+                // {"pageSize":"","pageIndex":"","Date":"日期,可传入''或空","type":"1:共推,2:撰写,-1为全部","RelationID":"文章ID,用于查询单篇文章的点击信息可传入''或空"}
+                accountAxios.record({
+                    pageSize:String(this.pageSize),
+                    pageIndex:this.$route.query.pageIndex,
+                    // CategoryID:this.$route.query.CategoryID,
+                    Date:'',
+                    type:'-1',
+                    RelationID:''
+                }).then(res=>{
+                    this.loading = false
+                    if(res.data.ResultCode==200){
+                        this.articleList = res.data.Data.ArticleView
+                        this.total = res.data.Data.total
+                    }
+                }).catch(err=>{
+                    this.loading = false
+                })
+            },
+            getCurrentPage(page){
+                let q = JSON.parse(JSON.stringify(this.$route.query))
+                q.pageIndex = page  //改变页码
+                this.$router.push({query:q})
+            },
+            init(){
+                if(!this.$route.query.pageIndex){
+                    this.$router.push({query:{pageIndex:'1'}})
+                }
+                // this.currentPage = Number(this.$route.query.pageIndex)
+                this.getRecord()
+            }
+        },
+        mounted(){
+        },
+        created(){
+            this.init()
         }
-      },
-      components:{},
-      mounted(){
-
-      }
     }
-</script>
+    </script>
 
 <style lang="less" scoped>
 .accountdoc {
@@ -138,7 +184,8 @@
                 // border-bottom:1px solid #dddddd;
                 img {
                     width:33%;
-                    object-fit: scale-down;
+                    max-height:80px;
+                    object-fit: cover;
                     flex:0 0 33%;
                 }
                 .tit {
