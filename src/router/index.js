@@ -36,6 +36,13 @@ import login from '@/components/login_register/login'
 import forget_password from '@/components/login_register/forget_password'
 // 聯係我們
 import contact_us from "@/components/contact/contact_us"
+// 幫助中心
+import help_center from "@/components/help/help_center"
+// 沒有收到驗證碼
+import no_get_email from "@/components/help/no_get_email"
+import change_password from "@/components/help/change_password"
+import how_embody from "@/components/help/how_embody"
+import account_class from "@/components/help/account_class"
 export default new Router({
   mode: 'history',
   routes: [
@@ -50,6 +57,12 @@ export default new Router({
         {
           path:"/contactus",component:contact_us
         },
+        {path:'help',component:help_center,redirect:"/help/notgetemail",children:[
+            {path:"notgetemail",component:no_get_email},
+            {path:"changepassword",component:change_password},
+            {path:"howembody",component:how_embody},
+            {path:"accountclass",component:account_class},
+          ]}
         // {path:"personal_center",component:personal_center_content,redirect: '/personal_center/pandect',children:[
         //     {path:"pandect",component:pandect},// 总览
         //     {path:"user_data",component:user_data},// 资料

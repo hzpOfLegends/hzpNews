@@ -11,7 +11,7 @@
     </div>
     <div class="character">
         <span>
-          {{focus_news_data.CategoryID | type_filter}}
+          {{focus_news_data.CategoryName }}
         </span>
       <span>{{focus_news_data.NewsTitle}}</span>
       <p>{{focus_news_data.Content}}</p>
@@ -134,7 +134,7 @@
       max-height: 180px;
       :nth-child(1) {
         display: inline-block;
-        width: 48px;
+        min-width: 48px;
         height: 22px;
         color: #f89c98;
         border: 1px solid #f89c98;

@@ -57,6 +57,12 @@
       max-width: 848px;
     }
   }
+  @media screen and (max-width: 1200px){
+    .detail_content_wrap{
+      max-width: 840px;
+      width: 100%;
+    }
+  }
   @media screen and (max-width: 768px){
     .all_read_skeleton{
       max-width: 768px;

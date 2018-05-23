@@ -11,7 +11,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryID | type_filter}}</span>
+              <span>{{item.CategoryName}}</span>
               <span>{{item.NewsTitle}}</span>
             </div>
             <div class="center">
@@ -47,11 +47,10 @@
         recent_hot: [{
           id: 1,
           Avatar: "/static/img/text.png",
-          CategoryName: '國際',
-          NewsTitle: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
-          synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
-          AuthorName: "魚丸相面",
-          PublishTime: "2016-08-08"
+          CategoryName: '',
+          NewsTitle: "",
+          synopsis: "",
+          AuthorName: "",
         },
           // {
           //   id: 2,
@@ -86,9 +85,6 @@
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
-      },
-      type_filter:function (value) {
-        return filtration.type_filter(value)
       }
     },
     // 寫一個計算屬性 利用watch 監聽
