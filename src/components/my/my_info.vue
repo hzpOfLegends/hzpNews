@@ -125,6 +125,10 @@ export default {
           }).then(res=>{
               if(res.data.ResultCode==200){
                   console.log(res);
+                    this.$message({
+                    message: '修改成功！',
+                    type: 'success'
+                    });
               }
           })
         }

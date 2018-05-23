@@ -45,6 +45,7 @@ Vue.use(Icon)
 Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;
+Vue.component(Icon.name, Icon)
 /* eslint-disable no-new */
 let that = new Vue({
   el: '#app',

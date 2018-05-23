@@ -158,6 +158,7 @@
       width: 100% !important;
     }
     .charater{
+      margin-top: 10px;
       max-width: 100% !important;
     }
   }

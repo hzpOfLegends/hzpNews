@@ -5,7 +5,7 @@
             <a target="_blank"
                href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"
                class="fb-xfbml-parse-ignore">
-
+              <img src="/static/img/facebook.png">
             </a>
 
           </span>
@@ -32,15 +32,18 @@
   .facebook {
     position: relative;
     display: inline-block;
-    width: 108px;
+    max-width: 108px;
+    width: 100%;
     height: 40px;
     background-color: #2d4671;
     border-radius: 3px;
     line-height: 40px;
     text-align: center;
     a{
-
       color: white;
+      img{
+        width: 100%;
+      }
     }
     .fb-share-button {
       z-index: 999;

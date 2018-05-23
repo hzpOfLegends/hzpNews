@@ -26,7 +26,7 @@
     data() {
       return {
         //新增文章 1
-        hot_article_first:"",
+        hot_article_first:{},
         // 新增文章 2-20
         hot_article: [{
           id: 1,

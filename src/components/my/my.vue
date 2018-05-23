@@ -146,7 +146,7 @@ export default {
       login(){
         accountAxios.login({
             loginName:"18566086988@163.com",
-            loginPwd:"123456"
+            loginPwd:"123456`tyl"
         }).then(res=>{
             console.log(res);
             this.getUserInfo()

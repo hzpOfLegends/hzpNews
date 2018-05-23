@@ -3,8 +3,7 @@
             <a target="_blank"
               :href="web_url" onclick="javascript:window.open(this.href,
               '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-              <i class="fa fa-google-plus-square"></i>
-              Google+
+              <img src="/static/img/google.png" alt="">
             </a>
           </span>
 </template>
@@ -26,7 +25,8 @@
 <style scoped lang="less">
   .google {
     display: inline-block;
-    width: 108px;
+    max-width: 108px;
+    width: 100%;
     height: 40px;
     background-color: #db443e;
     border-radius: 3px;
@@ -35,6 +35,9 @@
     a {
       color: white;
       text-decoration: none;
+      img{
+        width: 100%;
+      }
     }
   }
 </style>
