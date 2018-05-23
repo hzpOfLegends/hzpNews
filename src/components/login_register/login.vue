@@ -8,37 +8,25 @@
           </div>
           <div>
             <div class="email">
-              <b-form-input id="emailInput"
-                            v-model.trim="email"
-                            type="text"
-                            :state="email_state"
-                            aria-describedby="emailInput inputLiveFeedback"
-                            placeholder="Enter your email" @change="emailVerify">
-              </b-form-input>
-              <b-form-invalid-feedback id="inputLiveFeedback">
-                <!-- This will only be shown if the preceeding input has an invalid state -->
-                {{email_hint}}
-              </b-form-invalid-feedback>
+              <input type="text" ref="user_email"  @change="emailVerify">
+              <i class="fa fa-envelope" ></i>
             </div>
+
+            <p style="color: red">{{email_hint}}</p>
             <div class="password">
-              <b-form-input id="passwordInput"
-                            v-model.trim="password"
-                            type="password"
-                            :state="password_state"
-                            aria-describedby="passwordInput passwordInputFeedback"
-                            placeholder="Enter your password" @change="passwordVerify">
-              </b-form-input>
-              <b-form-invalid-feedback id="passwordInputFeedback">
-                <!-- This will only be shown if the preceeding input has an invalid state -->
-                {{password_hint}}
-              </b-form-invalid-feedback>
+              <input type="password" ref="user_password"   @change="passwordVerify">
+              <i class="fa fa-lock"></i>
+
             </div>
+            <p style="color: red">{{password_hint}}</p>
             <div class="forget_password" style="text-align: right">
-              <a href="#" v-b-modal.modal>忘記密碼？</a>
+              <!--<a href="#" v-b-modal.modal ></a>-->
+              <router-link to="/user/forgetpassword">忘記密碼？</router-link>
               <b-modal size="xs" id="modal" :hide-header="true" :hide-footer="true">
                 <h5>找回密碼</h5>
               </b-modal>
             </div>
+            <p style="color: red">{{return_login_hint}}</p>
             <button class="btn" @click="submit_mess" :class="{'active':btnActive}">
               登錄
             </button>
@@ -50,6 +38,9 @@
             <router-link to="/user/register">前往注冊>></router-link>
           </p>
         </div>
+        <div class="shade" v-show="shade_boo">
+          <i class="fa fa-spin fa-spinner"></i>
+        </div>
       </div>
 
     </div>
@@ -60,7 +51,7 @@
 </template>
 
 <script>
-  import users_page from '../../axios_joggle/axios_users'
+  import users_page from '@/axios_joggle/axios_users'
 
   export default {
     name: "login",
@@ -74,7 +65,9 @@
         password_state: true, //郵箱框狀態
         btn_boo2: false, //用來判斷btnactive顔色
         password_hint: "", //郵箱提示
-        btnActive: false //按鈕顔色
+        btnActive: false, //按鈕顔色
+        return_login_hint:"", //登陸失敗返回的信息
+        shade_boo:false, // 點擊登錄時的遮罩
       }
     },
     created(){
@@ -87,7 +80,6 @@
     },
     watch: {
       getWrap: function (val) {
-        console.log(val)
       }
     },
     mounted() {
@@ -108,8 +100,7 @@
       //郵箱驗證
       emailVerify() {
         let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
-        // return  reg.test(this.email)?true:false
-        if (reg.test(this.email)) {
+        if (reg.test(this.$refs.user_email.value)) {
           this.email_hint = ""
           this.email_state = true
           this.btn_boo1 = true
@@ -127,8 +118,8 @@
       // 密碼嚴重
       passwordVerify() {
         let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
-        if (reg.test(this.password)) {
-          this.email_hint = ""
+        if (reg.test(this.$refs.user_password.value)) {
+          this.password_hint = ""
           this.password_state = true
           this.btn_boo2 = true
         } else {
@@ -146,21 +137,32 @@
         // 锁 防止重复提交
         let lock = true
         if (this.btnActive && lock) {
+          // 鎖
           lock = false
-          users_page.login({loginName: this.email, loginPwd: this.password}).then(res => {
-            console.log(res)
+          //遮罩
+          this.shade_boo = true
+          users_page.login({loginName: this.$refs.user_email.value, loginPwd: this.$refs.user_password.value}).then(res => {
             if (res.status == 200 && res.data.ResultCode == 200) {
               lock = true
+              // 遮罩
+              this.shade_boo = false
+              // 登錄失敗返回的文字
+              this.return_login_hint = ""
               sessionStorage.setItem('ShareID', res.data.Data.ShareID)
-              // window.location.href = "/"
               this.$router.push({path: "/"})
               // 判断是否登录  用来改变样式
               this.$store.state.judge_login = true
               this.reset_input()
             }else{
+              // 遮罩
+              this.shade_boo = false
+              //登錄失敗 返回文字
+              this.return_login_hint = res.data.ResultMessage
               lock = true
             }
           }).catch(err => {
+            // 遮罩
+            this.shade_boo = false
             lock = true
           })
         }
@@ -185,10 +187,25 @@
     }
     .login_wrap {
       background: white;
+      position: relative;
       // width: 100%;
       margin: 112px auto 188px;
       max-width: 470px;
       border-radius: 3px;
+    }
+    /*遮罩*/
+    .shade{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.5);
+      text-align: center;
+      line-height: 400px;
+      i{
+        font-size: 50px;
+      }
     }
     .step1 {
       padding: 27px;
@@ -224,9 +241,43 @@
     }
     .email {
       margin: 1rem 0;
+      position: relative;
+      color: rgb(153, 153, 153);
+      input{
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid rgb(153, 153, 153);
+        border-radius: 3px;
+        font-size: 20px;
+        padding-left: 50px;
+      }
+      i{
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+      }
     }
     .password {
       margin: 1rem 0;
+      position: relative;
+      color: rgb(153, 153, 153);
+      input{
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid rgb(153, 153, 153);
+        border-radius: 3px;
+        font-size: 20px;
+        padding-left: 50px;
+      }
+      i{
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+      }
     }
     .forget_password {
       margin-bottom: 30px;

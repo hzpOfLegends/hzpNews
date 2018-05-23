@@ -3,7 +3,7 @@
   <div class="nav_down_footer" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
     <div class="row all_type">
       <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-4" v-for="(item,index) in $store.state.nav_type" :key="index">
-        <li @click="setNavStyle">
+        <li>
           <router-link :to="{path:'/category/'+item.ID}" >{{item.CategoryName}}</router-link>
         </li>
       </ul>
@@ -47,13 +47,8 @@
 <script>
   export default {
     name: "nav_bar_down",
-    watch: {
-      "$route.path": "setNavStyle"
-    },
     methods:{
-      //设置導航樣式
-      setNavStyle(currentIndex) {
-      }
+
     },
     mounted(){
 

@@ -12,7 +12,7 @@
         <h3>意見反饋</h3>
         <div class="unify_style">
           您的姓名：
-          <input type="text" class=" name"  ref="user_name" placeholder="" @change="name_verify">
+          <input type="text" class=" name" ref="user_name" placeholder="" @change="name_verify">
           <span style="color: red;" v-show="name_hint">請輸入您的姓名</span>
         </div>
         <div class="unify_style">
@@ -26,7 +26,7 @@
           <div style="color: red;text-align: center" v-show="feedback_hint">請輸入您的反饋</div>
         </div>
         <div style="text-align: right;">
-          <button style="max-width:120px;width: 100% " type="button" class="btn btn-primary" @click="submit">提交</button>
+          <button style="max-width:120px;width: 100% "  type="button" class="btn btn-primary" @click="submit">提交</button>
         </div>
       </div>
     </div>
@@ -34,43 +34,60 @@
 </template>
 
 <script>
+  // 引入路由
+  import user_feedback from '@/axios_joggle/axios_feedback'
+
   export default {
     name: "contact_us",
-    data(){
+    data() {
       return {
-        email_hint:false,
-        name_hint:false,
-        feedback_hint:false
+        email_hint: false,
+        name_hint: false,
+        feedback_hint: false
       }
     },
     methods: {
-      email_verify(){
+      email_verify() {
         let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
-        if(reg.test(this.$refs.user_email.value)){
-          this.email_hint=false
-        }else{
-          this.email_hint=true
+        if (reg.test(this.$refs.user_email.value)) {
+          this.email_hint = false
+        } else {
+          this.email_hint = true
         }
       },
-      name_verify(){
-        if(this.$refs.user_name.value ){
+      name_verify() {
+        if (this.$refs.user_name.value) {
           this.name_hint = false
-        }else{
+        } else {
           this.name_hint = true
         }
       },
-      feedback_verify(){
-        if(this.$refs.user_feedback.value){
+      feedback_verify() {
+        if (this.$refs.user_feedback.value) {
           this.feedback_hint = false
-        }else{
+        } else {
           this.feedback_hint = true
         }
       },
-      submit(){
+      submit() {
         let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
-        if( reg.test(this.$refs.user_email.value) && this.$refs.user_name.value && this.$refs.user_feedback.value){
-
-        }else{
+        if (reg.test(this.$refs.user_email.value) && this.$refs.user_name.value && this.$refs.user_feedback.value) {
+          user_feedback.get_feedback({
+            "Content": this.$refs.user_feedback.value,
+            "Email": this.$refs.user_email.value,
+            "Name": this.$refs.user_name.value
+          })
+            .then(res => {
+              if(res.data.ResultCode==200){
+                this.$refs.user_email.value = ""
+                this.$refs.user_name.value = ""
+                this.$refs.user_feedback.value = ""
+                alert('提交成功')
+              }
+            })
+            .catch(err => {
+            })
+        } else {
           console.log('no')
         }
       }
@@ -122,7 +139,7 @@
           border: 1px solid rgb(248, 248, 248);
           border-radius: 3px;
         }
-        h3{
+        h3 {
           margin-bottom: 20px;
         }
         .feedback {
@@ -132,7 +149,7 @@
           width: 100%;
           outline: none;
         }
-        .unify_style{
+        .unify_style {
           margin: 10px 0;
         }
       }
