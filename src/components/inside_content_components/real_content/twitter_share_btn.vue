@@ -5,8 +5,7 @@
                  href="javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));"
                 target="_blank"
                 data-size="large">
-                <i class="fa fa-twitter"></i>
-                          twitter
+                <img src="/static/img/twitter.png" alt="">
               </a>
           </span>
 </template>
@@ -27,7 +26,8 @@
 <style scoped lang="less">
   .twitter {
     display: inline-block;
-    width: 108px;
+    max-width: 108px;
+    width: 100%;
     height: 40px;
     background-color: #28a2f0;
     border-radius: 3px;
@@ -36,6 +36,9 @@
     a {
       color: white;
       text-decoration: none;
+      img{
+        width: 100%;
+      }
     }
   }
 </style>

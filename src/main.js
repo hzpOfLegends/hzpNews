@@ -35,10 +35,12 @@ import axios_index from "./axios_joggle/axios_index";
 import 'element-ui/lib/theme-chalk/loading.css'
 import 'element-ui/lib/theme-chalk/Steps.css'
 import 'element-ui/lib/theme-chalk/Step.css'
-import {Loading,Steps,Step} from 'element-ui'
+import 'element-ui/lib/theme-chalk/Icon.css'
+import {Loading,Steps,Step,Icon} from 'element-ui'
 Vue.use(Loading.directive)
 Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
+Vue.component(Icon.name, Icon)
 /* eslint-disable no-new */
 let that = new Vue({
   el: '#app',

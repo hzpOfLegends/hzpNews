@@ -32,7 +32,7 @@
                 <i class="fa fa-user"></i>
                 當前用戶：
                 <span>
-                <router-link to="/personal_center" style="color:#37abe3">鱼丸</router-link>
+                <router-link to="/personal_center" style="color:#37abe3">{{user_info.Name}}</router-link>
               </span>
                 <span class="subscript">
                   <div class="btn-group">
@@ -49,12 +49,12 @@
               <div class="float-right user_message">
                 <i class="fa fa-file-text-o"></i>
                 發表文章：
-                <span style="color:red" @click="skip_center()">123456</span>
+                <span style="color:red" @click="skip_center()">{{user_info.ArticleCount}}</span>
               </div>
               <div class="float-right user_message">
                 <i class="fa fa-money"></i>
-                已賺取金額：
-                <span style="color:red" @click="skip_center()">123456</span>
+                有效點擊數：
+                <span style="color:red" @click="skip_center()">{{user_info.Profit}}</span>
               </div>
             </div>
             <div class="media_user_block" style="display: none;text-align: right;padding-right: 20px">
@@ -131,7 +131,8 @@
           item8: ['國際', '國際', '國際', '國際', '國際', '國際'],
         },
         nav_down: false,  // 用來切換導航欄的隱藏
-        nav_down_icon: "fa fa-bars"
+        nav_down_icon: "fa fa-bars",
+        user_info:""
       }
     },
     components: {
@@ -144,7 +145,9 @@
       } else {
         this.$store.state.judge_login = false
       }
-
+      if(sessionStorage.getItem('user_info')){
+        this.user_info = JSON.parse(sessionStorage.getItem('user_info'))
+      }
     },
     mounted() {
       // 判斷是否存在shareID  也就是是否登錄

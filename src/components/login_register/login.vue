@@ -1,32 +1,31 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="login_wrap">
+      <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
           <div>
             <h4>賬戶登錄</h4>
           </div>
           <div>
             <div class="email">
-              <input type="text" ref="user_email"  @change="emailVerify">
-              <i class="fa fa-envelope" ></i>
+              <input type="text" ref="user_email" @keyup="emailVerify">
+              <i class="fa fa-envelope"></i>
             </div>
-
-            <p style="color: red">{{email_hint}}</p>
+            <p style="color: red ; font-size: 12px">{{email_hint}}</p>
             <div class="password">
-              <input type="password" ref="user_password"   @change="passwordVerify">
+              <input type="password" ref="user_password" @keyup="passwordVerify">
               <i class="fa fa-lock"></i>
 
             </div>
-            <p style="color: red">{{password_hint}}</p>
+            <p style="color: red; font-size: 12px">{{password_hint}}</p>
             <div class="forget_password" style="text-align: right">
               <!--<a href="#" v-b-modal.modal ></a>-->
-              <router-link to="/user/forgetpassword">忘記密碼？</router-link>
+              <router-link :to="{path:'/user/forgetpassword',query:{step:0}}">忘記密碼？</router-link>
               <b-modal size="xs" id="modal" :hide-header="true" :hide-footer="true">
                 <h5>找回密碼</h5>
               </b-modal>
             </div>
-            <p style="color: red">{{return_login_hint}}</p>
+            <p style="color: red; font-size: 12px">{{return_login_hint}}</p>
             <button class="btn" @click="submit_mess" :class="{'active':btnActive}">
               登錄
             </button>
@@ -38,9 +37,7 @@
             <router-link to="/user/register">前往注冊>></router-link>
           </p>
         </div>
-        <div class="shade" v-show="shade_boo">
-          <i class="fa fa-spin fa-spinner"></i>
-        </div>
+
       </div>
 
     </div>
@@ -66,11 +63,11 @@
         btn_boo2: false, //用來判斷btnactive顔色
         password_hint: "", //郵箱提示
         btnActive: false, //按鈕顔色
-        return_login_hint:"", //登陸失敗返回的信息
-        shade_boo:false, // 點擊登錄時的遮罩
+        return_login_hint: "", //登陸失敗返回的信息
+        shade_boo: false, // 點擊登錄時的遮罩
       }
     },
-    created(){
+    created() {
       //隐藏导航栏
       this.$store.state.nav_style = false
       // 显示底部
@@ -141,8 +138,17 @@
           lock = false
           //遮罩
           this.shade_boo = true
-          users_page.login({loginName: this.$refs.user_email.value, loginPwd: this.$refs.user_password.value}).then(res => {
+          users_page.login({
+            loginName: this.$refs.user_email.value,
+            loginPwd: this.$refs.user_password.value
+          }).then(res => {
             if (res.status == 200 && res.data.ResultCode == 200) {
+              users_page.login_user_info().then(res => {
+                sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                console.log(res)
+              }).catch(err => {
+                console.log(err)
+              })
               lock = true
               // 遮罩
               this.shade_boo = false
@@ -153,7 +159,7 @@
               // 判断是否登录  用来改变样式
               this.$store.state.judge_login = true
               this.reset_input()
-            }else{
+            } else {
               // 遮罩
               this.shade_boo = false
               //登錄失敗 返回文字
@@ -183,7 +189,7 @@
     margin: 0;
     margin: 0 auto;
     .row {
-      margin:0;
+      margin: 0;
     }
     .login_wrap {
       background: white;
@@ -192,18 +198,19 @@
       margin: 112px auto 188px;
       max-width: 470px;
       border-radius: 3px;
+      text-align: left;
     }
     /*遮罩*/
-    .shade{
+    .shade {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,.5);
+      background: rgba(0, 0, 0, .5);
       text-align: center;
       line-height: 400px;
-      i{
+      i {
         font-size: 50px;
       }
     }
@@ -216,6 +223,7 @@
     }
     .step2 {
       border-top: 1px solid #eee;
+      text-align: center;
       p {
         padding: 12px 0;
         font-size: 14px;
@@ -229,8 +237,8 @@
     }
     .btn {
       width: 100%;
-      border: 1px solid gray;
-      background: white;
+      border: 1px solid rgb(241, 241, 241);
+      background: rgb(246, 246, 246);
       margin-bottom: 5rem;
     }
     .active {
@@ -243,15 +251,15 @@
       margin: 1rem 0;
       position: relative;
       color: rgb(153, 153, 153);
-      input{
+      input {
         width: 100%;
         min-height: 46px;
-        border: 1px solid rgb(153, 153, 153);
+        border: 1px solid rgb(241, 241, 241);
         border-radius: 3px;
         font-size: 20px;
         padding-left: 50px;
       }
-      i{
+      i {
         position: absolute;
         left: 10px;
         top: 50%;
@@ -263,15 +271,15 @@
       margin: 1rem 0;
       position: relative;
       color: rgb(153, 153, 153);
-      input{
+      input {
         width: 100%;
         min-height: 46px;
-        border: 1px solid rgb(153, 153, 153);
+        border: 1px solid rgb(244, 244, 244);
         border-radius: 3px;
         font-size: 20px;
         padding-left: 50px;
       }
-      i{
+      i {
         position: absolute;
         left: 15px;
         top: 50%;

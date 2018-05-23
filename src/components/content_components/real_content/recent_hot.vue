@@ -132,7 +132,7 @@
   }
   @media screen and(max-width: 768px){
     .photo{
-      max-width: 30% !important;
+      width: 30% !important;
       vertical-align: top;
     }
     .charater{
@@ -140,12 +140,16 @@
     }
   }
   @media screen and(max-width: 414px){
-    .photo{
-      max-width: 100% !important;
+    .recent_hot_content{
+      .photo{
+        width: 100% !important;
+      }
+      .charater{
+        margin-top: 10px;
+        max-width: 100% !important;
+      }
     }
-    .charater{
-      max-width: 100% !important;
-    }
+
   }
   .recent_hot {
     width: 100%;
@@ -166,35 +170,41 @@
         font-size: 20px;
       }
       .recent_hot_content {
-        padding-bottom: 1.25rem;
+        padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
-        margin-top: 15px;
+        margin-top: 3px;
         cursor: pointer;
         .photo {
           background-color: rgba(0, 0, 0, .1);
-          max-width: 30%;
+          width: 30%;
           max-height: 160px;
           overflow: hidden;
-          position: relative;
           display: inline-block;
+          position: relative;
           vertical-align: top;
           img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: cover;;
           }
         }
         .charater {
           max-width: 69%;
-          max-height: 160px;
-          padding-left: 15px;
+          width: 100%;
+          min-height: 100px;
           display: inline-block;
           position: relative;
+          padding-left: 15px;
           .top {
             :nth-child(1) {
+              margin-top:2px;
               display: inline-block;
-              width: 48px;
-              height: 22px;
+              vertical-align: top;
+              min-width: 42px;
+              max-width:66px;
+              overflow: hidden;
+              word-break: keep-all;
+              height:22px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
@@ -205,11 +215,12 @@
             :nth-child(2) {
               font-weight: 900;
               font-size: 18px;
-              margin-left: 10px;
+              padding-left: 10px;
             }
           }
           .center {
             margin-top: 16px;
+            margin-bottom: 16px;
             font-size: 14px;
             min-height: 20px;
           }
@@ -220,7 +231,7 @@
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 1.125rem;
+              padding-left: 18px;
               :nth-child(1) {
                 width: 26px;
                 height: 26px;
@@ -238,7 +249,7 @@
                 border-right: 1px solid #999999;
               }
               :nth-child(3) {
-                margin: 0 5px 0 10px
+                margin: 0 5px 0 15px
               }
             }
           }

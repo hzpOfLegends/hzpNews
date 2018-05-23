@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="login_wrap">
+      <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
           <div>
             <h4>創建新賬號</h4>
@@ -15,7 +15,7 @@
                             aria-describedby="emailInput inputLiveFeedback"
                             placeholder="Enter your email" @change="emailVerify">
               </b-form-input>
-              <b-form-invalid-feedback id="inputLiveFeedback" style="color: red">
+              <b-form-invalid-feedback id="inputLiveFeedback" style="color: red; font-size: 12px">
                 <!-- This will only be shown if the preceeding input has an invalid state -->
                 {{email_hint}}
               </b-form-invalid-feedback>
@@ -28,7 +28,7 @@
                             aria-describedby="passwordInput passwordInputFeedback"
                             placeholder="Enter your password" @change="passwordVerify">
               </b-form-input>
-              <b-form-invalid-feedback id="passwordInputFeedback" style="color: red">
+              <b-form-invalid-feedback id="passwordInputFeedback" style="color: red; font-size: 12px">
                 <!-- This will only be shown if the preceeding input has an invalid state -->
                 {{password_hint}}
               </b-form-invalid-feedback>
@@ -41,7 +41,7 @@
                             aria-describedby="new_passwordInput new_passwordInputFeedback"
                             placeholder="Enter your password" @change="newpasswordVerify">
               </b-form-input>
-              <b-form-invalid-feedback id="new_passwordInputFeedback" style="color: red">
+              <b-form-invalid-feedback id="new_passwordInputFeedback" style="color: red; font-size: 12px">
                 <!-- This will only be shown if the preceeding input has an invalid state -->
                 {{new_password_hint}}
               </b-form-invalid-feedback>
@@ -56,9 +56,7 @@
             已有賬號？<router-link to="/user/login">前往登錄>></router-link>
           </p>
         </div>
-        <div class="shade" v-show="shade_boo">
-          <i class="fa fa-spin fa-spinner"></i>
-        </div>
+
       </div>
 
     </div>
@@ -247,8 +245,8 @@
     }
     .btn {
       width: 100%;
-      border: 1px solid gray;
-      background: white;
+      border: 1px solid rgb(241, 241, 241);
+      background: rgb(246, 246, 246);
       margin-bottom: 5rem;
     }
     .active {

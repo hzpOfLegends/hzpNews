@@ -6,26 +6,51 @@
       <h4>找回密碼</h4>
     </div>
     <div class="step_progress">
-      <el-steps :space="200" :active="active" finish-status="success">
+      <el-steps :align-center="true" :active="active" finish-status="success">
         <el-step title="身份驗證"></el-step>
         <el-step title="重置密碼"></el-step>
         <el-step title="修改成功"></el-step>
       </el-steps>
     </div>
-    <div>
-      123
+    <div class="step1" v-if="active==0">
+      <step1/>
+    </div>
+    <div class="step2" v-if="active==1">
+      <step2/>
+    </div>
+    <div class="step3" v-if="active==2" style="padding: 20px 0 30px">
+        <i class="fa fa-smile-o" style="color:rgb(251, 133, 7);font-size:50px;vertical-align: middle"></i><span style="font-size: 22px;font-weight: 600;margin-left: 10px">修改成功!</span>
+    </div>
+    <div style="padding: 10px 0 ;border-top: 1px solid #f6f6f6">
+      <router-link to="/user/login">返回登錄>>></router-link>
     </div>
   </div>
   </div>
 </template>
 
 <script>
+  import step1 from "@/components/login_register/step1"
+  import step2 from "@/components/login_register/step2"
   export default {
     name: "forget_password",
     data() {
       return {
-        active: 1
+        active: parseInt(this.$route.query.step)?parseInt(this.$route.query.step):0
       };
+    },
+    watch:{
+      "$route.query.step":"loadPage"
+    },
+    created(){
+    },
+    methods:{
+      loadPage(){
+        this.active=parseInt(this.$route.query.step)?parseInt(this.$route.query.step):0
+      }
+    },
+    components:{
+      step1,
+      step2
     },
     mounted() {
       // 更换背景
@@ -56,12 +81,11 @@
         }
       }
       .step_progress {
-
-
+        margin: 20px 0;
         .el-steps--horizontal{
           width: 70%;
           margin: 0 auto;
-          text-align: left !important;
+          /*text-align: left !important;*/
         }
       }
 
