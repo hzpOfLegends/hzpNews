@@ -39,7 +39,7 @@
                     <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
                     <ul class="dropdown-menu">
                       <li><a href="javascript:;"  @click="login_out">登出</a></li>
-                      <li><router-link to="/">個人中心</router-link></li>
+                      <li><router-link to="/my/user/dashboard">個人中心</router-link></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#">Separated link</a></li>
                     </ul>
@@ -75,14 +75,14 @@
                     <i class="fa fa-user"></i>
                     當前用戶：
                     <span>
-                <router-link to="/personal_center" style="color:#37abe3">鱼丸</router-link>
+                <router-link to="/my" style="color:#37abe3">鱼丸</router-link>
               </span>
                     <span class="subscript">
                   <div class="btn-group">
                     <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
                     <ul class="dropdown-menu">
-                      <li><router-link to="/">登出</router-link></li>
-                      <li><router-link to="/">個人中心</router-link></li>
+                      <li @click="login_out"><router-link to="/">登出</router-link></li>
+                      <li><router-link to="/my">個人中心</router-link></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#">Separated link</a></li>
                     </ul>

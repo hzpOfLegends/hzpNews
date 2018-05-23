@@ -60,9 +60,7 @@
     created() {
       header_message.nav_type().then(res => {
         if(res.data.Data){
-
           this.$store.state.nav_type = res.data.Data
-          console.log(this.$store.state.nav_type)
         }
       }).catch(err => {
         console.log(err)

@@ -14,7 +14,7 @@
           <!--<div class="float-left">-->
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryID | type_filter}}</span>
+              <span>{{item.CategoryName}}</span>
               <span>{{item.NewsTitle}}</span>
             </div>
             <div class="center">
@@ -113,9 +113,6 @@
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
-      },
-      type_filter: function (value) {
-        return filtration.type_filter(value)
       }
     },
     methods: {

@@ -3,7 +3,7 @@
           <!--<span class="fb-share-button" data-href="123"-->
                 <!--data-layout="box_count" data-mobile-iframe="true">-->
             <a target="_blank"
-               href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"
+               :href="share_url"
                class="fb-xfbml-parse-ignore">
               <img src="/static/img/facebook.png">
             </a>
@@ -17,7 +17,17 @@
 
 <script>
     export default {
-        name: "facebook_share_btn",
+      name: "facebook_share_btn",
+      data(){
+        return {
+          share:"",
+          share_url:""
+        }
+      },
+      created(){
+        this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):""
+        this.share_url = "javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href"+this.share+")) ));"
+      },
       watch:{
         "$route" :function () {
           // this.router_path = this.$route.path

@@ -12,7 +12,7 @@
           </div>
           <div class="charater">
             <div class="top">
-              <div><p>{{item.CategoryID | type_filter}}</p></div>
+              <div><p>{{item.CategoryName }}</p></div>
               <div><p>{{item.NewsTitle}}</p></div>
             </div>
             <div class="center">
@@ -90,9 +90,6 @@
     }, filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
-      },
-      type_filter:function (value) {
-        return filtration.type_filter(value)
       }
     },
     methods: {

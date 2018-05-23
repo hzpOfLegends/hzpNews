@@ -17,6 +17,12 @@
       width: 100%;
     }
   }
+  @media screen and (max-width: 1200px){
+    .detail_content_wrap{
+      max-width: 840px;
+      width: 100%;
+    }
+  }
   .detail_content_wrap{
     max-width: 840px;
     height: 500px;

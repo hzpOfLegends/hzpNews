@@ -125,7 +125,7 @@
   }
 
   .nav_down_footer {
-    background: #f4f4f4;
+    background: white;
     padding: 50px 50px;
     width: 100%;
     .row{

@@ -59,7 +59,7 @@
             </router-link>
           </span>
           <span style="padding-left: 10px"  >
-            <router-link to="">
+            <router-link to="/help">
               幫助中心
             </router-link>
           </span>
