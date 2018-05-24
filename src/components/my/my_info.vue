@@ -86,7 +86,7 @@
                                 <span style="color:#5aa1fa">******</span>
                            </div>
                            <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
+                              <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('pwd')">修改</button>
                            </div>
                         </li>
                     </ul>
@@ -95,20 +95,38 @@
         </div>
           
       </div>
+
+      <!--彈層-->
+      <div class="modify-cover" v-if="modify">
+          <div class="m-view" >
+                <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
+          </div>
+      </div>
+
   </div>
 </template>
 
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
+import modifyPWD from './subcomponent/modify_pwd'
 export default {
     data(){
         return {
             userInfo:'',
             initUserInfo:'', //修改前數據
+            modify:''
         }
     },
-    components:{},
+    components:{
+        modifyPWD
+    },
     methods:{
+        // 監聽子組件關閉信號
+        closeSubcomponent(val){
+            if(val){
+                this.modify = ''
+            }
+        },
         modifyInfo(){
         //   if(JSON.stringify(this.userInfo) === JSON.stringify(this.initUserInfo)){
           if(this.userInfo.Language === this.initUserInfo.Language && this.userInfo.Name === this.initUserInfo.Name){
@@ -131,6 +149,9 @@ export default {
                     });
               }
           })
+        },
+        clickModify(value){
+            this.modify=value
         }
     },
     mounted(){
@@ -153,6 +174,20 @@ export default {
     padding-top:15px;
     .row {
         margin:0;
+    }
+    // 彈層
+    .modify-cover {
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background-color: rgba(0,0,0,.5);
+        .m-view {
+            max-width:550px;
+            max-height:470px;
+            margin:140px auto;
+        }
     }
     .item {
         padding:2%;

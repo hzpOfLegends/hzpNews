@@ -134,13 +134,25 @@ export default {
           submitArticle(){
             console.log(this.editor.txt.html());
             if( !this.article.category){
-                return alert('請輸入類別');
+                this.$message({
+                    message: '請輸入類別',
+                    type: 'warning'
+                });
+                return 
             }
             if( !this.article.title){
-                return alert('請輸入標題');
+                this.$message({
+                    message: '請輸入標題',
+                    type: 'warning'
+                });
+                return 
             }
             if( !this.editor.txt.html().replace(/&nbsp;|<p>|<\/p>|<br>|\s/g,'')){
-                return alert('請輸入內容');
+                this.$message({
+                    message: '請輸入內容',
+                    type: 'warning'
+                });
+                return 
             }
             accountAxios.publish({
                 Title: this.article.title,

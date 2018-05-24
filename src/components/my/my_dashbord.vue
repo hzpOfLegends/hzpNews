@@ -30,7 +30,7 @@
           <div class="title">
               <h5>最近收益</h5>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left;min-height:200px" v-loading="paymentRequest">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -63,7 +63,7 @@
           <div class="title">
               <h5>熱門文章</h5>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
             <div class="news-list">
                 <div class="news-items" v-for="(v,i) in hotList" :key="i">
                     <div style="">
@@ -73,7 +73,7 @@
                         </div>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
-                                <span class="flag">{{v.CategoryID}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
+                                <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
                                 <div class="sub-title">
                                     <span>時間：{{v.PublishTime}}</span>
                                     &nbsp;<i>|</i>&nbsp;
@@ -104,7 +104,8 @@ import accountAxios from '../../axios_joggle/axios_account'
                 userInfo:'',
                 loading:false,
                 profitStatisticsList:'',
-                hotList:''
+                hotList:'',
+                paymentRequest:false,
             }
         },
         watch:{
@@ -122,19 +123,19 @@ import accountAxios from '../../axios_joggle/axios_account'
         methods:{
             //最近收益
             getProfitStatistics(){
-                this.loading = true
+                this.paymentRequest = true
                 accountAxios.profitStatistics({
                     pageSize:this.pageSize,
-                    pageIndex:this.$route.query.pageIndex,
+                    pageIndex:this.$route.query.pageIndex || "1" ,
                 }).then(res=>{
-                    this.loading = false
+                    this.paymentRequest = false
                     if(res.data.ResultCode==200){
                         this.profitStatisticsList = res.data.Data.Statistics
                         // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
                         console.log(res);
                     }
                 }).catch(err=>{
-                    this.loading = false
+                    this.paymentRequest = false
                 })
             },
             //熱門好文
@@ -330,7 +331,9 @@ import accountAxios from '../../axios_joggle/axios_account'
                 span.flag {
                     display:inline-block;
                     height:20px;
-                    width:38px;
+                    // width:38px;
+                    padding-left:3px;
+                    padding-right:3px;
                     border:1px solid #fa9b97;
                     color:#fa9b97;
                     border-radius:3px;

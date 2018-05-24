@@ -3,68 +3,99 @@
       <div class="gains item row">
           <div class="title">
               <h5>我的收益</h5>
-                <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
-                <router-link to="/account/doc/editor">
-                <ul class="pager write-btn" style="margin:0">
-                    <li class="previous" style="background:#fb8608">
-                        <a href="javascript:;" style="background:#fb8608;color:#fff;border:none">
-                            <span aria-hidden="true"></span><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫
-                        </a>
-                    </li>
-                </ul>
-                </router-link>
+
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                    <th style="width:16%">日期</th>
-                    <th style="width:16%">自推</th>
-                    <th style="width:16%">公推</th>
-                    <th style="width:16%">撰寫</th>
-                    <th style="width:16%">總點閱</th>
-                    <th style="">收益</th>
+                <th>日期</th>
+                <th>自推</th>
+                <th>共推</th>
+                <th>撰寫</th>
+                <th>總點閱</th>
+                <th>收益</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="v in 5">
-                    <td>2012/3/3</td>
-                    <td>22</td>
-                    <td>12</td>
-                    <td>666</td>
-                    <td>100</td>
-                    <td>$55500</td>
+                <tr v-for="(v,i) in profitStatisticsList" :key="i">
+                    <!--<th scope="row">1</th>-->
+                    <td>{{v.Date}}</td>
+                    <td>{{v.SelfSpread}}</td>
+                    <td>{{v.Spread}}</td>
+                    <td>{{v.Writeing}}</td>
+                    <td>{{v.ViewCount}}</td>
+                    <td>{{123}}</td>
                 </tr>
 
             </tbody>
             </table>
-            <nav aria-label="" style="text-align:center;">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                </ul>
-            </nav>
-        </div>
+        </div> 
+
+        <div style="text-align:center">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :page-size="pageSize"
+                :total="total"
+                @current-change="changePage"
+            >
+            </el-pagination>
+        </div>  
           
       </div>
   </div>
 </template>
 
 <script>
+import accountAxios from '../../axios_joggle/axios_account'
     export default {
-      data(){
-        return {
-        }
+        data(){
+            return {
+                loading:false,
+                profitStatisticsList:'',
+                pageSize:15,
+                total:1
+            }
+        },
+        watch:{
+            '$route.query':'getProfitStatistics'
+        },
+      methods:{
+            //最近收益
+            getProfitStatistics(){
+                this.loading = true
+                accountAxios.profitStatistics({
+                    pageSize:this.pageSize,
+                    pageIndex:this.$route.query.pageIndex || "1" ,
+                }).then(res=>{
+                    this.loading = false
+                    if(res.data.ResultCode==200){
+                        this.profitStatisticsList = res.data.Data.Statistics
+                        this.total = res.data.Data.total
+                        // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
+                        console.log(res);
+                    }
+                }).catch(err=>{
+                    this.loading = false
+                })
+            },
+            changePage(pageIndex){
+                console.log(pageIndex);
+                let query = Object.assign({},this.$route.query)
+                query.pageIndex = pageIndex
+                this.$router.push({query:query})
+            },
       },
-      components:{},
       mounted(){
+            this.userInfo = JSON.parse(localStorage.getItem('myUserInfo'))
 
+            if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
+                this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
+            }else{
+                this.getProfitStatistics()
+            }
       }
     }
 </script>

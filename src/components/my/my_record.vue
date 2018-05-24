@@ -14,7 +14,7 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left" v-loading="loading">
+        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -38,7 +38,7 @@
                             <div class="tit">
                                 <!--注：22汉字以内-->
                                 <p>{{v.Title}}</p>
-                                <p class="type">類別：{{v.CategoryID}}</p>
+                                <p class="type">類別：{{v.CategoryName}}</p>
                             </div>
                         </div>
                     </td>
@@ -54,17 +54,17 @@
 
             </tbody>
             </table>
-            <nav style="text-align:center;">
-                <el-pagination
-                background
-                layout="prev, pager, next"
-                :page-size="pageSize"
-                @current-change="getCurrentPage"
-                :current-page="2" 
-                :total="total">
-                </el-pagination>
-            </nav>
         </div>
+        <nav style="text-align:center;">
+            <el-pagination
+            background
+            layout="prev, pager, next"
+            :page-size="pageSize"
+            @current-change="getCurrentPage"
+            :current-page="2" 
+            :total="total">
+            </el-pagination>
+        </nav>
           
       </div>
   </div>
@@ -77,7 +77,7 @@ import accountAxios from '../../axios_joggle/axios_account'
             return {
                 loading:false,
                 articleList:'',
-                pageSize:2,
+                pageSize:8,
                 total:1,
                 currentPage:1
             }
@@ -93,7 +93,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 // {"pageSize":"","pageIndex":"","Date":"日期,可传入''或空","type":"1:共推,2:撰写,-1为全部","RelationID":"文章ID,用于查询单篇文章的点击信息可传入''或空"}
                 accountAxios.record({
                     pageSize:String(this.pageSize),
-                    pageIndex:this.$route.query.pageIndex,
+                    pageIndex:this.$route.query.pageIndex || "1",
                     // CategoryID:this.$route.query.CategoryID,
                     Date:'',
                     type:'-1',

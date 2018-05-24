@@ -30,68 +30,41 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-list">
               <li index='0'>
-                <router-link to="/my/user/dashboard">
+                <router-link to="/my/user/dashboard" >
                    總覽
                 </router-link>
               </li>
-              <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-              <!--<li class="dropdown  " index='1'>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <router-link to="/mbti">
-                    资料
-                  </router-link>
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">文章</a>
-                  </li>
-                  <li>
-                    <a href="#">点开</a>
-                  </li>
-                  <li>
-                    <a href="#">555</a>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li>
-                    <a href="#">Separated link</a>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li>
-                    <a href="#">One more separated link</a>
-                  </li>
-                </ul>
-              </li>-->
               <li index='1'>
-                <router-link to="/my/user/info">
+                <router-link to="/my/user/info" >
                    資料
                 </router-link>
               </li>
               <li index='2'>
-                <router-link to="/my/article/list">
+                <!--<router-link to="/my/article/list" >-->
+                <router-link to="/my/article/list" >
                    文章
                 </router-link>
               </li>
               <li index='3'>
-                <router-link to="/my/record">
+                <router-link to="/my/record" >
                    點閱
                 </router-link>
               </li>
               <li class=""  index='4'>
-                <router-link to="/my/share">
+                <router-link to="/my/share" exact>
                 好文
                 </router-link>
               </li>
               <li class=""  index='5'>
-                <router-link to="/my/payment/income">
+                <router-link to="/my/payment/income" active-class="active">
                 收益
                 </router-link>
               </li>
-              <li class=""  index='6'>
-                <router-link to="/my/message">
+              <!--<li class=""  index='6'>
+                <router-link to="/my/message',query:$route.query}">
                 消息
                 </router-link>
-              </li>
+              </li>-->
             </ul>
             <ul>
               <li class="dropdown" v-if="0">
@@ -135,12 +108,14 @@ export default {
   data(){
       return {
           show:false,
-          loading:false
+          loading:false,
+          fullPath:''
       }
   },
   components: {
   },
   watch: {
+    '$route.fullPath':'fullPathChange'
   },
   methods: {
       login(){
@@ -164,12 +139,16 @@ export default {
               }
           })
       },
+      fullPathChange(){
+
+      }
 
   },
   mounted() {
   },
   created(){
     this.login()
+    // console.log(this.$route.fullPath);
   }
 }
 </script>
@@ -214,12 +193,13 @@ export default {
       .navbar-default .navbar-nav>li>a {
         color:#fff !important;
       }
-      .router-link-exact-active {
+      .router-link--active {
           background-color: #053871 !important;
       }
       .router-link-active{
-        text-align:left;
-        color: red;
+        background-color: #053871 !important;
+        // text-align:left;
+        // color: red;
       }
       // .navbar-default .navbar-nav>.active>a {
       //   background-color: #456ea5;
