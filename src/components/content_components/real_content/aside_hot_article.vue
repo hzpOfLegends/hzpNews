@@ -60,7 +60,7 @@
     },
     created() {
       // 热门文章
-      index_message.hot_article({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
+      index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
         // console.log(1,res)
         this.hot_article = res.data.Data
       }).catch(err => {

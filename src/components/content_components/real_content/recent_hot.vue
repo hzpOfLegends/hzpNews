@@ -52,32 +52,15 @@
           synopsis: "",
           AuthorName: "",
         },
-          // {
-          //   id: 2,
-          //   img: "../../../../static/img/text.png",
-          //   contrys: '國際',
-          //   title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
-          //   synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
-          //   author: "魚丸相面",
-          //   times: "2016-08-08"
-          // }, {
-          //   id: 3,
-          //   img: "../../../../static/img/text.png",
-          //   contrys: '國際',
-          //   title: "港媒：陳水扁唱衰民進黨選情 暗藏玄機",
-          //   synopsis: "2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年2018年臺灣選舉年",
-          //   author: "魚丸相面",
-          //   times: "2016-08-08"
-          // }
         ],
         default_photo: "/static/img/timg.jpg",  // 默认头像
         default_backgrund_photo: "/static/img/OopsDaily.png" //默认背景图
       }
     },
     created() {
-      index_message.recent_hot({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
+      index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
         this.recent_hot = res.data.Data
-        console.log(1,res)
+
       }).catch(err => {
         console.log(err)
       })
@@ -95,6 +78,7 @@
     },
     watch: {
       get_nav_id(val) {
+        console.log('recent',val)
         index_message.recent_hot({CategoryID: val}).then(res => {
           this.recent_hot = res.data.Data
         }).catch(err => {
@@ -108,8 +92,6 @@
           sessionStorage.setItem("CategoryID",CategoryID)
         }
         if (RelationID) {
-          let q = this.$route.query
-          q.RelationID = RelationID
           this.$router.push({
             path: "/article/"+ RelationID,
           })

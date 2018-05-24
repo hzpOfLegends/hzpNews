@@ -166,6 +166,7 @@
       margin: 0 auto;
       .left_content {
         max-width: 848px;
+        width: 100%;
         padding: 3px;
       }
       .right_content {

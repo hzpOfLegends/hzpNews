@@ -26,7 +26,12 @@
       },
       created(){
         this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):""
-        this.share_url = "javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href"+this.share+")) ));"
+        if(this.share){
+          this.share_url = "javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href"+'?r='+this.share+")) ));"
+        }else{
+          this.share_url = "javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"
+        }
+
       },
       watch:{
         "$route" :function () {

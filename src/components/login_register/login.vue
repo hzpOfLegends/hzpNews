@@ -145,7 +145,7 @@
             if (res.status == 200 && res.data.ResultCode == 200) {
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
-                console.log(res)
+                this.$store.state.user_info = res.data.Data
               }).catch(err => {
                 console.log(err)
               })

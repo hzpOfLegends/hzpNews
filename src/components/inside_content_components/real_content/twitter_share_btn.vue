@@ -2,25 +2,31 @@
     <span class="twitter">
               <a
                 class="twitter-share-button"
-                 href="javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));"
-                target="_blank"
+                :href="web_url"
+                  target="_blank"
                 data-size="large">
                 <img src="/static/img/twitter.png" alt="">
               </a>
           </span>
 </template>
 <script>
-    export default {
-        name: "twitter_share_btn",
-      data(){
-          return {
-            web_url:""
-          }
-      },
-      created(){
-          this.web_url = window.location.href
+  export default {
+    name: "twitter_share_btn",
+    data() {
+      return {
+        share: "",
+        web_url: ""
       }
+    },
+    created() {
+      this.share = sessionStorage.getItem('ShareID') ? sessionStorage.getItem('ShareID') : "";
+      if(this.share){
+        this.web_url = "javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent("+"location.href"+'?r='+this.share+"))));"
+      }
+      this.web_url = "javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));"
+
     }
+  }
 </script>
 
 <style scoped lang="less">
@@ -36,7 +42,7 @@
     a {
       color: white;
       text-decoration: none;
-      img{
+      img {
         width: 100%;
       }
     }
