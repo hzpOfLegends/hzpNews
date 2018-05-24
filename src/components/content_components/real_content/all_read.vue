@@ -5,6 +5,7 @@
     <div class=" all_read_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
+        <router-link :to="{path:'/article/'+item.RelationID}">
         <div class="row">
           <!--<router-link to="index/particulars">-->
           <div class="photo">
@@ -30,6 +31,7 @@
           </div>
           <!--</router-link>-->
         </div>
+        </router-link>
       </div>
       <loading v-if="$store.state.loading_style"/>
     </div>
@@ -167,6 +169,7 @@
     border-top: 8px solid #f39900;
     padding: 20px;
     text-align: left;
+
     .all_read_wrap {
       padding: 0;
       margin: 0;
@@ -179,6 +182,9 @@
         border-bottom: 1px solid #f6f6f6;
         margin-top: 3px;
         cursor: pointer;
+        a{
+          color: black;
+        }
         .photo {
           background-color: rgba(0, 0, 0, .1);
           width: 30%;

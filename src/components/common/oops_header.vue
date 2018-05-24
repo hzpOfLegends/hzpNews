@@ -112,8 +112,6 @@
   import header_message from '@/axios_joggle/axios_header'
   // 引入路由 /登出
   import users_page from '@/axios_joggle/axios_users'
-  // 引入导航栏
-  import nav_bar from '../content_components/real_content/nav_bar'
 
   export default {
     data() {
@@ -136,9 +134,6 @@
         nav_down_icon: "fa fa-bars",
         user_info:[]
       }
-    },
-    components: {
-      nav_bar
     },
     created() {
       // vuex是状态管理 一刷新就没了  此步骤当记录

@@ -5,6 +5,7 @@
     <div class="other_article_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
+        <router-link :to="{path:'/article/'+ item.RelationID}">
         <div class="row">
           <!--<div class="float-left">-->
           <div class="photo">
@@ -32,6 +33,7 @@
             </div>
           </div>
         </div>
+        </router-link>
       </div>
       <div>
         <loading/>
@@ -201,6 +203,9 @@
         border-bottom: 1px solid #f6f6f6;
         margin-top: 15px;
         cursor: pointer;
+        a{
+          color: black;
+        }
         .photo {
           background-color: rgba(0, 0, 0, .1);
           max-width: 30%;

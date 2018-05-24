@@ -7,11 +7,15 @@
     </div>
     <div class="hot_article_content">
       <div class="first" @click="skip_inside_page(hot_article_first.RelationID)">
+        <router-link :to="{path:'/article/'+ hot_article_first.RelationID}">
         <img :src="hot_article_first.CoverImges?hot_article_first.CoverImges:default_backgrund_photo">
         <div class="Profile">{{hot_article_first.Profile}}</div>
+        </router-link>
       </div>
       <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.RelationID,item.CategoryID)">
+        <router-link :to="{path:'/article/' + item.RelationID}">
         <p><span>·</span>{{item.NewsTitle}}</p>
+        </router-link>
       </div>
     </div>
   </div>
@@ -26,12 +30,9 @@
     data() {
       return {
         //新增文章 1
-        hot_article_first:{},
+        hot_article_first:[],
         // 新增文章 2-20
-        hot_article: [{
-          id: 1,
-          NewsTitle: ""
-        }],
+        hot_article: [],
         default_backgrund_photo:"/static/img/OopsDaily.png" //默认背景图
 
       }
@@ -46,8 +47,12 @@
       get_nav_id(val) {
         // 热门文章
         index_message.add_article({CategoryID:val}).then(res => {
-          this.hot_article_first = res.data.Data.shift()
-          this.hot_article = res.data.Data
+          if(res.data.Data.length>0){
+            this.hot_article_first = res.data.Data.shift()
+          }
+          if(res.data.Data.length>0){
+            this.hot_article = res.data.Data
+          }
         }).catch(err => {
           console.log(err)
         })
@@ -56,8 +61,13 @@
     created() {
       //新增文章
       index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        this.hot_article_first = res.data.Data.shift()
-        this.hot_article = res.data.Data
+        if(res.data.Data.length>0){
+          this.hot_article_first = res.data.Data.shift()
+        }
+
+        if(res.data.Data.length>0){
+          this.hot_article = res.data.Data
+        }
       }).catch(err => {
         console.log(err)
       })
@@ -68,8 +78,6 @@
           sessionStorage.setItem("CategoryID",CategoryID)
         }
         if(RelationID){
-          let q = this.$route.query
-          q.RelationID = RelationID
           this.$router.push({
             path: "/article/"+ RelationID,
           })
@@ -110,6 +118,9 @@
       font-size: 14px;
       cursor: pointer;
       margin-top: 15px;
+      a{
+        color: black;
+      }
       img {
         width: 100%;
         object-fit: cover;
