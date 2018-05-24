@@ -52,8 +52,13 @@ class account {
   }
   //獲取分類列表
   getCategories(data){
-      return axios.get(axios.path + ' api/Daily/GetCategories',{params:data})
+      return axios.get(axios.path + 'api/Daily/GetCategories',{params:data})
   }
+  // 獲取meta
+  getMeta(data){
+      return axios.get(axios.path + 'api/Meta/GetMeta',{params:data})
+  }
+
   
   
 

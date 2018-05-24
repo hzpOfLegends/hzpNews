@@ -50,12 +50,12 @@
                    點閱
                 </router-link>
               </li>
-              <li class=""  index='4' @click="clickNav('4')">
+              <li index='4' @click="clickNav('4')">
                 <router-link to="/my/share">
                 好文
                 </router-link>
               </li>
-              <li class=""  index='5' @click="clickNav('5')">
+              <li index='5' @click="clickNav('5')">
                 <router-link to="/my/payment/income">
                 收益
                 </router-link>
@@ -145,6 +145,7 @@ export default {
           document.querySelectorAll('.nav-list>li').forEach((v,i)=>{
               let a = v.querySelector('a')
               if(v.getAttribute('index')==currentIndex){
+              console.log(a);
                   a.classList.add('c-active');
               }else{
                   a.classList.remove('c-active');
@@ -242,6 +243,11 @@ export default {
         color:#fff !important;
       }
       .c-active{
+        background-color: #053871 !important;
+        // text-align:left;
+        // color: red;
+      }
+      .router-link-active{
         background-color: #053871 !important;
         // text-align:left;
         // color: red;

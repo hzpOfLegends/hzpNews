@@ -15,7 +15,7 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left" v-loading="loading">
             <form>
             <div class="form-group">
                     <label for="category">分類：</label>
@@ -175,7 +175,6 @@ export default {
                 })
             }else if(this.status==='edit'){
                 // ｛"RelationID":"","Title":"文章标题","Content":"文章内容","CategoryID":"文章所属分类ID"｝
-                console.log('編輯接口');
                 this.loading = true;
                 accountAxios.editArticle({
                     RelationID:this.initData.RelationID,
@@ -185,7 +184,10 @@ export default {
                 }).then(res=>{
                     this.loading = false;
                     if(res.data.ResultCode==200){
-                        alert("編輯成功！")
+                        this.$message({
+                            message: '保存成功！',
+                            type: 'success'
+                        });
                     }
                 }).catch(err=>{
                     this.loading = false;
