@@ -14,7 +14,7 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left;min-height:500px" v-loading="loading">
+        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -67,16 +67,16 @@
 
             </tbody>
             </table>
-            <div style="text-align:center">
-                <el-pagination
-                    background
-                    layout="prev, pager, next"
-                    :page-size="pageSize"
-                    :total="total"
-                    @current-change="changePage"
-                >
-                </el-pagination>
-            </div>
+        </div>
+        <div style="text-align:center">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :page-size="pageSize"
+                :total="total"
+                @current-change="changePage"
+            >
+            </el-pagination>
         </div>
           
       </div>
@@ -103,8 +103,8 @@ import accountAxios from '../../axios_joggle/axios_account'
             this.loading = true
             accountAxios.getMyNews({
                 pageSize:this.pageSize,
-                pageIndex:this.$route.query.pageIndex,
-                CategoryID:this.$route.query.CategoryID
+                pageIndex:this.$route.query.pageIndex || '1',
+                CategoryID:this.$route.query.CategoryID || '0'
             }).then(res=>{
                 this.loading = false
                 if(res.data.ResultCode==200){

@@ -30,6 +30,10 @@ class account {
   modifyUserInfo(data){
       return axios.post(axios.path + 'api/User/ModifyUserInfo',data)
   }
+  //修改用戶密碼
+  modifyUserPassword(data){
+      return axios.post(axios.path + 'api/User/ModifyPassword',data)
+  }
   //熱門好文
   hotArticle(data){
       return axios.post(axios.path + 'api/Daily/HotArticle',data)
