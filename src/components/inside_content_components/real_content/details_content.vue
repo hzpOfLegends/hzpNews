@@ -15,6 +15,7 @@
     <div class="share">
       <span>分享至:</span>
       <div style="display: inline-block">
+
         <facebook_btn/>
         <google_btn/>
         <twitter_btn/>
@@ -91,7 +92,6 @@
 
     },
     mounted() {
-      console.log(1,this.$route.path.split('/')[2])
       inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data
         setTimeout(() => {
@@ -101,9 +101,8 @@
           }
         }, 1)
         setTimeout(() => {
-          verify_time.timed_10({"RelationID":this.$route.path.split('/')[2],"ShareID":sessionStorage.getItem("ShareID")}).then(res => {
+          verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
             console.log(this.$route.path.split('/')[2],sessionStorage.getItem("ShareID"))
-
           }).catch(err => {
             console.log(err)
           })

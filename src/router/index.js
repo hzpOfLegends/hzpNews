@@ -74,6 +74,7 @@ export default new Router({
       ]
     },
     // 登錄或註冊
+    {path:"/user",redirect:"/user/login"}, // 默认跳转到/user/login
     {path:"/user/login",component:login}, //登录
     {path:"/user/register",component:register}, //注册
     {path:"/user/forgetpassword",component:forget_password}, // 忘记密码

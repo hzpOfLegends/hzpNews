@@ -1,13 +1,15 @@
 import axios from 'axios'
+import router from '@/router/index'
 // axios.path = "http://35.194.241.228/"
 axios.path = "/apis/"
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
-
   switch (data.data.ResultCode)
   {
     case 200 :
-      // console.log('成功')
+      break;
+    case 401 :
+      router.push({path:"/"})
       break;
     case 1003 :
       console.log('登陆失败')

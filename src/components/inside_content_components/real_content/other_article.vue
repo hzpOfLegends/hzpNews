@@ -99,12 +99,13 @@
     }
     ,
     created() {
-      console.log(this.$route.query.CategoryID)
+
       inside_page_message.other_article({
         pageSize: 20,
         pageIndex: this.pageNum,
         CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
       }).then(res => {
+        console.log(res)
         this.recent_hot = res.data.Data.news
       }).catch(err => {
         console.log(err)
@@ -135,9 +136,9 @@
           if (isbool) {
             console.log(that.$route.query.CategoryID)
             inside_page_message.other_article({
-              "pageSize": "20",
-              "pageIndex": that.pageNum,
-              "CategoryID": sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):"-1"
+              pageSize: "20",
+              pageIndex: that.pageNum,
+              CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):"-1"
             }).then(res => {
               for (let i = 0; i < res.data.Data.news.length; i++) {
                 that.recent_hot.push(res.data.Data.news[i])
@@ -225,7 +226,7 @@
           .top {
             :nth-child(1) {
               display: inline-block;
-              max-width: 48px;
+              min-width: 48px;
               max-height: 22px;
               color: #f89c98;
               border: 1px solid #f89c98;

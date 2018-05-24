@@ -53,6 +53,14 @@ class users_page {
       console.log('参数不规范')
     }
   }
+  // 登出接口
+  login_out(data = {}) {
+    if (data || Object.keys(data).length) {
+      return axios.post(axios.path + 'api/Index/Logout', data)
+    } else {
+      console.log('参数不规范')
+    }
+  }
 
 }
 
