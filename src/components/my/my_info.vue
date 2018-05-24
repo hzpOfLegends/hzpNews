@@ -6,46 +6,45 @@
           </div>
         <div class="content" style="text-align:left">
             <div class="photo">
-                <img src="/static/img/timg.jpg" alt="">
+                <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
+                <img v-else src="/static/img/timg.jpg" alt="">
             </div>
             <div class="user-info">
                <div class="u-left">
                     <form class="form-horizontal">
-                      <div class="form-group">
+                      <div class="form-group l-side">
                         <label for="inputEmail3" class="col-sm-2 control-label"  style="max-width:110px">名字：</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail3" placeholder="Name">
+                          <input type="text" class="form-control" id="inputEmail3" placeholder="Name" v-model="userInfo.Name">
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group l-side">
                         <label for="select1" class="col-sm-2 control-label"  style="max-width:110px">喜好語言：</label>
                         <div class="col-sm-10">
-                          <select class="form-control" >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                          <select class="form-control"  v-model="userInfo.Language">
+                            <option>en</option>
+                            <option>zh-tw</option>
+                            <option>zh-cn</option>
                           </select>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group l-side">
                         <label for="inputEmail2" class="col-sm-2 control-label"  style="max-width:110px">等級：</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail2" placeholder="Level">
+                          <input type="text" class="form-control" id="inputEmail2" placeholder="Level" disabled>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label for="inputEmail1" class="col-sm-2 control-label"  style="max-width:110px">種類：</label>
+                      <div class="form-group l-side">
+                        <label for="inputEmail1" class="col-sm-2 control-label"  style="max-width:110px">總類：</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail1" placeholder="Type">
+                          <input type="text" class="form-control" id="inputEmail1" placeholder="總類" disabled>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group l-side">
                         <label for="" class="col-sm-2 control-label"  style="max-width:110px"></label>
                         <div class="col-sm-10">
                             </br>
-                            <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px">保存更改</button>
+                            <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="modifyInfo()">保存更改</button>
                         </div>
                       </div>
                     </form>
@@ -55,7 +54,7 @@
                         <li>
                            <div>
                                 <p style="margin-bottom:2px;">綁定郵箱</p>
-                                <span style="color:#5aa1fa">email@qq.com</span>
+                                <span style="color:#5aa1fa">{{userInfo.Email}}</span>
                            </div>
                            <div class="u-btn">
                               <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
@@ -63,8 +62,19 @@
                         </li>
                         <li>
                            <div>
-                                <p style="margin-bottom:2px;">綁定郵箱</p>
-                                <span style="color:#5aa1fa">email@qq.com</span>
+                                <p style="margin-bottom:2px;">綁定手機</p>
+                                <span v-if="userInfo.Phone" style="color:#5aa1fa">{{userInfo.Phone}}</span>
+                                <span v-else style="color:#fb8507"><i class="glyphicon glyphicon-exclamation-sign"></i> 未綁定</span>
+                           </div>
+                           <div class="u-btn">
+                              <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
+                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;">綁定</button>
+                           </div>
+                        </li>
+                        <li>
+                           <div>
+                                <p style="margin-bottom:2px;">支付方式/賬號</p>
+                                <span style="color:#5aa1fa">支付寶 <span style="padding:0 5px;color:#2e3e4f">|</span> 5050000001@qq.com</span>
                            </div>
                            <div class="u-btn">
                               <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
@@ -72,17 +82,8 @@
                         </li>
                         <li>
                            <div>
-                                <p style="margin-bottom:2px;">綁定郵箱</p>
-                                <span style="color:#5aa1fa">email@qq.com</span>
-                           </div>
-                           <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
-                           </div>
-                        </li>
-                        <li>
-                           <div>
-                                <p style="margin-bottom:2px;">綁定郵箱</p>
-                                <span style="color:#5aa1fa">email@qq.com</span>
+                                <p style="margin-bottom:2px;">登錄密碼</p>
+                                <span style="color:#5aa1fa">******</span>
                            </div>
                            <div class="u-btn">
                               <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
@@ -98,14 +99,49 @@
 </template>
 
 <script>
+import accountAxios from '../../axios_joggle/axios_account'
 export default {
-      data(){
+    data(){
         return {
+            userInfo:'',
+            initUserInfo:'', //修改前數據
         }
-      },
-      components:{},
-      mounted(){
+    },
+    components:{},
+    methods:{
+        modifyInfo(){
+        //   if(JSON.stringify(this.userInfo) === JSON.stringify(this.initUserInfo)){
+          if(this.userInfo.Language === this.initUserInfo.Language && this.userInfo.Name === this.initUserInfo.Name){
+                this.$message({
+                    message: '請修改后再作保存',
+                    type: 'warning'
+                });
+                return;
+          }
+          
+          accountAxios.modifyUserInfo({
+              Language:this.userInfo.Language,
+              Name:this.userInfo.Name
+          }).then(res=>{
+              if(res.data.ResultCode==200){
+                  console.log(res);
+                    this.$message({
+                    message: '修改成功！',
+                    type: 'success'
+                    });
+              }
+          })
+        }
+    },
+    mounted(){
+
+    },
+    created(){
+        this.userInfo = JSON.parse(localStorage.getItem('myUserInfo'))
+        this.userInfo.Language = this.userInfo.Language?this.userInfo.Language:'en'
+        this.initUserInfo = JSON.parse(JSON.stringify(this.userInfo))
     }
+    
 }
 </script>
 
@@ -188,21 +224,24 @@ export default {
                     min-height:90px;
                     padding-left:70px;
                     border-bottom:1px solid #f3f3f3;
-                    background:url('/static/img/set_icon.png') no-repeat 0px 5px;
+                    background:url('/static/img/set_icon.png') no-repeat 0px 12px;
                     &:nth-child(2){
-                      background:url('/static/img/set_icon.png') no-repeat 0px -92px;
+                      background:url('/static/img/set_icon.png') no-repeat 0px -85px;
                     }
                     &:nth-child(3){
-                      background:url('/static/img/set_icon.png') no-repeat 0px -189px;
+                      background:url('/static/img/set_icon.png') no-repeat 0px -182px;
                     }
-                    &:nth-child(2){
-                      background:url('/static/img/set_icon.png') no-repeat 0px -286px;
+                    &:nth-child(4){
+                      background:url('/static/img/set_icon.png') no-repeat 0px -283px;
                     }
                    .u-btn {
 
                    }
                  }
                }
+            }
+            .form-group.l-side  {
+              margin-bottom:25px;
             }
         }
     }

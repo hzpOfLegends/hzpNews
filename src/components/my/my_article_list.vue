@@ -14,32 +14,38 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left;min-height:500px" v-loading="loading">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
                     <th class="title-header">標題</th>
                     <th style="width:190px">時間</th>
-                    <th style="width:220px">點開</th>
+                    <th style="width:220px">點閱</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="v in 5">
+                <tr v-for="(v,i) in newsList" :key="i">
                     <!--<th scope="row">1</th>-->
                     <td>
                         <div id="doc-title">
-                            <img src="/static/img/text.png" alt="">
+                            <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
+                            <img v-else src="/static/img/OopsDaily.png" alt="">
                             <div class="tit">
                                 <!--注：22汉字以内-->
-                                <p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>
-                                <p class="type">類別：政治</p>
+                                <!--<p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>-->
+                                <!--<p class="type">類別：政治</p>-->
+                                <p>{{v.NewsTitle}}</p>
+                                <p v-if="v.CategoryName" class="type">類別：{{v.CategoryName}}</p>
+                                <p v-else class="type">類別：未知</p>
                             </div>
                         </div>
                     </td>
-                    <td>2012/3/3</td>
-                    <td>5</td>
+                    <!--时间-->
+                    <td>{{v.PublishTime}}</td>
+                    <!--点阅数-->
+                    <td>{{v.ClickRate }}</td>
                     <td>
                         <div class="hidden-xs">
                             <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
@@ -61,17 +67,16 @@
 
             </tbody>
             </table>
-            <nav aria-label="" style="text-align:center;">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                </ul>
-            </nav>
+            <div style="text-align:center">
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    :page-size="pageSize"
+                    :total="total"
+                    @current-change="changePage"
+                >
+                </el-pagination>
+            </div>
         </div>
           
       </div>
@@ -79,14 +84,59 @@
 </template>
 
 <script>
+import accountAxios from '../../axios_joggle/axios_account'
     export default {
       data(){
         return {
+            newsList:null,
+            loading:false,
+            pages:1, //分页数
+            pageSize:15, //默认分页数
+            total:1,
         }
+      },
+      watch:{
+        '$route.query':'getMyNews'
+      },
+      methods:{
+        getMyNews(){
+            this.loading = true
+            accountAxios.getMyNews({
+                pageSize:this.pageSize,
+                pageIndex:this.$route.query.pageIndex,
+                CategoryID:this.$route.query.CategoryID
+            }).then(res=>{
+                this.loading = false
+                if(res.data.ResultCode==200){
+                    this.newsList = res.data.Data.news
+                    this.total = res.data.Data.total
+                    this.pages = Math.ceil(res.data.Data.total/this.pageSize)
+                }
+            }).catch(err=>{
+                this.loading = false
+            })
+        },
+        changePage(pageIndex){
+            console.log(pageIndex);
+            let query = Object.assign({},this.$route.query)
+            query.pageIndex = pageIndex
+            this.$router.push({query:query})
+        },
+        init(){
+            if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
+                this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
+            }
+            this.getMyNews()
+        }
+
       },
       components:{},
       mounted(){
 
+      },
+      created(){
+          
+          this.init()
       }
     }
 </script>
@@ -146,8 +196,9 @@
                 // border-bottom:1px solid #dddddd;
                 img {
                     width:33%;
-                    object-fit: scale-down;
+                    object-fit: cover;
                     flex:0 0 33%;
+                    max-height:70px;
                 }
                 .tit {
                     font-size:13px;

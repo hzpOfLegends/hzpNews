@@ -7,7 +7,7 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
   switch (data.data.ResultCode)
   {
     case 200 :
-      console.log('成功')
+      // console.log('成功')
       break;
     case 1003 :
       console.log('登陆失败')

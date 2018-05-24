@@ -17,27 +17,26 @@
         <div class="content" style="text-align:left">
 <form>
   <div class="form-group">
-        <label for="">分類：</label>
-        <select class="form-control" style="max-width:320px">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        <label for="category">分類：</label>
+        <select class="form-control" id="cotegory" style="max-width:320px" v-model="article.category">
+            <option value="" selected style="color:#ccc">請選擇分類</option>
+            <option value="1">新闻</option>
+            <option value="2">娱乐</option>
+            <option value="3">动漫</option>
+            <option value="4">汽车</option>
+            <option value="5">时政</option>
         </select>
   </div>
   <div class="form-group">
-        <label for="">標題：</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="文章標題">
+        <label for="1">標題：</label>
+        <input type="text" class="form-control" id="exampleTitle" placeholder="文章標題" v-model="article.title">
   </div>
   <div class="form-group">
         <label for="">內容：</label>
       <div class="hidden-xs">
-        <div id="div1">
-            <p>欢迎使用 wangEditor 编辑器</p>
-            <!--</div>-->
-            <button id="btn1">获取html</button>
-            <button id="btn2">获取text</button>
+          <!--编辑器-->
+        <div id="editor">
+            <!--<p>Welcome!</p>-->
         </div>
       </div>
       <form class="visible-xs">
@@ -45,8 +44,9 @@
       </form>
   </div>
  
-  <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px">發 表</button>
+  <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">發 表</button>
 </form>
+<div v-html="xss"></div>
 
 
 
@@ -61,28 +61,122 @@
 
 <script>
 import E from 'wangeditor'
+import accountAxios from '../../axios_joggle/axios_account'
 export default {
       data(){
         return {
+            editor:null,
+            article:{
+                category:'',
+                title:''
+            },
+            xss:''
         }
       },
       components:{},
       mounted(){
-        var editor = new E('#div1') 
-        editor.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
-        // 配置服务器端地址
-        editor.customConfig.uploadImgServer = 'http://35.194.241.228/api/Upload/Imges'
-        editor.create()
+            this.editor = new E('#editor') 
+            this.editor.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
+            // 配置服务器端地址
+            // this.editor.customConfig.uploadImgServer = 'http://35.194.241.228/api/Upload/Imges'
+            this.editor.customConfig.uploadImgServer = accountAxios.path  +'api/Upload/Imges'
+            this.editor.create()
 
-        document.getElementById('btn1').addEventListener('click', function () {
-            // 读取 html
-            alert(editor.txt.html())
-        }, false)
+            this.editor.customConfig.uploadImgHooks = {
+                before: function (xhr, editor, files) {
+                    // 图片上传之前触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+                    
+                    // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
+                    // return {
+                    //     prevent: true,
+                    //     msg: '放弃上传'
+                    // }
+                },
+                success: function (xhr, editor, result) {
+                    console.log("success",result);
+                    // 图片上传并返回结果，图片插入成功之后触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+                },
+                fail: function (xhr, editor, result) {
+                    console.log("fail",result);
+                    // 图片上传并返回结果，但图片插入错误时触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+                },
+                error: function (xhr, editor) {
+                    console.log("error",result);
+                    // 图片上传出错时触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+                },
+                timeout: function (xhr, editor) {
+                    // 图片上传超时时触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+                },
 
-        document.getElementById('btn2').addEventListener('click', function () {
-            // 读取 text
-            alert(editor.txt.text())
-        }, false)
+                // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+                // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
+                customInsert: function (insertImg, result, editor) {
+                    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+                    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+                    // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+                    // var url = result.url
+                    // insertImg(url)
+                    // console.log('配置',result);
+
+                    // result 必须是一个 JSON 格式字符串！！！否则报错
+                }
+
+            }
+
+      },
+      methods:{
+          submitArticle(){
+            console.log(this.editor.txt.html());
+            if( !this.article.category){
+                return alert('請輸入類別');
+            }
+            if( !this.article.title){
+                return alert('請輸入標題');
+            }
+            if( !this.editor.txt.html().replace(/&nbsp;|<p>|<\/p>|<br>|\s/g,'')){
+                return alert('請輸入內容');
+            }
+            accountAxios.publish({
+                Title: this.article.title,
+                Content: this.editor.txt.html(),
+                CategoryID: this.article.category
+            }).then(res=>{
+                if(res.data.ResultCode==200){
+                    alert("發表成功！")
+                }
+            }).catch(err=>{
+                console.log('error!',err);
+            })
+          },
+          editorConfig(){
+
+          },
+
+      },
+      created(){
+                    //   this.xss = '<button onclick="eval(alert(/12345/))">xss</button>'
+                    //   this.xss = '<button onmouseenter="eval(alert(/12345/))">xss</button>'
+                    //   this.xss = '<anytag onmouseover=alert(15)>M'
+                    //   this.xss = '<a href="javascript:alert(/test/)">link</a>'
+                    //   this.xss = '<a href="java&#115;cript:alert(/xss/)">link</a>'
+                    //   this.xss = '<button style="padding:10px" onmouseover=write(20)>M<button>'
+                    //   this.xss = '<iframe src="http://www.baidu.com"></iframe>'
+                    //   this.xss = '<iframe/onload=alert(document.domain)></iframe>'
+                    //   this.xss = '<object data="alert(/123/)">'
+                    //   this.xss = '<meta http-equiv="refresh" content="0; url=data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%2830%29%3C%2%73%63%72%69%70%74%3E"> <object data=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+></object>'
+                    //   this.xss = '<marquee onstart=alert(30)>v</marquee>'  //動畫
+                    //   this.xss = `<svg/onload=eval(alert(7878));>` //!!!
+                    //   this.xss = `<select autofocus onfocus=alert(ttttttttttttttttttttt)>` //!!!  <textarea autofocus onfocus=alert(1)>
+                    //   this.xss = `<select autofocus onfocus=setTimeout(function(){write('xss劫持')},2300))>` //!!!  <textarea autofocus onfocus=alert(1)>
+                    //   this.xss = `<video><source onerror="eval(alert(123 ))">`
+                    //   this.xss = `<a onmouseover=location=eval(alert(1))>click`
+                    //   this.xss = `<img src="http://localhost:3300/test.js" >`
       }
     }
 </script>
