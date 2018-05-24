@@ -29,34 +29,34 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-list">
-              <li index='0'>
+              <li index='0' @click="clickNav('0')">
                 <router-link to="/my/user/dashboard" >
                    總覽
                 </router-link>
               </li>
-              <li index='1'>
+              <li index='1' @click="clickNav('1')">
                 <router-link to="/my/user/info" >
                    資料
                 </router-link>
               </li>
-              <li index='2'>
+              <li index='2' @click="clickNav('2')">
                 <!--<router-link to="/my/article/list" >-->
                 <router-link to="/my/article/list" >
                    文章
                 </router-link>
               </li>
-              <li index='3'>
+              <li index='3' @click="clickNav('3')">
                 <router-link to="/my/record" >
                    點閱
                 </router-link>
               </li>
-              <li class=""  index='4'>
-                <router-link to="/my/share" exact>
+              <li index='4' @click="clickNav('4')">
+                <router-link to="/my/share">
                 好文
                 </router-link>
               </li>
-              <li class=""  index='5'>
-                <router-link to="/my/payment/income" active-class="active">
+              <li index='5' @click="clickNav('5')">
+                <router-link to="/my/payment/income">
                 收益
                 </router-link>
               </li>
@@ -96,7 +96,7 @@
     </div>
 
   </div>
-  <div  style="min-height:300px;width:100%;" v-loading="loading">
+  <div  style="min-height:400px;width:100%;" v-loading="loading">
       <router-view v-if="show"></router-view>
   </div>
   </div>
@@ -109,15 +109,50 @@ export default {
       return {
           show:false,
           loading:false,
-          fullPath:''
+          fullPath:'',
+          //配置路由正则
+          routeObj:{
+            '0':'/my/user/dashboard',
+            '1':'/my/user/info',
+            '2':'/my/article',
+            '3':'/my/record',
+            '4':'/my/share',
+            '5':'/my/payment',
+          },
       }
   },
   components: {
   },
   watch: {
-    '$route.fullPath':'fullPathChange'
+      '$route.path':'changeRoute',
   },
   methods: {
+          //路由改变处理
+      changeRoute(){
+          //获取第一个//中的字段
+          let currentPath = this.$route.path;
+          let index = '';
+          for(let key in this.routeObj){
+              if(currentPath.indexOf(this.routeObj[key])!==-1){
+                  index = key;
+              }
+          }
+          this.setNavStyle(index);
+          // this.activeIndex = index;
+      },
+      //设置主导航
+      setNavStyle(currentIndex){
+          document.querySelectorAll('.nav-list>li').forEach((v,i)=>{
+              let a = v.querySelector('a')
+              if(v.getAttribute('index')==currentIndex){
+              console.log(a);
+                  a.classList.add('c-active');
+              }else{
+                  a.classList.remove('c-active');
+              }
+              
+          })
+      },
       login(){
         accountAxios.login({
             loginName:"18566086988@163.com",
@@ -139,16 +174,30 @@ export default {
               }
           })
       },
-      fullPathChange(){
-
+      clickNav(index){
+        console.log(index);
+      },
+      init(){
+          // sessionStorage.setItem('user_info')
+          this. loading = true;
+          accountAxios.userInfo({}).then(res=>{
+              if(res.data.ResultCode==200){
+                  localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
+                  this.show = true;
+              }
+              this. loading = false;
+          }).catch(err=>{
+              this. loading = false;
+          })
       }
 
   },
   mounted() {
+    this.changeRoute()
   },
   created(){
+    // this.init()
     this.login()
-    // console.log(this.$route.fullPath);
   }
 }
 </script>
@@ -193,8 +242,10 @@ export default {
       .navbar-default .navbar-nav>li>a {
         color:#fff !important;
       }
-      .router-link--active {
-          background-color: #053871 !important;
+      .c-active{
+        background-color: #053871 !important;
+        // text-align:left;
+        // color: red;
       }
       .router-link-active{
         background-color: #053871 !important;

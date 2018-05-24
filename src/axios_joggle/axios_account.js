@@ -20,7 +20,7 @@ class account {
   }
   //最近收益
   profitStatistics(data){
-      return axios.get(axios.path + 'api/Daily/ProfitStatistics',data)
+      return axios.get(axios.path + 'api/Daily/ProfitStatistics',{params:data})
   }
   //點閱
   record(data){
@@ -38,6 +38,27 @@ class account {
   hotArticle(data){
       return axios.post(axios.path + 'api/Daily/HotArticle',data)
   }
+  //删除文章
+  deleteArticle(data){
+      return axios.post(axios.path + 'api/Daily/RemoveDaily',data)
+  }
+  //獲取文章詳情
+  getNewInfo(data){
+      return axios.get(axios.path + 'api/Daily/GetNewInfo',{params:data})
+  }
+  //編輯個人文章
+  editArticle(data){
+      return axios.post(axios.path + 'api/Daily/ModifyDaily',data)
+  }
+  //獲取分類列表
+  getCategories(data){
+      return axios.get(axios.path + 'api/Daily/GetCategories',{params:data})
+  }
+  // 獲取meta
+  getMeta(data){
+      return axios.get(axios.path + 'api/Meta/GetMeta',{params:data})
+  }
+
   
   
 

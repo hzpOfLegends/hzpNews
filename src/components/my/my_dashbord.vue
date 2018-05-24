@@ -111,15 +111,6 @@ import accountAxios from '../../axios_joggle/axios_account'
         watch:{
             '$route.query':'getProfitStatistics'
         },
-        metaInfo: {
-            title: "hello!vue-meta",
-            // titleTemplate: '%s - by vue-meta',
-            // htmlAttrs: {
-            // lang: 'zh'
-            // },
-            // script: [{innerHTML: 'console.log("hello hello!")', type: 'text/javascript'}],
-            // __dangerouslyDisableSanitizers: ['script']
-        },
         methods:{
             //最近收益
             getProfitStatistics(){

@@ -23,6 +23,8 @@
 <script>
   import oopsFooter from '@/components/common/oops_footer'
   import oopsHeader from '@/components/common/oops_header'
+  import accountAxios from './axios_joggle/axios_account'
+  import Vue from 'vue'
 
   export default {
     name: 'App',
@@ -30,7 +32,27 @@
       oopsHeader,
       oopsFooter
     },
-
+    watch:{
+       "$route.fullPath":"getMeta"
+    },
+    metaInfo(){
+        return {
+            title:this.$store.state.meta.title || ''
+        }
+    },
+    methods:{
+      getMeta(){
+        console.log('Fullpath');
+          accountAxios.getMeta({url:this.$route.fullPath}).then(res=>{
+              let d = res.data.Data
+              console.log("meta Data",d);
+              let meta = {
+                 title: d.title
+              }
+             this.$store.commit('setMeta',meta)
+          })
+      }
+    },
     data(){
       return {
         items: [{
@@ -42,6 +64,10 @@
         }],
         skip_top:true //點擊到頂部按鈕
       }
+    },
+    created(){
+      
+      this.getMeta()
     }
   }
 </script>
