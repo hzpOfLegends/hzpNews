@@ -8,19 +8,19 @@ Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 // 路由攔截
-router.beforeEach((to,from,next)=>{
-  console.log(to.fullPath.indexOf('/my'))
-  if(to.fullPath.indexOf('/my')==0){
-    if(!sessionStorage.getItem('ShareID')){
-      next({path:"/"})
-    }else{
-      next()
-    }
-  }else{
-    next()
-  }
+// router.beforeEach((to,from,next)=>{
+//   console.log(to.fullPath.indexOf('/my'))
+//   if(to.fullPath.indexOf('/my')==0){
+//     if(!sessionStorage.getItem('ShareID')){
+//       next({path:"/"})
+//     }else{
+//       next()
+//     }
+//   }else{
+//     next()
+//   }
 
-})
+// })
 
 // 關於bootstrap-vue 文件的引入
 import BootstrapVue from 'bootstrap-vue'
@@ -51,15 +51,17 @@ import 'element-ui/lib/theme-chalk/loading.css'
 import 'element-ui/lib/theme-chalk/pagination.css'
 import 'element-ui/lib/theme-chalk/icon.css'
 import 'element-ui/lib/theme-chalk/message.css'
+import 'element-ui/lib/theme-chalk/message-box.css'
 import 'element-ui/lib/theme-chalk/Steps.css'
 import 'element-ui/lib/theme-chalk/Step.css'
-import {Loading,Steps,Step,Pagination,Icon,Message} from 'element-ui'
+import {Loading,Steps,Step,Pagination,Icon,Message,MessageBox} from 'element-ui'
 Vue.use(Loading.directive)
 Vue.use(Pagination)
 Vue.use(Icon)
 Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm;
 Vue.component(Icon.name, Icon)
 /* eslint-disable no-new */
 let that = new Vue({

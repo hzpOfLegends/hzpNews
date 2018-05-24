@@ -2,7 +2,8 @@
   <div class="accountdoc">
       <div class="gains item row">
           <div class="title">
-              <h5>文章撰寫</h5>
+              <h5 v-if="status==='add'">文章撰寫</h5>
+              <h5 v-if="status==='edit'">文章編輯</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
                 <router-link to="/my/article/list">
                 <ul class="pager write-btn" style="margin:0">
@@ -15,42 +16,39 @@
                 </router-link>
           </div>
         <div class="content" style="text-align:left">
-<form>
-  <div class="form-group">
-        <label for="category">分類：</label>
-        <select class="form-control" id="cotegory" style="max-width:320px" v-model="article.category">
-            <option value="" selected style="color:#ccc">請選擇分類</option>
-            <option value="1">新闻</option>
-            <option value="2">娱乐</option>
-            <option value="3">动漫</option>
-            <option value="4">汽车</option>
-            <option value="5">时政</option>
-        </select>
-  </div>
-  <div class="form-group">
-        <label for="1">標題：</label>
-        <input type="text" class="form-control" id="exampleTitle" placeholder="文章標題" v-model="article.title">
-  </div>
-  <div class="form-group">
-        <label for="">內容：</label>
-      <div class="hidden-xs">
-          <!--编辑器-->
-        <div id="editor">
-            <!--<p>Welcome!</p>-->
-        </div>
-      </div>
-      <form class="visible-xs">
-        <textarea class="form-control" rows="10" placeholder="文章內容"></textarea>
-      </form>
-  </div>
- 
-  <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">發 表</button>
-</form>
-<div v-html="xss"></div>
-
-
-
-
+            <form>
+            <div class="form-group">
+                    <label for="category">分類：</label>
+                    <select class="form-control" id="cotegory" style="max-width:320px" v-model="article.category">
+                        <option value="" selected style="color:#ccc">請選擇分類</option>
+                        <option  v-for="(v,i) in categoryList" :value="v.ID" :key="i">{{v.CategoryName}}</option>
+                        <!--<option value="2">娱乐</option>
+                        <option value="3">动漫</option>
+                        <option value="4">汽车</option>
+                        <option value="5">时政</option>-->
+                    </select>
+            </div>
+            <div class="form-group">
+                    <label for="1">標題：</label>
+                    <input type="text" class="form-control" id="exampleTitle" placeholder="文章標題" v-model="article.title">
+            </div>
+            <div class="form-group">
+                    <label for="">內容：</label>
+                <div class="hidden-xs">
+                    <!--编辑器-->
+                    <div id="editor">
+                        <!--<p>Welcome!</p>-->
+                    </div>
+                </div>
+                <form class="visible-xs">
+                    <textarea class="form-control" rows="10" placeholder="文章內容"></textarea>
+                </form>
+            </div>
+            
+            <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">發 表</button>
+            <button v-if="status==='edit'" type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">保 存</button>
+            </form>
+            <div v-html="xss"></div>
 
             </div>
         </div>
@@ -70,7 +68,11 @@ export default {
                 category:'',
                 title:''
             },
-            xss:''
+            xss:'',
+            status:'',
+            loading:false,
+            categoryList:'',
+            initData:''
         }
       },
       components:{},
@@ -81,7 +83,7 @@ export default {
             // this.editor.customConfig.uploadImgServer = 'http://35.194.241.228/api/Upload/Imges'
             this.editor.customConfig.uploadImgServer = accountAxios.path  +'api/Upload/Imges'
             this.editor.create()
-
+            
             this.editor.customConfig.uploadImgHooks = {
                 before: function (xhr, editor, files) {
                     // 图片上传之前触发
@@ -132,7 +134,6 @@ export default {
       },
       methods:{
           submitArticle(){
-            console.log(this.editor.txt.html());
             if( !this.article.category){
                 this.$message({
                     message: '請輸入類別',
@@ -154,17 +155,58 @@ export default {
                 });
                 return 
             }
-            accountAxios.publish({
-                Title: this.article.title,
-                Content: this.editor.txt.html(),
-                CategoryID: this.article.category
-            }).then(res=>{
-                if(res.data.ResultCode==200){
-                    alert("發表成功！")
-                }
-            }).catch(err=>{
-                console.log('error!',err);
-            })
+            if(this.status==='add'){
+                this.loading = true;
+                accountAxios.publish({
+                    Title: this.article.title,
+                    Content: this.editor.txt.html(),
+                    CategoryID: this.article.category
+                }).then(res=>{
+                    this.loading = false;
+                    if(res.data.ResultCode==200){
+                        this.$message({
+                            message: '發表成功！',
+                            type: 'success'
+                        });
+                    }
+                }).catch(err=>{
+                    this.loading = false;
+                    console.log('error!',err);
+                })
+            }else if(this.status==='edit'){
+                // ｛"RelationID":"","Title":"文章标题","Content":"文章内容","CategoryID":"文章所属分类ID"｝
+                console.log('編輯接口');
+                this.loading = true;
+                accountAxios.editArticle({
+                    RelationID:this.initData.RelationID,
+                    Title: this.article.title,
+                    Content: this.editor.txt.html(),
+                    CategoryID: this.article.category
+                }).then(res=>{
+                    this.loading = false;
+                    if(res.data.ResultCode==200){
+                        alert("編輯成功！")
+                    }
+                }).catch(err=>{
+                    this.loading = false;
+                    console.log('error!',err);
+                })
+
+            }
+          },
+          getCategories(){
+                this.loading = true;
+                accountAxios.getCategories({}).then(res=>{
+                    this.loading = false;
+                    if(res.data.ResultCode==200){
+                        console.log('CO',res.data);
+                        this.categoryList = res.data.Data
+                    }
+                }).catch(err=>{
+                    this.loading = false;
+                    console.log('error!',err);
+                })
+
           },
           editorConfig(){
 
@@ -172,6 +214,26 @@ export default {
 
       },
       created(){
+          this.getCategories()
+          if(this.$route.path.indexOf('/edit/')!==-1){
+                this.status = 'edit'
+                accountAxios.getNewInfo({
+                    RelationID:this.$route.path.split('/')[4]
+                }).then(res=>{
+                    if(res.data.ResultCode==200){
+                        this.initData = JSON.parse(JSON.stringify(res.data.Data))
+                        this.article.category=res.data.Data.CategoryID
+                        this.article.title=res.data.Data.NewsTitle
+                        this.editor.txt.html(res.data.Data.Content)
+                    }
+                }).catch(err=>{
+                    console.log('error!',err);
+                })
+
+          }else{
+              this.status = 'add'
+          }
+
                     //   this.xss = '<button onclick="eval(alert(/12345/))">xss</button>'
                     //   this.xss = '<button onmouseenter="eval(alert(/12345/))">xss</button>'
                     //   this.xss = '<anytag onmouseover=alert(15)>M'

@@ -48,8 +48,8 @@
                     <td>{{v.ClickRate }}</td>
                     <td>
                         <div class="hidden-xs">
-                            <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
-                            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
+                            <button type="button" class="btn btn-info" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
+                            <button type="button" class="btn btn-danger" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-duplicate"></i> 複製鏈接</button>
                         </div>
                         <!--<div class="btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" style="max-width:300px;min-width:100px">
@@ -115,6 +115,35 @@ import accountAxios from '../../axios_joggle/axios_account'
             }).catch(err=>{
                 this.loading = false
             })
+        },
+        deleteArticle(id){
+            if(id){
+                this.$confirm('確定刪除?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(() => {
+                        this.loading = true
+                        accountAxios.deleteArticle({
+                            RelationID:id
+                        }).then(res=>{
+                            this.loading = false
+                            if(res.data.ResultCode==200){
+                                this.getMyNews()
+                                this.$message({
+                                    message: '刪除成功！',
+                                    type: 'success'
+                                });
+                            }
+
+                        }).catch(err=>{
+                            this.loading = false
+                        })
+
+                }).catch(() => {
+                    
+                });
+            }
         },
         changePage(pageIndex){
             console.log(pageIndex);
