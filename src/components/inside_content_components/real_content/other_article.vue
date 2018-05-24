@@ -232,6 +232,7 @@
             :nth-child(1) {
               display: inline-block;
               min-width: 48px;
+              padding: 0 5px;
               max-height: 22px;
               color: #f89c98;
               border: 1px solid #f89c98;

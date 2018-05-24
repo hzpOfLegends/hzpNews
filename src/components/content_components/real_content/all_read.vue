@@ -212,7 +212,7 @@
               margin-top:2px;
               display: block;
               min-width: 42px;
-              max-width:66px;
+              padding: 0 5px;
               overflow: hidden;
               word-break: keep-all;
               height:22px;
