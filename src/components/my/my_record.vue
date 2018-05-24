@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{v.Date}}</td>
+                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>

@@ -63,6 +63,8 @@ Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.component(Icon.name, Icon)
+import moment from 'moment'
+Vue.prototype.$moment = moment;
 /* eslint-disable no-new */
 let that = new Vue({
   el: '#app',

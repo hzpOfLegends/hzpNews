@@ -3,7 +3,9 @@
       <div class="user-info row">
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 l-box">
               <div class="photo">
-                  <img src="/static/img/timg.jpg" alt="">
+                    <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
+                    <img v-else src="/static/img/timg.jpg" alt="">
+                  <!--<img src="/static/img/timg.jpg" alt="">-->
               </div>
               <div class="msg">
                   <h5>{{userInfo.Name}}</h5>
@@ -46,7 +48,7 @@
             <tbody>
                 <tr v-for="(v,i) in profitStatisticsList" :key="i">
                     <!--<th scope="row">1</th>-->
-                    <td>{{v.Date}}</td>
+                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
@@ -75,7 +77,7 @@
                             <div class="news-title">
                                 <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
                                 <div class="sub-title">
-                                    <span>時間：{{v.PublishTime}}</span>
+                                    <span>時間：{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
                                     &nbsp;<i>|</i>&nbsp;
                                     <span>點閱：{{v.ClickRate}}</span>
                                 </div>

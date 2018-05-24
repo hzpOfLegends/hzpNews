@@ -4,7 +4,7 @@
           <div class="title">
               <h5>個人資料</h5>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left" v-loading="loading">
             <div class="photo">
                 <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
                 <img v-else src="/static/img/timg.jpg" alt="">
@@ -114,7 +114,8 @@ export default {
         return {
             userInfo:'',
             initUserInfo:'', //修改前數據
-            modify:''
+            modify:'',
+            loading:false
         }
     },
     components:{
@@ -136,18 +137,20 @@ export default {
                 });
                 return;
           }
-          
+          this.loading = true
           accountAxios.modifyUserInfo({
               Language:this.userInfo.Language,
               Name:this.userInfo.Name
           }).then(res=>{
+              this.loading = false
               if(res.data.ResultCode==200){
-                  console.log(res);
                     this.$message({
                     message: '修改成功！',
                     type: 'success'
                     });
               }
+          }).catch(err=>{
+              this.loading = false
           })
         },
         clickModify(value){

@@ -43,7 +43,7 @@
                         </div>
                     </td>
                     <!--时间-->
-                    <td>{{v.PublishTime}}</td>
+                    <td>{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <!--点阅数-->
                     <td>{{v.ClickRate }}</td>
                     <td>
