@@ -1,5 +1,6 @@
 <template>
   <div class="focus_news card" @click="skip_inside_contnet(focus_news_data.RelationID,focus_news_data.CategoryID)">
+    <router-link :to="{path:'/article/'+focus_news_data.RelationID}">
     <div class="focus_news_icon">
       <img src="/static/img/focusNews.png" alt="">
     </div>
@@ -24,6 +25,7 @@
 
       </div>
     </div>
+    </router-link>
   </div>
 </template>
 
@@ -38,7 +40,8 @@
       return {
         focus_news_data: "",
         default_photo: "/static/img/timg.jpg",
-        default_backgrund_photo:"/static/img/OopsDaily.png"
+        default_backgrund_photo:"/static/img/OopsDaily.png",
+        skip_url:"/article/"
       }
     },
     filters: {
@@ -109,6 +112,9 @@
     max-height: 520px;
     background: white;
     cursor: pointer;
+    a{
+      color: black;
+    }
     .focus_news_icon {
       position: absolute;
       top: 0;
@@ -134,6 +140,7 @@
       :nth-child(1) {
         display: inline-block;
         min-width: 48px;
+        padding: 0 5px;
         height: 22px;
         color: #f89c98;
         border: 1px solid #f89c98;

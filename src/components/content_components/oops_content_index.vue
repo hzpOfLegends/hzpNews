@@ -177,6 +177,7 @@
     .container {
       max-width: 1180px;
       width: 100%;
+
     }
 
     .left_content {

@@ -6,8 +6,10 @@
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content clearfix" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
+      <router-link :to="{path:'/article/'+ item.RelationID}">
       <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
       <p>{{item.NewsTitle}}</p>
+      </router-link>
     </div>
   </div>
 </template>
@@ -118,6 +120,9 @@
       border-bottom: 3px dashed #f6f6f6;
       margin-top: 0.9375rem;
       cursor: pointer;
+      a{
+        color: black;
+      }
       img {
         width: 100%;
         object-fit: cover;
