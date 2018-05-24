@@ -78,8 +78,6 @@
           sessionStorage.setItem("CategoryID",CategoryID)
         }
         if (RelationID) {
-          let q = this.$route.query
-          q.RelationID = RelationID
           this.$router.push({
             path: "/article/"+ RelationID,
           })
@@ -87,8 +85,9 @@
       }
     },
     created() {
+      console.log(this.$route.params.categoryId)
       // 焦点新闻请求
-      index_message.focus_news({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
+      index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
         this.focus_news_data = res.data.Data[0]
 
       }).catch(err => {

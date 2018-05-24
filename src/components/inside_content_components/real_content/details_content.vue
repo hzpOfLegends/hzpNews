@@ -102,7 +102,8 @@
         }, 1)
         setTimeout(() => {
           verify_time.timed_10({"RelationID":this.$route.path.split('/')[2],"ShareID":sessionStorage.getItem("ShareID")}).then(res => {
-            console.log(res)
+            console.log(this.$route.path.split('/')[2],sessionStorage.getItem("ShareID"))
+
           }).catch(err => {
             console.log(err)
           })

@@ -1,8 +1,7 @@
 <template>
     <span class="google">
             <a target="_blank"
-              :href="web_url" onclick="javascript:window.open(this.href,
-              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+              :href="web_url" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
               <img src="/static/img/google.png" alt="">
             </a>
           </span>
@@ -13,10 +12,15 @@
     name: "google_share_btn",
     data() {
       return {
+        share:"",
         web_url: ""
       }
     },
     created() {
+      this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):"";
+      if(this.share){
+        this.web_url ="https://plus.google.com/share?url="+ window.location.href+'?r='+this.share
+      }
       this.web_url ="https://plus.google.com/share?url="+ window.location.href
     }
   }

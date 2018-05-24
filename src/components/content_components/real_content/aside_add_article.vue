@@ -55,7 +55,7 @@
     },
     created() {
       //新增文章
-      index_message.add_article({CategoryID:this.$route.query.CategoryID?this.$route.query.CategoryID:'-1'}).then(res => {
+      index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
         this.hot_article_first = res.data.Data.shift()
         this.hot_article = res.data.Data
       }).catch(err => {

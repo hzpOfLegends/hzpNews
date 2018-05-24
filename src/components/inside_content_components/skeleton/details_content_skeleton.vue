@@ -25,8 +25,9 @@
   }
   .detail_content_wrap{
     max-width: 840px;
+    width: 100%;
     height: 500px;
     border: 1px solid #f6f6f6;
-    width: 100%;
+
   }
 </style>

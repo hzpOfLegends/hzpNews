@@ -103,7 +103,7 @@
       inside_page_message.other_article({
         pageSize: 20,
         pageIndex: this.pageNum,
-        CategoryID: this.$route.query.CategoryID?this.$route.query.CategoryID:"1"
+        CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
       }).then(res => {
         this.recent_hot = res.data.Data.news
       }).catch(err => {

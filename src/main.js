@@ -7,6 +7,21 @@ import VueMeta from 'vue-meta'
 Vue.use(VueMeta)
 
 Vue.config.productionTip = false
+// 路由攔截
+router.beforeEach((to,from,next)=>{
+  console.log(to.fullPath.indexOf('/my'))
+  if(to.fullPath.indexOf('/my')==0){
+    if(!sessionStorage.getItem('ShareID')){
+      next({path:"/"})
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
+
+})
+
 // 關於bootstrap-vue 文件的引入
 import BootstrapVue from 'bootstrap-vue'
 // 字体样式
