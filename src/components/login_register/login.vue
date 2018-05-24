@@ -8,12 +8,12 @@
           </div>
           <div>
             <div class="email">
-              <input type="text" ref="user_email" @keyup="emailVerify">
+              <input type="text" v-model="email" ref="user_email" @keyup="emailVerify">
               <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px">{{email_hint}}</p>
             <div class="password">
-              <input type="password" ref="user_password" @keyup="passwordVerify">
+              <input type="password" v-model="password" ref="user_password" @keyup="passwordVerify">
               <i class="fa fa-lock"></i>
 
             </div>
@@ -58,7 +58,7 @@
         email_state: true, //郵箱框狀態
         btn_boo1: false, //用來判斷btnactive顔色
         email_hint: "", //郵箱提示
-        password: "", // 郵箱值
+        password: "", // 密码值
         password_state: true, //郵箱框狀態
         btn_boo2: false, //用來判斷btnactive顔色
         password_hint: "", //郵箱提示
@@ -97,7 +97,7 @@
       //郵箱驗證
       emailVerify() {
         let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
-        if (reg.test(this.$refs.user_email.value)) {
+        if (reg.test(this.email)) {
           this.email_hint = ""
           this.email_state = true
           this.btn_boo1 = true
@@ -115,7 +115,7 @@
       // 密碼嚴重
       passwordVerify() {
         let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
-        if (reg.test(this.$refs.user_password.value)) {
+        if (reg.test(this.password)) {
           this.password_hint = ""
           this.password_state = true
           this.btn_boo2 = true
@@ -139,12 +139,13 @@
           //遮罩
           this.shade_boo = true
           users_page.login({
-            loginName: this.$refs.user_email.value,
-            loginPwd: this.$refs.user_password.value
+            loginName: this.email,
+            loginPwd: this.password
           }).then(res => {
             if (res.status == 200 && res.data.ResultCode == 200) {
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                this.$message.success("登录成功")
                 this.$store.state.user_info = res.data.Data
               }).catch(err => {
                 console.log(err)

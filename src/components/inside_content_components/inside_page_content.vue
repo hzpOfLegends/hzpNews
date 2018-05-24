@@ -96,6 +96,7 @@
       this.$store.state.nav_style = true
       //隐藏底部
       this.$store.state.foot_all_style = false
+
     }
   }
 </script>

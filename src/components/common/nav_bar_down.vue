@@ -45,10 +45,20 @@
 </template>
 
 <script>
+  import header_message from "@/axios_joggle/axios_header"
   export default {
     name: "nav_bar_down",
     methods:{
 
+    },
+    created(){
+      header_message.nav_type().then(res => {
+        if(res.data.Data){
+          this.$store.state.nav_type = res.data.Data
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     },
     mounted(){
 

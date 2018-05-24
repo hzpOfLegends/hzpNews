@@ -154,7 +154,7 @@
         font-size: 12px;
         color: #999999;
         :nth-child(1) {
-          width: 26px;
+          min-width: 26px;
           height: 26px;
           display: inline-block;
           border-radius: 50%;

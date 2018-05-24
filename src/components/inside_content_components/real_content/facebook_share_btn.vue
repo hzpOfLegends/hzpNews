@@ -1,18 +1,13 @@
 <template>
     <span class="facebook">
-          <!--<span class="fb-share-button" data-href="123"-->
-                <!--data-layout="box_count" data-mobile-iframe="true">-->
-            <a target="_blank"
-               :href="share_url"
-               class="fb-xfbml-parse-ignore">
-              <img src="/static/img/facebook.png">
-            </a>
-
+       <a class="fb-xfbml-parse-ignore" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')"
+          :href="share_url"><img src="/static/img/facebook.png"></a>
+            <!--<a target="_blank"-->
+               <!--:href="share_url"-->
+               <!--class="fb-xfbml-parse-ignore">-->
+              <!---->
+            <!--</a>-->
           </span>
-          <!--<span class="charater">-->
-
-          <!--</span>-->
-        <!--</span>-->
 </template>
 
 <script>
@@ -26,10 +21,14 @@
       },
       created(){
         this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):""
+        console.log(this.share)
         if(this.share){
-          this.share_url = "javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href"+'?r='+this.share+")) ));"
+          let a = window.location.href + "?r="+this.share
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+";"
+          console.log(1,this.share_url)
         }else{
-          this.share_url = "javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+";";
+
         }
 
       },

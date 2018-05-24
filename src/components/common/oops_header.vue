@@ -110,6 +110,8 @@
 <script>
   // 引入路由
   import header_message from '@/axios_joggle/axios_header'
+  // 引入路由 /登出
+  import users_page from '@/axios_joggle/axios_users'
   // 引入导航栏
   import nav_bar from '../content_components/real_content/nav_bar'
 
@@ -178,7 +180,9 @@
         sessionStorage.setItem('user_info', "")
         // 隱藏 用戶欄
         this.$store.state.judge_login = false
-
+        // 请求后台 登出
+        users_page.login_out()
+        // 跳转到首页
         this.$router.push({path:"/"})
       }
     }
