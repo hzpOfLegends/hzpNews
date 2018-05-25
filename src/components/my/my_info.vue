@@ -57,7 +57,7 @@
                                 <span style="color:#5aa1fa">{{userInfo.Email}}</span>
                            </div>
                            <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
+                              <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('mail')">修改</button>
                            </div>
                         </li>
                         <li>
@@ -100,6 +100,7 @@
       <div class="modify-cover" v-if="modify">
           <div class="m-view" >
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
+                <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'"></modifyMail>
           </div>
       </div>
 
@@ -109,6 +110,7 @@
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
 import modifyPWD from './subcomponent/modify_pwd'
+import modifyMail from './subcomponent/modify_mail'
 export default {
     data(){
         return {
@@ -119,7 +121,7 @@ export default {
         }
     },
     components:{
-        modifyPWD
+        modifyPWD,modifyMail
     },
     methods:{
         // 監聽子組件關閉信號
@@ -226,6 +228,7 @@ export default {
               width:126px;
               height:126px;
               border-radius:50%;
+              border:1px solid #ccc;
               overflow: hidden;
               img {
                 width:100%;

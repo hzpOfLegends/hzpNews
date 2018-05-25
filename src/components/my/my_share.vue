@@ -1,11 +1,11 @@
 <template>
-  <div class="share">
+  <div class="share" v-loading="loading">
       <div class="gains item row">
           <div class="title">
               <h5>熱門好文</h5>
           </div>
-        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
-            <div class="news-list">
+        <div class="content" style="text-align:left;min-height:300px">
+            <div class="news-list" style="min-height:300px">
                 <div class="news-items" v-for="(v,i) in hotList" :key="i">
                     <div style="">
                         <div class="photo">
@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="" style="margin:17px 0">
-                                <button type="button" class="btn btn-primary" style="width:100%" @click="copyLink">複製鏈接</button>
+                                <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
                     </div>
@@ -52,24 +52,25 @@
  
 
             </div>
+          <!--分頁器 -->
+          <div style="text-align:center">
+              <el-pagination
+                  background
+                  layout="prev, pager, next"
+                  :page-size="pageSize"
+                  :total="total"
+                  @current-change="changePage"
+              >
+              </el-pagination>
+          </div>
         </div>  
-        <!--分頁器 -->
-        <div style="text-align:center">
-            <el-pagination
-                background
-                layout="prev, pager, next"
-                :page-size="pageSize"
-                :total="total"
-                @current-change="changePage"
-            >
-            </el-pagination>
-        </div>
       </div>
   </div>
 </template>
 
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
+import Clipboard from 'clipboard';
     export default {
         data(){
             return {
@@ -77,6 +78,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 hotList:'',
                 total:1,
                 pageSize:12,
+                linkPathOrigin:''
             }
         },
         watch:{
@@ -118,15 +120,23 @@ import accountAxios from '../../axios_joggle/axios_account'
                 query.pageIndex = pageIndex
                 this.$router.push({query:query})
             },
-            copyLink(){
-                console.log('copy');
-                var tempInput  = '123454';
-                document.body.appendChild(tempInput );
-                tempInput.select(); // 选择对象
-                document.execCommand("Copy"); // 执行浏览器复制命令
-                tempInput.className = 'tempInput ';
-                tempInput.style.display='none';
-                document.body.removeChild(tempInput );//移除
+            copyLink(className){
+                const clipboard = new Clipboard('.'+className);
+                clipboard.on('success', e=> {
+                    // console.info('Action:', e.action);
+                    // console.info('Text:', e.text);
+                    // console.info('Trigger:', e.trigger);
+                    this.$message({
+                        message: '複製成功！',
+                        type: 'success'
+                    });
+                    e.clearSelection();
+                });
+
+                clipboard.on('error', function(e) {
+                    // console.error('Action:', e.action);
+                    // console.error('Trigger:', e.trigger);
+                });
             }
 
         },
@@ -140,6 +150,7 @@ import accountAxios from '../../axios_joggle/axios_account'
             }else{
             }
             this.hotArticle()
+            this.linkPathOrigin = window.location.origin + '/article/'
         }
     }
 </script>

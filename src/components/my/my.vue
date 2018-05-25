@@ -145,7 +145,6 @@ export default {
           document.querySelectorAll('.nav-list>li').forEach((v,i)=>{
               let a = v.querySelector('a')
               if(v.getAttribute('index')==currentIndex){
-              console.log(a);
                   a.classList.add('c-active');
               }else{
                   a.classList.remove('c-active');

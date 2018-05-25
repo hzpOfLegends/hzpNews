@@ -1,5 +1,5 @@
 <template>
-  <div class="accountdoc">
+  <div class="accountdoc" v-loading="loading">
       <div class="gains item row">
           <div class="title">
               <h5>點閱記錄</h5>
@@ -14,7 +14,7 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
+        <div class="content" style="text-align:left;min-height:300px">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
