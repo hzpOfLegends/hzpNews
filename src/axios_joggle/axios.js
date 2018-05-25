@@ -11,10 +11,8 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
   {
     case 200 :
       break;
-    case 201 :
-      // router.push({path:"/"}) 
     case 202:
-      // router.push({path:"/"})
+      router.push({path:"/"})
       break;
     case 401 :
       // router.push({path:"/"})
