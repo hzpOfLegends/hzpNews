@@ -44,7 +44,6 @@ Vue.use(Croppa)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import axios_index from "./axios_joggle/axios_index";
 
 //loading組件（只能使用v-loading指令）
 import 'element-ui/lib/theme-chalk/loading.css'
@@ -63,6 +62,12 @@ Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.component(Icon.name, Icon)
+
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+Vue.prototype.$NProgress = NProgress;
+import moment from 'moment'
+Vue.prototype.$moment = moment;
 /* eslint-disable no-new */
 let that = new Vue({
   el: '#app',

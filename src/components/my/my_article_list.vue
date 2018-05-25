@@ -1,5 +1,5 @@
 <template>
-  <div class="article-list">
+  <div class="article-list" v-loading="loading">
       <div class="gains item row">
           <div class="title">
               <h5>全部文章</h5>
@@ -14,7 +14,7 @@
                 </ul>
                 </router-link>
           </div>
-        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
+        <div class="content" style="text-align:left;min-height:300px">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -43,7 +43,7 @@
                         </div>
                     </td>
                     <!--时间-->
-                    <td>{{v.PublishTime}}</td>
+                    <td>{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <!--点阅数-->
                     <td>{{v.ClickRate }}</td>
                     <td>
@@ -68,16 +68,16 @@
             </tbody>
             </table>
         </div>
-        <div style="text-align:center">
-            <el-pagination
-                background
-                layout="prev, pager, next"
-                :page-size="pageSize"
-                :total="total"
-                @current-change="changePage"
-            >
-            </el-pagination>
-        </div>
+            <div style="text-align:center">
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    :page-size="pageSize"
+                    :total="total"
+                    @current-change="changePage"
+                >
+                </el-pagination>
+            </div>
           
       </div>
   </div>

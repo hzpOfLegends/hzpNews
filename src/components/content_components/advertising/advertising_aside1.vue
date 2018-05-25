@@ -1,6 +1,6 @@
 <template>
     <div class="advertising card">
-
+        廣告位
     </div>
 </template>
 

@@ -4,7 +4,7 @@
           <div class="title">
               <h5>個人資料</h5>
           </div>
-        <div class="content" style="text-align:left">
+        <div class="content" style="text-align:left" v-loading="loading">
             <div class="photo">
                 <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
                 <img v-else src="/static/img/timg.jpg" alt="">
@@ -57,7 +57,7 @@
                                 <span style="color:#5aa1fa">{{userInfo.Email}}</span>
                            </div>
                            <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
+                              <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('mail')">修改</button>
                            </div>
                         </li>
                         <li>
@@ -100,6 +100,7 @@
       <div class="modify-cover" v-if="modify">
           <div class="m-view" >
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
+                <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'"></modifyMail>
           </div>
       </div>
 
@@ -109,16 +110,18 @@
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
 import modifyPWD from './subcomponent/modify_pwd'
+import modifyMail from './subcomponent/modify_mail'
 export default {
     data(){
         return {
             userInfo:'',
             initUserInfo:'', //修改前數據
-            modify:''
+            modify:'',
+            loading:false
         }
     },
     components:{
-        modifyPWD
+        modifyPWD,modifyMail
     },
     methods:{
         // 監聽子組件關閉信號
@@ -136,18 +139,20 @@ export default {
                 });
                 return;
           }
-          
+          this.loading = true
           accountAxios.modifyUserInfo({
               Language:this.userInfo.Language,
               Name:this.userInfo.Name
           }).then(res=>{
+              this.loading = false
               if(res.data.ResultCode==200){
-                  console.log(res);
                     this.$message({
                     message: '修改成功！',
                     type: 'success'
                     });
               }
+          }).catch(err=>{
+              this.loading = false
           })
         },
         clickModify(value){
@@ -223,6 +228,7 @@ export default {
               width:126px;
               height:126px;
               border-radius:50%;
+              border:1px solid #ccc;
               overflow: hidden;
               img {
                 width:100%;

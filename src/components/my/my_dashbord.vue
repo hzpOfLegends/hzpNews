@@ -3,7 +3,9 @@
       <div class="user-info row">
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 l-box">
               <div class="photo">
-                  <img src="/static/img/timg.jpg" alt="">
+                    <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
+                    <img v-else src="/static/img/timg.jpg" alt="">
+                  <!--<img src="/static/img/timg.jpg" alt="">-->
               </div>
               <div class="msg">
                   <h5>{{userInfo.Name}}</h5>
@@ -46,7 +48,7 @@
             <tbody>
                 <tr v-for="(v,i) in profitStatisticsList" :key="i">
                     <!--<th scope="row">1</th>-->
-                    <td>{{v.Date}}</td>
+                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
@@ -75,13 +77,13 @@
                             <div class="news-title">
                                 <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
                                 <div class="sub-title">
-                                    <span>時間：{{v.PublishTime}}</span>
+                                    <span>時間：{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
                                     &nbsp;<i>|</i>&nbsp;
                                     <span>點閱：{{v.ClickRate}}</span>
                                 </div>
                             </div>
                             <div class="" style="margin:17px 0">
-                                <button type="button" class="btn btn-primary" style="width:100%" @click="copyLink">複製鏈接</button>
+                                <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
                     </div>
@@ -98,6 +100,7 @@
 
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
+import Clipboard from 'clipboard';
     export default {
         data(){
             return {
@@ -106,12 +109,22 @@ import accountAxios from '../../axios_joggle/axios_account'
                 profitStatisticsList:'',
                 hotList:'',
                 paymentRequest:false,
+                linkPathOrigin:'',
+                requestCount:0
             }
         },
         watch:{
-            '$route.query':'getProfitStatistics'
+            '$route.query':'getProfitStatistics',
+            'requestCount':'closeNProgress'
+
         },
         methods:{
+            closeNProgress(){
+                if(this.requestCount === 2){
+                    this.$NProgress.done()
+                    this.requestCount = 0
+                }
+            },
             //最近收益
             getProfitStatistics(){
                 this.paymentRequest = true
@@ -119,6 +132,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                     pageSize:this.pageSize,
                     pageIndex:this.$route.query.pageIndex || "1" ,
                 }).then(res=>{
+                    this.requestCount++
                     this.paymentRequest = false
                     if(res.data.ResultCode==200){
                         this.profitStatisticsList = res.data.Data.Statistics
@@ -127,6 +141,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                     }
                 }).catch(err=>{
                     this.paymentRequest = false
+                    this.requestCount++
                 })
             },
             //熱門好文
@@ -140,30 +155,42 @@ import accountAxios from '../../axios_joggle/axios_account'
                     sDateTime:"",
                     eDateTime:""
                 }).then(res=>{
+                    this.requestCount++
                     this.loading = false
                     if(res.data.ResultCode==200){
                         this.hotList = res.data.Data.news
                         // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
                         console.log(res);
+                        this.copyLink()
                     }
                 }).catch(err=>{
                     this.loading = false
+                    this.requestCount++
                 })
             },
-            copyLink(){
-                console.log('copy');
-                var tempInput  = '123454';
-                document.body.appendChild(tempInput );
-                tempInput.select(); // 选择对象
-                document.execCommand("Copy"); // 执行浏览器复制命令
-                tempInput.className = 'tempInput ';
-                tempInput.style.display='none';
-                document.body.removeChild(tempInput );//移除
+            copyLink(className){
+                const clipboard = new Clipboard('.'+className);
+                clipboard.on('success', e=> {
+                    // console.info('Action:', e.action);
+                    // console.info('Text:', e.text);
+                    // console.info('Trigger:', e.trigger);
+                    this.$message({
+                        message: '複製成功！',
+                        type: 'success'
+                    });
+                    e.clearSelection();
+                });
+
+                clipboard.on('error', function(e) {
+                    // console.error('Action:', e.action);
+                    // console.error('Trigger:', e.trigger);
+                });
             }
 
         },
         components:{},
         mounted(){
+            this.$NProgress.start()
 
         },
         created(){
@@ -175,6 +202,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 this.getProfitStatistics()
             }
             this.hotArticle()
+            this.linkPathOrigin = window.location.origin + '/article/'
         }
     }
 </script>
@@ -207,7 +235,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 overflow: hidden;
                 margin:15px;
                 margin-left:40px;
-                border:1px solid #ccc;
+                border:1px solid #000;
                 img {
                     width:100%;
                     height:auto;

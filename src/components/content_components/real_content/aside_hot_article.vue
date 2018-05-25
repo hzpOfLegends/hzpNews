@@ -5,7 +5,7 @@
       <span style="font-weight: 900">熱門文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
+    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)" style="text-align:left">
       <router-link :to="{path:'/article/'+item.RelationID}">
       <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
       <p>{{item.NewsTitle}}</p>

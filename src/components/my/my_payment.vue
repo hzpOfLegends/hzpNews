@@ -1,11 +1,11 @@
 <template>
-  <div class="account-payment">
+  <div class="account-payment" v-loading="loading">
       <div class="gains item row">
           <div class="title">
               <h5>我的收益</h5>
 
           </div>
-        <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
+        <div class="content" style="text-align:left;min-height:300px" >
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -21,7 +21,7 @@
             <tbody>
                 <tr v-for="(v,i) in profitStatisticsList" :key="i">
                     <!--<th scope="row">1</th>-->
-                    <td>{{v.Date}}</td>
+                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>

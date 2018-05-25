@@ -1,28 +1,21 @@
 <template>
-  <div class="modify-pwd" v-loading="loading">
-      <div class="title">修改密碼</div>
+  <div class="modify-mail" v-loading="loading">
+      <div class="title">修改郵箱</div>
       <div class="m-content">
             <div>
             <div class="form-group">
-                <label for="exampleInputEmail1">賬號</label>
+                <label for="exampleInputEmail1">原郵箱</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" v-model="name">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">原密碼</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="oldPassword">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword2">新密碼</label>
-                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="New Password" v-model="newPassword">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword3">確認密碼</label>
-                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="New Password" v-model="newPassword1">
+                <label for="exampleInputPassword1">驗證碼</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="vCode1" style="width:70%;">
+                <button type="" style="display:inline-block" class="btn btn-default">發送驗證碼</button>
             </div>
             </br>
             <div class="btns">
                 <button type="" class="btn btn-default" @click="callClose()">取 消</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="" class="btn btn-default" @click="modify()">保存更改</button>
+                <button type="" class="btn btn-default" @click="modify()">下一步</button>
             </div>
             </div>
 
@@ -97,7 +90,7 @@ import accountAxios from '../../../axios_joggle/axios_account'
 </script>
 
 <style lang="less" scoped>
-.modify-pwd {
+.modify-mail {
     .title {
         text-align: center;
         height:62px;
