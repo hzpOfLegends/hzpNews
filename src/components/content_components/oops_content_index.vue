@@ -1,7 +1,7 @@
 <template>
   <div class="oops_content_index">
     <div class="container clearfix">
-      <div class="float-left left_content">
+      <div class="float-left left_content" @get_requestCount = "get_requestCount">
         <!--焦点新闻-->
         <vue-lazy-component>
           <focus_news/>
@@ -148,13 +148,19 @@
         $('body').animate({scrollTop: 0}, 1000);
       },
       "$route.path": "listenType"
+
     },
     mounted() {
+      // 进度条开始
+      this.$NProgress.start()
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "#f4f4f4"
     },
     methods: {
+      get_requestCount(val){
+        console.log("fu",val)
+      },
       infinite(done) {
         setTimeout(() => {
           done()

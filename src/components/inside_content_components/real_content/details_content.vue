@@ -15,7 +15,6 @@
     <div class="share">
       <span>分享至:</span>
       <div style="display: inline-block">
-
         <facebook_btn/>
         <google_btn/>
         <twitter_btn/>
@@ -94,6 +93,13 @@
     mounted() {
       inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data
+        sessionStorage.setItem('CategoryID',this.details.CategoryID)
+        // 判断进度条
+        if(this.$store.state.inside_requestCount == 2){
+          this.$NProgress.done()
+        }else{
+          this.$store.state.inside_requestCount += 1
+        }
         setTimeout(() => {
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {

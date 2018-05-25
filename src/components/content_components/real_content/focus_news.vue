@@ -92,7 +92,12 @@
       // 焦点新闻请求
       index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
         this.focus_news_data = res.data.Data[0]
-
+        if(this.$store.state.index_requestCount == 4){
+          this.$NProgress.done()
+        }else{
+          console.log(4)
+          this.$store.state.index_requestCount += 1
+        }
       }).catch(err => {
         console.log(err)
       })

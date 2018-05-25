@@ -71,6 +71,8 @@
       }
     },
     mounted() {
+      // 进度条开始
+      this.$NProgress.start()
       // 將滾輪 滾到 頂部
       if ($('html').scrollTop()) {
         $('html').animate({scrollTop: 0}, 1000);

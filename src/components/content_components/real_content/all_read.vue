@@ -87,6 +87,12 @@
       //大家都在读
       index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
         this.recent_hot = res.data.Data.news
+        if(this.$store.state.index_requestCount == 4){
+          this.$NProgress.done()
+        }else{
+          console.log(1)
+          this.$store.state.index_requestCount += 1
+        }
       }).catch(err => {
       })
     }, filters: {

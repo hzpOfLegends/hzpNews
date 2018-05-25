@@ -50,6 +50,13 @@
     created() {
       inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
         this.hot_article = res.data.Data
+        // 判断进度条
+        if(this.$store.state.inside_requestCount == 2){
+          this.$NProgress.done()
+        }else{
+          console.log(1)
+          this.$store.state.inside_requestCount += 1
+        }
       }).catch(err => {
         console.log(err)
       })

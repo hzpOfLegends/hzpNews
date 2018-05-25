@@ -39,7 +39,6 @@
     components: {
       "nav_bar": nav_bar, // 導航
     },
-    watch: {},
     methods: {
       // 显示 / 隐藏
       nav_toggle() {

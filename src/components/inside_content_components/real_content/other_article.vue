@@ -107,8 +107,13 @@
         pageIndex: this.pageNum,
         CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
       }).then(res => {
-        console.log(res)
         this.recent_hot = res.data.Data.news
+        // 判断进度条
+        if(this.$store.state.inside_requestCount == 2){
+          this.$NProgress.done()
+        }else{
+          this.$store.state.inside_requestCount += 1
+        }
       }).catch(err => {
         console.log(err)
       })
