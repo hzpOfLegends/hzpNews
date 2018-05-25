@@ -8,19 +8,19 @@ Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 // 路由攔截
-// router.beforeEach((to,from,next)=>{
-//   console.log(to.fullPath.indexOf('/my'))
-//   if(to.fullPath.indexOf('/my')==0){
-//     if(!sessionStorage.getItem('ShareID')){
-//       next({path:"/"})
-//     }else{
-//       next()
-//     }
-//   }else{
-//     next()
-//   }
+router.beforeEach((to,from,next)=>{
+  console.log(to.fullPath.indexOf('/my'))
+  if(to.fullPath.indexOf('/my')==0){
+    if(!sessionStorage.getItem('ShareID')){
+      next({path:"/"})
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
 
-// })
+})
 
 // 關於bootstrap-vue 文件的引入
 import BootstrapVue from 'bootstrap-vue'
@@ -61,6 +61,7 @@ Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$alert = MessageBox.alert;
 Vue.component(Icon.name, Icon)
 
 import NProgress from 'nprogress'

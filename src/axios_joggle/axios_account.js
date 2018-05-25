@@ -58,6 +58,30 @@ class account {
   getMeta(data){
       return axios.get(axios.path + 'api/Meta/GetMeta',{params:data})
   }
+  // 发送邮箱验证码
+  sendEmailCode(data){
+      return axios.post(axios.path + 'api/User/SendMail',data)
+  }
+  // 郵箱驗證
+  verifyEmail(data){
+      return axios.get(axios.path + 'api/User/verifyEmail',{params:data})
+  }
+  // 修改用戶郵箱
+  modifyEmail(data){
+      return axios.post(axios.path + 'api/User/ModifyUserEmail',data)
+  }
+  // 发送手機验证码
+  sendPhoneCode(data){
+      return axios.post(axios.path + 'api/User/SendSMS',data)
+  }
+  // 校驗手機驗證碼
+  verifyPhone(data){
+      return axios.post(axios.path + 'api/User/VerifySMS',data)
+  }
+  // 修改手機
+  modifyPhone(data){
+      return axios.post(axios.path + 'api/User/ModifyUserPhone',data)
+  }
 
   
   

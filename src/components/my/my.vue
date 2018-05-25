@@ -196,7 +196,8 @@ export default {
   },
   created(){
     // this.init()
-    this.login()
+    // this.login()
+    this.getUserInfo()
   }
 }
 </script>
