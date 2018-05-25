@@ -50,13 +50,13 @@
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">{{step2.btnTXT}}</button>
+                    <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('new')">{{step2.btnTXT}}</button>
                 </div>
                 </br>
                 <div class="btns">
                     <button type="" class="btn btn-default" @click="callClose()">取 消</button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="" class="btn btn-default" style="background:#e6e6e6" disabled v-if="!step2.vCode">下一步</button>
-                    <button type="" class="btn btn-primary" @click="verifyEmail('old')" v-if="step2.vCode">下一步</button>
+                    <button type="" class="btn btn-primary" @click="verifyPhone('new')" v-if="step2.vCode">下一步</button>
                 </div>
             </div>
 
@@ -96,14 +96,16 @@ import countryPhoneList from '../../../assets/country_list'
                 name:'',
                 sendCode:false,
                 vCode:'',
-                btnTXT:'發送驗證碼'
+                btnTXT:'發送驗證碼',
+                r_id:''
             },
             step2:{
                 phoneCode:'',
                 name:'',
                 sendCode:false,
                 vCode:'',
-                btnTXT:'發送驗證碼'
+                btnTXT:'發送驗證碼',
+                r_id:''
             },
         }
       },
@@ -131,6 +133,7 @@ import countryPhoneList from '../../../assets/country_list'
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
+                        this.step1.r_id = res.data.Data.request_id
                         this.step1.sendCode = true
                         this.step1.btnTXT = "驗證碼已發送"
                     }
@@ -154,6 +157,7 @@ import countryPhoneList from '../../../assets/country_list'
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
+                        this.step2.r_id = res.data.Data.request_id
                         this.step2.sendCode = true
                         this.step2.btnTXT = "驗證碼已發送"
                     }
@@ -181,11 +185,37 @@ import countryPhoneList from '../../../assets/country_list'
                 // 驗證手機 {"phone":"+8618566086988","request_id":"","code":""}
                 accountAxios.verifyPhone({
                     phone:this.step1.phoneCode + this.step1.name,
-                    code:this.step1.vCode
+                    code:this.step1.vCode,
+                    request_id:this.step1.r_id
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
                         this.currentStep = 2
+                    }
+                }).catch(err=>{
+                    this.loading = false
+                })
+
+            }else if(status==='new'){
+                if(!this.step2.vCode){
+                    this.$message({
+                        message: '需輸入驗證碼',
+                        type: 'warning'
+                    });
+                    return;
+                }
+
+                this.loading = true
+                // 驗證手機 {"phone":"+8618566086988","request_id":"","code":""}
+                accountAxios.verifyPhone({
+                    phone:this.step2.phoneCode + this.step2.name,
+                    code:this.step2.vCode,
+                    request_id:this.step2.r_id
+                }).then(res=>{
+                    this.loading = false
+                    if(res.data.ResultCode==200){
+                        // this.currentStep = 2
+                        this.modifyPhone()
                     }
                 }).catch(err=>{
                     this.loading = false

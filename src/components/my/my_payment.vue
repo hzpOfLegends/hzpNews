@@ -15,7 +15,7 @@
                 <th>共推</th>
                 <th>撰寫</th>
                 <th>總點閱</th>
-                <th>收益</th>
+                <!--<th>收益</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
                     <td>{{v.ViewCount}}</td>
-                    <td>{{123}}</td>
+                    <!--<td>{{123}}</td>-->
                 </tr>
 
             </tbody>

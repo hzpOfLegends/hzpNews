@@ -79,6 +79,7 @@ import accountAxios from '../../../axios_joggle/axios_account'
                             message: '修改成功！',
                             type: 'success'
                         });
+                        this.$router.push({path:'/user/login'})
                     }
                 }).catch(err=>{
                     this.loading = false
