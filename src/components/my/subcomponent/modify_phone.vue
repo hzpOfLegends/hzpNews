@@ -1,53 +1,68 @@
 <template>
-  <div class="modify-mail" v-loading="loading">
-      <div class="title">修改郵箱</div>
+  <div class="modify-phone" v-loading="loading">
+      <div class="title" v-if="isPhoneUser">修改電話</div>
+      <div class="title" v-if="!isPhoneUser">綁定電話</div>
       <div class="m-content">
            <div class="m-step">
                 <el-steps :align-center="true" :active="currentStep" finish-status="success">
                     <el-step title="身份驗證"></el-step>
-                    <el-step title="重置郵箱"></el-step>
+                    <el-step title="重置電話" v-if="isPhoneUser"></el-step>
+                    <el-step title="綁定電話" v-if="!isPhoneUser"></el-step>
                     <el-step title="修改成功"></el-step>
                 </el-steps>
            </div>
             <div v-if="currentStep==1">
                 <div class="form-group">
-                    <label for="oldEmail">原郵箱</label>
-                    <input type="email" class="form-control" id="oldEmail" placeholder="Email" v-model="step1.name" :disabled="step1.sendCode">
+                    <label for="oldPhone">原電話</label>
+                    <div style="padding-left:106px;position:relative">
+                        <select class="form-control" id="cotegory" style="max-width:105px;position:absolute;left:0;top:0" v-model="step1.phoneCode" :disabled="step1.sendCode">
+                            <option value="" selected style="color:#ccc">選擇區號</option>
+                            <option  v-for="(v,i) in countryPhoneList" :value="v.dial_code" :key="i">{{v.dial_code}} </option>
+                        </select>
+                        <input  type="text" class="form-control" id="oldPhone" placeholder="Phone number" v-model="step1.name" :disabled="step1.sendCode">
+                    </div>
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendEmailCode('old')">{{step1.btnTXT}}</button>
+                    <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">{{step1.btnTXT}}</button>
                 </div>
                 </br>
                 <div class="btns">
                     <button type="" class="btn btn-default" @click="callClose()">取 消</button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="" class="btn btn-default" style="background:#e6e6e6" disabled v-if="!step1.vCode">下一步</button>
-                    <button type="" class="btn btn-primary" @click="verifyEmail('old')" v-if="step1.vCode">下一步</button>
+                    <button type="" class="btn btn-primary" @click="verifyPhone('old')" v-if="step1.vCode">下一步</button>
                 </div>
             </div>
             <div v-if="currentStep==2">
                 <div class="form-group">
-                    <label for="newEmail">新郵箱</label>
-                    <input type="email" class="form-control" id="newEmail" placeholder="Email" v-model="step2.name"  :disabled="step2.sendCode">
+                    <label for="oldPhone">新電話</label>
+                    <div style="padding-left:106px;position:relative">
+                        <select class="form-control" id="cotegory1" style="max-width:105px;position:absolute;left:0;top:0" v-model="step2.phoneCode" :disabled="step2.sendCode">
+                            <option value="" selected style="color:#ccc">選擇區號</option>
+                            <option  v-for="(v,i) in countryPhoneList" :value="v.dial_code" :key="i">{{v.dial_code}} </option>
+                        </select>
+                        <input  type="text" class="form-control" id="oldPhone" placeholder="Phone number" v-model="step2.name" :disabled="step2.sendCode">
+                    </div>
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendEmailCode('new')">{{step2.btnTXT}}</button>
+                    <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">{{step2.btnTXT}}</button>
                 </div>
                 </br>
                 <div class="btns">
                     <button type="" class="btn btn-default" @click="callClose()">取 消</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="" class="btn btn-default" style="background:#e6e6e6" disabled v-if="!step2.vCode" >下一步</button>
-                    <button type="" class="btn btn-primary" @click="modifyEmail()" v-if="step2.vCode">下一步</button>
+                    <button type="" class="btn btn-default" style="background:#e6e6e6" disabled v-if="!step2.vCode">下一步</button>
+                    <button type="" class="btn btn-primary" @click="verifyEmail('old')" v-if="step2.vCode">下一步</button>
                 </div>
             </div>
+
             <div v-if="currentStep==3">
                 <div class="s3-success">
-                    修改成功！
+                    操作成功！
                 </div>
                 </br>
                 <div class="btns">
@@ -56,30 +71,35 @@
             </div>
 
       </div>
-      <!--<button type="" class="btn btn-success" @click="currentStep=1">1</button>
+      <button type="" class="btn btn-success" @click="currentStep=1">1</button>
       <button type="" class="btn btn-success" @click="currentStep=2">2</button>
-      <button type="" class="btn btn-success" @click="currentStep=3">3</button>-->
+      <button type="" class="btn btn-success" @click="currentStep=3">3</button>
 
   </div>
 </template>
 
 <script>
 import accountAxios from '../../../axios_joggle/axios_account'
+import countryPhoneList from '../../../assets/country_list'
+
     export default {
       data(){
         return {
+            countryPhoneList:'',
             oldPassword:'',
             newPassword:'',
             newPassword1:'',
             loading:false,
-            currentStep:1,
+            currentStep:this.isPhoneUser ? 1:2, //根據父傳值判斷，是手機綁定用戶到step1
             step1:{
+                phoneCode:'',
                 name:'',
                 sendCode:false,
                 vCode:'',
                 btnTXT:'發送驗證碼'
             },
             step2:{
+                phoneCode:'',
                 name:'',
                 sendCode:false,
                 vCode:'',
@@ -87,26 +107,27 @@ import accountAxios from '../../../axios_joggle/axios_account'
             },
         }
       },
+      props:['isPhoneUser'],
       watch:{
       },
       methods:{
           callClose(){
               this.$emit('closeMe',true)
           },
-        sendEmailCode(status){
+        sendPhoneCode(status){
             if(status==='old'){
-                if(!this.step1.name){
+                if(!this.step1.name || !this.step1.phoneCode){
                     this.$message({
-                        message: '需輸入原郵箱',
+                        message: '需輸入原電話',
                         type: 'warning'
                     });
                     return;
                 }
 
                 this.loading = true
-                // 发送邮箱验证（需登陆） 验证注册邮箱:{"email":""} 修改用户邮箱:{"email":"新邮箱地址"} 频繁操作会返回1200
-                accountAxios.sendEmailCode({
-                    email:this.step1.name,
+                // 發手機驗證碼 {"phone":"+8618566086988"}
+                accountAxios.sendPhoneCode({
+                    phone:this.step1.phoneCode + this.step1.name,
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
@@ -118,9 +139,9 @@ import accountAxios from '../../../axios_joggle/axios_account'
                 })
 
             }else if(status==='new'){
-                if(!this.step2.name){
+                if(!this.step2.name || !this.step2.phoneCode){
                     this.$message({
-                        message: '需輸入新郵箱',
+                        message: '需輸入新電話',
                         type: 'warning'
                     });
                     return;
@@ -128,8 +149,8 @@ import accountAxios from '../../../axios_joggle/axios_account'
 
                 this.loading = true
                 // 发送邮箱验证（需登陆） 验证注册邮箱:{"email":""} 修改用户邮箱:{"email":"新邮箱地址"} 频繁操作会返回1200
-                accountAxios.sendEmailCode({
-                    email:this.step2.name,
+                accountAxios.sendPhoneCode({
+                    phone:this.step2.phoneCode + this.step2.name,
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
@@ -146,7 +167,7 @@ import accountAxios from '../../../axios_joggle/axios_account'
 
             
         }, 
-        verifyEmail(status){
+        verifyPhone(status){
             if(status==='old'){
                 if(!this.step1.vCode){
                     this.$message({
@@ -157,10 +178,10 @@ import accountAxios from '../../../axios_joggle/axios_account'
                 }
 
                 this.loading = true
-                // GET api/User/verifyEmail?Email={Email}&Code={Code}	邮箱验证接口
-                accountAxios.verifyEmail({
-                    Email:this.step1.name,
-                    Code:this.step1.vCode
+                // 驗證手機 {"phone":"+8618566086988","request_id":"","code":""}
+                accountAxios.verifyPhone({
+                    phone:this.step1.phoneCode + this.step1.name,
+                    code:this.step1.vCode
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
@@ -171,36 +192,10 @@ import accountAxios from '../../../axios_joggle/axios_account'
                 })
 
             }
-            // else if(status==='new'){
-            //     if(!this.step2.name){
-            //         this.$message({
-            //             message: '需輸入新郵箱',
-            //             type: 'warning'
-            //         });
-            //         return;
-            //     }
-
-            //     this.loading = true
-            //     // GET api/User/verifyEmail?Email={Email}&Code={Code}	邮箱验证接口
-            //     accountAxios.sendEmailCode({
-            //         email:this.step2.name,
-            //     }).then(res=>{
-            //         this.loading = false
-            //         if(res.data.ResultCode==200){
-            //             this.step2.sendCode = true
-            //             this.step2.btnTXT = "驗證碼已發送"
-            //         }
-            //     }).catch(err=>{
-            //         this.loading = false
-            //     })
-
-            // }else{
-            //     return;
-            // }
 
             
         }, 
-        modifyEmail(){
+        modifyPhone(){
             if(!this.step2.vCode){
                 this.$message({
                     message: '需輸入驗證碼',
@@ -210,9 +205,9 @@ import accountAxios from '../../../axios_joggle/axios_account'
             }
 
             this.loading = true
-            // POST api/User/ModifyUserEmail {"newEmail":"新邮箱地址"} 修改用户邮箱
-            accountAxios.modifyEmail({
-                newEmail:this.step2.name,
+            // {"newPhone":"手机号码"} 修改用户手機
+            accountAxios.modifyPhone({
+                newPhone:this.step2.phoneCode + this.step2.name,
             }).then(res=>{
                 this.loading = false
                 if(res.data.ResultCode==200){
@@ -231,13 +226,13 @@ import accountAxios from '../../../axios_joggle/axios_account'
       mounted(){
       },
       created(){
-          
+          this.countryPhoneList = countryPhoneList
       }
     }
 </script>
 
 <style lang="less">
-.modify-mail {
+.modify-phone {
     .title {
         text-align: center;
         height:62px;

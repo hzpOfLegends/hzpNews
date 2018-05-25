@@ -62,13 +62,13 @@
                         </li>
                         <li>
                            <div>
-                                <p style="margin-bottom:2px;">綁定手機</p>
+                                <p style="margin-bottom:2px;">綁定電話</p>
                                 <span v-if="userInfo.Phone" style="color:#5aa1fa">{{userInfo.Phone}}</span>
                                 <span v-else style="color:#fb8507"><i class="glyphicon glyphicon-exclamation-sign"></i> 未綁定</span>
                            </div>
                            <div class="u-btn">
-                              <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
-                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;">綁定</button>
+                              <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('phone','isPhoneUser')">修改</button>
+                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;"  @click="clickModify('phone','norPhoneUser')">綁定</button>
                            </div>
                         </li>
                         <li>
@@ -77,7 +77,7 @@
                                 <span style="color:#5aa1fa">支付寶 <span style="padding:0 5px;color:#2e3e4f">|</span> 5050000001@qq.com</span>
                            </div>
                            <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;">修改</button>
+                              <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('payment')">修改</button>
                            </div>
                         </li>
                         <li>
@@ -101,6 +101,7 @@
           <div class="m-view" >
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
                 <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'"></modifyMail>
+                <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :isPhoneUser="isPhoneUser"></modifyPhone>
           </div>
       </div>
 
@@ -111,17 +112,19 @@
 import accountAxios from '../../axios_joggle/axios_account'
 import modifyPWD from './subcomponent/modify_pwd'
 import modifyMail from './subcomponent/modify_mail'
+import modifyPhone from './subcomponent/modify_phone'
 export default {
     data(){
         return {
             userInfo:'',
             initUserInfo:'', //修改前數據
             modify:'',
-            loading:false
+            loading:false,
+            isPhoneUser:false
         }
     },
     components:{
-        modifyPWD,modifyMail
+        modifyPWD,modifyMail,modifyPhone
     },
     methods:{
         // 監聽子組件關閉信號
@@ -155,7 +158,25 @@ export default {
               this.loading = false
           })
         },
-        clickModify(value){
+        clickModify(value,userType){
+            if(value==='payment'){
+                this.$alert('功能接口暫未開通', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        // this.$message({
+                        // type: 'info',
+                        // message: `action: ${ action }`
+                        // });
+                    }
+                });
+                return;
+            }
+            // 判斷是否是手機用戶
+            if(userType){
+                if(userType==='isPhoneUser'){
+                    this.isPhoneUser = true //是手機用戶
+                }
+            }
             this.modify=value
         }
     },
@@ -191,7 +212,7 @@ export default {
         .m-view {
             max-width:550px;
             max-height:470px;
-            margin:140px auto;
+            margin:120px auto;
         }
     }
     .item {

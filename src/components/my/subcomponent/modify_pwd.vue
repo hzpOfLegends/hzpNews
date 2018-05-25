@@ -117,7 +117,7 @@ import accountAxios from '../../../axios_joggle/axios_account'
         .btns {
             text-align: center;
             button {
-                padding:10px 20px;
+                padding:8px 18px;
                 min-width:99px;
             }
         }
