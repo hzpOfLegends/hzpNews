@@ -227,6 +227,23 @@ import countryPhoneList from '../../../assets/country_list'
       },
       created(){
           this.countryPhoneList = countryPhoneList
+        //   let arr = countryPhoneList.slice(0)
+        //   for(let i=0;i<arr.length;i++){
+        //       for(let j=0;j<arr.length-i;j++){
+        //           if(arr[j+1].dial_code){
+
+        //             if( Number(arr[j]['dial_code'])>Number(arr[j+1]['dial_code'])){
+        //                 console.log('JJJJJJJJJJJJJ',arr[j]['dial_code']);
+        //                 let temp = arr[j]
+        //                 arr[j] = arr[j+1]
+        //                 arr[j+1] = temp
+        //             }
+        //           }else{
+        //               arr.splice(j+1,1)
+        //           }
+        //       }
+        //   }
+        //   console.log("H",arr);
       }
     }
 </script>

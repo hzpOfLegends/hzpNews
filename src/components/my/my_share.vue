@@ -8,10 +8,12 @@
             <div class="news-list" style="min-height:300px">
                 <div class="news-items" v-for="(v,i) in hotList" :key="i">
                     <div style="">
+                        <router-link :to="'/article/'+v.RelationID">
                         <div class="photo">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/OopsDaily.png" alt="">
                         </div>
+                        </router-link>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
                                 <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
@@ -22,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="" style="margin:17px 0">
-                                <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
+                                <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
                     </div>
@@ -78,7 +80,8 @@ import Clipboard from 'clipboard';
                 hotList:'',
                 total:1,
                 pageSize:12,
-                linkPathOrigin:''
+                linkPathOrigin:'',
+                ShareID:''
             }
         },
         watch:{
@@ -151,6 +154,7 @@ import Clipboard from 'clipboard';
             }
             this.hotArticle()
             this.linkPathOrigin = window.location.origin + '/article/'
+            this.ShareID = sessionStorage.getItem('ShareID') || ''
         }
     }
 </script>

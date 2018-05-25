@@ -4,7 +4,7 @@
           <div class="title">
               <h5>點閱記錄</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
-                <router-link to="/account/doc/editor">
+                <!--<router-link to="/account/doc/editor">
                 <ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="background:#fb8608">
                         <a href="javascript:;" style="background:#fb8608;color:#fff;border:none">
@@ -12,7 +12,7 @@
                         </a>
                     </li>
                 </ul>
-                </router-link>
+                </router-link>-->
           </div>
         <div class="content" style="text-align:left;min-height:300px">
             <table class="table table-striped table-bordered" >
@@ -32,6 +32,7 @@
                 <tr v-for="(v,i) in articleList" :key="i">
                     <!--<th scope="row">1</th>-->
                     <td>
+                        <router-link :to="'/article/'+v.RelationID">
                         <div id="doc-title">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/text.png" alt="">
@@ -41,6 +42,7 @@
                                 <p class="type">類別：{{v.CategoryName}}</p>
                             </div>
                         </div>
+                        </router-link>
                     </td>
                     <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <td>{{v.SelfSpread}}</td>
@@ -48,7 +50,7 @@
                     <td>{{v.Writeing}}</td>
                     <td>{{v.ViewCount}}</td>
                     <td>
-                            <router-link to="">全部</router-link>
+                            <router-link :to="'/my/record/'+v.RelationID">全部</router-link>
                     </td>
                 </tr>
 

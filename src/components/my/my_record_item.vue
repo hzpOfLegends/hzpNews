@@ -1,39 +1,59 @@
 <template>
-  <div class="account-payment" v-loading="loading">
+  <div class="record-item" v-loading="loading">
       <div class="gains item row">
           <div class="title">
-              <h5>我的收益</h5>
-
+              <h5>點閱記錄</h5>
+                <router-link to="/my/record">
+                <ul class="pager write-btn" style="margin:0">
+                    <li class="previous" style="background:#fb8608">
+                        <a href="javascript:;" style="background:#fff;color:#777;">
+                            <span aria-hidden="true"></span><i class="glyphicon glyphicon-share"></i> 返回列表
+                        </a>
+                    </li>
+                </ul>
+                </router-link>
           </div>
         <div class="content" style="text-align:left;min-height:300px" >
+            <div class="info">
+                <div id="doc-title">
+                    <img v-if="recordList[0].CoverImges" :src="recordList[0].CoverImges" alt="">
+                    <img v-else src="/static/img/OopsDaily.png" alt="">
+                    <div class="tit">
+                        <!--注：22汉字以内-->
+                        <!--<p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>-->
+                        <!--<p class="type">類別：政治</p>-->
+                        <p>{{recordList[0].Title}}</p>
+                        <p v-if="recordList[0].CategoryName" class="type">類別：{{recordList[0].CategoryName}}</p>
+                        <p v-else class="type">類別：未知 <span>|</span> ID:{{recordList[0].ID}}</p> 
+                    </div>
+                </div>
+            </div>
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
                 <th>日期</th>
-                <th>自推</th>
-                <th>共推</th>
-                <th>撰寫</th>
-                <th>總點閱</th>
-                <th>收益</th>
+                <th>自推數</th>
+                <th>共推數</th>
+                <th>撰寫數</th>
+                <th>總數</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(v,i) in profitStatisticsList" :key="i">
-                    <!--<th scope="row">1</th>-->
+                <tr v-for="(v,i) in recordList" :key="i">
                     <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
                     <td>{{v.ViewCount}}</td>
-                    <td>{{123}}</td>
                 </tr>
 
             </tbody>
             </table>
+            <!--<div class="t-total">總計：<span style="color:">555</span></div>-->
         </div> 
 
-        <div style="text-align:center">
+        <!--<div style="text-align:center">
             <el-pagination
                 background
                 layout="prev, pager, next"
@@ -42,7 +62,7 @@
                 @current-change="changePage"
             >
             </el-pagination>
-        </div>  
+        </div>  -->
           
       </div>
   </div>
@@ -54,53 +74,49 @@ import accountAxios from '../../axios_joggle/axios_account'
         data(){
             return {
                 loading:false,
-                profitStatisticsList:'',
+                // profitStatisticsList:'',
                 pageSize:15,
-                total:1
+                // total:1,
+                RelationID:'',
+                recordList:''
             }
         },
         watch:{
-            '$route.query':'getProfitStatistics'
         },
       methods:{
             //最近收益
-            getProfitStatistics(){
+            getRecordInfo(){
                 this.loading = true
-                accountAxios.profitStatistics({
-                    pageSize:this.pageSize,
-                    pageIndex:this.$route.query.pageIndex || "1" ,
+                accountAxios.record({
+                    pageSize:"15",
+                    pageIndex:this.$route.query.pageIndex || "1",
+                    CategoryID:this.$route.query.CategoryID,
+                    Date:'',
+                    type:'-1',
+                    RelationID:this.RelationID
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
-                        this.profitStatisticsList = res.data.Data.Statistics
-                        this.total = res.data.Data.total
-                        // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
                         console.log(res);
+                        this.recordList = res.data.Data.ArticleView
+                        // this.total = res.data.Data.total
                     }
                 }).catch(err=>{
                     this.loading = false
                 })
             },
-            changePage(pageIndex){
-                console.log(pageIndex);
-                let query = Object.assign({},this.$route.query)
-                query.pageIndex = pageIndex
-                this.$router.push({query:query})
-            },
       },
-      mounted(){
+      created(){
 
-            if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
-                this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
-            }else{
-                this.getProfitStatistics()
-            }
+            this.RelationID = this.$route.path.split('/')[3]
+            this.getRecordInfo()
+
       }
     }
 </script>
 
 <style lang="less" scoped>
-.account-payment {
+.record-item {
     max-width :1180px;
     margin:0 auto 30px;
     overflow: hidden;
@@ -148,14 +164,44 @@ import accountAxios from '../../axios_joggle/axios_account'
             }
             #doc-title {
                 // width:380px ;
+                // display:flex;
+                // align-items:flex-start;
+                // border:none;
+                // border-bottom:1px solid #dddddd;
+                padding-left:110px;
+                // margin-left:20px;
+                position: relative;
+                height:90px;
+                img {
+                    width:110px;
+                    object-fit: scale-down;
+                    // flex:0 0 33%;
+                    position: absolute;
+                    top:-2px;
+                    left:0px;
+                }
+                .tit {
+                    font-size:13px;
+                    padding-left:10px;
+                }
+                p.type {
+                    color:#bdbdbd;
+                    margin-bottom:0;
+                    font-size:12px;
+                }
+            }
+        }
+            #doc-title {
+                // width:380px ;
                 display:flex;
                 align-items:flex-start;
                 // border:none;
                 // border-bottom:1px solid #dddddd;
                 img {
                     width:33%;
-                    object-fit: scale-down;
+                    object-fit: cover;
                     flex:0 0 33%;
+                    max-height:70px;
                 }
                 .tit {
                     font-size:13px;
@@ -166,7 +212,6 @@ import accountAxios from '../../axios_joggle/axios_account'
                     margin-bottom:0;
                 }
             }
-        }
     }
     @media screen and (max-width:992px) {
         .item .content {

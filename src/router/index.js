@@ -28,6 +28,7 @@ import my_payment from '@/components/my/my_payment'
 import my_share from '@/components/my/my_share'
 import my_message from '@/components/my/my_message'
 import my_record from '@/components/my/my_record'
+import my_record_item from '@/components/my/my_record_item'
 // 注册
 import register from '@/components/login_register/register'
 // 登录
@@ -100,6 +101,7 @@ export default new Router({
         {path:'share', component:my_share}, // 好文
         {path:'message', component:my_message},
         {path:'record', component:my_record}, //点阅
+        {path:'record/:articleId', component:my_record_item}, //点阅詳情
       ]
     },
     // 此配置的位置不可移动

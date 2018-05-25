@@ -184,7 +184,7 @@ export default {
 
     },
     created(){
-        this.userInfo = JSON.parse(localStorage.getItem('myUserInfo'))
+        this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
         this.userInfo.Language = this.userInfo.Language?this.userInfo.Language:'en'
         this.initUserInfo = JSON.parse(JSON.stringify(this.userInfo))
     }

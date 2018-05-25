@@ -29,6 +29,7 @@
                 <tr v-for="(v,i) in newsList" :key="i">
                     <!--<th scope="row">1</th>-->
                     <td>
+                            <router-link :to="'/article/'+v.RelationID">
                         <div id="doc-title">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/OopsDaily.png" alt="">
@@ -41,6 +42,7 @@
                                 <p v-else class="type">類別：未知</p>
                             </div>
                         </div>
+                            </router-link>
                     </td>
                     <!--时间-->
                     <td>{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</td>
@@ -50,18 +52,18 @@
                         <div class="hidden-xs">
                             <button type="button" class="btn btn-info" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
                             <button type="button" class="btn btn-danger" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-duplicate"></i> 複製鏈接</button>
+                            <button type="button" :class="'btn btn-primary copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                         </div>
                         <!--<div class="btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" style="max-width:300px;min-width:100px">
                             <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i><span class="btn-text hidden-xs"> 編輯</span></a>
                             <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i><span class="btn-text hidden-xs"> 刪除</span></a>
                             <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-duplicate"></i><span class="btn-text hidden-xs"> 複製鏈接</span></a>
                         </div>-->
-                        <div class="visible-xs btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" >
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-duplicate"></i></a>
-                        </div>
+                        <!--<div class="visible-xs btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" >
+                            <a href="javascript:;" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="javascript:;" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="javascript:;" :class="'btn btn-default  copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)" role="button"><i class="glyphicon glyphicon-duplicate"></i></a>
+                        </div>-->
                     </td>
                 </tr>
 
@@ -85,6 +87,7 @@
 
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
+import Clipboard from 'clipboard';
     export default {
       data(){
         return {
@@ -93,6 +96,8 @@ import accountAxios from '../../axios_joggle/axios_account'
             pages:1, //分页数
             pageSize:15, //默认分页数
             total:1,
+            linkPathOrigin:'',
+            ShareID:''
         }
       },
       watch:{
@@ -156,6 +161,24 @@ import accountAxios from '../../axios_joggle/axios_account'
                 this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
             }
             this.getMyNews()
+        },
+        copyLink(className){
+            const clipboard = new Clipboard('.'+className);
+            clipboard.on('success', e=> {
+                // console.info('Action:', e.action);
+                // console.info('Text:', e.text);
+                // console.info('Trigger:', e.trigger);
+                this.$message({
+                    message: '複製成功！',
+                    type: 'success'
+                });
+                e.clearSelection();
+            });
+
+            clipboard.on('error', function(e) {
+                // console.error('Action:', e.action);
+                // console.error('Trigger:', e.trigger);
+            });
         }
 
       },
@@ -164,7 +187,8 @@ import accountAxios from '../../axios_joggle/axios_account'
 
       },
       created(){
-          
+          this.ShareID = sessionStorage.getItem('ShareID') || ''
+          this.linkPathOrigin = window.location.origin + '/article/'
           this.init()
       }
     }
