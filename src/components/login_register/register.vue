@@ -9,14 +9,17 @@
           <div>
             <div class="email">
               <input type="text" v-model="email" @keyup="emailVerify">
+              <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px;text-align: left">{{email_hint}}</p>
             <div class="password">
               <input type="password" v-model="password" @keyup="passwordVerify">
+              <i class="fa fa-lock"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{password_hint}}</p>
             <div class="new_password">
               <input type="password" v-model="new_password" @keyup="newpasswordVerify">
+              <i class="fa fa-lock"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{new_password_hint}}</p>
             <p style="color: red; font-size: 12px;text-align: center">{{register_hint}}</p>
