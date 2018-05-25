@@ -2,8 +2,8 @@ import axios from 'axios'
 import router from '@/router/index'
 import {Message} from 'element-ui'
 import store from '../store/store'
-// axios.path = "http://35.194.241.228/"
-axios.path = "/apis/"
+axios.path = "http://35.194.241.228/"
+// axios.path = "/apis/"
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
 
@@ -43,6 +43,7 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
             duration:30000,
             showClose:true
         });
+
         store.commit('setIs401',true)  //通知有組件清除登錄信息
     }else if(error.response.status == 1200){
         Message({
