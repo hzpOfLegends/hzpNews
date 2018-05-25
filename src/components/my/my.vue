@@ -166,21 +166,27 @@ export default {
       },
       //获取个人资料
       getUserInfo(){
-          accountAxios.userInfo({}).then(res=>{
-              if(res.data.ResultCode==200){
-                  localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
-                  this.show = true;
-              }
-          })
+          if(sessionStorage.getItem('user_info')){
+              this.show = true;
+          }else{
+              
+          }
+          // accountAxios.userInfo({}).then(res=>{
+          //     if(res.data.ResultCode==200){
+          //         localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
+          //         this.show = true;
+          //     }
+          // })
       },
       clickNav(index){
-        console.log(index);
+        // console.log(index);
       },
       init(){
           // sessionStorage.setItem('user_info')
           this. loading = true;
           accountAxios.userInfo({}).then(res=>{
               if(res.data.ResultCode==200){
+                  localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
                   localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
                   this.show = true;
               }

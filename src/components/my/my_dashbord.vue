@@ -194,7 +194,8 @@ import Clipboard from 'clipboard';
 
         },
         created(){
-            this.userInfo = JSON.parse(localStorage.getItem('myUserInfo'))
+            // this.userInfo = JSON.parse(localStorage.getItem('myUserInfo'))
+            this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
 
             if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
                 this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})

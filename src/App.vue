@@ -33,7 +33,7 @@
       oopsFooter
     },
     watch: {
-      "$route.fullPath": "getMeta"
+      "$route.fullPath": "getMeta",
     },
     metaInfo() {
       return {

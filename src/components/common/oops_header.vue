@@ -135,6 +135,13 @@
         user_info:[]
       }
     },
+    watch:{
+      "$store.state.is401":()=>{
+         if(this.$store.state.is401){
+            this.login_out()
+         }
+      }
+    },
     created() {
       // vuex是状态管理 一刷新就没了  此步骤当记录
       if (sessionStorage.getItem('ShareID')) {
@@ -178,7 +185,7 @@
         // 请求后台 登出
         users_page.login_out()
         // 跳转到首页
-        this.$router.push({path:"/"})
+        this.$router.push({path:"/user/login"})
       }
     }
 
