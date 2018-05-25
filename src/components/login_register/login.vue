@@ -175,7 +175,6 @@
             loginName: this.email,
             loginPwd: this.password
           }).then(res => {
-            console.log(2222,res)
             if (res.status == 200 && res.data.ResultCode == 200) {
             // 存储 用户 shareID
             this.shareid = res.data.Data.ShareID
@@ -201,7 +200,6 @@
               // 遮罩
               this.shade_boo = false
               //登錄失敗 返回文字
-              console.log(123)
               this.return_login_hint = res.data.ResultMessage
               lock = true
             }
