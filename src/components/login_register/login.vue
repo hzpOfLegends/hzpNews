@@ -65,6 +65,7 @@
         btnActive: false, //按鈕顔色
         return_login_hint: "", //登陸失敗返回的信息
         shade_boo: false, // 點擊登錄時的遮罩
+        shareid:""
       }
     },
     created() {
@@ -174,6 +175,9 @@
             loginName: this.email,
             loginPwd: this.password
           }).then(res => {
+            console.log(res)
+            // 存储 用户 shareID
+            this.shareid = res.data.Data.ShareID
             if (res.status == 200 && res.data.ResultCode == 200) {
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
@@ -184,7 +188,8 @@
                 this.shade_boo = false
                 // 登錄失敗返回的文字
                 this.return_login_hint = ""
-                sessionStorage.setItem('ShareID', res.data.Data.ShareID)
+                console.log(11111,res.data)
+                sessionStorage.setItem('ShareID', this.shareid)
                 this.$router.push({path: "/"})
                 // 判断是否登录  用来改变样式
                 this.$store.state.judge_login = true
