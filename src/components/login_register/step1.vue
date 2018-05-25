@@ -59,6 +59,7 @@
           this.verify_wrong()
         }
         this.next_style()
+        this.enter_submit()
       },
       // 驗證碼 保證不爲空
       code_verify() {
@@ -69,6 +70,14 @@
           this.code_hint = "請輸入正確的驗證碼"
         }
         this.next_style()
+        this.enter_submit()
+      },
+      // 回车跳到提交
+      enter_submit(){
+        if(event.keyCode==13){
+          this.next_step()
+          // console.log("enter")
+        }
       },
       // 獲取驗證碼
       get_code() {

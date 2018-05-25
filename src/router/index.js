@@ -103,6 +103,6 @@ export default new Router({
       ]
     },
     // 此配置的位置不可移动
-    {path:'*',redirect:'/'}
+    // {path:'*',redirect:'/'}
   ]
 })

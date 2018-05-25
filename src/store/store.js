@@ -16,6 +16,9 @@ const state = {
   user_info:[] , // 登錄成功后 再次請求 返回的信息
   meta:{},
   is401:false, //檢測此值變動，清除登錄信息
+  index_requestCount: 0 , // 首页 - 页面进度条
+  inside_requestCount: 0, // 内页 - 页面进度条
+  other_article_content:[], // 内页其他文章 , 由于转发 session里没有id  所以 在请求完详情 返回id 后 再去请求 同区其他文章
 }
 const mutations = {
     setMeta(state,value){

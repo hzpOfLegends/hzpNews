@@ -62,7 +62,11 @@
     created() {
       index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
         this.recent_hot = res.data.Data
-
+        if(this.$store.state.index_requestCount == 4){
+          this.$NProgress.done()
+        }else{
+          this.$store.state.index_requestCount += 1
+        }
       }).catch(err => {
         console.log(err)
       })

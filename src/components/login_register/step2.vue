@@ -52,6 +52,7 @@
           this.new_password_hint = "請輸入正確的密碼，（8-24位長度字元，支援大寫英文、小寫英文、數字、半形標點，並包含至少三種）"
         }
         this.next_style()
+        this.enter_submit()
       },
       // 在輸入一次 驗證
       again_verify() {
@@ -63,6 +64,7 @@
           this.again_password_hint = "請保持兩次輸入密碼的一致性"
         }
         this.next_style()
+        this.enter_submit()
       },
       // 下一步 樣式
       next_style() {
@@ -95,6 +97,13 @@
           })
         } else {
           this.next_hint = "請輸入完整的信息"
+        }
+      },
+      // 回车跳到提交
+      enter_submit(){
+        if(event.keyCode==13){
+          this.next_step()
+          // console.log("enter")
         }
       }
     }

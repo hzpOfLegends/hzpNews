@@ -63,8 +63,13 @@
     created() {
       // 热门文章
       index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        // console.log(1,res)
         this.hot_article = res.data.Data
+        if(this.$store.state.index_requestCount == 4){
+          this.$NProgress.done()
+        }else{
+          console.log(3)
+          this.$store.state.index_requestCount += 1
+        }
       }).catch(err => {
         console.log(err)
       })

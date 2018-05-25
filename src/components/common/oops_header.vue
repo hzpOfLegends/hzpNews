@@ -36,12 +36,11 @@
               </span>
                 <span class="subscript">
                   <div class="btn-group">
-                    <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
+                    <a href="#" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true"></a>
                     <ul class="dropdown-menu">
-                      <li><a href="javascript:;"  @click="login_out">登出</a></li>
-                      <li><router-link to="/my/user/dashboard">個人中心</router-link></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
+                      <li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>
+                      <li style="padding: 5px 0"><router-link to="/my/user/dashboard">個人中心</router-link></li>
+                      <!--<li role="separator" class="divider"></li>-->
                     </ul>
                   </div>
               </span>
@@ -79,12 +78,10 @@
               </span>
                     <span class="subscript">
                   <div class="btn-group">
-                    <a href="#" class="dropdown-toggle caret" data-toggle="dropdown" aria-haspopup="true"></a>
+                    <a href="#" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true"></a>
                     <ul class="dropdown-menu">
-                      <li @click="login_out"><router-link to="/">登出</router-link></li>
-                      <li><router-link to="/my">個人中心</router-link></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
+                      <li style="padding: 5px 0" @click="login_out"><router-link to="/">登出</router-link></li>
+                      <li style="padding: 5px 0"><router-link to="/my">個人中心</router-link></li>
                     </ul>
                   </div>
               </span>

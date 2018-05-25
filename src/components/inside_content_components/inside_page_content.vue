@@ -61,6 +61,9 @@
       skip_top //點擊到頂部
     },
     watch: {
+      "$route.path":function () {
+        console.log(11)
+      },
       '$route': function () {
         // 將滾輪 滾到 頂部
         if ($('html').scrollTop()) {
@@ -71,6 +74,8 @@
       }
     },
     mounted() {
+      // 进度条开始
+      this.$NProgress.start()
       // 將滾輪 滾到 頂部
       if ($('html').scrollTop()) {
         $('html').animate({scrollTop: 0}, 1000);

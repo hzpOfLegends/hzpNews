@@ -3,7 +3,7 @@
     <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart"
                                                     style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
     <div class="other_article_wrap">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
+      <div class="recent_hot_content clearfix " v-for="(item,index) in $store.state.other_article_content" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <router-link :to="{path:'/article/'+ item.RelationID}">
         <div class="row">
@@ -87,31 +87,35 @@
       loading
     },
     watch: {
-      "$route": function () {
-        inside_page_message.other_article({
-          pageSize: 20,
-          pageIndex: 1,
-          CategoryID: this.$route.query.CategoryID
-        }).then(res => {
-          this.recent_hot = res.data.Data.news
-        }).catch(err => {
-          console.log(err)
-        })
-      }
-    }
-    ,
+      // "$route": function () {
+      //   inside_page_message.other_article({
+      //     pageSize: 20,
+      //     pageIndex: this.pageNum,
+      //     CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
+      //   }).then(res => {
+      //     this.recent_hot = res.data.Data.news
+      //   }).catch(err => {
+      //     console.log(err)
+      //   })
+      // }
+    },
     created() {
 
-      inside_page_message.other_article({
-        pageSize: 20,
-        pageIndex: this.pageNum,
-        CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
-      }).then(res => {
-        console.log(res)
-        this.recent_hot = res.data.Data.news
-      }).catch(err => {
-        console.log(err)
-      })
+      // inside_page_message.other_article({
+      //   pageSize: 20,
+      //   pageIndex: this.pageNum,
+      //   CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
+      // }).then(res => {
+      //   this.recent_hot = res.data.Data.news
+        // 判断进度条
+        if(this.$store.state.inside_requestCount == 2){
+          this.$NProgress.done()
+        }else{
+          this.$store.state.inside_requestCount += 1
+        }
+      // }).catch(err => {
+      //   console.log(err)
+      // })
     },
     filters: {
       timezone_filter: function (value) {
@@ -132,18 +136,19 @@
       var isbool = true
       var that = this
       $(window).scroll(function () {
-        if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
+        console.log($(this).scrollTop(),$(window).height(),$(document).height())
+        if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
           that.pageNum = that.pageNum + 1
-          //大家都在读
+          //同区其他文章
           if (isbool) {
-            console.log(that.$route.query.CategoryID)
+            isbool = false
             inside_page_message.other_article({
               pageSize: "20",
               pageIndex: that.pageNum,
               CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):"-1"
             }).then(res => {
               for (let i = 0; i < res.data.Data.news.length; i++) {
-                that.recent_hot.push(res.data.Data.news[i])
+                that.$store.state.other_article_content.push(res.data.Data.news[i])
               }
               isbool = true
             }).catch(err => {

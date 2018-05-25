@@ -91,11 +91,12 @@
         } else {
           this.btnActive = false
         }
+        this.enter_submit()
       },
       // 密碼嚴重
       passwordVerify() {
         let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
-        if (reg.test(this.password)) {
+        if (this.password_verfiy(this.password)) {
           this.password_hint = ""
           this.password_state = true
           this.btn_boo2 = true
@@ -110,6 +111,7 @@
         } else {
           this.btnActive = false
         }
+        this.enter_submit()
       },
       newpasswordVerify() {
         if (this.new_password === this.password) {
@@ -127,6 +129,7 @@
         } else {
           this.btnActive = false
         }
+        this.enter_submit()
       },
       //發送注冊
       submit_mess() {
@@ -159,6 +162,33 @@
           })
         }
       },
+      password_verfiy(password){
+        if(!password) return false;
+        //验证密码强度
+        var regArr = [];
+        var count = 0;
+        regArr.push(/[\x21-\x2f\x3a-\x40\x5b-\x60\x7B-\x7F]/); //匹配半角符号
+        regArr.push(/[a-z]/);
+        regArr.push(/[A-Z]/);
+        regArr.push(/[0-9]/);
+        regArr.forEach((v,i)=>{
+          if(v.test(password)){
+            count++;
+          }
+        })
+        if((password.length<8 || password.length>24) || count<3) {
+          return false;
+        } else {
+          return true;
+        }
+      },
+      // 回车跳到提交
+      enter_submit(){
+        if(event.keyCode==13){
+          this.submit_mess()
+          // console.log("enter")
+        }
+      },
       // 清空 input
       reset_input() {
         this.email = ""
@@ -168,6 +198,8 @@
       }
     },
     mounted() {
+      // 进度条关闭
+      this.$NProgress.done()
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"

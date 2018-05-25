@@ -6,12 +6,15 @@ import store from '../store/store'
 axios.path = "/apis/"
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
+
   switch (data.data.ResultCode)
   {
     case 200 :
       break;
     case 201 :
       // router.push({path:"/"}) 
+    case 202:
+      // router.push({path:"/"})
       break;
     case 401 :
       // router.push({path:"/"})

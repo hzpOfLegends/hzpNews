@@ -53,6 +53,8 @@
       step2
     },
     mounted() {
+      // 进度条关闭
+      this.$NProgress.done()
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"

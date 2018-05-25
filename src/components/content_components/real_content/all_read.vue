@@ -87,6 +87,11 @@
       //大家都在读
       index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
         this.recent_hot = res.data.Data.news
+        if(this.$store.state.index_requestCount == 4){
+          this.$NProgress.done()
+        }else{
+          this.$store.state.index_requestCount += 1
+        }
       }).catch(err => {
       })
     }, filters: {
@@ -115,7 +120,7 @@
         this.$store.state.loading_style = false
       } else {
         $(window).scroll(function () {
-          if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
+          if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
             that.pageNum = that.pageNum + 1
             //大家都在读
             if (isbool) {
