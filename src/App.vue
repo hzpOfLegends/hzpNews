@@ -37,7 +37,10 @@
     },
     metaInfo() {
       return {
-        title: this.$store.state.meta.title || ''
+        title: this.$store.state.meta.title || '',
+        meta: this.$store.state.meta.meta || '',
+
+
       }
     },
     methods: {

@@ -32,11 +32,12 @@
                 <i class="fa fa-user"></i>
                 當前用戶：
                 <span>
-                <router-link to="/personal_center" style="color:#37abe3">{{$store.state.user_info.Name?$store.state.user_info.Name:user_info.Name}}</router-link>
+                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name?$store.state.user_info.Name:user_info.Name}}</router-link>
               </span>
                 <span class="subscript">
                   <div class="btn-group">
-                    <a href="#" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true"></a>
+                    <a href="javascript:;" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true">
+                    </a>
                     <ul class="dropdown-menu">
                       <li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>
                       <li style="padding: 5px 0"><router-link to="/my/user/dashboard">個人中心</router-link></li>
@@ -129,7 +130,9 @@
         },
         nav_down: false,  // 用來切換導航欄的隱藏
         nav_down_icon: "fa fa-bars",
-        user_info:[]
+        user_info:{
+          name:'未命名'
+        }
       }
     },
     watch:{
@@ -175,6 +178,7 @@
         sessionStorage.setItem('user_info', "")
         // 隱藏 用戶欄
         this.$store.state.judge_login = false
+        this.$store.state.user_info = []
         // 请求后台 登出
         users_page.login_out()
         // 跳转到首页

@@ -22,7 +22,7 @@ class account {
   profitStatistics(data){
       return axios.get(axios.path + 'api/Daily/ProfitStatistics',{params:data})
   }
-  //點閱
+  //點閱/點閱詳情
   record(data){
       return axios.post(axios.path + 'api/Daily/ArticleView',data)
   }
@@ -81,6 +81,10 @@ class account {
   // 修改手機
   modifyPhone(data){
       return axios.post(axios.path + 'api/User/ModifyUserPhone',data)
+  }
+  // 上传头像像接口, 最大支持80k 文件格式为jpg\png\jpeg
+  uploadAvatar(data){
+      return axios.post(axios.path + 'api/Upload/UploadAvatar',data)
   }
 
   

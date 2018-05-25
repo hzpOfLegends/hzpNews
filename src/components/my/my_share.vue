@@ -8,10 +8,12 @@
             <div class="news-list" style="min-height:300px">
                 <div class="news-items" v-for="(v,i) in hotList" :key="i">
                     <div style="">
+                        <router-link :to="'/article/'+v.RelationID">
                         <div class="photo">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/OopsDaily.png" alt="">
                         </div>
+                        </router-link>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
                                 <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>

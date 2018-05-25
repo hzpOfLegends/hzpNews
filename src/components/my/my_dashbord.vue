@@ -70,8 +70,10 @@
                 <div class="news-items" v-for="(v,i) in hotList" :key="i">
                     <div style="">
                         <div class="photo">
+                            <router-link :to="'/article/'+v.RelationID">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/OopsDaily.png" alt="">
+                            </router-link>
                         </div>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
