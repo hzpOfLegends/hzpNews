@@ -71,6 +71,41 @@
     },
     watch: {
       "$route.path":function () {
+        // 详情 请求
+        inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
+          this.details = res.data.Data
+          sessionStorage.setItem('CategoryID',this.details.CategoryID)
+          inside_page_message.other_article({
+            pageSize: 20,
+            pageIndex: 1,
+            CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID
+          }).then(res=>{
+            this.$store.state.other_article_content = res.data.Data.news
+            // 进度条加1
+            this.requestCount++
+          })
+          setTimeout(() => {
+            let imgs = document.querySelectorAll('img')
+            for (let i = 0; i < imgs.length; i++) {
+              imgs[i].style.width = '100%'
+            }
+          }, 1)
+          setTimeout(() => {
+            verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
+            }).catch(err => {
+              console.log(err)
+            })
+          }, 10000)
+        }).catch(err => {
+        })
+        // related
+        inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
+          this.hot_article = res.data.Data
+          // 进度条加1
+          this.requestCount++
+        }).catch(err => {
+          console.log(err)
+        })
       },
       '$route': function () {
         // 將滾輪 滾到 頂部

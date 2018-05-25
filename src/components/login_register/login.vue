@@ -25,8 +25,8 @@
                 <h5>找回密碼</h5>
               </b-modal>
             </div>
-            <p style="color: red; font-size: 12px">{{return_login_hint}}</p>
-            <button class="btn" @click="submit_mess" :class="{'active':btnActive}">
+            <p style="color: red; font-size: 12px;text-align: center">{{return_login_hint}}</p>
+            <button class="btn" @click="submit_mess" :class="{'active':btnActive}" style="padding: 10px 0">
               登錄
             </button>
           </div>
@@ -175,10 +175,10 @@
             loginName: this.email,
             loginPwd: this.password
           }).then(res => {
-            console.log(res)
+            if (res.status == 200 && res.data.ResultCode == 200) {
             // 存储 用户 shareID
             this.shareid = res.data.Data.ShareID
-            if (res.status == 200 && res.data.ResultCode == 200) {
+
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
@@ -188,7 +188,6 @@
                 this.shade_boo = false
                 // 登錄失敗返回的文字
                 this.return_login_hint = ""
-                console.log(11111,res.data)
                 sessionStorage.setItem('ShareID', this.shareid)
                 this.$router.push({path: "/"})
                 // 判断是否登录  用来改变样式
@@ -197,7 +196,6 @@
               }).catch(err => {
                 console.log(err)
               })
-
             } else {
               // 遮罩
               this.shade_boo = false

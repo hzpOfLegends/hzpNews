@@ -21,11 +21,9 @@
       },
       created(){
         this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):""
-        console.log(this.share)
         if(this.share){
           let a = window.location.href + "?r="+this.share
           this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+""
-          console.log(1,this.share_url)
         }else{
           this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
 
@@ -33,11 +31,7 @@
 
       },
       watch:{
-        "$route" :function () {
-          // this.router_path = this.$route.path
 
-          document.querySelector('.fb-share-button').setAttribute('data-href',window.location.href)
-        }
       }
     }
 </script>
