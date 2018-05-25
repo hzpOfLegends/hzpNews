@@ -22,37 +22,16 @@
     name: "aside_hot_article",
     data() {
       return {
-        hot_article: [{
-          img: "/static/img/text.png",
-          NewsTitle: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }],
         default_backgrund_photo:"/static/img/OopsDaily.png" //默认背景图
       }
     },
-    // 寫一個計算屬性 利用watch 監聽
-    computed: {
-      get_nav_id() {
-        return this.$store.state.nav_id;
-      }
-    },
-    watch: {
-      get_nav_id(val) {
-        // 热门文章
-        index_message.hot_article({CategoryID:val}).then(res => {
-          this.hot_article = res.data.Data
-        }).catch(err => {
-          console.log(err)
-        })
-      }
-    },
+    props:["hot_article"],
     methods: {
       skip_inside_content(RelationID,CategoryID) {
         if(CategoryID){
           sessionStorage.setItem("CategoryID",CategoryID)
         }
         if(RelationID){
-          let q = this.$route.query
-          q.RelationID = RelationID
           this.$router.push({
             path: "/article/"+ RelationID,
           })
@@ -61,18 +40,7 @@
       }
     },
     created() {
-      // 热门文章
-      index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        this.hot_article = res.data.Data
-        if(this.$store.state.index_requestCount == 4){
-          this.$NProgress.done()
-        }else{
-          console.log(3)
-          this.$store.state.index_requestCount += 1
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+
     }
   }
 </script>

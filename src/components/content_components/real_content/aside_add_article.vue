@@ -61,15 +61,10 @@
     created() {
       //新增文章
       index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        if(this.$store.state.index_requestCount == 4){
-          this.$NProgress.done()
-        }else{
-
-          this.$store.state.index_requestCount += 1
-        }
         if(res.data.Data.length>0){
           this.hot_article_first = res.data.Data.shift()
         }
+
         if(res.data.Data.length>0){
           this.hot_article = res.data.Data
         }

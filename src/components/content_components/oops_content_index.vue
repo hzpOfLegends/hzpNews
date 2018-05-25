@@ -4,7 +4,7 @@
       <div class="float-left left_content" @get_requestCount = "get_requestCount">
         <!--焦点新闻-->
         <vue-lazy-component>
-          <focus_news/>
+          <focus_news :focus_news_data="focus_news_data"/>
           <focus_news_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告 (适配)-->
@@ -15,7 +15,7 @@
 
         <!--最近热门-->
         <vue-lazy-component style="margin-top: 20px">
-          <recent_hot/>
+          <recent_hot :recent_hots="recent_hots"/>
           <recent_hot_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告-->
@@ -37,7 +37,7 @@
         </vue-lazy-component>
         <!--热门文章-->
         <vue-lazy-component style="margin-top: 20px">
-          <aside_hot_article/>
+          <aside_hot_article :hot_article="hot_article"/>
           <aside_hot_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告 (适配)-->
@@ -47,7 +47,7 @@
         </vue-lazy-component>
         <!--新增文章-->
         <vue-lazy-component style="margin-top: 20px">
-          <aside_add_article/>
+          <aside_add_article />
           <aside_add_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--大家都在读 (适配)-->
@@ -63,6 +63,8 @@
 </template>
 
 <script>
+  // 引入路由
+  import index_message from '@/axios_joggle/axios_index'
   //引入组件  用于加载时 先显示骨架 后显示加载回来的内容----优化性能
   import {component as VueLazyComponent} from '@xunlei/vue-lazy-component'
   //焦点新闻骨架
@@ -101,7 +103,18 @@
     data() {
       return {
         scroll: "",
-        innerHeight: ""
+        innerHeight: "",
+        recent_hot:[], //大家都在读
+        focus_news_data:[], //焦点文章
+        recent_hots:"", //最近热门
+        hot_article:[], // 热门文章
+        requestCount:0// 文章
+      }
+    },
+    // 寫一個計算屬性 利用watch 監聽
+    computed: {
+      get_nav_id() {
+        return this.$store.state.nav_id;
       }
     },
     components: {
@@ -126,7 +139,6 @@
       var isbool = true
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
-
         }
       })
       //展示导航栏
@@ -137,6 +149,40 @@
       if (sessionStorage.getItem('ShareID')) {
         this.$store.state.foot_all_style = true
       }
+      // 统一请求
+          //大家都在读
+      // index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
+      //   this.recent_hot = res.data.Data.news
+      //   this.requestCount++
+      //   console.log(1,this.requestCount)
+      // }).catch(err => {
+      // })
+      // 焦点新闻请求
+      index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+        this.focus_news_data = res.data.Data[0]
+        this.requestCount++
+        console.log(2,this.requestCount)
+      }).catch(err => {
+        console.log(err)
+      })
+      // 最近热门
+      index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+        if(res.data.Data){
+          this.recent_hots = res.data.Data
+          this.requestCount++
+          console.log(3,this.requestCount)
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+      // 热门文章
+      index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+        this.hot_article = res.data.Data
+        this.requestCount++
+        console.log(4,this.requestCount)
+      }).catch(err => {
+        console.log(err)
+      })
     },
     watch: {
       "$route": function () {
@@ -147,7 +193,16 @@
         }
         $('body').animate({scrollTop: 0}, 1000);
       },
-      "$route.path": "listenType"
+      "$route.path": "listenType",
+    "requestCount":"closeNProgress",
+      get_nav_id:function () {
+        // 焦点新闻请求
+        index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+          this.focus_news_data = res.data.Data[0]
+        }).catch(err => {
+          console.log(err)
+        })
+      }
 
     },
     mounted() {
@@ -165,6 +220,13 @@
         setTimeout(() => {
           done()
         }, 1500)
+      },
+      // 关闭进度条
+      closeNProgress(){
+        if(this.requestCount === 3){
+          this.$NProgress.done()
+          this.requestCount = 0
+        }
       },
       listenType() {
         if(this.$route.path){

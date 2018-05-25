@@ -1,9 +1,8 @@
 <template>
   <div class="recent_hot card">
-    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart"
-                                                    style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
+    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
     <div class=" recent_hot_wrap">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
+      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hots" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <router-link :to="{path:'/article/'+item.RelationID}">
         <div class="row">
@@ -37,59 +36,24 @@
 </template>
 
 <script>
-  // 引入路由
-  import index_message from '@/axios_joggle/axios_index'
   // 时区转换
   import filtration from '@/assets/filtration'
 
   export default {
-    name: "recent_hot",
+    name: "recent_hot_",
     data() {
       return {
-        recent_hot: [{
-          id: 1,
-          Avatar: "/static/img/text.png",
-          CategoryName: '',
-          NewsTitle: "",
-          synopsis: "",
-          AuthorName: "",
-        },
-        ],
         default_photo: "/static/img/timg.jpg",  // 默认头像
         default_backgrund_photo: "/static/img/OopsDaily.png" //默认背景图
       }
     },
+    props:["recent_hots"],
     created() {
-      index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        this.recent_hot = res.data.Data
-        if(this.$store.state.index_requestCount == 4){
-          this.$NProgress.done()
-        }else{
-          this.$store.state.index_requestCount += 1
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+
     },
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
-      }
-    },
-    // 寫一個計算屬性 利用watch 監聽
-    computed: {
-      get_nav_id() {
-        return this.$store.state.nav_id;
-      }
-    },
-    watch: {
-      get_nav_id(val) {
-        console.log('recent',val)
-        index_message.recent_hot({CategoryID: val}).then(res => {
-          this.recent_hot = res.data.Data
-        }).catch(err => {
-          console.log(err)
-        })
       }
     },
     methods: {

@@ -136,7 +136,6 @@
       var isbool = true
       var that = this
       $(window).scroll(function () {
-        console.log($(this).scrollTop(),$(window).height(),$(document).height())
         if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
           that.pageNum = that.pageNum + 1
           //同区其他文章

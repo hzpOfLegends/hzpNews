@@ -37,18 +37,18 @@
     },
     metaInfo() {
       return {
-        title: this.$store.state.meta.title || ''
+        title: this.$store.state.meta.title || '',
+        meta: this.$store.state.meta.meta || '',
+        link: this.$store.state.meta.link || ''
       }
     },
     methods: {
       getMeta() {
-        console.log('Fullpath',this.$route.fullPath);
         accountAxios.getMeta({url: this.$route.fullPath}).then(res => {
           let d = res.data.Data
-          console.log("meta Data", d);
           let meta = {
-            title:d.title,
-            meta:[
+            title: d.title,
+            meta: [
               {
                 charset: 'UTF-8',
                 name: "apple-mobile-web-app-capable",
@@ -82,7 +82,7 @@
               },
               {
                 name: "keywords",
-                content:d.keywords
+                content: d.keywords
               },
               {
                 name: "title",
@@ -145,57 +145,56 @@
                 content: d.pageType
               },
               {
-                property:"og:url",
-                content:d.canonicalUrl
+                property: "og:url",
+                content: d.canonicalUrl
               }
             ],
-            link : [
+            link: [
               {
-                rel:"canonical",
-                href:d.canonicalUrl
+                rel: "canonical",
+                href: d.canonicalUrl
               },
               //ICON
               {
-                rel:"shortcut icon",
-                href:d.siteIcon,
-                type:"image/x-icon"
+                rel: "shortcut icon",
+                href: d.siteIcon,
+                type: "image/x-icon"
               },
               {
-                rel:"apple-touch-icon",
-                href:d.siteImage
+                rel: "apple-touch-icon",
+                href: d.siteImage
               }
             ]
           }
-          if(this.$route.fullPath.indexOf('/article')>=0){
+          if (this.$route.fullPath.indexOf('/article') >= 0) {
             // 内文加载
             let inside = [
               {
-                property:"article:author",
-                content:d.facebookPageUrl
+                property: "article:author",
+                content: d.facebookPageUrl
               },
               {
-                property:"article:published_time",
-                content:d.publishedTime
+                property: "article:published_time",
+                content: d.publishedTime
               },
               {
-                property:"article:publisher",
-                content:d.siteName
+                property: "article:publisher",
+                content: d.siteName
               },
               {
-                property:"article:section",
-                content:d.section
+                property: "article:section",
+                content: d.section
               }
             ]
             let keyword = d.keywords.split(",")
-            for(let l = 0 ; l<keyword.length ; l++){
-              meta.meta.push({property:"article:tag",content:keyword[l]})
+            for (let l = 0; l < keyword.length; l++) {
+              meta.meta.push({property: "article:tag", content: keyword[l]})
             }
-            for(let i = 0 ;i<inside.length ; i++){
+            for (let i = 0; i < inside.length; i++) {
               meta.meta.push(inside[i])
             }
 
           }
-          console.log("meta",meta)
           this.$store.commit('setMeta', meta)
         })
       }

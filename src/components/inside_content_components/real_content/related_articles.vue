@@ -22,21 +22,17 @@
     name: "related_articles",
     data() {
       return {
-        hot_article: [{
-          img: "/static/img/text.png",
-          content: "坐不住了！蘋果CEO庫克即將找特朗普談貿易戰"
-        }],
         default_backgrund_photo:"/static/img/OopsDaily.png"
       }
     },
     watch:{
-      "$route":function () {
-        inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
-          this.hot_article = res.data.Data
-        }).catch(err => {
-          console.log(err)
-        })
-      }
+      // "$route":function () {
+      //   inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
+      //     this.hot_article = res.data.Data
+      //   }).catch(err => {
+      //     console.log(err)
+      //   })
+      // }
     },
     methods: {
       skip_inside_content(RelationID,CategoryID) {
@@ -47,19 +43,14 @@
         }
       }
     },
+    props:["hot_article"],
     created() {
-      inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
-        this.hot_article = res.data.Data
-        // 判断进度条
-        if(this.$store.state.inside_requestCount == 2){
-          this.$NProgress.done()
-        }else{
-          console.log(1)
-          this.$store.state.inside_requestCount += 1
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+      // inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
+      //   this.hot_article = res.data.Data
+      //
+      // }).catch(err => {
+      //   console.log(err)
+      // })
     }
   }
 </script>
