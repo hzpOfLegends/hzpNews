@@ -202,6 +202,24 @@
         }).catch(err => {
           console.log(err)
         })
+        // 最近热门
+        index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+          if(res.data.Data){
+            this.recent_hots = res.data.Data
+            this.requestCount++
+            console.log(3,this.requestCount)
+          }
+        }).catch(err => {
+          console.log(err)
+        })
+        // 热门文章
+        index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+          this.hot_article = res.data.Data
+          this.requestCount++
+          console.log(4,this.requestCount)
+        }).catch(err => {
+          console.log(err)
+        })
       }
 
     },
@@ -213,6 +231,7 @@
       oops_content_wrap.style.background = "#f4f4f4"
     },
     methods: {
+
       get_requestCount(val){
         console.log("fu",val)
       },

@@ -26,7 +26,7 @@
               </b-modal>
             </div>
             <p style="color: red; font-size: 12px">{{return_login_hint}}</p>
-            <button class="btn" @click="submit_mess" :class="{'active':btnActive}">
+            <button class="btn" @click="submit_mess" :class="{'active':btnActive}" style="padding: 10px 0">
               登錄
             </button>
           </div>
