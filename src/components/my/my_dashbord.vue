@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="" style="margin:17px 0">
-                                <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
+                                <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,8 @@ import Clipboard from 'clipboard';
                 hotList:'',
                 paymentRequest:false,
                 linkPathOrigin:'',
-                requestCount:0
+                requestCount:0,
+                ShareID:''
             }
         },
         watch:{
@@ -206,6 +207,7 @@ import Clipboard from 'clipboard';
             }
             this.hotArticle()
             this.linkPathOrigin = window.location.origin + '/article/'
+            this.ShareID = sessionStorage.getItem('ShareID') || ''
         }
     }
 </script>

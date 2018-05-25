@@ -38,33 +38,18 @@
     name: "focus-news",
     data() {
       return {
-        focus_news_data: "",
         default_photo: "/static/img/timg.jpg",
         default_backgrund_photo:"/static/img/OopsDaily.png",
         skip_url:"/article/"
       }
     },
+    props:["focus_news_data"],
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
       },
       type_filter:function (value) {
         return filtration.type_filter(value)
-      }
-    },
-    // 寫一個計算屬性 利用watch 監聽
-    computed: {
-      get_nav_id() {
-        return this.$store.state.nav_id;
-      }
-    },
-    watch: {
-      get_nav_id(val) {
-        index_message.focus_news({CategoryID:val}).then(res => {
-          this.focus_news_data = res.data.Data[0]
-        }).catch(err => {
-          console.log(err)
-        })
       }
     },
     mounted() {
@@ -87,17 +72,7 @@
       }
     },
     created() {
-      // 焦点新闻请求
-      index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        this.focus_news_data = res.data.Data[0]
-        if(this.$store.state.index_requestCount == 4){
-          this.$NProgress.done()
-        }else{
-          this.$store.state.index_requestCount += 1
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+
     },
 
   }

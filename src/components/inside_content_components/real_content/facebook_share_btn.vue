@@ -24,10 +24,10 @@
         console.log(this.share)
         if(this.share){
           let a = window.location.href + "?r="+this.share
-          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+";"
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+""
           console.log(1,this.share_url)
         }else{
-          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+";";
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
 
         }
 

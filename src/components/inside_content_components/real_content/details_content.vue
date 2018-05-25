@@ -1,6 +1,6 @@
 <template>
   <div class="details_content">
-    <h3>{{details.NewsTitle}}</h3>
+    <h3 >{{details.NewsTitle}}</h3>
     <div class="author">
       <span><img :src="details.Avatar?details.Avatar:default_photo"></span>
       <span>{{details.AuthorName}}</span>
@@ -55,10 +55,12 @@
 
   export default {
     name: "details_content",
+    props:['details']
+    ,
     data() {
       return {
-        details: "",
-        default_photo: "/static/img/timg.jpg"
+        // details: "",
+        default_photo: "/static/img/timg.jpg",
       }
     },
     filters: {
@@ -67,18 +69,18 @@
       }
     },
     watch: {
-      "$route": function () {
-        inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
-          this.details = res.data.Data
-          setTimeout(() => {
-            let imgs = document.querySelectorAll('img')
-            for (let i = 0; i < imgs.length; i++) {
-              imgs[i].style.width = '100%'
-            }
-          }, 1)
-        }).catch(err => {
-        })
-      }
+      // "$route": function () {
+      //   inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
+      //     this.details = res.data.Data
+      //     setTimeout(() => {
+      //       let imgs = document.querySelectorAll('img')
+      //       for (let i = 0; i < imgs.length; i++) {
+      //         imgs[i].style.width = '100%'
+      //       }
+      //     }, 1)
+      //   }).catch(err => {
+      //   })
+      // }
     },
     components: {
       facebook_btn,
@@ -89,38 +91,31 @@
     created() {
     },
     mounted() {
-      this.$route.path.split('/')[2]
-      inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
-        this.details = res.data.Data
-        sessionStorage.setItem('CategoryID',this.details.CategoryID)
-
-        inside_page_message.other_article({
-          pageSize: 20,
-          pageIndex: 1,
-          CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID
-        }).then(res=>{
-          this.$store.state.other_article_content = res.data.Data.news
-        })
-        // 判断进度条
-        if(this.$store.state.inside_requestCount == 2){
-          this.$NProgress.done()
-        }else{
-          this.$store.state.inside_requestCount += 1
-        }
-        setTimeout(() => {
-          let imgs = document.querySelectorAll('img')
-          for (let i = 0; i < imgs.length; i++) {
-            imgs[i].style.width = '100%'
-          }
-        }, 1)
-        setTimeout(() => {
-          verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
-          }).catch(err => {
-            console.log(err)
-          })
-        }, 10000)
-      }).catch(err => {
-      })
+      // this.$route.path.split('/')[2]
+      // inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
+      //   this.details = res.data.Data
+      //   sessionStorage.setItem('CategoryID',this.details.CategoryID)
+      //   inside_page_message.other_article({
+      //     pageSize: 20,
+      //     pageIndex: 1,
+      //     CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID
+      //   }).then(res=>{
+      //     this.$store.state.other_article_content = res.data.Data.news
+      //   })
+      //   setTimeout(() => {
+      //     let imgs = document.querySelectorAll('img')
+      //     for (let i = 0; i < imgs.length; i++) {
+      //       imgs[i].style.width = '100%'
+      //     }
+      //   }, 1)
+      //   setTimeout(() => {
+      //     verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
+      //     }).catch(err => {
+      //       console.log(err)
+      //     })
+      //   }, 10000)
+      // }).catch(err => {
+      // })
 
     }
   }

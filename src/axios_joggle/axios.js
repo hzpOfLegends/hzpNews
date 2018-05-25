@@ -43,6 +43,7 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
             duration:30000,
             showClose:true
         });
+
         store.commit('setIs401',true)  //通知有組件清除登錄信息
     }else if(error.response.status == 1200){
         Message({

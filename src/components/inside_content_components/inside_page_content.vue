@@ -3,8 +3,8 @@
     <div class="container clearfix">
       <div class="float-left left_content">
         <!--詳情内容-->
-        <vue-lazy-component>
-          <details_content/>
+        <vue-lazy-component @beforeInit="after_init">
+          <details_content :details="details" />
           <details_content_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <div class="float-right right_content related_articles_phone" style="display: none">
@@ -21,7 +21,7 @@
       <div class="float-right right_content related_articles_browser">
         <!--&lt;!&ndash;相關文章&ndash;&gt;-->
         <vue-lazy-component>
-          <related_articles/>
+          <related_articles :hot_article="hot_article"/>
           <related_articles_skeleton slot="skeleton"/>
         </vue-lazy-component>
       </div>
@@ -47,7 +47,9 @@
   import other_article_skeleton from '@/components/inside_content_components/skeleton/other_article_skeleton'
   // 相關文章 骨架
   import related_articles_skeleton from '@/components/inside_content_components/skeleton/related_articles_skeleton'
-
+  // 引入路由
+  import inside_page_message from '@/axios_joggle/axios_inside'
+  import verify_time from '@/axios_joggle/axios_verify_10'
   export default {
     name: "inside_page_content",
     components: {
@@ -60,9 +62,15 @@
       'vue-lazy-component': VueLazyComponent,
       skip_top //點擊到頂部
     },
+    data(){
+      return {
+        details:"", // 传过去details 子组件的值
+        hot_article:"", // 传过去 子组件relate的值
+        requestCount:0 // 进度条的值
+      }
+    },
     watch: {
       "$route.path":function () {
-        console.log(11)
       },
       '$route': function () {
         // 將滾輪 滾到 頂部
@@ -71,7 +79,20 @@
           return false;
         }
         $('body').animate({scrollTop: 0}, 1000);
-      }
+      },
+      "requestCount":"closeNProgress"
+    },
+    methods:{
+      after_init(){
+        console.log("ok")
+      },
+      // 关闭进度条
+      closeNProgress(){
+        if(this.requestCount === 2){
+          this.$NProgress.done()
+          this.requestCount = 0
+        }
+      },
     },
     mounted() {
       // 进度条开始
@@ -97,6 +118,41 @@
 
     },
     created() {
+      // 详情 请求
+      inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
+        this.details = res.data.Data
+        sessionStorage.setItem('CategoryID',this.details.CategoryID)
+        inside_page_message.other_article({
+          pageSize: 20,
+          pageIndex: 1,
+          CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID
+        }).then(res=>{
+          this.$store.state.other_article_content = res.data.Data.news
+          // 进度条加1
+          this.requestCount++
+        })
+        setTimeout(() => {
+          let imgs = document.querySelectorAll('img')
+          for (let i = 0; i < imgs.length; i++) {
+            imgs[i].style.width = '100%'
+          }
+        }, 1)
+        setTimeout(() => {
+          verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
+          }).catch(err => {
+            console.log(err)
+          })
+        }, 10000)
+      }).catch(err => {
+      })
+      // related
+      inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
+        this.hot_article = res.data.Data
+        // 进度条加1
+        this.requestCount++
+      }).catch(err => {
+        console.log(err)
+      })
       //展示导航栏
       this.$store.state.nav_style = true
       //隐藏底部

@@ -52,7 +52,7 @@
                         <div class="hidden-xs">
                             <button type="button" class="btn btn-info" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
                             <button type="button" class="btn btn-danger" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
-                            <button type="button" :class="'btn btn-primary copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
+                            <button type="button" :class="'btn btn-primary copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                         </div>
                         <!--<div class="btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" style="max-width:300px;min-width:100px">
                             <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i><span class="btn-text hidden-xs"> 編輯</span></a>
@@ -96,7 +96,8 @@ import Clipboard from 'clipboard';
             pages:1, //分页数
             pageSize:15, //默认分页数
             total:1,
-            linkPathOrigin:''
+            linkPathOrigin:'',
+            ShareID:''
         }
       },
       watch:{
@@ -186,6 +187,7 @@ import Clipboard from 'clipboard';
 
       },
       created(){
+          this.ShareID = sessionStorage.getItem('ShareID') || ''
           this.linkPathOrigin = window.location.origin + '/article/'
           this.init()
       }
