@@ -84,7 +84,7 @@ class account {
   }
   // 上传头像像接口, 最大支持80k 文件格式为jpg\png\jpeg
   uploadAvatar(data){
-      return axios.post(axios.path + 'api/Upload/UploadAvatar',data)
+      return axios.post(axios.path + 'api/Upload/UploadAvatar',data,{headers: {'Content-Type': 'multipart/form-data'}})
   }
 
   

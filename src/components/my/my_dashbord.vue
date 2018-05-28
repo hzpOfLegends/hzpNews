@@ -58,6 +58,7 @@
 
             </tbody>
             </table>
+            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
         </div>   
       </div>
       
@@ -113,7 +114,8 @@ import Clipboard from 'clipboard';
                 paymentRequest:false,
                 linkPathOrigin:'',
                 requestCount:0,
-                ShareID:''
+                ShareID:'',
+                isEmpty:false
             }
         },
         watch:{
@@ -140,7 +142,12 @@ import Clipboard from 'clipboard';
                     if(res.data.ResultCode==200){
                         this.profitStatisticsList = res.data.Data.Statistics
                         // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
-                        console.log(res);
+                    }else if(res.data.ResultCode==201){
+                        if(!res.data.Data){
+                            this.isEmpty = true
+                        }else{
+                            this.isEmpty = false
+                        }
                     }
                 }).catch(err=>{
                     this.paymentRequest = false
@@ -152,7 +159,7 @@ import Clipboard from 'clipboard';
                 this.loading = true
                 // JSON {"pageSize":"15","pageIndex":"1","CategoryID":"-1","sDateTime":"","eDateTime":""}
                 accountAxios.hotArticle({
-                    pageSize:"8",
+                    pageSize:"12",
                     pageIndex:"1",
                     CategoryID:"-1",
                     sDateTime:"",
