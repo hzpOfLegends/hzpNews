@@ -1,7 +1,7 @@
 <template>
   <div class="oops_content_index">
     <div class="container clearfix">
-      <div class="float-left left_content" @get_requestCount = "get_requestCount">
+      <div class="float-left left_content" @get_requestCount="get_requestCount">
         <!--焦点新闻-->
         <vue-lazy-component>
           <focus_news :focus_news_data="focus_news_data"/>
@@ -47,7 +47,7 @@
         </vue-lazy-component>
         <!--新增文章-->
         <vue-lazy-component style="margin-top: 20px">
-          <aside_add_article />
+          <aside_add_article/>
           <aside_add_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--大家都在读 (适配)-->
@@ -104,11 +104,11 @@
       return {
         scroll: "",
         innerHeight: "",
-        recent_hot:[], //大家都在读
-        focus_news_data:[], //焦点文章
-        recent_hots:"", //最近热门
-        hot_article:[], // 热门文章
-        requestCount:0// 文章
+        recent_hot: [], //大家都在读
+        focus_news_data: [], //焦点文章
+        recent_hots: "", //最近热门
+        hot_article: [], // 热门文章
+        requestCount: 0// 文章
       }
     },
     // 寫一個計算屬性 利用watch 監聽
@@ -150,7 +150,7 @@
         this.$store.state.foot_all_style = true
       }
       // 统一请求
-          //大家都在读
+      //大家都在读
       // index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
       //   this.recent_hot = res.data.Data.news
       //   this.requestCount++
@@ -158,28 +158,25 @@
       // }).catch(err => {
       // })
       // 焦点新闻请求
-      index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+      index_message.focus_news({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
         this.focus_news_data = res.data.Data[0]
         this.requestCount++
-        console.log(2,this.requestCount)
       }).catch(err => {
         console.log(err)
       })
       // 最近热门
-      index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        if(res.data.Data){
+      index_message.recent_hot({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
+        if (res.data.Data) {
           this.recent_hots = res.data.Data
-          this.requestCount++
-          console.log(3,this.requestCount)
         }
+        this.requestCount++
       }).catch(err => {
         console.log(err)
       })
       // 热门文章
-      index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+      index_message.hot_article({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
         this.hot_article = res.data.Data
         this.requestCount++
-        console.log(4,this.requestCount)
       }).catch(err => {
         console.log(err)
       })
@@ -194,29 +191,31 @@
         $('body').animate({scrollTop: 0}, 1000);
       },
       "$route.path": "listenType",
-    "requestCount":"closeNProgress",
-      get_nav_id:function () {
+      "requestCount": "closeNProgress",
+      get_nav_id: function () {
+        this.requestCount = 0
+        this.$NProgress.start()
         // 焦点新闻请求
-        index_message.focus_news({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+        index_message.focus_news({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
           this.focus_news_data = res.data.Data[0]
+          this.requestCount++
         }).catch(err => {
           console.log(err)
         })
         // 最近热门
-        index_message.recent_hot({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-          if(res.data.Data){
+        index_message.recent_hot({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
+          if (res.data.Data) {
             this.recent_hots = res.data.Data
-            this.requestCount++
-            console.log(3,this.requestCount)
+
           }
+          this.requestCount++
         }).catch(err => {
           console.log(err)
         })
         // 热门文章
-        index_message.hot_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+        index_message.hot_article({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
           this.hot_article = res.data.Data
           this.requestCount++
-          console.log(4,this.requestCount)
         }).catch(err => {
           console.log(err)
         })
@@ -231,9 +230,8 @@
       oops_content_wrap.style.background = "#f4f4f4"
     },
     methods: {
-
-      get_requestCount(val){
-        console.log("fu",val)
+      get_requestCount(val) {
+        console.log("fu", val)
       },
       infinite(done) {
         setTimeout(() => {
@@ -241,18 +239,18 @@
         }, 1500)
       },
       // 关闭进度条
-      closeNProgress(){
-        if(this.requestCount === 3){
+      closeNProgress() {
+        if (this.requestCount === 3) {
           this.$NProgress.done()
           this.requestCount = 0
         }
       },
       listenType() {
-        if(this.$route.path){
-            let CategoryID = this.$route.path.split('/')[2]
-            // 傳到vuex中 用來實現同步 切換類型
-            this.$store.state.nav_id = CategoryID
-        }else{
+        if (this.$route.path) {
+          let CategoryID = this.$route.path.split('/')[2]
+          // 傳到vuex中 用來實現同步 切換類型
+          this.$store.state.nav_id = CategoryID
+        } else {
         }
       }
     }

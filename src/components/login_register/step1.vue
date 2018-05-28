@@ -2,7 +2,7 @@
   <div class="step1_wrap" v-loading="load">
     <div class="the_email">
       <div>郵箱：</div>
-      <input type="text" ref="email" @keyup="email_verify">
+      <input type="text" ref="email" @input="email_verify">
 
     </div>
     <div class="the_code">
@@ -58,6 +58,11 @@
           this.email_hint = "請填寫正確的郵箱地址"
           this.verify_wrong()
         }
+        // 郵箱爲空 清除提示
+        if(this.$refs.email.value==""){
+          this.email_hint = ""
+          this.verify_wrong()
+        }
         this.next_style()
         this.enter_submit()
       },
@@ -68,6 +73,10 @@
           this.code_hint = ""
         } else {
           this.code_hint = "請輸入正確的驗證碼"
+        }
+        // 驗證碼爲空時 清除 提示
+        if(this.$refs.code.value==""){
+          this.code_hint = ""
         }
         this.next_style()
         this.enter_submit()

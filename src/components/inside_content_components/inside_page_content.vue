@@ -71,6 +71,8 @@
     },
     watch: {
       "$route.path":function () {
+        this.requestCount = 0
+        this.$NProgress.start()
         // 详情 请求
         inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
           this.details = res.data.Data

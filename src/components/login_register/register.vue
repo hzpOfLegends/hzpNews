@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @enter="enter_submit">
     <div class="row">
       <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
@@ -8,17 +8,17 @@
           </div>
           <div>
             <div class="email">
-              <input type="text" v-model="email" @keyup="emailVerify">
+              <input type="text" v-model="email" @input="emailVerify" @keyup.enter="submit_mess">
               <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px;text-align: left">{{email_hint}}</p>
             <div class="password">
-              <input type="password" v-model="password" @keyup="passwordVerify">
+              <input type="password" v-model="password" @input="passwordVerify" @keyup.enter="submit_mess">
               <i class="fa fa-lock"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{password_hint}}</p>
             <div class="new_password">
-              <input type="password" v-model="new_password" @keyup="newpasswordVerify">
+              <input type="password" v-model="new_password" @input="newpasswordVerify" @keyup.enter="submit_mess">
               <i class="fa fa-lock"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{new_password_hint}}</p>
@@ -51,16 +51,13 @@
     data() {
       return {
         email: "", // 郵箱值
-        email_state: true, //郵箱框狀態
         btn_boo1: false, //用來判斷btnactive顔色
         email_hint: "", //郵箱提示
         password: "", // 密码值
-        password_state: true, //郵箱框狀態
         btn_boo2: false, //用來判斷btnactive顔色
         password_hint: "", //郵箱提示
         btnActive: false, //按鈕顔色
         new_password: "", // 郵箱值
-        new_password_state: true, //郵箱框狀態
         btn_boo3: false, //用來判斷btnactive顔色
         new_password_hint: "", //郵箱提示
         shade_boo: false, // 點擊登錄時的遮罩
@@ -77,53 +74,63 @@
       //郵箱驗證
       emailVerify() {
         let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
-        // return  reg.test(this.email)?true:false
-        console.log(this.email)
         if (reg.test(this.email)) {
           this.email_hint = ""
-          this.email_state = true
           this.btn_boo1 = true
         } else {
           this.email_hint = "請輸入正確的郵箱"
-          this.email_state = false
+          this.btn_boo1 = false
+        }
+        // 邮箱为空 清掉提示
+        if(this.email==""){
+          this.email_hint = ""
           this.btn_boo1 = false
         }
         // //用來判斷btnactive顔色
         if (this.btn_boo1 && this.btn_boo2 && this.btn_boo3) {
           this.btnActive = true
+          this.register_hint = ""
         } else {
           this.btnActive = false
+          this.register_hint = ""
         }
-        this.enter_submit()
       },
       // 密碼嚴重
       passwordVerify() {
         let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
         if (this.password_verfiy(this.password)) {
           this.password_hint = ""
-          this.password_state = true
           this.btn_boo2 = true
         } else {
           this.password_hint = "請輸入正確的密碼，（8-24位長度字元，支援大寫英文、小寫英文、數字、半形標點，並包含至少三種）"
-          this.password_state = false
+          this.btn_boo2 = false
+        }
+        // 密码输入为空 提示消失
+        if(this.password == ""){
+          this.password_hint = ""
           this.btn_boo2 = false
         }
         //用來判斷btnactive顔色
         if (this.btn_boo1 && this.btn_boo2 && this.btn_boo3) {
           this.btnActive = true
+          this.register_hint = ""
         } else {
           this.btnActive = false
+          this.register_hint = ""
         }
-        this.enter_submit()
       },
+      // 再次输入密码验证
       newpasswordVerify() {
         if (this.new_password === this.password) {
           this.new_password_hint = ""
-          this.new_password_state = true
           this.btn_boo3 = true
         } else {
-          this.new_password_hint = "倆次輸入的密碼不一致"
-          this.new_password_state = false
+          this.new_password_hint = "两次輸入的密碼不一致"
+          this.btn_boo3 = false
+        }
+        // 再次输入密码为空 提示消失
+        if(this.new_password==""){
+          this.new_password_hint = ""
           this.btn_boo3 = false
         }
         //用來判斷btnactive顔色
@@ -132,7 +139,6 @@
         } else {
           this.btnActive = false
         }
-        this.enter_submit()
       },
       //發送注冊
       submit_mess() {
@@ -163,8 +169,11 @@
             console.log(err)
             lock = true
           })
+        }else{
+          this.register_hint = "請輸入完整的信息"
         }
       },
+      // 密码正则
       password_verfiy(password){
         if(!password) return false;
         //验证密码强度
@@ -189,7 +198,7 @@
       enter_submit(){
         if(event.keyCode==13){
           this.submit_mess()
-          // console.log("enter")
+          console.log("enter")
         }
       },
       // 清空 input
