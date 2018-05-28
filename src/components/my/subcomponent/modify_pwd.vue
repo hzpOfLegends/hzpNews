@@ -4,8 +4,8 @@
       <div class="m-content">
             <div>
             <div class="form-group">
-                <label for="exampleInputEmail1">賬號</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" v-model="name">
+                <label for="exampleInputEmail22">賬號</label>
+                <input type="text" class="form-control" id="exampleInputEmail22" placeholder="Email" v-model="name">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">原密碼</label>
@@ -33,6 +33,8 @@
 
 <script>
 import accountAxios from '../../../axios_joggle/axios_account'
+import verify from '../../../assets/verify'
+
     export default {
       data(){
         return {
@@ -46,16 +48,29 @@ import accountAxios from '../../../axios_joggle/axios_account'
       watch:{
       },
       methods:{
-          callClose(){
-              this.$emit('closeMe',true)
+          callClose(success=false){
+              this.$emit('closeMe',success)
           },
             //   修改密碼
             //   JSON{"loginName":"","loginPwd":"","NewPassword":""}
            modify(){
-               console.log(this.name ,this.newPassword,this.newPassword1,this.oldPassword);
                 if(!this.name || !this.newPassword || !this.newPassword1 || !this.oldPassword){
                     this.$message({
                         message: '信息輸入不完整',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                if(!verify.email(this.name)){
+                    this.$message({
+                        message: '郵箱格式不正確',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                if(!verify.password(this.newPassword) || !verify.password(this.newPassword1)){
+                    this.$message({
+                        message: '密碼格式不正確（8-24位長度字元，大寫英文、小寫英文、數字、半形標點包含至少三種）',
                         type: 'warning'
                     });
                     return;
@@ -80,6 +95,8 @@ import accountAxios from '../../../axios_joggle/axios_account'
                             type: 'success'
                         });
                         this.$router.push({path:'/user/login'})
+                    }else{
+                        this.$message.error('修改失败！');
                     }
                 }).catch(err=>{
                     this.loading = false

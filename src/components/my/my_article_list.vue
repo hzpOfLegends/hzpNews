@@ -69,6 +69,7 @@
 
             </tbody>
             </table>
+            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
         </div>
             <div style="text-align:center">
                 <el-pagination
@@ -97,7 +98,8 @@ import Clipboard from 'clipboard';
             pageSize:15, //默认分页数
             total:1,
             linkPathOrigin:'',
-            ShareID:''
+            ShareID:'',
+            isEmpty:false
         }
       },
       watch:{
@@ -116,6 +118,12 @@ import Clipboard from 'clipboard';
                     this.newsList = res.data.Data.news
                     this.total = res.data.Data.total
                     this.pages = Math.ceil(res.data.Data.total/this.pageSize)
+                }else if(res.data.ResultCode==201){
+                    if(!res.data.Data){
+                        this.isEmpty = true
+                    }else{
+                        this.isEmpty = false
+                    }
                 }
             }).catch(err=>{
                 this.loading = false

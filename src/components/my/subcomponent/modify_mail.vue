@@ -12,7 +12,7 @@
             <div v-if="currentStep==1">
                 <div class="form-group">
                     <label for="oldEmail">原郵箱</label>
-                    <input type="email" class="form-control" id="oldEmail" placeholder="Email" v-model="step1.name" :disabled="step1.sendCode">
+                    <input type="text" class="form-control" id="oldEmail" placeholder="Email" v-model="step1.name" :disabled="step1.sendCode">
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
@@ -30,7 +30,7 @@
             <div v-if="currentStep==2">
                 <div class="form-group">
                     <label for="newEmail">新郵箱</label>
-                    <input type="email" class="form-control" id="newEmail" placeholder="Email" v-model="step2.name"  :disabled="step2.sendCode">
+                    <input type="text" class="form-control" id="newEmail" placeholder="Email" v-model="step2.name"  :disabled="step2.sendCode">
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
@@ -42,7 +42,7 @@
                 <div class="btns">
                     <button type="" class="btn btn-default" @click="callClose()">取 消</button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="" class="btn btn-default" style="background:#e6e6e6" disabled v-if="!step2.vCode" >下一步</button>
-                    <button type="" class="btn btn-primary" @click="modifyEmail()" v-if="step2.vCode">下一步</button>
+                    <button type="" class="btn btn-primary" @click="verifyEmail('new')" v-if="step2.vCode">下一步</button>
                 </div>
             </div>
             <div v-if="currentStep==3">
@@ -51,7 +51,7 @@
                 </div>
                 </br>
                 <div class="btns">
-                    <button type="" class="btn btn-success" @click="callClose()">確 定</button>
+                    <button type="" class="btn btn-success" @click="callClose(true)">確 定</button>
                 </div>
             </div>
 
@@ -65,6 +65,7 @@
 
 <script>
 import accountAxios from '../../../axios_joggle/axios_account'
+import verify from '../../../assets/verify'
     export default {
       data(){
         return {
@@ -90,8 +91,8 @@ import accountAxios from '../../../axios_joggle/axios_account'
       watch:{
       },
       methods:{
-          callClose(){
-              this.$emit('closeMe',true)
+          callClose(success=false){
+              this.$emit('closeMe',success)
           },
         sendEmailCode(status){
             if(status==='old'){
@@ -102,11 +103,18 @@ import accountAxios from '../../../axios_joggle/axios_account'
                     });
                     return;
                 }
+                if(!verify.email(this.step1.name)){
+                    this.$message({
+                        message: '郵箱格式不正確',
+                        type: 'warning'
+                    });
+                    return;
+                }
 
                 this.loading = true
                 // 发送邮箱验证（需登陆） 验证注册邮箱:{"email":""} 修改用户邮箱:{"email":"新邮箱地址"} 频繁操作会返回1200
                 accountAxios.sendEmailCode({
-                    email:this.step1.name,
+                    email:"",
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
@@ -121,6 +129,13 @@ import accountAxios from '../../../axios_joggle/axios_account'
                 if(!this.step2.name){
                     this.$message({
                         message: '需輸入新郵箱',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                if(!verify.email(this.step2.name)){
+                    this.$message({
+                        message: '郵箱格式不正確',
                         type: 'warning'
                     });
                     return;
@@ -170,33 +185,32 @@ import accountAxios from '../../../axios_joggle/axios_account'
                     this.loading = false
                 })
 
+            }else if(status==='new'){
+                if(!this.step2.name){
+                    this.$message({
+                        message: '需輸入新郵箱',
+                        type: 'warning'
+                    });
+                    return;
+                }
+
+                this.loading = true
+                // GET api/User/verifyEmail?Email={Email}&Code={Code}	邮箱验证接口
+                accountAxios.verifyEmail({
+                    Email:this.step2.name,
+                    Code:this.step2.vCode
+                }).then(res=>{
+                    this.loading = false
+                    if(res.data.ResultCode==200){
+                        this.modifyEmail()
+                    }
+                }).catch(err=>{
+                    this.loading = false
+                })
+
+            }else{
+                return;
             }
-            // else if(status==='new'){
-            //     if(!this.step2.name){
-            //         this.$message({
-            //             message: '需輸入新郵箱',
-            //             type: 'warning'
-            //         });
-            //         return;
-            //     }
-
-            //     this.loading = true
-            //     // GET api/User/verifyEmail?Email={Email}&Code={Code}	邮箱验证接口
-            //     accountAxios.sendEmailCode({
-            //         email:this.step2.name,
-            //     }).then(res=>{
-            //         this.loading = false
-            //         if(res.data.ResultCode==200){
-            //             this.step2.sendCode = true
-            //             this.step2.btnTXT = "驗證碼已發送"
-            //         }
-            //     }).catch(err=>{
-            //         this.loading = false
-            //     })
-
-            // }else{
-            //     return;
-            // }
 
             
         }, 

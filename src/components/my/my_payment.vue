@@ -31,6 +31,7 @@
 
             </tbody>
             </table>
+            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
         </div> 
 
         <div style="text-align:center">
@@ -56,7 +57,8 @@ import accountAxios from '../../axios_joggle/axios_account'
                 loading:false,
                 profitStatisticsList:'',
                 pageSize:15,
-                total:1
+                total:1,
+                isEmpty:false
             }
         },
         watch:{
@@ -76,6 +78,12 @@ import accountAxios from '../../axios_joggle/axios_account'
                         this.total = res.data.Data.total
                         // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
                         console.log(res);
+                    }else if(res.data.ResultCode==201){
+                        if(!res.data.Data){
+                            this.isEmpty = true
+                        }else{
+                            this.isEmpty = false
+                        }
                     }
                 }).catch(err=>{
                     this.loading = false

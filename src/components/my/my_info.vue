@@ -5,9 +5,10 @@
               <h5>個人資料</h5>
           </div>
         <div class="content" style="text-align:left" v-loading="loading">
-            <div class="photo">
+            <div class="photo"  @click="clickModify('avatar')">
                 <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
                 <img v-else src="/static/img/timg.jpg" alt="">
+                <div class="a-cover">修改頭像</div>
             </div>
             <div class="user-info">
                <div class="u-left">
@@ -98,12 +99,16 @@
 
       <!--彈層-->
       <div class="modify-cover" v-if="modify">
+          <!--<div class="upload-avatar">
+          </div>-->
           <div class="m-view" >
+                <imgUpload @closeMe="closeSubcomponent" v-if="modify==='avatar'"></imgUpload>
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
                 <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'"></modifyMail>
                 <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :isPhoneUser="isPhoneUser"></modifyPhone>
           </div>
       </div>
+      <!--<imgUpload></imgUpload>-->
 
   </div>
 </template>
@@ -113,6 +118,7 @@ import accountAxios from '../../axios_joggle/axios_account'
 import modifyPWD from './subcomponent/modify_pwd'
 import modifyMail from './subcomponent/modify_mail'
 import modifyPhone from './subcomponent/modify_phone'
+import imgUpload from './subcomponent/img_upload'
 export default {
     data(){
         return {
@@ -120,19 +126,30 @@ export default {
             initUserInfo:'', //修改前數據
             modify:'',
             loading:false,
-            isPhoneUser:false
+            isPhoneUser:false,
         }
     },
     components:{
-        modifyPWD,modifyMail,modifyPhone
+        modifyPWD,modifyMail,modifyPhone,imgUpload
     },
     methods:{
-        // 監聽子組件關閉信號
-        closeSubcomponent(val){
-            if(val){
-                this.modify = ''
-            }
+        // 重新獲取個人信息（修改成功后調用）
+        getUserInfo(){
+            accountAxios.userInfo({}).then(res=>{
+                if(res.data.ResultCode==200){
+                    sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                    this.init()  //重新初始化頁面
+                }
+            })
         },
+        // 監聽子組件關閉信號
+        closeSubcomponent(success){
+            if(success){
+                this.getUserInfo()
+            }
+            this.modify = ''
+        },
+        //修改名字和语言
         modifyInfo(){
         //   if(JSON.stringify(this.userInfo) === JSON.stringify(this.initUserInfo)){
           if(this.userInfo.Language === this.initUserInfo.Language && this.userInfo.Name === this.initUserInfo.Name){
@@ -149,6 +166,7 @@ export default {
           }).then(res=>{
               this.loading = false
               if(res.data.ResultCode==200){
+                    this.getUserInfo()
                     this.$message({
                     message: '修改成功！',
                     type: 'success'
@@ -178,15 +196,18 @@ export default {
                 }
             }
             this.modify=value
+        },
+        init(){
+            this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
+            this.userInfo.Language = this.userInfo.Language?this.userInfo.Language:'en'
+            this.initUserInfo = JSON.parse(JSON.stringify(this.userInfo))
         }
     },
     mounted(){
 
     },
     created(){
-        this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
-        this.userInfo.Language = this.userInfo.Language?this.userInfo.Language:'en'
-        this.initUserInfo = JSON.parse(JSON.stringify(this.userInfo))
+        this.init()
     }
     
 }
@@ -251,9 +272,29 @@ export default {
               border-radius:50%;
               border:1px solid #ccc;
               overflow: hidden;
+              position: relative;
+              cursor:pointer;
               img {
                 width:100%;
                 object-fit: cover;
+              }
+              .a-cover {
+                  width:100%;
+                  padding:2px 0 6px;
+                  position: absolute;
+                  bottom:0;
+                  left:0;
+                  text-align: center;
+                  background-color: rgba(0,0,0,.5);
+                  color:#fff;
+                //   display:none;
+                  opacity: 0;
+                  transition:opacity 0.5s;
+              }
+              &:hover {
+                  .a-cover {
+                    opacity:1;
+                  }
               }
             }
             .user-info {

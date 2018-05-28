@@ -66,14 +66,14 @@
                 </div>
                 </br>
                 <div class="btns">
-                    <button type="" class="btn btn-success" @click="callClose()">確 定</button>
+                    <button type="" class="btn btn-success" @click="callClose(success)">確 定</button>
                 </div>
             </div>
 
       </div>
-      <button type="" class="btn btn-success" @click="currentStep=1">1</button>
+      <!--<button type="" class="btn btn-success" @click="currentStep=1">1</button>
       <button type="" class="btn btn-success" @click="currentStep=2">2</button>
-      <button type="" class="btn btn-success" @click="currentStep=3">3</button>
+      <button type="" class="btn btn-success" @click="currentStep=3">3</button>-->
 
   </div>
 </template>
@@ -113,8 +113,8 @@ import countryPhoneList from '../../../assets/country_list'
       watch:{
       },
       methods:{
-          callClose(){
-              this.$emit('closeMe',true)
+          callClose(success=false){
+              this.$emit('closeMe',success)
           },
         sendPhoneCode(status){
             if(status==='old'){

@@ -169,7 +169,7 @@ export default {
           if(sessionStorage.getItem('user_info')){
               this.show = true;
           }else{
-              
+              this.$router.push({path:'/user/login'})
           }
           // accountAxios.userInfo({}).then(res=>{
           //     if(res.data.ResultCode==200){
