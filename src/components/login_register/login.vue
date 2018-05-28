@@ -13,7 +13,8 @@
             </div>
             <p style="color: red ; font-size: 12px">{{email_hint}}</p>
             <div class="password">
-              <input type="password" v-model="password" ref="user_password" @input="passwordVerify" @keyup.enter="submit_mess">
+              <input type="password" v-model="password" ref="user_password" @input="passwordVerify"
+                     @keyup.enter="submit_mess">
               <i class="fa fa-lock"></i>
 
             </div>
@@ -54,7 +55,7 @@
     name: "login",
     data() {
       return {
-        email: "", // 郵箱值
+        email: "font_end_hzp@163.com", // 郵箱值
         btn_boo1: false, //用來判斷btnactive顔色
         email_hint: "", //郵箱提示
         password: "", // 密码值
@@ -63,7 +64,7 @@
         btnActive: false, //按鈕顔色
         return_login_hint: "", //登陸失敗返回的信息
         shade_boo: false, // 點擊登錄時的遮罩
-        shareid:""
+        shareid: ""
       }
     },
     created() {
@@ -108,7 +109,7 @@
           this.btn_boo1 = false
         }
         // 为空时去掉提示
-        if(this.email==""){
+        if (this.email == "") {
           this.email_hint = ""
           this.btn_boo1 = false
         }
@@ -125,7 +126,7 @@
           this.btn_boo2 = false
         }
         // 密码为空时 提示消失
-        if(this.password==""){
+        if (this.password == "") {
           this.password_hint = ""
           this.btn_boo2 = false
         }
@@ -133,7 +134,7 @@
         this.verify_user()
       },
       // 判断用户输入是否合格  激活登录按钮
-      verify_user(){
+      verify_user() {
         if (this.btn_boo1 && this.btn_boo2) {
           this.btnActive = true
           this.return_login_hint = ""
@@ -144,8 +145,8 @@
       },
 
       // 密码正则验证
-      password_verfiy(password){
-        if(!password) return false;
+      password_verfiy(password) {
+        if (!password) return false;
         //验证密码强度
         var regArr = [];
         var count = 0;
@@ -153,12 +154,12 @@
         regArr.push(/[a-z]/);
         regArr.push(/[A-Z]/);
         regArr.push(/[0-9]/);
-        regArr.forEach((v,i)=>{
-          if(v.test(password)){
+        regArr.forEach((v, i) => {
+          if (v.test(password)) {
             count++;
           }
         })
-        if((password.length<8 || password.length>24) || count<3) {
+        if ((password.length < 8 || password.length > 24) || count < 3) {
           return false;
         } else {
           return true;
@@ -177,11 +178,11 @@
             loginPwd: this.password
           }).then(res => {
             if (res.status == 200 && res.data.ResultCode == 200) {
-            // 存储 用户 shareID
-            this.shareid = res.data.Data.ShareID
+              // 存储 用户 shareID
+              this.shareid = res.data.Data.ShareID
 
               users_page.login_user_info().then(res => {
-                sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
                 this.$store.state.user_info = res.data.Data
                 lock = true
@@ -192,7 +193,7 @@
                 sessionStorage.setItem('ShareID', this.shareid)
                 this.$router.push({path: "/"})
                 // 判断是否登录  用来改变样式
-                this.$store.state.judge_login = false
+                this.$store.state.judge_login = true
                 this.reset_input()
               }).catch(err => {
                 console.log(err)
@@ -209,7 +210,7 @@
             this.shade_boo = false
             lock = true
           })
-        }else{
+        } else {
           this.return_login_hint = "請輸入完整的信息"
         }
       },

@@ -8,13 +8,14 @@
     <div class="hot_article_content">
       <div class="first" @click="skip_inside_page(hot_article_first.RelationID)">
         <router-link :to="{path:'/article/'+ hot_article_first.RelationID}">
-        <img :src="hot_article_first.CoverImges?hot_article_first.CoverImges:default_backgrund_photo">
-        <div class="Profile">{{hot_article_first.Profile}}</div>
+          <img :src="hot_article_first.CoverImges?hot_article_first.CoverImges:default_backgrund_photo">
+          <div class="Profile">{{hot_article_first.Profile}}</div>
         </router-link>
       </div>
-      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.RelationID,item.CategoryID)">
+      <div class="other" v-for="(item,index) in hot_article" :key="index"
+           @click="skip_inside_page(item.RelationID,item.CategoryID)">
         <router-link :to="{path:'/article/' + item.RelationID}">
-        <p><span>·</span>{{item.NewsTitle}}</p>
+          <p><span>·</span>{{item.NewsTitle}}</p>
         </router-link>
       </div>
     </div>
@@ -30,31 +31,38 @@
     data() {
       return {
         //新增文章 1
-        hot_article_first:[],
+        hot_article_first: [],
         // 新增文章 2-20
         hot_article: [],
-        default_backgrund_photo:"/static/img/OopsDaily.png" //默认背景图
+        default_backgrund_photo: "/static/img/OopsDaily.png" //默认背景图
 
       }
     },
-    props:["add_article"],
+    props: ["add_articles"],
     created() {
+    },
+    mounted() {
       // 处理父组件传来的 值
-      if(this.add_article){
-        //新增文章 1
-        this.hot_article_first = this.add_article.shift()
-        // 新增文章 2-20
-        this.hot_article = this.add_article
+      if (this.add_articles) {
+        if (this.add_articles.length > 0) {
+          //新增文章 1
+          this.hot_article_first = this.add_articles.shift()
+        } else if (this.add_articles.length > 1) {
+          // 新增文章 2-20
+          this.hot_article = this.add_articles
+        }
+
+
       }
     },
     methods: {
-      skip_inside_page(RelationID,CategoryID) {
-        if(CategoryID){
-          sessionStorage.setItem("CategoryID",CategoryID)
+      skip_inside_page(RelationID, CategoryID) {
+        if (CategoryID) {
+          sessionStorage.setItem("CategoryID", CategoryID)
         }
-        if(RelationID){
+        if (RelationID) {
           this.$router.push({
-            path: "/article/"+ RelationID,
+            path: "/article/" + RelationID,
           })
         }
       }
@@ -93,7 +101,7 @@
       font-size: 14px;
       cursor: pointer;
       margin-top: 15px;
-      a{
+      a {
         color: black;
       }
       img {

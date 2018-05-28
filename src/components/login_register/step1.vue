@@ -109,6 +109,7 @@
       },
       // 定時器 秒數
       setInterval_name() {
+        
         this.code_lock = false
         this.timer = setInterval(() => {
           if (this.code_name > 0) {

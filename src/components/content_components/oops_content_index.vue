@@ -47,7 +47,7 @@
         </vue-lazy-component>
         <!--新增文章-->
         <vue-lazy-component style="margin-top: 20px">
-          <aside_add_article :add_article="add_article"/>
+          <aside_add_article :add_articles="add_articles"/>
           <aside_add_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--大家都在读 (适配)-->
@@ -109,7 +109,7 @@
         recent_hots: "", //最近热门
         hot_article: [], // 热门文章
         all_read:"", //大家都在读
-        add_article:"", // 新增文章
+        add_articles:null, // 新增文章
         requestCount: 0// 文章
       }
     },
@@ -183,7 +183,8 @@
       })
       //新增文章
       index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        this.add_article = res.data.Data
+        this.add_articles = res.data.Data
+        this.requestCount++
       }).catch(err => {
         console.log(err)
       })
@@ -228,7 +229,7 @@
         })
         //新增文章
         index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-          this.add_article = res.data.Data
+          this.add_articles = res.data.Data
           this.requestCount++
         }).catch(err => {
           console.log(err)
@@ -259,7 +260,7 @@
       },
       // 关闭进度条
       closeNProgress() {
-        if (this.requestCount === 4) {
+        if (this.requestCount >= 4) {
           this.$NProgress.done()
           this.requestCount = 0
         }
