@@ -192,7 +192,7 @@
                 sessionStorage.setItem('ShareID', this.shareid)
                 this.$router.push({path: "/"})
                 // 判断是否登录  用来改变样式
-                this.$store.state.judge_login = true
+                this.$store.state.judge_login = false
                 this.reset_input()
               }).catch(err => {
                 console.log(err)

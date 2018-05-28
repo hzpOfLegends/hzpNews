@@ -25,7 +25,7 @@
         </vue-lazy-component>
         <!--大家都在读-->
         <vue-lazy-component style="margin-top: 20px" class="all_read_browser">
-          <all_read/>
+          <all_read :all_read="all_read" v-on:loadMore="load_more"/>
           <all_read_skeleton slot="skeleton"/>
         </vue-lazy-component>
       </div>
@@ -108,6 +108,7 @@
         focus_news_data: [], //焦点文章
         recent_hots: "", //最近热门
         hot_article: [], // 热门文章
+        all_read:"", //大家都在读
         requestCount: 0// 文章
       }
     },
@@ -147,16 +148,9 @@
       this.$store.state.foot_all_style = false
       this.$store.state.footer_style1 = true
       if (sessionStorage.getItem('ShareID')) {
-        this.$store.state.foot_all_style = true
+        this.$store.state.foot_all_style = false
       }
       // 统一请求
-      //大家都在读
-      // index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
-      //   this.recent_hot = res.data.Data.news
-      //   this.requestCount++
-      //   console.log(1,this.requestCount)
-      // }).catch(err => {
-      // })
       // 焦点新闻请求
       index_message.focus_news({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
         this.focus_news_data = res.data.Data[0]
@@ -179,6 +173,12 @@
         this.requestCount++
       }).catch(err => {
         console.log(err)
+      })
+      //大家都在读
+      index_message.all_read({"pageSize": "20", "pageIndex": 1}).then(res => {
+        this.all_read = res.data.Data.news
+        this.requestCount++
+      }).catch(err => {
       })
     },
     watch: {
@@ -233,6 +233,12 @@
       get_requestCount(val) {
         console.log("fu", val)
       },
+      load_more(val){
+        for (let i = 0; i < val.length; i++) {
+          this.all_read.push(val[i])
+        }
+
+      },
       infinite(done) {
         setTimeout(() => {
           done()
@@ -240,7 +246,7 @@
       },
       // 关闭进度条
       closeNProgress() {
-        if (this.requestCount === 3) {
+        if (this.requestCount === 4) {
           this.$NProgress.done()
           this.requestCount = 0
         }
