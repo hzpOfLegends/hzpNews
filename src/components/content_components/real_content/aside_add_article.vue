@@ -6,13 +6,13 @@
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content">
-      <div class="first" @click="skip_inside_page(hot_article_first.RelationID)">
-        <router-link :to="{path:'/article/'+ hot_article_first.RelationID}">
-          <img :src="hot_article_first.CoverImges?hot_article_first.CoverImges:default_backgrund_photo">
-          <div class="Profile">{{hot_article_first.Profile}}</div>
+      <div class="first" v-if="add_articles.c" @click="skip_inside_page(add_articles.c.RelationID?add_articles[0].RelationID:0)">
+        <router-link :to="{path:'/article/'+ add_articles.c.RelationID}">
+          <img :src="add_articles.c.CoverImges?add_articles.c.CoverImges:default_backgrund_photo">
+          <div class="Profile">{{add_articles.c.NewsTitle}}</div>
         </router-link>
       </div>
-      <div class="other" v-for="(item,index) in hot_article" :key="index"
+      <div class="other" v-if="add_articles.d" v-for="(item,index) in add_articles.d" :key="index"
            @click="skip_inside_page(item.RelationID,item.CategoryID)">
         <router-link :to="{path:'/article/' + item.RelationID}">
           <p><span>·</span>{{item.NewsTitle}}</p>
@@ -39,21 +39,7 @@
       }
     },
     props: ["add_articles"],
-    created() {
-    },
     mounted() {
-      // 处理父组件传来的 值
-      if (this.add_articles) {
-        if (this.add_articles.length > 0) {
-          //新增文章 1
-          this.hot_article_first = this.add_articles.shift()
-        } else if (this.add_articles.length > 1) {
-          // 新增文章 2-20
-          this.hot_article = this.add_articles
-        }
-
-
-      }
     },
     methods: {
       skip_inside_page(RelationID, CategoryID) {

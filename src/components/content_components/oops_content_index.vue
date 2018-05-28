@@ -109,7 +109,7 @@
         recent_hots: "", //最近热门
         hot_article: [], // 热门文章
         all_read:"", //大家都在读
-        add_articles:null, // 新增文章
+        add_articles:[], // 新增文章
         requestCount: 0// 文章
       }
     },
@@ -183,7 +183,15 @@
       })
       //新增文章
       index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        this.add_articles = res.data.Data
+        // 存返回的值
+        let a =  res.data.Data
+        // 定义个空数组 用来存储 2-20的新闻
+        let b = []
+        // 取出第一个  因为第一条新闻展示图片
+        b.c = res.data.Data.shift()
+        // 取出剩余的新闻
+        b.d = a
+        this.add_articles = b
         this.requestCount++
       }).catch(err => {
         console.log(err)
@@ -201,7 +209,6 @@
       "$route.path": "listenType",
       "requestCount": "closeNProgress",
       get_nav_id: function () {
-        this.requestCount = 0
         this.$NProgress.start()
         // 焦点新闻请求
         index_message.focus_news({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
@@ -229,7 +236,17 @@
         })
         //新增文章
         index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-          this.add_articles = res.data.Data
+          if(res.data.Data){
+            // 存返回的值
+            let a =  res.data.Data
+            // 定义个空数组 用来存储 2-20的新闻
+            let b = []
+            // 取出第一个  因为第一条新闻展示图片
+            b.c = res.data.Data.shift()
+            // 取出剩余的新闻
+            b.d = a
+            this.add_articles = b
+          }
           this.requestCount++
         }).catch(err => {
           console.log(err)
