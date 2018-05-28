@@ -55,7 +55,7 @@
     name: "login",
     data() {
       return {
-        email: "font_end_hzp@163.com", // 郵箱值
+        email: "", // 郵箱值
         btn_boo1: false, //用來判斷btnactive顔色
         email_hint: "", //郵箱提示
         password: "", // 密码值
