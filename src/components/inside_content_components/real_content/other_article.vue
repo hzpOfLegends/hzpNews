@@ -86,37 +86,6 @@
     components: {
       loading
     },
-    watch: {
-      // "$route": function () {
-      //   inside_page_message.other_article({
-      //     pageSize: 20,
-      //     pageIndex: this.pageNum,
-      //     CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
-      //   }).then(res => {
-      //     this.recent_hot = res.data.Data.news
-      //   }).catch(err => {
-      //     console.log(err)
-      //   })
-      // }
-    },
-    created() {
-
-      // inside_page_message.other_article({
-      //   pageSize: 20,
-      //   pageIndex: this.pageNum,
-      //   CategoryID: sessionStorage.getItem('CategoryID')? sessionStorage.getItem('CategoryID'):"-1"
-      // }).then(res => {
-      //   this.recent_hot = res.data.Data.news
-        // 判断进度条
-        if(this.$store.state.inside_requestCount == 2){
-          this.$NProgress.done()
-        }else{
-          this.$store.state.inside_requestCount += 1
-        }
-      // }).catch(err => {
-      //   console.log(err)
-      // })
-    },
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
@@ -137,9 +106,9 @@
       var that = this
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
-          that.pageNum = that.pageNum + 1
           //同区其他文章
           if (isbool) {
+            that.pageNum = that.pageNum + 1
             isbool = false
             inside_page_message.other_article({
               pageSize: "20",

@@ -37,40 +37,15 @@
 
       }
     },
-    // 寫一個計算屬性 利用watch 監聽
-    computed: {
-      get_nav_id() {
-        return this.$store.state.nav_id;
-      }
-    },
-    watch: {
-      get_nav_id(val) {
-        // 热门文章
-        index_message.add_article({CategoryID:val}).then(res => {
-          if(res.data.Data.length>0){
-            this.hot_article_first = res.data.Data.shift()
-          }
-          if(res.data.Data.length>0){
-            this.hot_article = res.data.Data
-          }
-        }).catch(err => {
-          console.log(err)
-        })
-      }
-    },
+    props:["add_article"],
     created() {
-      //新增文章
-      index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        if(res.data.Data.length>0){
-          this.hot_article_first = res.data.Data.shift()
-        }
-
-        if(res.data.Data.length>0){
-          this.hot_article = res.data.Data
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+      // 处理父组件传来的 值
+      if(this.add_article){
+        //新增文章 1
+        this.hot_article_first = this.add_article.shift()
+        // 新增文章 2-20
+        this.hot_article = this.add_article
+      }
     },
     methods: {
       skip_inside_page(RelationID,CategoryID) {

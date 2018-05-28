@@ -47,12 +47,12 @@
         </vue-lazy-component>
         <!--新增文章-->
         <vue-lazy-component style="margin-top: 20px">
-          <aside_add_article/>
+          <aside_add_article :add_article="add_article"/>
           <aside_add_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--大家都在读 (适配)-->
         <vue-lazy-component style="margin-top: 20px ;display: none" class="all_read_phone">
-          <all_read/>
+          <all_read :all_read="all_read" v-on:loadMore="load_more"/>
           <all_read_skeleton slot="skeleton"/>
         </vue-lazy-component>
       </div>
@@ -109,6 +109,7 @@
         recent_hots: "", //最近热门
         hot_article: [], // 热门文章
         all_read:"", //大家都在读
+        add_article:"", // 新增文章
         requestCount: 0// 文章
       }
     },
@@ -180,6 +181,12 @@
         this.requestCount++
       }).catch(err => {
       })
+      //新增文章
+      index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+        this.add_article = res.data.Data
+      }).catch(err => {
+        console.log(err)
+      })
     },
     watch: {
       "$route": function () {
@@ -219,6 +226,13 @@
         }).catch(err => {
           console.log(err)
         })
+        //新增文章
+        index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
+          this.add_article = res.data.Data
+          this.requestCount++
+        }).catch(err => {
+          console.log(err)
+        })
       }
 
     },
@@ -237,7 +251,6 @@
         for (let i = 0; i < val.length; i++) {
           this.all_read.push(val[i])
         }
-
       },
       infinite(done) {
         setTimeout(() => {
