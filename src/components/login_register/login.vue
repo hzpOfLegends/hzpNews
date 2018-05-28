@@ -8,12 +8,12 @@
           </div>
           <div>
             <div class="email">
-              <input type="text" v-model="email" ref="user_email" @keyup="emailVerify">
+              <input type="text" v-model="email" ref="user_email" @input="emailVerify" @keyup.enter="submit_mess">
               <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px">{{email_hint}}</p>
             <div class="password">
-              <input type="password" v-model="password" ref="user_password" @keyup="passwordVerify">
+              <input type="password" v-model="password" ref="user_password" @input="passwordVerify" @keyup.enter="submit_mess">
               <i class="fa fa-lock"></i>
 
             </div>
@@ -55,11 +55,9 @@
     data() {
       return {
         email: "", // 郵箱值
-        email_state: true, //郵箱框狀態
         btn_boo1: false, //用來判斷btnactive顔色
         email_hint: "", //郵箱提示
         password: "", // 密码值
-        password_state: true, //郵箱框狀態
         btn_boo2: false, //用來判斷btnactive顔色
         password_hint: "", //郵箱提示
         btnActive: false, //按鈕顔色
@@ -103,39 +101,49 @@
         let reg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
         if (reg.test(this.email)) {
           this.email_hint = ""
-          this.email_state = true
           this.btn_boo1 = true
         } else {
           this.email_hint = "請輸入正確的郵箱"
           this.email_state = false
           this.btn_boo1 = false
         }
-        if (this.btn_boo1 && this.btn_boo2) {
-          this.btnActive = true
-        } else {
-          this.btnActive = false
+        // 为空时去掉提示
+        if(this.email==""){
+          this.email_hint = ""
+          this.btn_boo1 = false
         }
-        this.enter_submit()
+        // 判断用户输入是否合格  激活登录按钮
+        this.verify_user()
       },
       // 密碼嚴重
       passwordVerify() {
-        let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
         if (this.password_verfiy(this.password)) {
           this.password_hint = ""
-          this.password_state = true
           this.btn_boo2 = true
         } else {
           this.password_hint = "請輸入正確的密碼，（8-24位長度字元，支援大寫英文、小寫英文、數字、半形標點，並包含至少三種）"
-          this.password_state = false
           this.btn_boo2 = false
         }
+        // 密码为空时 提示消失
+        if(this.password==""){
+          this.password_hint = ""
+          this.btn_boo2 = false
+        }
+        // 判断用户输入是否合格  激活登录按钮
+        this.verify_user()
+      },
+      // 判断用户输入是否合格  激活登录按钮
+      verify_user(){
         if (this.btn_boo1 && this.btn_boo2) {
           this.btnActive = true
+          this.return_login_hint = ""
         } else {
           this.btnActive = false
+          this.return_login_hint = ""
         }
-        this.enter_submit()
       },
+
+      // 密码正则验证
       password_verfiy(password){
         if(!password) return false;
         //验证密码强度
@@ -154,13 +162,6 @@
           return false;
         } else {
           return true;
-        }
-      },
-      // 回车跳到提交
-      enter_submit(){
-        if(event.keyCode==13){
-          this.submit_mess()
-          // console.log("enter")
         }
       },
       submit_mess() {
@@ -208,6 +209,8 @@
             this.shade_boo = false
             lock = true
           })
+        }else{
+          this.return_login_hint = "請輸入完整的信息"
         }
       },
       // 清空 input
