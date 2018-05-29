@@ -170,7 +170,7 @@
             if (res.status == 200 && res.data.ResultCode == 200) {
               this.register_hint = ""
               // 提示成功
-              this.$message.success("注册成功")
+              this.$message.success("注冊成功")
               // 遮罩
               this.shade_boo = false
               this.$router.push({path: '/user/login'})

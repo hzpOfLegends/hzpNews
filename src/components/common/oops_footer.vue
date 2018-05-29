@@ -3,37 +3,33 @@
     <div class="oops_footer_wrap " v-if="$store.state.footer_style1">
       <div class="">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             <div class="web_name">
-              <h2>OOPSDAILY</h2>
-              <P>文章創作分享平臺</P>
+              <router-link to="/">
+                <h2>OOPSDAILY</h2>
+                <P>文章創作分享平臺</P>
+              </router-link>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 type-all">
+          <div class="col-md-1 col-lg-1">
+
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 type-all">
             <div class="web_type">
-              <h5>全部分類</h5>
+              <h5 style="text-align: left">全部分類</h5>
               <type_name/>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 web_share">
-            <router-link to="">
-              <img src="../../../static/img/team1.png" alt="">
-            </router-link>
-            <router-link to="">
-              <img src="../../../static/img/team2.png" alt="">
-            </router-link>
-            <router-link to="">
-              <img src="../../../static/img/team3.png" alt="">
-            </router-link>
-            <router-link to="">
-              <img src="../../../static/img/team4.png" alt="">
-            </router-link>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 web_share">
+              <twitter_share/>
+              <google_share/>
+              <facebook_share/>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="oops_footer2" v-if="$store.state.footer_style2" >
+    <div class="oops_footer2" v-if="$store.state.footer_style2">
       <div class="oops_footer_wrap2 clearfix">
         <div class="float-left" id="copy">
           <router-link to=""><span>@2018OopsDaily</span></router-link>
@@ -58,7 +54,7 @@
               意見反饋
             </router-link>
           </span>
-          <span style="padding-left: 10px"  >
+          <span style="padding-left: 10px">
             <router-link to="/help">
               幫助中心
             </router-link>
@@ -71,94 +67,116 @@
 
 <script>
   import type_name from "@/components/common/nav_bar_down"
+  import facebook_share from "@/components/common/share_button/facebook_share_btn"
+  import google_share from "@/components/common/share_button/google_share_btn"
+  import twitter_share from "@/components/common/share_button/twitter_share_btn"
   export default {
-    data(){
+    data() {
       return {
-        judge_login:true,
-        judge_login_page:true
+        judge_login: true,
+        judge_login_page: true
       }
 
     },
-    components:{
-      "type_name":type_name
+    components: {
+      "type_name": type_name,
+      "facebook_share":facebook_share,
+      "google_share":google_share,
+      "twitter_share":twitter_share
     },
-    created(){
-      //
+    created() {
       this.$store.state.nav_bar_down_contack = false
     },
-    mounted(){
-      setTimeout(()=>{
-       let ulList = document.querySelectorAll('.all_type>ul')
-        for (let i = 0 ; i<ulList.length ; i++){
-         ulList[i].style.borderRight = "none"
+    mounted() {
+      setTimeout(() => {
+        let ulList = document.querySelectorAll('.all_type>ul')
+        for (let i = 0; i < ulList.length; i++) {
+          ulList[i].style.borderRight = "none"
         }
-      },1)
+      }, 1)
     }
   }
 </script>
 
 <style scoped lang="less">
-  @media screen and(max-width: 768px){
-    .oops_footer_wrap{
+  @media screen and(max-width: 768px) {
+    .oops_footer_wrap {
       display: none;
     }
   }
+
   .oops_footer {
 
     .row {
-      margin:0;
+      margin: 0;
     }
     background-color: white !important;
     // height: 20.25rem;
     .oops_footer_wrap {
-      max-width:1220px;
+      max-width: 1180px;
       margin: 0 auto;
-        .row {
+      .row {
+        height: 100%;
+        .web_name {
           height: 100%;
-          .web_name {
-            padding-top: 36px !important;
-            height: 100%;
-            h2 {
-              font-weight: 900;
-              color: #888888;
-            }
+          h2 {
+            font-weight: 900;
+            color: #888888;
           }
-          .web_type {
-            min-height: 220px;
-            /*border-right: 1px solid #f6f6f6;*/
-            /*border-left: 1px solid #f6f6f6;*/
-            text-align: left;
-            h5 {
-              font-size: 16px;
-              color: #888888;
-              font-weight: 900;
-              padding:15px 12% 3px;
-              @media screen and  (max-width:768px) {
-                  text-align:center;
-              }
-            }
-            span {
-              display: inline-block;
-              width: 90px;
+          a{
+            color: #888888;
+          }
+        }
+        .web_type {
+          min-height: 220px;
+          /*border-right: 1px solid #f6f6f6;*/
+          /*border-left: 1px solid #f6f6f6;*/
+          text-align: right;
+          .nav_down_footer {
+            padding: 0;
+            background: none;
+            .all_type ul li {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               text-align: left;
             }
-          }
-
-          .web_share {
-            margin-top:48px;
-            height:70px;
-            // background-color:red;;
-            a{
-              display: inline-block;
-              width: 3rem;
-              height: 3rem;
-              margin: 0 4px;
-              img{
-                width: 100%;
-              }
+            .all_type ul li a {
+              font-size: 12px !important;
             }
-
           }
+          h5 {
+            font-size: 14px;
+            color: #888888;
+            font-weight: 900;
+            padding: 15px 0 3px;
+            @media screen and  (max-width: 768px) {
+              text-align: center;
+            }
+          }
+          span {
+            display: inline-block;
+            width: 90px;
+            text-align: left;
+          }
+        }
+
+        .web_share {
+          margin-top: 15px;
+          height: 70px;
+          text-align: right;
+          // background-color:red;;
+          a {
+            display: inline-block;
+            width: 3rem;
+            height: 3rem;
+            margin: 0 4px;
+            img {
+              width: 100%;
+            }
+          }
+
+        }
       }
     }
 
@@ -166,50 +184,48 @@
       background-color: #313131;
       .oops_footer_wrap2 {
         margin: 0 auto;
-        display:flex;
+        display: flex;
         justify-content: space-between;
         max-width: 1180px;
-        min-height:44px;
-        line-height: 44px;
-        &>div {
-          flex:0 0 50%;
-
-        }
-        #copy{
-          text-align: left;
-        }
-        #about {
-          text-align: right;
-        }
-        a{
-          font-size: 14px;
+        width: 100%;
+        a {
+          min-height: 44px;
+          line-height: 44px;
           color: #8d8d8d;
-          line-height: 3rem;
-        }
-        .want_line{
-          padding-right: 10px;
-          padding-left: 10px;
-          border-right: 1px solid #8d8d8d;
-          line-height: 3rem;
+          & > div {
+            flex: 0 0 50%;
+          }
+          #copy {
+            text-align: left;
+          }
+          #about {
+            text-align: right;
+          }
+          .want_line {
+            padding-right: 10px;
+            padding-left: 10px;
+            border-right: 1px solid #8d8d8d;
+            line-height: 3rem;
+          }
         }
       }
     }
     .types {
-        display:flex;
-        &>ul {
-           flex:0 0 33%;
-           li{
-             text-align:center;
-             padding:5px 0;
-           }
+      display: flex;
+      & > ul {
+        flex: 0 0 33%;
+        li {
+          text-align: center;
+          padding: 5px 0;
         }
+      }
     }
-    @media screen and  (max-width:768px) {
+    @media screen and  (max-width: 768px) {
       .oops_footer2 {
         .oops_footer_wrap2 {
-          flex-wrap:wrap;
-          &>div {
-            flex:0 0 100%;
+          flex-wrap: wrap;
+          & > div {
+            flex: 0 0 100%;
           }
           #copy{
             text-align: center;
@@ -221,23 +237,26 @@
       }
 
     }
-    @media screen and  (max-width:414px) {
-        #copy,#about {
-          span,a {
-            font-size:12px !important;
-          }
+    @media screen and  (max-width: 414px) {
+      #copy, #about {
+        span, a {
+          font-size: 12px !important;
+        }
 
-        }
-        .type-all {
-          font-size:12px;
-        }
-        .web_share {
-            margin-top:0px !important;
-        }
+      }
+
+      .type-all {
+        font-size: 12px;
+      }
+
+      .web_share {
+        margin-top: 0px !important;
+      }
     }
 
   }
-  .nav_down_footer{
+
+  .nav_down_footer {
     background: white;
     padding: 20px;
   }

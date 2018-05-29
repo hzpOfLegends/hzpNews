@@ -133,9 +133,9 @@
   }
 
   .nav_down_footer {
-    background: none;
     padding: 50px 50px;
     width: 100%;
+    background: white;
     .row{
       margin: 0;
     }
@@ -147,7 +147,7 @@
           padding: 5px 0;
           text-align: center;
           a {
-            font-size: 16px;
+            /*font-size: 16px;*/
           }
         }
       }
