@@ -12,11 +12,11 @@
             <div v-if="currentStep==1">
                 <div class="form-group">
                     <label for="oldEmail">原郵箱</label>
-                    <input type="text" class="form-control" id="oldEmail" placeholder="Email" v-model="step1.name" :disabled="step1.sendCode">
+                    <input type="text" class="form-control" id="oldEmail" placeholder="郵箱" v-model="step1.name" :disabled="step1.sendCode">
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step1.vCode" :disabled="!step1.sendCode">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
                     <button type="" class="btn btn-default code-btn"  @click="sendEmailCode('old')">{{step1.btnTXT}}</button>
                 </div>
@@ -30,11 +30,11 @@
             <div v-if="currentStep==2">
                 <div class="form-group">
                     <label for="newEmail">新郵箱</label>
-                    <input type="text" class="form-control" id="newEmail" placeholder="Email" v-model="step2.name"  :disabled="step2.sendCode">
+                    <input type="text" class="form-control" id="newEmail" placeholder="郵箱" v-model="step2.name"  :disabled="step2.sendCode">
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step2.vCode" :disabled="!step2.sendCode">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
                     <button type="" class="btn btn-default code-btn"  @click="sendEmailCode('new')">{{step2.btnTXT}}</button>
                 </div>

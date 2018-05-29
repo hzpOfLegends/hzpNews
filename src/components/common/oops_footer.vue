@@ -3,19 +3,19 @@
     <div class="oops_footer_wrap " v-if="$store.state.footer_style1">
       <div class="">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="web_name">
               <h2>OOPSDAILY</h2>
               <P>文章創作分享平臺</P>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 type-all">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 type-all">
             <div class="web_type">
               <h5>全部分類</h5>
               <type_name/>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 web_share">
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 web_share">
             <router-link to="">
               <img src="../../../static/img/team1.png" alt="">
             </router-link>
@@ -42,7 +42,7 @@
           <router-link to=""><span>京ICP證080268號</span></router-link>
 
         </div>
-        <div class="">
+        <div id="about">
           <span class="want_line">
             <router-link to="">
               關於我們
@@ -104,16 +104,15 @@
     }
   }
   .oops_footer {
+
     .row {
       margin:0;
     }
     background-color: white !important;
     // height: 20.25rem;
     .oops_footer_wrap {
+      max-width:1220px;
       margin: 0 auto;
-      height: 100%;
-        margin: 0;
-        padding: 0;
         .row {
           height: 100%;
           .web_name {
@@ -167,7 +166,9 @@
       background-color: #313131;
       .oops_footer_wrap2 {
         margin: 0 auto;
-        height: 3rem;
+        // height: 3rem;
+        display:flex;
+        justify-content: space-between;
         a{
           font-size: 14px;
           color: #8d8d8d;
@@ -191,11 +192,23 @@
            }
         }
     }
+    @media screen and  (max-width:768px) {
+      .oops_footer2 {
+        .oops_footer_wrap2 {
+          flex-wrap:wrap;
+          &>div {
+            flex:0 0 100%;
+          }
+        }
+      }
+        
+    }
     @media screen and  (max-width:414px) {
-        #copy {
-          span {
+        #copy,#about {
+          span,a {
             font-size:12px !important;
           }
+
         }
         .type-all {
           font-size:12px;

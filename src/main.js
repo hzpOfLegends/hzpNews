@@ -53,10 +53,14 @@ import 'element-ui/lib/theme-chalk/message.css'
 import 'element-ui/lib/theme-chalk/message-box.css'
 import 'element-ui/lib/theme-chalk/Steps.css'
 import 'element-ui/lib/theme-chalk/Step.css'
-import {Loading,Steps,Step,Pagination,Icon,Message,MessageBox} from 'element-ui'
+import 'element-ui/lib/theme-chalk/select.css'
+import 'element-ui/lib/theme-chalk/option.css'
+import {Loading,Steps,Step,Pagination,Icon,Message,MessageBox,Select,Option} from 'element-ui'
 Vue.use(Loading.directive)
 Vue.use(Pagination)
 Vue.use(Icon)
+Vue.use(Select)
+Vue.use(Option)
 Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;
