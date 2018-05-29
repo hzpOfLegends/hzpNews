@@ -10,7 +10,7 @@
               <div class="msg">
                   <h5>{{userInfo.Name}}</h5>
                   <span>我的会员等级：</span><span style="color:#fcae69">无</span> <br/>
-                  <span>我的账户金额：</span><span style="color:#fb8b82">5055</span>
+                  <span>我的账户金额：</span><span style="color:#fb8b82">{{userInfo.Profit}}</span>
               </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 r-box">
@@ -23,8 +23,8 @@
                     <p>发表文章(<span>{{userInfo.ArticleCount}}</span>)</p> 
                 </div>
                 <div>
-                    <div class="bg bg3"></div>
-                    <p>本月收入(<span>{{userInfo.Profit}}</span>)</p> 
+                    <!--<div class="bg bg3"></div>
+                    <p>本月收入(<span>{{userInfo.Profit}}</span>)</p> -->
                 </div>
           </div>
       </div>

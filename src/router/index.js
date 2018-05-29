@@ -98,6 +98,7 @@ export default new Router({
         {path:'article/new', component:my_article_new}, // 新增文章
         {path:'article/edit/:articleId', component:my_article_new}, // 編輯文章
         {path:'payment/income', component:my_payment}, //收益紀錄
+        {path:'payment/payout', component:my_payment}, //提現紀錄
         {path:'share', component:my_share}, // 好文
         {path:'message', component:my_message},
         {path:'record', component:my_record}, //点阅

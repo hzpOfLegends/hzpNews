@@ -21,14 +21,10 @@
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 web_share">
-            <router-link to="">
               <twitter_share/>
 
-            </router-link>
-            <router-link to="">
               <google_share/>
 
-            </router-link>
               <facebook_share/>
           </div>
         </div>
@@ -91,7 +87,6 @@
       "twitter_share":twitter_share
     },
     created() {
-      //
       this.$store.state.nav_bar_down_contack = false
     },
     mounted() {
@@ -200,15 +195,24 @@
         max-width: 1180px;
         width: 100%;
         a {
-          font-size: 14px;
+          min-height: 44px;
+          line-height: 44px;
           color: #8d8d8d;
-          line-height: 3rem;
-        }
-        .want_line {
-          padding-right: 10px;
-          padding-left: 10px;
-          border-right: 1px solid #8d8d8d;
-          line-height: 3rem;
+          & > div {
+            flex: 0 0 50%;
+          }
+          #copy {
+            text-align: left;
+          }
+          #about {
+            text-align: right;
+          }
+          .want_line {
+            padding-right: 10px;
+            padding-left: 10px;
+            border-right: 1px solid #8d8d8d;
+            line-height: 3rem;
+          }
         }
       }
     }
@@ -228,6 +232,12 @@
           flex-wrap: wrap;
           & > div {
             flex: 0 0 100%;
+          }
+          #copy{
+            text-align: center;
+          }
+          #about {
+            text-align: center;
           }
         }
       }
