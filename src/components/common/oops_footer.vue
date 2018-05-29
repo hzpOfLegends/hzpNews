@@ -169,7 +169,18 @@
         display:flex;
         justify-content: space-between;
         max-width: 1180px;
-        width: 100%;
+        min-height:44px;
+        line-height: 44px;
+        &>div {
+          flex:0 0 50%;
+
+        }
+        #copy{
+          text-align: left;
+        }
+        #about {
+          text-align: right;
+        }
         a{
           font-size: 14px;
           color: #8d8d8d;
@@ -199,6 +210,12 @@
           flex-wrap:wrap;
           &>div {
             flex:0 0 100%;
+          }
+          #copy{
+            text-align: center;
+          }
+          #about {
+            text-align: center;
           }
         }
       }

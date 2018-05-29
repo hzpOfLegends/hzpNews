@@ -9,22 +9,25 @@
             我的賬戶餘額：<span>1000</span>
         </div>
         <div class="m-tab">
-            <!--<ul>
-                <li>
-                    <router-link to="">
+            <ul class="clearfix">
+                <li :class="active===1?'active':''" @click="active=1">
+                    <router-link to="/my/payment/income">
                         <span>收益記錄</span>
                     </router-link>
                 </li>
-                <li>
-                    <router-link to="">
+                <li :class="active===2?'active':''" @click="active=2">
+                    <router-link to="/my/payment/payout">
                         <span>提現記錄</span>
                     </router-link>
                 </li>
-            </ul>-->
+            </ul>
         </div>
-        <div class="content" style="text-align:left;min-height:300px" >
+        <Income v-if="active===1"></Income>
+        <Payout v-if="active===2"></Payout>
+
+
+        <!--<div class="content" style="text-align:left;min-height:300px" >
             <table class="table table-striped table-bordered" >
-            <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
                 <th>日期</th>
@@ -32,18 +35,15 @@
                 <th>共推</th>
                 <th>撰寫</th>
                 <th>總點閱</th>
-                <!--<th>收益</th>-->
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(v,i) in profitStatisticsList" :key="i">
-                    <!--<th scope="row">1</th>-->
                     <td>{{$moment(v.Date).format("YYYY-MM-DD")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
                     <td>{{v.ViewCount}}</td>
-                    <!--<td>{{123}}</td>-->
                 </tr>
 
             </tbody>
@@ -60,7 +60,7 @@
                 @current-change="changePage"
             >
             </el-pagination>
-        </div>  
+        </div>  -->
           
       </div>
   </div>
@@ -68,58 +68,67 @@
 
 <script>
 import accountAxios from '../../axios_joggle/axios_account'
+import Income from './subcomponent/payment_income'
+import Payout from './subcomponent/payment_payout'
+
     export default {
         data(){
             return {
-                loading:false,
-                profitStatisticsList:'',
-                pageSize:15,
-                total:1,
-                isEmpty:false
+                // loading:false,
+                // profitStatisticsList:'',
+                // pageSize:15,
+                // total:1,
+                // isEmpty:false,
+                active:1
             }
         },
+        components:{
+            Income,Payout
+        },
         watch:{
-            '$route.query':'getProfitStatistics'
         },
       methods:{
-            //最近收益
-            getProfitStatistics(){
-                this.loading = true
-                accountAxios.profitStatistics({
-                    pageSize:this.pageSize,
-                    pageIndex:this.$route.query.pageIndex || "1" ,
-                }).then(res=>{
-                    this.loading = false
-                    if(res.data.ResultCode==200){
-                        this.profitStatisticsList = res.data.Data.Statistics
-                        this.total = res.data.Data.total
-                        // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
-                        console.log(res);
-                    }else if(res.data.ResultCode==201){
-                        if(!res.data.Data){
-                            this.isEmpty = true
-                        }else{
-                            this.isEmpty = false
-                        }
-                    }
-                }).catch(err=>{
-                    this.loading = false
-                })
-            },
-            changePage(pageIndex){
-                console.log(pageIndex);
-                let query = Object.assign({},this.$route.query)
-                query.pageIndex = pageIndex
-                this.$router.push({query:query})
-            },
+            // //最近收益
+            // getProfitStatistics(){
+            //     this.loading = true
+            //     accountAxios.profitStatistics({
+            //         pageSize:this.pageSize,
+            //         pageIndex:this.$route.query.pageIndex || "1" ,
+            //     }).then(res=>{
+            //         this.loading = false
+            //         if(res.data.ResultCode==200){
+            //             this.profitStatisticsList = res.data.Data.Statistics
+            //             this.total = res.data.Data.total
+            //             // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
+            //             console.log(res);
+            //         }else if(res.data.ResultCode==201){
+            //             if(!res.data.Data){
+            //                 this.isEmpty = true
+            //             }else{
+            //                 this.isEmpty = false
+            //             }
+            //         }
+            //     }).catch(err=>{
+            //         this.loading = false
+            //     })
+            // },
+            // changePage(pageIndex){
+            //     console.log(pageIndex);
+            //     let query = Object.assign({},this.$route.query)
+            //     query.pageIndex = pageIndex
+            //     this.$router.push({query:query})
+            // },
       },
       mounted(){
 
-            if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
-                this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
-            }else{
-                this.getProfitStatistics()
-            }
+            // if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
+            //     this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
+            // }else{
+            //     this.getProfitStatistics()
+            // }
+      },
+      created(){
+          this.active = this.$route.path.split('/')[3]==='income' ? 1:2
       }
     }
 </script>
@@ -181,10 +190,41 @@ import accountAxios from '../../axios_joggle/axios_account'
         }
         .m-tab {
             &>ul {
-                float:left;
+                background-color: #ffffff;
+                border:1px solid #dddddd;
+                margin-top:22px;
+                margin-bottom:-0px;
+                margin-right:1px;
                 li {
-                    height:48px;
-
+                    float:left;
+                    position: relative;
+                    // height:48px;
+                    span {
+                        display: block;
+                        padding:15px 35px;
+                        font-size:15px;
+                        color:#515151;
+                    }
+                    &:after {
+                        content:"";
+                        height:3px;
+                        width:70px;
+                        background-color: #4a8fdf;
+                        position: absolute;
+                        bottom:2px;
+                        left:50%;
+                        transform: translateX(-50%);
+                        display:none
+                    }
+                }
+                li.active {
+                    span {
+                        color:#4a8fdf;
+                    }
+                    &:after {
+                        display:block
+                    }
+                        
                 }
 
             }

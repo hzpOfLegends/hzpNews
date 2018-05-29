@@ -22,6 +22,10 @@ class account {
   profitStatistics(data){
       return axios.get(axios.path + 'api/Daily/ProfitStatistics',{params:data})
   }
+  //提現記錄
+  getEnchashment(data){
+      return axios.get(axios.path + 'api/Daily/GetEnchashment',{params:data})
+  }
   //點閱/點閱詳情
   record(data){
       return axios.post(axios.path + 'api/Daily/ArticleView',data)

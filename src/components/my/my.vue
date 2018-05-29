@@ -3,7 +3,7 @@
   <div class="my-nav">
     <div class="bx">
       <nav class="navbar navbar-default">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-left:0">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -12,7 +12,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="javascript:;" v-if="1">
+            <!--<a class="navbar-brand" href="javascript:;" v-if="1">
                 <div class="logo-a">
                     <a href="www.baidu.com" target="_blank">
                         <img src="" alt="">
@@ -24,10 +24,10 @@
                     </div>
                 </div>
 
-            </a>
+            </a>-->
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  style="padding-left:0">
             <ul class="nav navbar-nav nav-list">
               <li index='0' @click="clickNav('0')">
                 <router-link to="/my/user/dashboard" >
@@ -92,10 +92,16 @@
           <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
+        <div class="go-index">
+            <router-link to="/">
+              OOPSDAILY首頁 <i class="glyphicon glyphicon-menu-right"></i>
+            </router-link>
+        </div>
       </nav>
     </div>
 
   </div>
+
   <div  style="min-height:400px;width:100%;" v-loading="loading">
       <router-view v-if="show"></router-view>
   </div>
@@ -216,6 +222,26 @@ export default {
         margin:0 auto;
         max-width:1180px;
         margin-bottom: 0px;
+        position: relative;
+        .go-index {
+          position: absolute;
+          right:0px;
+          top:14px;
+          vertical-align: middle ;
+          a {
+            color:#fff;
+            background-color: transparent !important;
+          }
+          i {
+            display: inline-block;
+            width:19px;
+            height:19px;
+            border-radius:50%;
+            line-height: 19px;;
+            border:1px solid #fff;
+            font-size:12px;
+          }
+        }
         .navbar-header {
 
           // padding: 0 70px;
@@ -280,6 +306,9 @@ export default {
         background-color: transparent;
       }
       @media (max-width: 767px) {
+        .go-index {
+          display:none;
+        }
         .navbar-default .navbar-nav .open .dropdown-menu>li>a {
           color: #eee;
         }

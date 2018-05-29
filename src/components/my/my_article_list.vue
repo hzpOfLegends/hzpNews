@@ -19,9 +19,13 @@
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                    <th class="title-header">標題</th>
+                    <!--<th class="title-header">標題</th>
                     <th style="width:190px">時間</th>
                     <th style="width:220px">點閱</th>
+                    <th>操作</th>-->
+                    <th class="title-header"  style="width:42%">標題</th>
+                    <th style="width:20%">時間</th>
+                    <th style="width:12%">點閱</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -49,10 +53,17 @@
                     <!--点阅数-->
                     <td>{{v.ClickRate }}</td>
                     <td>
-                        <div class="hidden-xs">
+                        <!--<div class="hidden-xs">
                             <button type="button" class="btn btn-info" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
                             <button type="button" class="btn btn-danger" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
                             <button type="button" :class="'btn btn-primary copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
+                        </div>-->
+
+
+                        <div class="">
+                            <span class="edit-btn" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> </span>
+                            <span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-remove"></i> </span>
+                            <button type="button" :class="'btn btn-primary copy-btn copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                         </div>
                         <!--<div class="btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" style="max-width:300px;min-width:100px">
                             <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i><span class="btn-text hidden-xs"> 編輯</span></a>
@@ -210,6 +221,24 @@ import Clipboard from 'clipboard';
     padding-top:15px;
     .row {
         margin:0;
+    }
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+         border-left: none;
+         border-right: none;
+         padding:15px;
+    }
+    .edit-btn,.del-btn {
+        color:#999999;
+        margin:0 12px;
+    }
+    .copy-btn {
+        width:72px !important;
+        height:28px;
+        background-color: #e9f3fd;
+        color:#2c80da;
+        border:1px solid #2c80da;
+        font-size:13px;
+        padding:0;
     }
     .item {
         padding:2%;
