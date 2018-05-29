@@ -36,6 +36,7 @@
     border-radius: 3px;
     line-height: 40px;
     text-align: center;
+    margin-left: 15px;
     a{
       color: white;
       img{

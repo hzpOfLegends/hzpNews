@@ -19,7 +19,7 @@
       }
     },
     created() {
-      this.web_url = "javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent("+window.location.href.split("/")[2]+"))));"
+      this.web_url = "javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));"
     }
   }
 </script>
@@ -33,6 +33,7 @@
     border-radius: 3px;
     line-height: 40px;
     text-align: center;
+    margin-left: 15px;
     a {
       color: white;
       text-decoration: none;
