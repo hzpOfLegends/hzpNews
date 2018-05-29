@@ -92,12 +92,8 @@
     mounted() {
       setTimeout(() => {
         let ulList = document.querySelectorAll('.all_type>ul')
-        let liList = document.querySelectorAll(".all_type>ul>li")
         for (let i = 0; i < ulList.length; i++) {
           ulList[i].style.borderRight = "none"
-        }
-        for (let l = 0; l < liList.length; l++) {
-          liList[l].style.textAlign = "left"
         }
       }, 1)
     }
