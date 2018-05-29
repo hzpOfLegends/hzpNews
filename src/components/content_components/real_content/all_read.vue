@@ -17,7 +17,7 @@
                 <div><p>{{item.NewsTitle}}</p></div>
               </div>
               <div class="center">
-                <p>{{item.Content}}</p>
+                <p>{{item.Profile}}</p>
               </div>
               <div class="bottom">
                 <div class="author">
@@ -110,7 +110,6 @@
       var that = this
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() - 1 && isbool == true) {
-
           //大家都在读
           if (isbool) {
             that.pageNum = that.pageNum + 1
@@ -201,12 +200,17 @@
         .charater {
           max-width: 69%;
           width: 100%;
-          min-height: 100px;
+          max-height: 160px;
           display: inline-block;
           position: relative;
           padding-left: 15px;
+          overflow: hidden;
           .top {
             display: flex;
+            max-height:60px;
+            height:100%;
+            text-overflow:ellipsis;
+            white-space: nowrap;
             :nth-child(1) > p {
               margin-top: 2px;
               display: block;
@@ -222,26 +226,40 @@
               line-height: 22px;
               border-radius: 3px;
             }
+            :nth-child(2){
+              max-width: 460px;
+              overflow: hidden;
+            }
             :nth-child(2) > p {
+              width: 100%;
+              height: 100%;
+              margin: 0;
               font-weight: 900;
               font-size: 18px;
               padding-left: 10px;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
             }
           }
           .center {
-            margin-top: 16px;
+            margin-top: 10px;
             margin-bottom: 16px;
             font-size: 14px;
-            min-height: 20px;
+            max-height: 80px;
+            p{
+               max-height: 60px;
+               height: 100%;
+               display: -webkit-box;
+               -webkit-box-orient: vertical;
+               -webkit-line-clamp: 3;
+               overflow: hidden;
+             }
           }
           .bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 18px;
               :nth-child(1) {
                 width: 26px;
                 height: 26px;

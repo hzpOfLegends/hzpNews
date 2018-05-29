@@ -35,14 +35,14 @@
 
     <div class="oops_footer2" v-if="$store.state.footer_style2" >
       <div class="oops_footer_wrap2 clearfix">
-        <div class=" " id="copy">
+        <div class="float-left" id="copy">
           <router-link to=""><span>@2018OopsDaily</span></router-link>
           <router-link to=""><span>隱私政策</span></router-link>
           <router-link to=""><span>服務條款</span></router-link>
           <router-link to=""><span>京ICP證080268號</span></router-link>
 
         </div>
-        <div class="">
+        <div class="float-right">
           <span class="want_line">
             <router-link to="">
               關於我們
@@ -110,6 +110,7 @@
     background-color: white !important;
     // height: 20.25rem;
     .oops_footer_wrap {
+
       margin: 0 auto;
       height: 100%;
         margin: 0;
@@ -167,7 +168,10 @@
       background-color: #313131;
       .oops_footer_wrap2 {
         margin: 0 auto;
-        height: 3rem;
+        max-height: 48px;
+        height: 100%;
+        max-width: 1180px;
+        width: 100%;
         a{
           font-size: 14px;
           color: #8d8d8d;

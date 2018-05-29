@@ -1,13 +1,13 @@
 <template>
   <div class="step1_wrap" v-loading="load">
     <div class="the_email">
-      <div>郵箱：</div>
+      <div style="padding-bottom: 10px">郵箱：</div>
       <input type="text" ref="email" @input="email_verify">
 
     </div>
     <div class="the_code">
       <p style="color: red;font-size: 12px">{{email_hint}}</p>
-      <div>驗證碼:</div>
+      <div style="padding-bottom: 10px">驗證碼:</div>
       <input type="text" ref="code" @keyup="code_verify">
       <button type="button" id="get_code" :class="before_class" @click="get_code">{{code_name}}</button>
 
@@ -109,7 +109,7 @@
       },
       // 定時器 秒數
       setInterval_name() {
-        
+
         this.code_lock = false
         this.timer = setInterval(() => {
           if (this.code_name > 0) {
@@ -167,7 +167,7 @@
 
 <style scoped lang="less">
   .step1_wrap {
-    padding: 0 44px 50px 44px;
+    padding: 0 44px 0 44px;
     text-align: left;
     input {
       border: 1px solid rgb(241, 241, 241);
@@ -176,7 +176,7 @@
     .the_email {
       input {
         width: 100%;
-        min-height: 40px;
+        min-height: 45px;
         font-size: 20px;
         padding-left: 20px;
       }
@@ -184,24 +184,28 @@
     .the_code {
       margin: 10px 0;
       input {
-        max-width: 280px;
+        max-width: 338px;
         width: 100%;
-        min-height: 40px;
+        min-height: 45px;
         font-size: 20px;
         padding-left: 20px;
       }
       button {
-        min-width: 90px;
-        min-height: 40px;
+        max-width: 116px;
+        min-height: 45px;
       }
 
     }
     .next_btn {
       text-align: center;
-      margin: 10px 0;
+      margin: 29px 0 58px;
       input {
         min-width: 90px;
         min-height: 40px;
+      }
+      button{
+        width: 110px;
+        height: 45px;
       }
     }
   }

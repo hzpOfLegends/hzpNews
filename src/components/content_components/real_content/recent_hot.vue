@@ -11,11 +11,11 @@
           </div>
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryName}}</span>
-              <span>{{item.NewsTitle}}</span>
+              <div><p>{{item.CategoryName }}</p></div>
+              <div><p>{{item.NewsTitle}}</p></div>
             </div>
             <div class="center">
-              <p>{{item.Content}}</p>
+              <p>{{item.Profile}}</p>
             </div>
             <div class="bottom">
               <div class="author">
@@ -124,6 +124,7 @@
         cursor: pointer;
         a{
           color: black;
+          display: block;
         }
         .photo {
           background-color: rgba(0, 0, 0, .1);
@@ -142,12 +143,17 @@
         .charater {
           max-width: 69%;
           width: 100%;
-          min-height: 100px;
+          max-height: 160px;
           display: inline-block;
           position: relative;
           padding-left: 15px;
           .top {
-            :nth-child(1) {
+            display: flex;
+            max-height:60px;
+            height:100%;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            :nth-child(1)> p{
               margin-top:2px;
               display: inline-block;
               vertical-align: top;
@@ -163,26 +169,34 @@
               line-height: 22px;
               border-radius: 3px;
             }
-            :nth-child(2) {
+            :nth-child(2){
+              max-width: 460px;
+              overflow: hidden;
+            }
+            :nth-child(2)> p {
               font-weight: 900;
               font-size: 18px;
               padding-left: 10px;
             }
           }
           .center {
-            margin-top: 16px;
+            margin-top: 10px;
             margin-bottom: 16px;
             font-size: 14px;
-            min-height: 20px;
+            max-height: 80px;
+            p{
+              max-height: 60px;
+              height: 100%;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+            }
           }
           .bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 18px;
               :nth-child(1) {
                 width: 26px;
                 height: 26px;

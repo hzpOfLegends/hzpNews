@@ -9,17 +9,17 @@
         <div class="row">
           <!--<div class="float-left">-->
           <div class="photo">
-            <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
+            <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" >
           </div>
           <!--</div>-->
           <!--<div class="float-left">-->
           <div class="charater">
             <div class="top">
-              <span>{{item.CategoryName}}</span>
-              <span>{{item.NewsTitle}}</span>
+              <div><p>{{item.CategoryName }}</p></div>
+              <div><p>{{item.NewsTitle}}</p></div>
             </div>
             <div class="center">
-              <p>{{item.Content}}</p>
+              <p>{{item.Profile}}</p>
             </div>
             <div class="bottom">
               <div class="author">
@@ -197,42 +197,66 @@
         .charater {
           max-width: 69%;
           width: 100%;
+          max-height: 160px;
           padding-left: 15px;
           position: relative;
           display: inline-block;
-          position: relative;
+          overflow: hidden;
           .top {
-            :nth-child(1) {
-              display: inline-block;
-              min-width: 48px;
+            display: flex;
+            max-height:60px;
+            height:100%;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            :nth-child(1) >p{
+              margin-top: 2px;
+              display: block;
+              min-width: 42px;
               padding: 0 5px;
-              max-height: 22px;
+              overflow: hidden;
+              word-break: keep-all;
+              height: 22px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
               text-align: center;
-              line-height: 1.375rem;
+              line-height: 22px;
               border-radius: 3px;
             }
-            :nth-child(2) {
+            :nth-child(2){
+              max-width: 460px;
+              overflow: hidden;
+            }
+            :nth-child(2) >p{
+              width: 100%;
+              height: 100%;
+              margin: 0;
               font-weight: 900;
               font-size: 18px;
-              margin-left: 10px;
+              padding-left: 10px;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
             }
           }
           .center {
-            margin-top: 16px;
+            margin-top: 10px;
+            margin-bottom: 16px;
             font-size: 14px;
-            min-height: 20px;
+            max-height: 80px;
+            p{
+              max-height: 60px;
+              height: 100%;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+            }
           }
           .bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 18px;
               :nth-child(1) {
                 max-width: 26px;
                 max-height: 26px;

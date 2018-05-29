@@ -39,8 +39,8 @@
                     <a href="javascript:;" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true">
                     </a>
                     <ul class="dropdown-menu">
-                      <li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>
                       <li style="padding: 5px 0"><router-link to="/my/user/dashboard">個人中心</router-link></li>
+                      <li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>
                       <!--<li role="separator" class="divider"></li>-->
                     </ul>
                   </div>

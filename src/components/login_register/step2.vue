@@ -1,12 +1,12 @@
 <template>
   <div class="the_step2" v-loading="load">
     <div class="the_new_password">
-      <div>新密碼：</div>
+      <div style="margin-bottom: 10px;">新密碼：</div>
       <input type="password" ref="new_password" @keyup="pwd_verify">
     </div>
     <div class="the_again_password">
       <p style="color: red;font-size: 12px">{{new_password_hint}}</p>
-      <div>確定密碼:</div>
+      <div style="margin-bottom: 10px;">確定密碼:</div>
       <input type="password" ref="again_password" @keyup="again_verify">
     </div>
     <p style="color: red;">{{again_password_hint}}</p>
@@ -127,8 +127,8 @@
     .the_new_password {
       input {
         width: 100%;
-        min-height: 40px;
-        font-size: 20px;
+        min-height: 45px;
+        font-size: 12px;
         padding-left: 20px;
       }
     }
@@ -136,17 +136,17 @@
       margin: 10px 0;
       input {
         width: 100%;
-        min-height: 40px;
-        font-size: 20px;
+        min-height: 45px;
+        font-size: 12px;
         padding-left: 20px;
       }
     }
     .next_btn {
       text-align: center;
-      margin: 10px 0;
-      input {
-        min-width: 90px;
-        min-height: 40px;
+      margin: 29px 0  0;
+      button {
+        min-width: 110px;
+        min-height: 45px;
       }
     }
   }

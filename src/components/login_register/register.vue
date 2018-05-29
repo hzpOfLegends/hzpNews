@@ -4,21 +4,21 @@
       <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
           <div>
-            <h4>創建新賬號</h4>
+            <h4 style="font-size: 24px;rgb(51,51,51);padding: 34px 0 22px">創建新賬號</h4>
           </div>
           <div>
             <div class="email">
-              <input type="text" v-model="email" @input="emailVerify" @keyup.enter="submit_mess">
+              <input type="text" v-model="email" @input="emailVerify" @keyup.enter="submit_mess" placeholder="請輸入郵箱">
               <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px;text-align: left">{{email_hint}}</p>
             <div class="password">
-              <input type="password" v-model="password" @input="passwordVerify" @keyup.enter="submit_mess">
+              <input type="password" v-model="password" @input="passwordVerify" @keyup.enter="submit_mess" placeholder="請輸入密碼">
               <i class="fa fa-lock"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{password_hint}}</p>
             <div class="new_password">
-              <input type="password" v-model="new_password" @input="newpasswordVerify" @keyup.enter="submit_mess">
+              <input type="password" v-model="new_password" @input="newpasswordVerify" @keyup.enter="submit_mess" placeholder="請再次輸入密碼">
               <i class="fa fa-lock"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{new_password_hint}}</p>
@@ -27,13 +27,14 @@
               注冊
             </button>
           </div>
-          <div class="step2">
-            <p>
-              已有賬號？
-              <router-link to="/user/login">前往登錄>></router-link>
-            </p>
-          </div>
 
+
+        </div>
+        <div class="step2">
+          <p>
+            已有賬號？
+            <router-link to="/user/login">前往登錄>></router-link>
+          </p>
         </div>
       </div>
       </div>
@@ -214,7 +215,7 @@
       this.$NProgress.done()
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat  top"
     }
   }
 </script>
@@ -223,14 +224,15 @@
   .container {
     padding: 0;
     margin: 0 auto;
+    font-family: "Microsoft YaHei";
     .row {
       margin: 0;
     }
     .login_wrap {
       background: white;
       width: 100%;
-      margin: 7rem auto 11.75rem;
-      max-width: 470px;
+      margin: 112px auto 188px;
+      max-width: 527px;
       border-radius: 3px;
 
       /*遮罩*/
@@ -254,18 +256,18 @@
         text-align: left;
         input {
           width: 100%;
-          min-height: 46px;
+          min-height: 50px;
           border: 1px solid rgb(241, 241, 241);
           border-radius: 3px;
-          font-size: 20px;
-          padding-left: 50px;
+          font-size: 12px;
+          padding-left: 45px;
         }
         i {
           position: absolute;
-          left: 10px;
+          left: 15px;
           top: 50%;
           transform: translateY(-50%);
-          font-size: 20px;
+          font-size: 15px;
         }
       }
       .password {
@@ -274,43 +276,43 @@
         color: rgb(153, 153, 153);
         input {
           width: 100%;
-          min-height: 46px;
+          min-height: 50px;
           border: 1px solid rgb(244, 244, 244);
           border-radius: 3px;
-          font-size: 20px;
-          padding-left: 50px;
+          font-size: 12px;
+          padding-left: 45px;
         }
         i {
           position: absolute;
-          left: 15px;
+          left: 17px;
           top: 50%;
           transform: translateY(-50%);
-          font-size: 20px;
+          font-size: 15px;
         }
       }
       .new_password{
-        margin: 1rem 0;
+        margin: 15px 0 30px;
         position: relative;
         color: rgb(153, 153, 153);
         input {
           width: 100%;
-          min-height: 46px;
+          min-height: 50px;
           border: 1px solid rgb(244, 244, 244);
           border-radius: 3px;
-          font-size: 20px;
-          padding-left: 50px;
+          font-size: 12px;
+          padding-left: 45px;
         }
         i {
           position: absolute;
-          left: 15px;
+          left: 17px;
           top: 50%;
           transform: translateY(-50%);
-          font-size: 20px;
+          font-size: 15px;
         }
       }
     }
     .step1 {
-      padding: 27px;
+      padding: 0 28px;
       h4 {
         font-weight: 900;
         padding: 16px;
@@ -331,9 +333,10 @@
     }
     .btn {
       width: 100%;
+      min-height: 55px;
       border: 1px solid rgb(241, 241, 241);
       background: rgb(246, 246, 246);
-      margin-bottom: 5rem;
+      margin-bottom: 45px;
     }
     .active {
       width: 100%;

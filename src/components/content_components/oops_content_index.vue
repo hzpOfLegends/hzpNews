@@ -160,7 +160,7 @@
         console.log(err)
       })
       // 最近热门
-      index_message.recent_hot({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
+      index_message.recent_hot({CategoryID: this.$route.params.categoryId? this.$route.params.categoryId : '-1'}).then(res => {
         if (res.data.Data) {
           this.recent_hots = res.data.Data
         }

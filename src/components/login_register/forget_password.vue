@@ -6,7 +6,7 @@
       <h4>找回密碼</h4>
     </div>
     <div class="step_progress">
-      <el-steps :align-center="true" :active="active" finish-status="success">
+      <el-steps :align-center="true" :active="active" >
         <el-step title="身份驗證"></el-step>
         <el-step title="重置密碼"></el-step>
         <el-step title="修改成功"></el-step>
@@ -58,6 +58,11 @@
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+      // 將步驟條文字設小
+      let el_step_title = document.querySelectorAll('.el-step__title')
+      for(let i = 0 ; i<el_step_title.length ; i++){
+        el_step_title[i].style.fontSize = "12px"
+      }
     }
   }
 </script>
@@ -72,8 +77,9 @@
       position: relative;
       // width: 100%;
       margin: 112px auto 188px;
-      max-width: 470px;
+      max-width: 527px;
       border-radius: 3px;
+      font-family: "Microsoft YaHei";
       .title{
         padding: 10px 0 ;
         border-bottom: 5px solid rgb(10, 83, 162);
@@ -83,12 +89,18 @@
         }
       }
       .step_progress {
-        margin: 20px 0;
+        margin: 35px 0 15px;
         .el-steps--horizontal{
           width: 70%;
           margin: 0 auto;
           /*text-align: left !important;*/
         }
+        .el-step__main{
+          .el-step__title{
+            font-size: 12px !important;
+          }
+        }
+
       }
 
     }

@@ -4,17 +4,17 @@
       <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
           <div>
-            <h4>賬戶登錄</h4>
+            <h4 style="text-align: center;font-size: 24px;padding: 34px 0 22px;">賬戶登錄</h4>
           </div>
           <div>
             <div class="email">
-              <input type="text" v-model="email" ref="user_email" @input="emailVerify" @keyup.enter="submit_mess">
+              <input type="text" v-model="email" ref="user_email" @input="emailVerify" @keyup.enter="submit_mess" placeholder="請輸入郵箱">
               <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px">{{email_hint}}</p>
             <div class="password">
               <input type="password" v-model="password" ref="user_password" @input="passwordVerify"
-                     @keyup.enter="submit_mess">
+                     @keyup.enter="submit_mess" placeholder="請輸入密碼">
               <i class="fa fa-lock"></i>
 
             </div>
@@ -35,7 +35,7 @@
         <div class="step2">
           <p>
             還沒有賬號？
-            <router-link to="/user/register">前往注冊>></router-link>
+            <router-link to="/user/register" style="rgb(153,153,153)">前往注冊>></router-link>
           </p>
         </div>
 
@@ -92,7 +92,7 @@
       }, 1)
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat top"
 
     },
 
@@ -256,7 +256,7 @@
       }
     }
     .step1 {
-      padding: 27px;
+      padding:0 28px;
       h4 {
         font-weight: 900;
         padding: 16px;
@@ -280,7 +280,7 @@
       width: 100%;
       border: 1px solid rgb(241, 241, 241);
       background: rgb(246, 246, 246);
-      margin-bottom: 5rem;
+      margin-bottom: 79px;
     }
     .active {
       width: 100%;
@@ -297,15 +297,15 @@
         min-height: 46px;
         border: 1px solid rgb(241, 241, 241);
         border-radius: 3px;
-        font-size: 20px;
-        padding-left: 50px;
+        font-size: 12px;
+        padding-left: 45px;
       }
       i {
         position: absolute;
-        left: 10px;
+        left: 15px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 20px;
+        font-size: 15px;
       }
     }
     .password {
@@ -317,15 +317,15 @@
         min-height: 46px;
         border: 1px solid rgb(244, 244, 244);
         border-radius: 3px;
-        font-size: 20px;
-        padding-left: 50px;
+        font-size: 12px;
+        padding-left: 45px;
       }
       i {
         position: absolute;
-        left: 15px;
+        left: 17px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 20px;
+        font-size: 15px;
       }
     }
     .forget_password {
