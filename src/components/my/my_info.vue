@@ -68,8 +68,8 @@
                                 <span v-else style="color:#fb8507"><i class="glyphicon glyphicon-exclamation-sign"></i> 未綁定</span>
                            </div>
                            <div class="u-btn">
-                              <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('phone','isPhoneUser')">修改</button>
-                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;background:#f78323"  @click="clickModify('phone','norPhoneUser')">綁定</button>
+                              <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('phone',userInfo.Phone)">修改</button>
+                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;background:#f78323"  @click="clickModify('phone','')">綁定</button>
                            </div>
                         </li>
                         <li>
@@ -105,7 +105,7 @@
                 <imgUpload @closeMe="closeSubcomponent" v-if="modify==='avatar'"></imgUpload>
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
                 <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'"></modifyMail>
-                <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :isPhoneUser="isPhoneUser"></modifyPhone>
+                <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :phoneNum="phoneNum"></modifyPhone>
           </div>
       </div>
       <!--<imgUpload></imgUpload>-->
@@ -126,7 +126,7 @@ export default {
             initUserInfo:'', //修改前數據
             modify:'',
             loading:false,
-            isPhoneUser:false,
+            phoneNum:'',
         }
     },
     components:{
@@ -177,7 +177,7 @@ export default {
               this.loading = false
           })
         },
-        clickModify(value,userType){
+        clickModify(value,phoneNum){
             if(value==='payment'){
                 this.$alert('功能接口暫未開通', '提示', {
                     confirmButtonText: '确定',
@@ -190,11 +190,9 @@ export default {
                 });
                 return;
             }
-            // 判斷是否是手機用戶
-            if(userType){
-                if(userType==='isPhoneUser'){
-                    this.isPhoneUser = true //是手機用戶
-                }
+            // 操作手机  判斷是否是手機用戶
+            if(phoneNum){
+                this.phoneNum = phoneNum //是手機用戶
             }
             this.modify=value
         },
@@ -231,6 +229,7 @@ export default {
         width:100%;
         height:100%;
         background-color: rgba(0,0,0,.5);
+        z-index:999;
         .m-view {
             max-width:550px;
             max-height:470px;
