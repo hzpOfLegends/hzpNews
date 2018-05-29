@@ -19,7 +19,7 @@ const state = {
   index_requestCount: 0 , // 首页 - 页面进度条
   inside_requestCount: 0, // 内页 - 页面进度条
   other_article_content:[], // 内页其他文章 , 由于转发 session里没有id  所以 在请求完详情 返回id 后 再去请求 同区其他文章
-  submit_hint:"", // 登陸注冊提示語
+  submit_hint:"", // 登陸注冊提示語 ， 在axios.js 統一處理
 }
 const mutations = {
     setMeta(state,value){
