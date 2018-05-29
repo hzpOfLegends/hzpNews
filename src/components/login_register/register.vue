@@ -98,13 +98,21 @@
       },
       // 密碼嚴重
       passwordVerify() {
-        let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
         if (this.password_verfiy(this.password)) {
           this.password_hint = ""
           this.btn_boo2 = true
         } else {
           this.password_hint = "請輸入正確的密碼，（8-24位長度字元，支援大寫英文、小寫英文、數字、半形標點，並包含至少三種）"
           this.btn_boo2 = false
+        }
+        if(this.new_password){
+          if(this.password == this.new_password){
+            this.btn_boo2 = true
+            this.password_hint = ""
+          }else{
+            this.btn_boo2 = false
+            this.password_hint = "两次輸入的密碼不一致"
+          }
         }
         // 密码输入为空 提示消失
         if(this.password == ""){
@@ -129,6 +137,15 @@
           this.new_password_hint = "两次輸入的密碼不一致"
           this.btn_boo3 = false
         }
+        if(this.password_verfiy(this.password)){
+          if(this.password == this.new_password){
+            this.btn_boo2 = true
+            this.password_hint = ""
+          }else{
+            this.btn_boo2 = false
+            this.password_hint = "两次輸入的密碼不一致"
+          }
+        }
         // 再次输入密码为空 提示消失
         if(this.new_password==""){
           this.new_password_hint = ""
@@ -145,7 +162,7 @@
       submit_mess() {
         // 锁 防止重复提交
         let lock = true
-        if (this.btnActive && lock) {
+        if (this.btnActive && lock && this.password === this.new_password) {
           lock = false
           // 遮罩
           this.shade_boo = true
@@ -171,7 +188,7 @@
             lock = true
           })
         }else{
-          this.register_hint = "請輸入完整的信息"
+          this.register_hint = "請輸入正確的信息"
         }
       },
       // 密码正则

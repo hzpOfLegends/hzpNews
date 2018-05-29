@@ -211,7 +211,7 @@
             lock = true
           })
         } else {
-          this.return_login_hint = "請輸入完整的信息"
+          this.return_login_hint = "請輸入正確的信息"
         }
       },
       // 清空 input
