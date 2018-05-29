@@ -149,7 +149,7 @@
               this.load = false
               this.$router.push({path:'/user/forgetpassword',query:{step:1,email:this.$refs.email.value}})
             }else{
-              this.next_hint = res.data.ResultMessage
+              this.next_hint = this.$store.state.submit_hint
               this.load = false
             }
           }).catch(err => {

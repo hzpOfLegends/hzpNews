@@ -184,7 +184,9 @@
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
+
                 this.$store.state.user_info = res.data.Data
+
                 lock = true
                 // 遮罩
                 this.shade_boo = false
@@ -202,7 +204,7 @@
               // 遮罩
               this.shade_boo = false
               //登錄失敗 返回文字
-              this.return_login_hint = res.data.ResultMessage
+              this.return_login_hint = this.$store.state.submit_hint
               lock = true
             }
           }).catch(err => {
@@ -237,7 +239,7 @@
       position: relative;
       // width: 100%;
       margin: 112px auto 188px;
-      max-width: 470px;
+      max-width: 527px;
       border-radius: 3px;
       text-align: left;
     }

@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="details.Content" style="width: 100% ; font-weight: 300">
+      <label v-html="details.Content" style="width: 100% ;">
 
       </label>
     </div>
@@ -226,7 +226,7 @@
       margin: 1.25rem 0;
       width: 100%;
       label {
-
+          font-weight: normal;
         img {
           width: 100px !important;
         }

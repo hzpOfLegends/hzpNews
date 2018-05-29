@@ -176,7 +176,7 @@
               this.$router.push({path: '/user/login'})
               this.reset_input()
             } else {
-              this.register_hint = res.data.ResultMessage
+              this.register_hint = this.$store.state.submit_hint
               // 遮罩
               this.shade_boo = false
               lock = true

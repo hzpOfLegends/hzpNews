@@ -15,7 +15,7 @@
           {{focus_news_data.CategoryName }}
         </span>
       <span>{{focus_news_data.NewsTitle}}</span>
-      <p>{{focus_news_data.Content}}</p>
+      <p>{{focus_news_data.Profile}}</p>
       <div class="author">
         <span><img :src="focus_news_data.Avatar?focus_news_data.Avatar:default_photo"></span>
         <span>{{focus_news_data.AuthorName}}</span>
@@ -106,7 +106,8 @@
       text-align: left;
       font-size: 13px;
       max-height: 180px;
-      :nth-child(1) {
+      overflow: hidden;
+      :nth-child(1){
         display: inline-block;
         min-width: 48px;
         padding: 0 5px;
@@ -117,14 +118,19 @@
         text-align: center;
         line-height: 22px;
         border-radius: 3px;
+        vertical-align: top;
       }
-      :nth-child(2) {
+      :nth-child(2){
         font-weight: 900;
         font-size: 18px;
-        margin-left: 0.625rem;
+        margin-left: 10px;
       }
       > p {
-        margin-top: 1rem;
+        margin-top: 10px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
       }
       .author {
         font-size: 12px;
