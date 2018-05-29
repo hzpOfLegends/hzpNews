@@ -155,7 +155,7 @@ export default {
               }else{
                   a.classList.remove('c-active');
               }
-              
+
           })
       },
       login(){
@@ -210,6 +210,8 @@ export default {
     // this.init()
     // this.login()
     this.getUserInfo()
+    // 因爲 點進來 要刷新才出現 底部 所以 在這裏開啓
+    this.$store.state.foot_all_style = true
   }
 }
 </script>

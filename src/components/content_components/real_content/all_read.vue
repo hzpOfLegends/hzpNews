@@ -111,7 +111,7 @@
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() - 1 && isbool == true) {
           //大家都在读
-          if (isbool) {
+          if (isbool && that.all_read) {
             that.pageNum = that.pageNum + 1
             isbool = false
             index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {

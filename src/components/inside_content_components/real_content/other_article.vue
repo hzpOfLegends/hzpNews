@@ -227,7 +227,7 @@
               max-width: 460px;
               overflow: hidden;
             }
-            :nth-child(2) >p{
+            :nth-child(2)>p{
               width: 100%;
               height: 100%;
               margin: 0;

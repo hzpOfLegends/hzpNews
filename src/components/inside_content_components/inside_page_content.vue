@@ -127,7 +127,7 @@
       },
       // 关闭进度条
       closeNProgress(){
-        if(this.requestCount === 2){
+        if(this.requestCount >= 2){
           this.$NProgress.done()
           this.requestCount = 0
         }

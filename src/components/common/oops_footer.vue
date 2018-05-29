@@ -125,8 +125,8 @@
           }
           .web_type {
             min-height: 220px;
-            border-right: 1px solid #f6f6f6;
-            border-left: 1px solid #f6f6f6;
+            /*border-right: 1px solid #f6f6f6;*/
+            /*border-left: 1px solid #f6f6f6;*/
             text-align: left;
             h5 {
               font-size: 16px;
@@ -219,7 +219,7 @@
           }
         }
       }
-        
+
     }
     @media screen and  (max-width:414px) {
         #copy,#about {

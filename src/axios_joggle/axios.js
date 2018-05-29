@@ -18,10 +18,10 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
       // router.push({path:"/"})
       break;
     case 1003 :
-      console.log('登陆失败')
+      store.state.submit_hint = '登陆失败,用戶名或者密碼錯誤'
       break;
     case 1000 :
-      console.log('参数错误')
+      store.state.submit_hint = '注冊失敗，用戶已存在'
       break;
     case 1100 :
       console.log('非法的数据')
@@ -30,6 +30,7 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
       console.log('频繁的请求操作')
       break;
     case 500 :
+      store.state.submit_hint = "服务器异常"
       console.log('服务器异常')
       break;
   }

@@ -69,7 +69,6 @@
 <style scoped lang="less">
   @media screen and(max-width: 768px) {
     .nav_down_footer {
-      background: white !important;
       padding: 20px !important;
       .all_type {
         ul {
@@ -114,7 +113,6 @@
     /*background: red;*/
   }
   .nav_down_content {
-    background: white;
     width: 100%;
     border-bottom: 1px solid #e5e5e5;
 
@@ -135,7 +133,7 @@
   }
 
   .nav_down_footer {
-    background: white;
+    background: none;
     padding: 50px 50px;
     width: 100%;
     .row{
