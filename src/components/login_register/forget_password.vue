@@ -35,7 +35,7 @@
     name: "forget_password",
     data() {
       return {
-        active: parseInt(this.$route.query.step)?parseInt(this.$route.query.step):0
+        active: parseInt(this.$route.query.step)?parseInt(this.$route.query.step):1
       };
     },
     watch:{

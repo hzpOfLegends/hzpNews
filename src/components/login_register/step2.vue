@@ -102,7 +102,7 @@
             console.log(err)
           })
         } else {
-          this.next_hint = "請輸入完整的信息"
+          this.next_hint = "請輸入正確的信息"
         }
       },
       // 回车跳到提交
