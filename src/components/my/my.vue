@@ -31,33 +31,33 @@
             <ul class="nav navbar-nav nav-list">
               <li index='0' @click="clickNav('0')">
                 <router-link to="/my/user/dashboard" >
-                   總覽
+                   <i class="fa fa-pie-chart"></i> 總覽
                 </router-link>
               </li>
               <li index='1' @click="clickNav('1')">
                 <router-link to="/my/user/info" >
-                   資料
+                   <i class="fa fa-user" style="font-size:16px"></i> 資料
                 </router-link>
               </li>
               <li index='2' @click="clickNav('2')">
                 <!--<router-link to="/my/article/list" >-->
                 <router-link to="/my/article/list" >
-                   文章
+                   <i class="fa fa-file-text" style="font-size:13px"></i> 文章
                 </router-link>
               </li>
               <li index='3' @click="clickNav('3')">
                 <router-link to="/my/record" >
-                   點閱
+                   <img src="/static/img/my_record_icon.png" alt="" style="margin-top:-5px;width:18px;"> 點閱
                 </router-link>
               </li>
               <li index='4' @click="clickNav('4')">
                 <router-link to="/my/share">
-                好文
+                <i class="fa fa-thumbs-up" style="font-size:16px"></i> 好文
                 </router-link>
               </li>
               <li index='5' @click="clickNav('5')">
                 <router-link to="/my/payment/income">
-                收益
+                <img src="/static/img/my_payment_icon.png" alt="" style="height:14px;margin-top:-2px"> 收益
                 </router-link>
               </li>
               <!--<li class=""  index='6'>

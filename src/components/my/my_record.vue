@@ -56,6 +56,7 @@
 
             </tbody>
             </table>
+            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
         </div>
         <nav style="text-align:center;">
             <el-pagination
@@ -81,7 +82,8 @@ import accountAxios from '../../axios_joggle/axios_account'
                 articleList:'',
                 pageSize:8,
                 total:1,
-                currentPage:1
+                currentPage:1,
+                isEmpty:false
             }
         },
         watch:{
@@ -91,6 +93,7 @@ import accountAxios from '../../axios_joggle/axios_account'
         methods:{
             getRecord(){
                 this.loading = true
+                this.isEmpty = false
                 // this.currentPage = Number(this.$route.query.pageIndex)
                 // {"pageSize":"","pageIndex":"","Date":"日期,可传入''或空","type":"1:共推,2:撰写,-1为全部","RelationID":"文章ID,用于查询单篇文章的点击信息可传入''或空"}
                 accountAxios.record({
@@ -105,6 +108,8 @@ import accountAxios from '../../axios_joggle/axios_account'
                     if(res.data.ResultCode==200){
                         this.articleList = res.data.Data.ArticleView
                         this.total = res.data.Data.total
+                    }else if(res.data.ResultCode==201){
+                        this.isEmpty = true
                     }
                 }).catch(err=>{
                     this.loading = false

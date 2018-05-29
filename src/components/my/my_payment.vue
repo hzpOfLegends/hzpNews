@@ -5,6 +5,23 @@
               <h5>我的收益</h5>
 
           </div>
+        <div class="account-show">
+            我的賬戶餘額：<span>1000</span>
+        </div>
+        <div class="m-tab">
+            <!--<ul>
+                <li>
+                    <router-link to="">
+                        <span>收益記錄</span>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="">
+                        <span>提現記錄</span>
+                    </router-link>
+                </li>
+            </ul>-->
+        </div>
         <div class="content" style="text-align:left;min-height:300px" >
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
@@ -21,7 +38,7 @@
             <tbody>
                 <tr v-for="(v,i) in profitStatisticsList" :key="i">
                     <!--<th scope="row">1</th>-->
-                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
+                    <td>{{$moment(v.Date).format("YYYY-MM-DD")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
@@ -147,6 +164,29 @@ import accountAxios from '../../axios_joggle/axios_account'
                 bottom:6px;
                 right:0px;
                 border-radius:16px;
+            }
+        }
+        .account-show {
+            height:90px;
+            background-color: #f6f9fe;
+            border:1px solid #bfd9f4;
+            margin-top:20px;
+            line-height: 90px;
+            text-align: left;
+            padding-left:2%;
+            &>span {
+                color:#fc432f;
+                font-size:30px;
+            }
+        }
+        .m-tab {
+            &>ul {
+                float:left;
+                li {
+                    height:48px;
+
+                }
+
             }
         }
         .content {

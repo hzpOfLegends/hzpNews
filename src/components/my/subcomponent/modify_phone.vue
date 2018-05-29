@@ -15,16 +15,25 @@
                 <div class="form-group">
                     <label for="oldPhone">原電話</label>
                     <div style="padding-left:106px;position:relative">
-                        <select class="form-control" id="cotegory" style="max-width:105px;position:absolute;left:0;top:0" v-model="step1.phoneCode" :disabled="step1.sendCode">
+                        <!--<select class="form-control" id="cotegory" style="max-width:105px;position:absolute;left:0;top:0" v-model="step1.phoneCode" :disabled="step1.sendCode">
                             <option value="" selected style="color:#ccc">選擇區號</option>
                             <option  v-for="(v,i) in countryPhoneList" :value="v.dial_code" :key="i">{{v.dial_code}} </option>
-                        </select>
-                        <input  type="text" class="form-control" id="oldPhone" placeholder="Phone number" v-model="step1.name" :disabled="step1.sendCode">
+                        </select>-->
+                        <el-select v-model="step1.phoneCode" filterable placeholder="區號"  style="max-width:105px;position:absolute;left:0;top:0;"  :disabled="step1.sendCode">
+                            <el-option
+                            v-for="(item,i) in options"
+                            :key="i"
+                            :label="''"
+                            :value="item.area_code">
+                                <span style="float: left">{{item.area_code}} {{item.area}}</span>
+                            </el-option>
+                        </el-select>
+                        <input  type="text" class="form-control" id="oldPhone" placeholder="電話號碼" v-model="step1.name" :disabled="step1.sendCode">
                     </div>
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step1.vCode" :disabled="!step1.sendCode">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
                     <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">{{step1.btnTXT}}</button>
                 </div>
@@ -39,16 +48,29 @@
                 <div class="form-group">
                     <label for="oldPhone">新電話</label>
                     <div style="padding-left:106px;position:relative">
-                        <select class="form-control" id="cotegory1" style="max-width:105px;position:absolute;left:0;top:0" v-model="step2.phoneCode" :disabled="step2.sendCode">
+                        <!--<select class="form-control" id="cotegory1" style="max-width:105px;position:absolute;left:0;top:0" v-model="step2.phoneCode" :disabled="step2.sendCode" ref="s1">
                             <option value="" selected style="color:#ccc">選擇區號</option>
                             <option  v-for="(v,i) in countryPhoneList" :value="v.dial_code" :key="i">{{v.dial_code}} </option>
-                        </select>
-                        <input  type="text" class="form-control" id="oldPhone" placeholder="Phone number" v-model="step2.name" :disabled="step2.sendCode">
+                            <option value="86" >+86 <span>中国</span>  </option>
+                            <option value="87" >+87 朝鲜 </option>
+                        </select>-->
+                        <el-select v-model="step2.phoneCode" filterable placeholder="區號"  style="max-width:105px;position:absolute;left:0;top:0;"  :disabled="step2.sendCode">
+                            <el-option
+                            v-for="(item,i) in options"
+                            :key="i"
+                            :label="''"
+                            :value="item.area_code">
+                                <span style="float: left">{{item.area_code}} {{item.area}}</span>
+                            </el-option>
+                        </el-select>
+                        <input  type="text" class="form-control" id="oldPhone" placeholder="電話號碼" v-model="step2.name" :disabled="step2.sendCode">
+
                     </div>
+
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Verify code" v-model="step2.vCode" :disabled="!step2.sendCode">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
                     <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('new')">{{step2.btnTXT}}</button>
                 </div>
@@ -80,9 +102,10 @@
 
 <script>
 import accountAxios from '../../../axios_joggle/axios_account'
-import countryPhoneList from '../../../assets/country_list'
+import phoneAreaCode from '../../../assets/area_code'
 
     export default {
+        name:'phone',
       data(){
         return {
             countryPhoneList:'',
@@ -107,6 +130,7 @@ import countryPhoneList from '../../../assets/country_list'
                 btnTXT:'發送驗證碼',
                 r_id:''
             },
+            options: '', //下拉列表
         }
       },
       props:['isPhoneUser'],
@@ -256,7 +280,7 @@ import countryPhoneList from '../../../assets/country_list'
       mounted(){
       },
       created(){
-          this.countryPhoneList = countryPhoneList
+          this.options = phoneAreaCode
         //   let arr = countryPhoneList.slice(0)
         //   for(let i=0;i<arr.length;i++){
         //       for(let j=0;j<arr.length-i;j++){
@@ -340,6 +364,18 @@ import countryPhoneList from '../../../assets/country_list'
         // border: 2px solid;
         // border-color: inherit;
     // }
+    }
+    .el-select .el-input__inner {
+        height: 34px;
+        border:1px solid #cccccc !important;
+        &::-webkit-input-placeholder {
+            color:#999999;
+        }
+    }
+    .el-input__inner {
+        // border:1px solid #ccc !important;
+    }
+    .el-input {
     }
 }
 </style>

@@ -14,9 +14,9 @@
                <div class="u-left">
                     <form class="form-horizontal">
                       <div class="form-group l-side">
-                        <label for="inputEmail3" class="col-sm-2 control-label"  style="max-width:110px">名字：</label>
+                        <label  class="col-sm-2 control-label"  style="max-width:110px">名字：</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail3" placeholder="Name" v-model="userInfo.Name">
+                          <input type="text" class="form-control" placeholder="Name" v-model="userInfo.Name">
                         </div>
                       </div>
                       <div class="form-group l-side">
@@ -69,7 +69,7 @@
                            </div>
                            <div class="u-btn">
                               <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('phone','isPhoneUser')">修改</button>
-                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;"  @click="clickModify('phone','norPhoneUser')">綁定</button>
+                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;background:#f78323"  @click="clickModify('phone','norPhoneUser')">綁定</button>
                            </div>
                         </li>
                         <li>
@@ -138,6 +138,7 @@ export default {
             accountAxios.userInfo({}).then(res=>{
                 if(res.data.ResultCode==200){
                     sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                    this.$store.state.user_info = res.data.Data
                     this.init()  //重新初始化頁面
                 }
             })
@@ -315,7 +316,7 @@ export default {
             }
             .u-right {
                 flex:0  0 54%;
-                padding:0 2.5%;
+                padding:0 4.5% 0 2%;
                 margin-left:4%;
                 border-left:1px solid #eeeeee;
                ul {
@@ -379,6 +380,16 @@ export default {
             }
     }
     @media screen and (max-width:475px) {
+        .u-right {
+            margin-left:0;
+            li {
+            margin-left:-10% !important;
+            margin-right:10% !important;
+                .u-btn {
+                }
+            }
+
+        }
         td,th {
             font-size:12px !important;
         }
