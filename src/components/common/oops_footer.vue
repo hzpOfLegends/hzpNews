@@ -135,6 +135,7 @@
           .nav_down_footer {
             padding: 0;
             background: none;
+            text-align: left;
             .all_type ul li {
               overflow: hidden;
               text-overflow: ellipsis;

@@ -145,7 +145,7 @@
 
         li {
           padding: 5px 0;
-          text-align: center;
+          text-align: left;
           a {
             /*font-size: 16px;*/
           }
