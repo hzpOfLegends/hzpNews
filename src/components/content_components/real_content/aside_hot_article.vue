@@ -94,19 +94,28 @@
     .hot_article_content {
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
+      max-height: 165px;
       margin-top: 15px;
       cursor: pointer;
       text-align: center;
+      vertical-align: top;
       a{
         color: black;
+        display: inline-block;
+        width: 100%;
+        height: 100%;;
+
       }
       img {
         width: 100%;
-        height: 8.125rem;
+        max-height: 130px;
         object-fit: cover;
       }
       p {
         margin: 5px 0 10px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 

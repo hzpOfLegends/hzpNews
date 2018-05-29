@@ -45,21 +45,13 @@
     },
     props:["focus_news_data"],
     filters: {
+      // 時區轉換
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
-      },
-      type_filter:function (value) {
-        return filtration.type_filter(value)
       }
     },
-    mounted() {
-      // console.log(times.defaulttimezone_transition(new Date()))
-      // let photo = document.querySelector('.photo')
-      // this.getImgWH(photo)
-      // console.log(new Date().getTimezoneOffset()/60)
-
-    },
     methods: {
+      // 點擊跳轉
       skip_inside_contnet(RelationID, CategoryID) {
         if(CategoryID){
           sessionStorage.setItem("CategoryID",CategoryID)

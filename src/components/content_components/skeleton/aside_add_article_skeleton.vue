@@ -49,7 +49,8 @@
         }
       }
       .hot_article_title_line {
-        width: 94px;
+        max-width: 94px;
+        width: 100%;
         border-bottom: 3px solid #f24740;
         position: absolute;
         bottom: 0;

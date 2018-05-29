@@ -100,6 +100,8 @@
           }, 10000)
         }).catch(err => {
         })
+        // other_article
+
         // related
         inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
           this.hot_article = res.data.Data

@@ -3,34 +3,34 @@
     <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-eye" style="color: #f39900;margin-right: 20px"></i>大家都在讀
     </h5>
     <div class=" all_read_wrap">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hot" :key="index"
+      <div class="recent_hot_content clearfix " v-for="(item,index) in all_read" :key="index"
            @click="skip_inside_content(item.RelationID,item.CategoryID)">
         <router-link :to="{path:'/article/'+item.RelationID}">
-        <div class="row">
-          <!--<router-link to="index/particulars">-->
-          <div class="photo">
-            <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
-          </div>
-          <div class="charater">
-            <div class="top">
-              <div><p>{{item.CategoryName }}</p></div>
-              <div><p>{{item.NewsTitle}}</p></div>
+          <div class="row">
+            <!--<router-link to="index/particulars">-->
+            <div class="photo">
+              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo" alt="">
             </div>
-            <div class="center">
-              <p>{{item.Content}}</p>
-            </div>
-            <div class="bottom">
-              <div class="author">
-                <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
-                <span>{{item.AuthorName}}</span>
-                <i class="fa fa-clock-o"></i>
-                <span>發表時間：</span>
-                <span>{{item.PublishTime | timezone_filter}}</span>
+            <div class="charater">
+              <div class="top">
+                <div><p>{{item.CategoryName }}</p></div>
+                <div><p>{{item.NewsTitle}}</p></div>
+              </div>
+              <div class="center">
+                <p>{{item.Profile}}</p>
+              </div>
+              <div class="bottom">
+                <div class="author">
+                  <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
+                  <span>{{item.AuthorName}}</span>
+                  <i class="fa fa-clock-o"></i>
+                  <span>發表時間：</span>
+                  <span>{{item.PublishTime | timezone_filter}}</span>
+                </div>
               </div>
             </div>
+            <!--</router-link>-->
           </div>
-          <!--</router-link>-->
-        </div>
         </router-link>
       </div>
       <loading v-if="$store.state.loading_style"/>
@@ -83,30 +83,23 @@
     components: {
       loading //loading组件引入
     },
+    props:['all_read'],
     created() {
-      //大家都在读
-      index_message.all_read({"pageSize": "20", "pageIndex": this.pageNum}).then(res => {
-        this.recent_hot = res.data.Data.news
-        if(this.$store.state.index_requestCount == 4){
-          this.$NProgress.done()
-        }else{
-          this.$store.state.index_requestCount += 1
-        }
-      }).catch(err => {
-      })
-    }, filters: {
+
+    },
+    filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
       }
     },
     methods: {
       skip_inside_content(RelationID, CategoryID) {
-        if(CategoryID){
-          sessionStorage.setItem("CategoryID",CategoryID)
+        if (CategoryID) {
+          sessionStorage.setItem("CategoryID", CategoryID)
         }
         if (RelationID) {
           this.$router.push({
-            path: "/article/"+ RelationID,
+            path: "/article/" + RelationID,
           })
         }
       }
@@ -115,27 +108,22 @@
       // 用于判断 防止重复请求
       var isbool = true
       var that = this
-      // 如果有shareID  代表已经登录 无需 无限加载
-      if (sessionStorage.getItem('ShareID')) {
-        this.$store.state.loading_style = false
-      } else {
-        $(window).scroll(function () {
-          if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
+      $(window).scroll(function () {
+        if (($(this).scrollTop() + $(window).height()) >= $(document).height() - 1 && isbool == true) {
+          //大家都在读
+          if (isbool) {
             that.pageNum = that.pageNum + 1
-            //大家都在读
-            if (isbool) {
-              index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
-                for (let i = 0; i < res.data.Data.news.length; i++) {
-                  that.recent_hot.push(res.data.Data.news[i])
-                }
-                isbool = true
-              }).catch(err => {
-              })
-            }
             isbool = false
+            index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
+              that.$emit("loadMore",res.data.Data.news)
+              isbool = true
+            }).catch(err => {
+              isbool = true
+            })
           }
-        })
-      }
+
+        }
+      })
 
     }
   }
@@ -147,25 +135,30 @@
       max-width: 848px;
     }
   }
-  @media screen and(max-width: 768px){
-    .all_read_wrap .photo{
+
+  @media screen and(max-width: 768px) {
+    .all_read_wrap .photo {
       width: 30%;
       vertical-align: top;
     }
-    .charater{
+
+    .charater {
       max-width: 69% !important;
       width: 100%;
     }
   }
-  @media screen and(max-width: 414px){
-    .all_read_wrap .photo{
+
+  @media screen and(max-width: 414px) {
+    .all_read_wrap .photo {
       width: 100% !important;
     }
-    .charater{
+
+    .charater {
       margin-top: 10px;
       max-width: 100% !important;
     }
   }
+
   .all_read {
     width: 100%;
     height: 100%;
@@ -187,7 +180,7 @@
         border-bottom: 1px solid #f6f6f6;
         margin-top: 3px;
         cursor: pointer;
-        a{
+        a {
           color: black;
         }
         .photo {
@@ -207,20 +200,25 @@
         .charater {
           max-width: 69%;
           width: 100%;
-          min-height: 100px;
+          max-height: 160px;
           display: inline-block;
           position: relative;
           padding-left: 15px;
+          overflow: hidden;
           .top {
-            display:flex;
-            :nth-child(1)>p {
-              margin-top:2px;
+            display: flex;
+            max-height:60px;
+            height:100%;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            :nth-child(1) > p {
+              margin-top: 2px;
               display: block;
               min-width: 42px;
               padding: 0 5px;
               overflow: hidden;
               word-break: keep-all;
-              height:22px;
+              height: 22px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
@@ -228,26 +226,40 @@
               line-height: 22px;
               border-radius: 3px;
             }
-            :nth-child(2)>p {
+            :nth-child(2){
+              max-width: 460px;
+              overflow: hidden;
+            }
+            :nth-child(2) > p {
+              width: 100%;
+              height: 100%;
+              margin: 0;
               font-weight: 900;
               font-size: 18px;
               padding-left: 10px;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
             }
           }
           .center {
-            margin-top: 16px;
+            margin-top: 10px;
             margin-bottom: 16px;
             font-size: 14px;
-            min-height: 20px;
+            max-height: 80px;
+            p{
+               max-height: 60px;
+               height: 100%;
+               display: -webkit-box;
+               -webkit-box-orient: vertical;
+               -webkit-line-clamp: 3;
+               overflow: hidden;
+             }
           }
           .bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             .author {
               font-size: 12px;
               color: #999999;
-              padding-left: 18px;
               :nth-child(1) {
                 width: 26px;
                 height: 26px;

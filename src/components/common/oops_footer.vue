@@ -35,7 +35,7 @@
 
     <div class="oops_footer2" v-if="$store.state.footer_style2" >
       <div class="oops_footer_wrap2 clearfix">
-        <div class=" " id="copy">
+        <div class="float-left" id="copy">
           <router-link to=""><span>@2018OopsDaily</span></router-link>
           <router-link to=""><span>隱私政策</span></router-link>
           <router-link to=""><span>服務條款</span></router-link>
@@ -166,9 +166,10 @@
       background-color: #313131;
       .oops_footer_wrap2 {
         margin: 0 auto;
-        // height: 3rem;
         display:flex;
         justify-content: space-between;
+        max-width: 1180px;
+        width: 100%;
         a{
           font-size: 14px;
           color: #8d8d8d;

@@ -4,16 +4,17 @@
       <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
           <div>
-            <h4>賬戶登錄</h4>
+            <h4 style="text-align: center;font-size: 24px;padding: 34px 0 22px;">賬戶登錄</h4>
           </div>
           <div>
             <div class="email">
-              <input type="text" v-model="email" ref="user_email" @input="emailVerify" @keyup.enter="submit_mess">
+              <input type="text" v-model="email" ref="user_email" @input="emailVerify" @keyup.enter="submit_mess" placeholder="請輸入郵箱">
               <i class="fa fa-envelope"></i>
             </div>
             <p style="color: red ; font-size: 12px">{{email_hint}}</p>
             <div class="password">
-              <input type="password" v-model="password" ref="user_password" @input="passwordVerify" @keyup.enter="submit_mess">
+              <input type="password" v-model="password" ref="user_password" @input="passwordVerify"
+                     @keyup.enter="submit_mess" placeholder="請輸入密碼">
               <i class="fa fa-lock"></i>
 
             </div>
@@ -34,7 +35,7 @@
         <div class="step2">
           <p>
             還沒有賬號？
-            <router-link to="/user/register">前往注冊>></router-link>
+            <router-link to="/user/register" style="rgb(153,153,153)">前往注冊>></router-link>
           </p>
         </div>
 
@@ -63,7 +64,7 @@
         btnActive: false, //按鈕顔色
         return_login_hint: "", //登陸失敗返回的信息
         shade_boo: false, // 點擊登錄時的遮罩
-        shareid:""
+        shareid: ""
       }
     },
     created() {
@@ -91,7 +92,7 @@
       }, 1)
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat top"
 
     },
 
@@ -108,7 +109,7 @@
           this.btn_boo1 = false
         }
         // 为空时去掉提示
-        if(this.email==""){
+        if (this.email == "") {
           this.email_hint = ""
           this.btn_boo1 = false
         }
@@ -125,7 +126,7 @@
           this.btn_boo2 = false
         }
         // 密码为空时 提示消失
-        if(this.password==""){
+        if (this.password == "") {
           this.password_hint = ""
           this.btn_boo2 = false
         }
@@ -133,7 +134,7 @@
         this.verify_user()
       },
       // 判断用户输入是否合格  激活登录按钮
-      verify_user(){
+      verify_user() {
         if (this.btn_boo1 && this.btn_boo2) {
           this.btnActive = true
           this.return_login_hint = ""
@@ -144,8 +145,8 @@
       },
 
       // 密码正则验证
-      password_verfiy(password){
-        if(!password) return false;
+      password_verfiy(password) {
+        if (!password) return false;
         //验证密码强度
         var regArr = [];
         var count = 0;
@@ -153,12 +154,12 @@
         regArr.push(/[a-z]/);
         regArr.push(/[A-Z]/);
         regArr.push(/[0-9]/);
-        regArr.forEach((v,i)=>{
-          if(v.test(password)){
+        regArr.forEach((v, i) => {
+          if (v.test(password)) {
             count++;
           }
         })
-        if((password.length<8 || password.length>24) || count<3) {
+        if ((password.length < 8 || password.length > 24) || count < 3) {
           return false;
         } else {
           return true;
@@ -177,11 +178,11 @@
             loginPwd: this.password
           }).then(res => {
             if (res.status == 200 && res.data.ResultCode == 200) {
-            // 存储 用户 shareID
-            this.shareid = res.data.Data.ShareID
+              // 存储 用户 shareID
+              this.shareid = res.data.Data.ShareID
 
               users_page.login_user_info().then(res => {
-                sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
                 this.$store.state.user_info = res.data.Data
                 lock = true
@@ -209,7 +210,7 @@
             this.shade_boo = false
             lock = true
           })
-        }else{
+        } else {
           this.return_login_hint = "請輸入完整的信息"
         }
       },
@@ -255,7 +256,7 @@
       }
     }
     .step1 {
-      padding: 27px;
+      padding:0 28px;
       h4 {
         font-weight: 900;
         padding: 16px;
@@ -279,7 +280,7 @@
       width: 100%;
       border: 1px solid rgb(241, 241, 241);
       background: rgb(246, 246, 246);
-      margin-bottom: 5rem;
+      margin-bottom: 79px;
     }
     .active {
       width: 100%;
@@ -296,15 +297,15 @@
         min-height: 46px;
         border: 1px solid rgb(241, 241, 241);
         border-radius: 3px;
-        font-size: 20px;
-        padding-left: 50px;
+        font-size: 12px;
+        padding-left: 45px;
       }
       i {
         position: absolute;
-        left: 10px;
+        left: 15px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 20px;
+        font-size: 15px;
       }
     }
     .password {
@@ -316,15 +317,15 @@
         min-height: 46px;
         border: 1px solid rgb(244, 244, 244);
         border-radius: 3px;
-        font-size: 20px;
-        padding-left: 50px;
+        font-size: 12px;
+        padding-left: 45px;
       }
       i {
         position: absolute;
-        left: 15px;
+        left: 17px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 20px;
+        font-size: 15px;
       }
     }
     .forget_password {

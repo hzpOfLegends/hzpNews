@@ -6,15 +6,16 @@
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content">
-      <div class="first" @click="skip_inside_page(hot_article_first.RelationID)">
-        <router-link :to="{path:'/article/'+ hot_article_first.RelationID}">
-        <img :src="hot_article_first.CoverImges?hot_article_first.CoverImges:default_backgrund_photo">
-        <div class="Profile">{{hot_article_first.Profile}}</div>
+      <div class="first" v-if="add_articles.c" @click="skip_inside_page(add_articles.c.RelationID?add_articles[0].RelationID:0)">
+        <router-link :to="{path:'/article/'+ add_articles.c.RelationID}">
+          <img :src="add_articles.c.CoverImges?add_articles.c.CoverImges:default_backgrund_photo">
+          <div class="Profile">{{add_articles.c.NewsTitle}}</div>
         </router-link>
       </div>
-      <div class="other" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_page(item.RelationID,item.CategoryID)">
+      <div class="other" v-if="add_articles.d" v-for="(item,index) in add_articles.d" :key="index"
+           @click="skip_inside_page(item.RelationID,item.CategoryID)">
         <router-link :to="{path:'/article/' + item.RelationID}">
-        <p><span>·</span>{{item.NewsTitle}}</p>
+          <p><span>·</span>{{item.NewsTitle}}</p>
         </router-link>
       </div>
     </div>
@@ -30,56 +31,24 @@
     data() {
       return {
         //新增文章 1
-        hot_article_first:[],
+        hot_article_first: [],
         // 新增文章 2-20
         hot_article: [],
-        default_backgrund_photo:"/static/img/OopsDaily.png" //默认背景图
+        default_backgrund_photo: "/static/img/OopsDaily.png" //默认背景图
 
       }
     },
-    // 寫一個計算屬性 利用watch 監聽
-    computed: {
-      get_nav_id() {
-        return this.$store.state.nav_id;
-      }
-    },
-    watch: {
-      get_nav_id(val) {
-        // 热门文章
-        index_message.add_article({CategoryID:val}).then(res => {
-          if(res.data.Data.length>0){
-            this.hot_article_first = res.data.Data.shift()
-          }
-          if(res.data.Data.length>0){
-            this.hot_article = res.data.Data
-          }
-        }).catch(err => {
-          console.log(err)
-        })
-      }
-    },
-    created() {
-      //新增文章
-      index_message.add_article({CategoryID:this.$route.params.categoryId?this.$route.params.categoryId:'-1'}).then(res => {
-        if(res.data.Data.length>0){
-          this.hot_article_first = res.data.Data.shift()
-        }
-
-        if(res.data.Data.length>0){
-          this.hot_article = res.data.Data
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+    props: ["add_articles"],
+    mounted() {
     },
     methods: {
-      skip_inside_page(RelationID,CategoryID) {
-        if(CategoryID){
-          sessionStorage.setItem("CategoryID",CategoryID)
+      skip_inside_page(RelationID, CategoryID) {
+        if (CategoryID) {
+          sessionStorage.setItem("CategoryID", CategoryID)
         }
-        if(RelationID){
+        if (RelationID) {
           this.$router.push({
-            path: "/article/"+ RelationID,
+            path: "/article/" + RelationID,
           })
         }
       }
@@ -118,7 +87,7 @@
       font-size: 14px;
       cursor: pointer;
       margin-top: 15px;
-      a{
+      a {
         color: black;
       }
       img {

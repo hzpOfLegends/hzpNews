@@ -56,7 +56,9 @@
   }
   .focus_news_skeleton{
     max-width: 100%;
+    width: 100%;
     max-height: 524px;
+    height: 100%;
     background: white;
     position: relative;
     border: 1px solid #f9f9f9;

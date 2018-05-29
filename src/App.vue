@@ -243,7 +243,7 @@
       // width: 73.75rem;
       margin: 0 auto;
       .oops_content {
-        min-height: 333px;
+        min-height: 200px;
         margin: 0 auto;
       }
     }
