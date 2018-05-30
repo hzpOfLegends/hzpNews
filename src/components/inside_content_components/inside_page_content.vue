@@ -270,6 +270,7 @@
     padding-top: 17px;
     padding-bottom: 17px;
     margin: 0 auto;
+    background: #f4f4f4;
     .container {
       padding: 0;
       margin: 0;
