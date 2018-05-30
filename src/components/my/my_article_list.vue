@@ -5,10 +5,17 @@
               <h5>全部文章</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
                 <router-link to="/my/article/new">
+                <!--<ul class="pager write-btn" style="margin:0">
+                    <li class="previous" style="">
+                        <a href="javascript:;" style="background:#fb8608;color:#fff;border:none;padding:8px 20px;font-size:12px;border-radius:34px;">
+                            <span aria-hidden="true"></span><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫
+                        </a>
+                    </li>
+                </ul>-->
                 <ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="">
-                        <a href="javascript:;" style="background:#fb8608;color:#fff;border:none;padding:10px 20px;font-size:12px;border-radius:34px;">
-                            <span aria-hidden="true"></span><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫
+                        <a href="javascript:;"   id="btn-icon"  style="">
+                            <span aria-hidden="true"></span><i></i> 返回列表
                         </a>
                     </li>
                 </ul>
@@ -299,6 +306,19 @@ import Clipboard from 'clipboard';
                 }
             }
         }
+    }
+    #btn-icon {
+        // display:inline-block;
+        // height:15px;
+        // width:15px;
+        padding:8px 20px;
+        padding-left:38px;
+        background-color:#fb8608;
+        background:#fb8608 url('/static/img/edit_add_icon.png') no-repeat 17px 7px;;
+        color:#fff;
+        font-size:12px;
+        border-radius:34px;
+        border:none
     }
     @media screen and (max-width:992px) {
         .item .content {

@@ -1,5 +1,5 @@
 <template>
-  <div class="inside_page_content">
+  <div class="inside_page_content" @click="close_nav_down">
     <div class="container clearfix">
       <div class="float-left left_content">
         <!--詳情内容-->
@@ -71,7 +71,9 @@
     },
     watch: {
       "$route.path":function () {
+        // 控制最頂部 進度條 將進度條歸零
         this.requestCount = 0
+        // 開啓進度條
         this.$NProgress.start()
         // 详情 请求
         inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
@@ -86,12 +88,14 @@
             // 进度条加1
             this.requestCount++
           })
+          // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
             let imgs = document.querySelectorAll('img')
             for (let i = 0; i < imgs.length; i++) {
               imgs[i].style.width = '100%'
             }
           }, 1)
+          // 設置定時器 10秒 用於后露記錄
           setTimeout(() => {
             verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
             }).catch(err => {
@@ -114,16 +118,21 @@
       '$route': function () {
         // 將滾輪 滾到 頂部
         if ($('html').scrollTop()) {
-          $('html').animate({scrollTop: 0}, 1000);
+          $('html').animate({scrollTop: 0}, 500);
           return false;
         }
-        $('body').animate({scrollTop: 0}, 1000);
+        $('body').animate({scrollTop: 0}, 500);
       },
       "requestCount":"closeNProgress"
     },
     methods:{
       after_init(){
         console.log("ok")
+      },
+      // 點擊其他地方 關閉導航下拉
+      close_nav_down(){
+        this.$store.state.nav_down = false;
+        this.$store.state.nav_down_icon = "fa fa-bars"
       },
       // 关闭进度条
       closeNProgress(){

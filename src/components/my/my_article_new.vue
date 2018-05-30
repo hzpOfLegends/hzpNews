@@ -6,10 +6,24 @@
               <h5 v-if="status==='edit'">文章編輯</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
                 <router-link to="/my/article/list">
-                <ul class="pager write-btn" style="margin:0">
+                <!--<ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="background:#fb8608">
-                        <a href="javascript:;" style="background:#fff;color:#777;">
+                        <a href="javascript:;" style="background:#fff;color:#777;font-size:12px">
                             <span aria-hidden="true"></span><i class="glyphicon glyphicon-share"></i> 返回列表
+                        </a>
+                    </li>
+                </ul>-->
+                <!--<ul class="pager write-btn" style="margin:0">
+                    <li class="previous" style="">
+                        <a href="javascript:;" style="background:#fff;color:#777;padding:8px 20px;font-size:12px;border-radius:34px;">
+                            <span aria-hidden="true"></span><i class="glyphicon glyphicon-share"></i> 返回列表
+                        </a>
+                    </li>
+                </ul>-->
+                <ul class="pager write-btn" style="margin:0">
+                    <li class="previous" style="">
+                        <a href="javascript:;"   id="btn-icon"  style="">
+                            <span aria-hidden="true"></span><i></i> 返回列表
                         </a>
                     </li>
                 </ul>
@@ -305,6 +319,17 @@ export default {
                 width:380px ;
             }
         }
+    }
+    #btn-icon {
+        // display:inline-block;
+        // height:15px;
+        // width:15px;
+        padding:8px 20px;
+        padding-left:38px;
+        background:url('/static/img/back_icon.png') no-repeat 19px 9px;;
+        color:#777;
+        font-size:12px;
+        border-radius:34px;
     }
     @media screen and (max-width:992px) {
             .item .content {

@@ -1,5 +1,5 @@
 <template>
-  <div class="oops_content_index">
+  <div class="oops_content_index" @click="close_nav_down">
     <div class="container clearfix">
       <div class="float-left left_content" @get_requestCount="get_requestCount">
         <!--焦点新闻-->
@@ -8,10 +8,10 @@
           <focus_news_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告 (适配)-->
-        <vue-lazy-component class="advertising_aside1_phone" style="display: none ;margin-top: 20px">
-          <advertising_aside1/>
-          <advertising_aside1_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component class="advertising_aside1_phone" style="display: none ;margin-top: 20px">-->
+          <!--<advertising_aside1/>-->
+          <!--<advertising_aside1_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
 
         <!--最近热门-->
         <vue-lazy-component style="margin-top: 20px">
@@ -19,32 +19,32 @@
           <recent_hot_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告-->
-        <vue-lazy-component style="margin-top: 20px" class="advertising_aside2_browser">
-          <advertising_aside2/>
-          <advertising_aside2_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component style="margin-top: 20px" class="advertising_aside2_browser">-->
+          <!--<advertising_aside2/>-->
+          <!--<advertising_aside2_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
         <!--大家都在读-->
         <vue-lazy-component style="margin-top: 20px" class="all_read_browser">
-          <all_read :all_read="all_read" v-on:loadMore="load_more"/>
+          <all_read :all_read="all_read" v-on:loadMore="load_more"/> <!-- 這裏的loadMore 子組件 向父組件 傳值 然後父組件 再給子組件傳值-->
           <all_read_skeleton slot="skeleton"/>
         </vue-lazy-component>
       </div>
       <div class="float-right right_content">
         <!--广告-->
-        <vue-lazy-component class="advertising_aside1_browser">
-          <advertising_aside1/>
-          <advertising_aside1_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component class="advertising_aside1_browser">-->
+          <!--<advertising_aside1/>-->
+          <!--<advertising_aside1_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
         <!--热门文章-->
-        <vue-lazy-component style="margin-top: 20px">
+        <vue-lazy-component style="">
           <aside_hot_article :hot_article="hot_article"/>
           <aside_hot_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告 (适配)-->
-        <vue-lazy-component style="margin-top: 20px;display: none" class="advertising_aside2_phone">
-          <advertising_aside2/>
-          <advertising_aside2_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component style="margin-top: 20px;display: none" class="advertising_aside2_phone">-->
+          <!--<advertising_aside2/>-->
+          <!--<advertising_aside2_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
         <!--新增文章-->
         <vue-lazy-component style="margin-top: 20px">
           <aside_add_article :add_articles="add_articles"/>
@@ -265,15 +265,22 @@
       get_requestCount(val) {
         console.log("fu", val)
       },
+      // 加載更多
       load_more(val){
         for (let i = 0; i < val.length; i++) {
           this.all_read.push(val[i])
         }
       },
+      // 加載更多 條
       infinite(done) {
         setTimeout(() => {
           done()
         }, 1500)
+      },
+      // 點擊其他地方 關閉導航下拉
+      close_nav_down(){
+        this.$store.state.nav_down = false;
+        this.$store.state.nav_down_icon = "fa fa-bars"
       },
       // 关闭进度条
       closeNProgress() {

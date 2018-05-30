@@ -180,7 +180,6 @@
             if (res.status == 200 && res.data.ResultCode == 200) {
               // 存储 用户 shareID
               this.shareid = res.data.Data.ShareID
-
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")

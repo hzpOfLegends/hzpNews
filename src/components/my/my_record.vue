@@ -74,8 +74,10 @@
                             <img v-else src="/static/img/text.png" alt="">
                             <div class="tit" style="color:#373737">
                                 <!--注：22汉字以内-->
-                                <p>{{v.Title}}</p>
-                                <p class="type">類別：{{v.CategoryName}} | ID：{{v.RelationID}}</p>
+                                <div style="min-height:50px">
+                                    <p>{{v.Title}}</p>
+                                </div>
+                                <p class="type">類別:{{v.CategoryName}} <span style="padding:0 4px">|</span> ID:{{v.RelationID.length>10?v.RelationID.substr(0,9)+"...":v.RelationID}}</p>
                             </div>
                         </div>
                         </router-link>
@@ -200,8 +202,8 @@ import accountAxios from '../../axios_joggle/axios_account'
         tr {
              background:#eeeeee;
              th {
-                //  padding-top:8px !important;
-                //  padding-bottom:8px !important;
+                 padding-top:8px !important;
+                 padding-bottom:8px !important;
              }
         }
     }
@@ -311,9 +313,6 @@ import accountAxios from '../../axios_joggle/axios_account'
             }
         }
     }
-    .el-range-separator {
-        padding:0 !important;
-    }
     @media screen and (max-width:992px) {
         .item .content {
             #doc-title {
@@ -355,7 +354,7 @@ import accountAxios from '../../axios_joggle/axios_account'
 }
 </style>
 <style>
-    .el-range-separator {
+    .m-search .el-range-separator {
         padding:0 !important;
     }
 </style>

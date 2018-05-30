@@ -22,7 +22,6 @@
         <i class="fa fa-clock-o"></i>
         <span>發表時間：</span>
         <span>{{focus_news_data.PublishTime | timezone_filter}}</span>
-
       </div>
     </div>
     </router-link>
@@ -102,7 +101,7 @@
       }
     }
     .character {
-      padding: 20px;
+      padding: 20px 20px 40px;
       text-align: left;
       font-size: 13px;
       max-height: 180px;
@@ -135,6 +134,7 @@
       .author {
         font-size: 12px;
         color: #999999;
+        margin-top:20px;
         :nth-child(1) {
           min-width: 26px;
           height: 26px;

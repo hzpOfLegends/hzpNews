@@ -86,6 +86,7 @@
     },
     created() {
       this.$store.state.nav_bar_down_contack = false
+
     },
     mounted() {
       setTimeout(() => {
@@ -193,6 +194,7 @@
           min-height: 44px;
           line-height: 44px;
           color: #8d8d8d;
+
           & > div {
             flex: 0 0 50%;
           }
@@ -204,13 +206,12 @@
           }
 
         }
-        
-          .want_line {
-            padding-right: 10px;
-            padding-left: 10px;
-            border-right: 1px solid #8d8d8d;
-            line-height: 3rem;
-          }
+        .want_line {
+          padding-right: 10px;
+          padding-left: 10px;
+          border-right: 1px solid #8d8d8d;
+          line-height: 3rem;
+        }
       }
     }
     .types {

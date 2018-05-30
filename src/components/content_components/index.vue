@@ -57,13 +57,13 @@
     mounted() {
     },
     created() {
-      header_message.nav_type().then(res => {
-        if(res.data.Data){
-          this.$store.state.nav_type = res.data.Data
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+      // header_message.nav_type().then(res => {
+        // if(res.data.Data){
+          // this.$store.state.nav_type = res.data.Data
+      //   }
+      // }).catch(err => {
+      //   console.log(err)
+      // })
     }
   }
 </script>
