@@ -167,7 +167,7 @@
       .recent_hot_content {
         padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
-        margin-top: 15px;
+        margin-top: 20px;
         cursor: pointer;
         a{
           color: black;
