@@ -15,7 +15,7 @@
           </div>
         <div class="content" style="text-align:left;min-height:300px" >
             <div class="info">
-                <div id="doc-title">
+                <div id="doc-title" v-if="recordList.length>0">
                     <img v-if="recordList[0].CoverImges" :src="recordList[0].CoverImges" alt="">
                     <img v-else src="/static/img/OopsDaily.png" alt="">
                     <div class="tit">
@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 <tr v-for="(v,i) in recordList" :key="i">
-                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
+                    <td>{{$moment(v.Date).format("YYYY/MM/DD")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
@@ -78,7 +78,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 pageSize:15,
                 // total:1,
                 RelationID:'',
-                recordList:''
+                recordList:[]
             }
         },
         watch:{
@@ -183,6 +183,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 .tit {
                     font-size:13px;
                     padding-left:10px;
+                    height:100%;
                 }
                 p.type {
                     color:#bdbdbd;

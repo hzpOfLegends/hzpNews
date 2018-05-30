@@ -202,13 +202,15 @@
           #about {
             text-align: right;
           }
+
+        }
+        
           .want_line {
             padding-right: 10px;
             padding-left: 10px;
             border-right: 1px solid #8d8d8d;
             line-height: 3rem;
           }
-        }
       }
     }
     .types {

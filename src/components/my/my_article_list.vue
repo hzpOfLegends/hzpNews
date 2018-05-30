@@ -6,8 +6,8 @@
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
                 <router-link to="/my/article/new">
                 <ul class="pager write-btn" style="margin:0">
-                    <li class="previous" style="background:#fb8608">
-                        <a href="javascript:;" style="background:#fb8608;color:#fff;border:none">
+                    <li class="previous" style="">
+                        <a href="javascript:;" style="background:#fb8608;color:#fff;border:none;padding:10px 20px;font-size:12px;border-radius:34px;">
                             <span aria-hidden="true"></span><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫
                         </a>
                     </li>
@@ -270,7 +270,6 @@ import Clipboard from 'clipboard';
                 position: absolute;
                 bottom:6px;
                 right:0px;
-                border-radius:16px;
             }
         }
         .content {

@@ -32,7 +32,7 @@
                 <i class="fa fa-user"></i>
                 當前用戶：
                 <span>
-                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name?$store.state.user_info.Name:user_info.Name}}</router-link>
+                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>
               </span>
                 <span class="subscript">
                   <div class="btn-group">
@@ -49,12 +49,12 @@
               <div class="float-right user_message">
                 <i class="fa fa-file-text-o"></i>
                 發表文章：
-                <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount?$store.state.user_info.ArticleCount:user_info.ArticleCount}}</span>
+                <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
               </div>
               <div class="float-right user_message">
                 <i class="fa fa-money"></i>
                 有效點擊數：
-                <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit?$store.state.user_info.Profit:user_info.Profit}}</span>
+                <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>
               </div>
             </div>
             <div class="media_user_block" style="display: none;text-align: right;padding-right: 20px">
@@ -64,18 +64,18 @@
                   <li><div class="user_message" style="margin-left: 0;text-align: center">
                     <i class="fa fa-money"></i>
                     有效點擊數：                                        <!--第一步 用vuex同步信息 第二步防止刷新信息丟失 -->
-                    <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit?$store.state.user_info.Profit:user_info.Profit}}</span>
+                    <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>
                   </div></li>
                   <li><div class="user_message" style="margin-left: 0;text-align: center">
                     <i class="fa fa-file-text-o"></i>
                     發表文章：
-                    <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount?$store.state.user_info.ArticleCount:user_info.ArticleCount}}</span>
+                    <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
                   </div></li>
                   <li><div class="user_message" style="margin-left: 0;text-align: center">
                     <i class="fa fa-user"></i>
                     當前用戶：
                     <span>
-                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name?$store.state.user_info.Name:user_info.Name}}</router-link>
+                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>
               </span>
                     <span class="subscript">
                   <div class="btn-group">
@@ -160,6 +160,13 @@
       }
     },
     methods: {
+      // 页面初始化函数
+      init(){
+          if(!this.$store.state.user_info){
+                this.$store.state.user_info = JSON.parse(sessionStorage.getItem('user_info'))
+                this.$store.state.judge_login = true
+          }
+      },
       skip_index() {
         this.$router.push({path: "/"})
       },
@@ -189,6 +196,9 @@
             this.login_out()
          }
       }
+    },
+    created(){
+        this.init()
     }
 
   }
