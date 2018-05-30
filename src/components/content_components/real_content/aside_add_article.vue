@@ -6,7 +6,7 @@
       <span class="hot_article_title_line"></span>
     </div>
     <div class="hot_article_content">
-      <div class="first" v-if="add_articles.c" @click="skip_inside_page(add_articles.c.RelationID?add_articles[0].RelationID:0)">
+      <div class="first" v-if="add_articles.c">
         <router-link :to="{path:'/article/'+ add_articles.c.RelationID}">
           <img :src="add_articles.c.CoverImges?add_articles.c.CoverImges:default_backgrund_photo">
           <div class="Profile">{{add_articles.c.NewsTitle}}</div>
@@ -42,16 +42,6 @@
     mounted() {
     },
     methods: {
-      skip_inside_page(RelationID, CategoryID) {
-        if (CategoryID) {
-          sessionStorage.setItem("CategoryID", CategoryID)
-        }
-        if (RelationID) {
-          this.$router.push({
-            path: "/article/" + RelationID,
-          })
-        }
-      }
     }
   }
 </script>

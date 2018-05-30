@@ -4,7 +4,7 @@
                                                     style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
     <div class="other_article_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in $store.state.other_article_content" :key="index"
-           @click="skip_inside_content(item.RelationID,item.CategoryID)">
+          >
         <router-link :to="{path:'/article/'+ item.RelationID}">
         <div class="row">
           <!--<div class="float-left">-->
@@ -92,18 +92,11 @@
       }
     },
     methods: {
-      skip_inside_content(RelationID, CategoryID) {
-        if (RelationID) {
-          this.$router.push({
-            path: "/article/"+ RelationID
-          })
-        }
-
-      }
     },
     mounted() {
       var isbool = true
       var that = this
+      // 監聽 滾動加載更多數據
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
           //同区其他文章

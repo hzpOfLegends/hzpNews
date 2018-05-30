@@ -5,10 +5,10 @@
       <span style="font-weight: 900">相關文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content clearfix" v-for="(item,index) in hot_article" :key="index" @click="skip_inside_content(item.RelationID,item.CategoryID)">
+    <div class="hot_article_content clearfix" v-for="(item,index) in hot_article" :key="index">
       <router-link :to="{path:'/article/'+ item.RelationID}">
-      <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
-      <p>{{item.NewsTitle}}</p>
+        <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
+        <p>{{item.NewsTitle}}</p>
       </router-link>
     </div>
   </div>
@@ -22,10 +22,10 @@
     name: "related_articles",
     data() {
       return {
-        default_backgrund_photo:"/static/img/OopsDaily.png"
+        default_backgrund_photo: "/static/img/OopsDaily.png"
       }
     },
-    watch:{
+    watch: {
       // "$route":function () {
       //   inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
       //     this.hot_article = res.data.Data
@@ -34,56 +34,46 @@
       //   })
       // }
     },
-    methods: {
-      skip_inside_content(RelationID,CategoryID) {
-        if (RelationID) {
-          this.$router.push({
-            path: "/article/"+ RelationID
-          })
-        }
-      }
-    },
-    props:["hot_article"],
+    props: ["hot_article"],
     created() {
-      // inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
-      //   this.hot_article = res.data.Data
-      //
-      // }).catch(err => {
-      //   console.log(err)
-      // })
     }
   }
 </script>
 
 <style scoped lang="less">
-  @media screen and (min-width: 1200px){
-    .related_articles{
+  @media screen and (min-width: 1200px) {
+    .related_articles {
       max-width: 320px;
     }
-    .hot_article_content{
+
+    .hot_article_content {
       max-width: 320px;
     }
   }
+
   @media screen and (max-width: 1200px) {
-    .hot_article_content{
+    .hot_article_content {
       max-width: 48%;
       display: inline-block;
       margin-right: 2%;
     }
   }
+
   @media screen and (max-width: 768px) {
-    .hot_article_content{
+    .hot_article_content {
       max-width: 48%;
       display: inline-block;
       margin-right: 2%;
     }
   }
+
   @media screen and (max-width: 414px) {
-    .hot_article_content{
+    .hot_article_content {
       max-width: 100%;
       display: inline-block;
     }
   }
+
   .related_articles {
     width: 100%;
     background-color: white;
@@ -118,7 +108,7 @@
       border-bottom: 3px dashed #f6f6f6;
       margin-top: 0.9375rem;
       cursor: pointer;
-      a{
+      a {
         color: black;
       }
       img {
