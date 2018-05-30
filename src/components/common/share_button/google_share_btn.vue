@@ -17,7 +17,7 @@
       }
     },
     created() {
-      this.web_url ="https://plus.google.com/share?url="+ window.location.href.split("/")[2]
+      this.web_url ="https://plus.google.com/share?url="+ window.location.href
     }
   }
 </script>
