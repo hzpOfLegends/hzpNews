@@ -1,5 +1,5 @@
 <template>
-  <div class="inside_page_content">
+  <div class="inside_page_content" @click="close_nav_down">
     <div class="container clearfix">
       <div class="float-left left_content">
         <!--詳情内容-->
@@ -124,6 +124,11 @@
     methods:{
       after_init(){
         console.log("ok")
+      },
+      // 點擊其他地方 關閉導航下拉
+      close_nav_down(){
+        this.$store.state.nav_down = false;
+        this.$store.state.nav_down_icon = "fa fa-bars"
       },
       // 关闭进度条
       closeNProgress(){

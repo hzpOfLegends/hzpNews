@@ -40,7 +40,6 @@
   .facebook {
     position: relative;
     display: inline-block;
-    max-width: 108px;
     width: 100%;
     height: 40px;
     background-color: #2d4671;

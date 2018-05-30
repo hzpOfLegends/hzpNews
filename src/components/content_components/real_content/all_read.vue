@@ -165,7 +165,7 @@
     border-radius: 3px;
     background-color: white;
     border-top: 8px solid #f39900;
-    padding: 20px;
+    padding: 10px 20px 20px;
     text-align: left;
 
     .all_read_wrap {
@@ -186,14 +186,14 @@
         .photo {
           background-color: rgba(0, 0, 0, .1);
           width: 30%;
-          max-height: 160px;
+          height: 160px;
           overflow: hidden;
           display: inline-block;
           position: relative;
           vertical-align: top;
           img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
           }
         }
@@ -204,23 +204,22 @@
           display: inline-block;
           position: relative;
           padding-left: 15px;
-          overflow: hidden;
           .top {
             display: flex;
             height:100%;
             :nth-child(1) > p {
               margin-top: 2px;
               display: block;
-              min-width: 42px;
+              min-width: 46px;
               padding: 0 5px;
               overflow: hidden;
               word-break: keep-all;
-              height: 22px;
+              height: 26px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
               text-align: center;
-              line-height: 22px;
+              line-height: 26px;
               border-radius: 3px;
             }
             :nth-child(2){

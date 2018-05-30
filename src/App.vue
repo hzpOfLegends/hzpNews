@@ -24,7 +24,8 @@
   import oopsFooter from '@/components/common/oops_footer'
   import oopsHeader from '@/components/common/oops_header'
   import accountAxios from './axios_joggle/axios_account'
-  import Vue from 'vue'
+  // 引入路由 獲取導航分類
+  import header_message from "@/axios_joggle/axios_header"
 
   export default {
     name: 'App',
@@ -212,7 +213,15 @@
       }
     },
     created() {
-
+      // 獲取導航分類
+        header_message.nav_type().then(res => {
+          if(res.data.Data){
+            this.$store.state.nav_type = res.data.Data
+          }
+        }).catch(err => {
+          console.log(err)
+        })
+      this.$store.state.user_info=JSON.parse(sessionStorage.getItem("user_info"))
       this.getMeta()
     }
   }

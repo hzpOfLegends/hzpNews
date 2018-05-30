@@ -105,7 +105,7 @@
     border-radius: 3px;
     background-color: white;
     border-top: 8px solid #f39900;
-    padding: 20px;
+    padding: 10px 20px 20px;
     text-align: left;
     .recent_hot_wrap {
       padding: 0;
@@ -129,15 +129,15 @@
         .photo {
           background-color: rgba(0, 0, 0, .1);
           width: 30%;
-          max-height: 160px;
+          height: 160px;
           overflow: hidden;
           display: inline-block;
           position: relative;
           vertical-align: top;
           img {
             width: 100%;
-            height: auto;
-            object-fit: cover;;
+            height: 100%;
+            object-fit: cover;
           }
         }
         .charater {
@@ -154,16 +154,16 @@
               margin-top:2px;
               display: inline-block;
               vertical-align: top;
-              min-width: 42px;
+              min-width: 46px;
               padding: 0 5px;
               overflow: hidden;
               word-break: keep-all;
-              height:22px;
+              height:26px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
               text-align: center;
-              line-height: 22px;
+              line-height: 26px;
               border-radius: 3px;
             }
             :nth-child(2){

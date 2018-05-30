@@ -32,7 +32,6 @@
 <style scoped lang="less">
   .twitter {
     display: inline-block;
-    max-width: 108px;
     width: 100%;
     height: 40px;
     background-color: #28a2f0;

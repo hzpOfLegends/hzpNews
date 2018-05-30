@@ -21,7 +21,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="position: relative">
           <div @click="nav_toggle" class="click_icon" style="position: absolute;top: 13px;right: 10px">
-            <i :class="nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px"></i>
+            <i :class="$store.state.nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px"></i>
           </div>
         </div>
       </div>
@@ -31,11 +31,11 @@
           <nav_bar_down/>
           <div class="the_footer clearfix">
             <div class="float-left the_footer_chara">
-              <router-link to="">
+              <router-link to="/contactus">
                 聯係我們
               </router-link>
               <span class="want_line"></span>
-              <router-link to="">
+              <router-link to="/help">
                 幫助中心
               </router-link>
               <span class="want_line"></span>
@@ -73,8 +73,6 @@
     name: "nav_bar",
     data() {
       return {
-        // 導航欄右邊圖標 點擊 / 顯示 nav—down
-        nav_down_icon: "fa fa-bars",
       }
     },
     components: {
@@ -91,12 +89,12 @@
     methods: {
       // 显示 / 隐藏
       nav_toggle() {
-        if (this.nav_down_icon == "fa fa-bars") {
+        if (this.$store.state.nav_down_icon == "fa fa-bars") {
           this.$store.state.nav_down = true
-          this.nav_down_icon = "fa fa-close"
+          this.$store.state.nav_down_icon = "fa fa-close"
         } else {
           this.$store.state.nav_down = false
-          this.nav_down_icon = "fa fa-bars"
+          this.$store.state.nav_down_icon = "fa fa-bars"
         }
       }
     },
@@ -141,9 +139,6 @@
     }
   }
 
-  .router-link-active {
-    background: rgb(70, 138, 237);
-  }
 
   .nav_bar {
     width: 100%;

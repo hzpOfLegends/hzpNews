@@ -55,10 +55,10 @@
     name: "login",
     data() {
       return {
-        email: "", // 郵箱值
+        email: "font_end_hzp@163.com", // 郵箱值
         btn_boo1: false, //用來判斷btnactive顔色
         email_hint: "", //郵箱提示
-        password: "", // 密码值
+        password: "qwe123...", // 密码值
         btn_boo2: false, //用來判斷btnactive顔色
         password_hint: "", //郵箱提示
         btnActive: false, //按鈕顔色
@@ -180,7 +180,6 @@
             if (res.status == 200 && res.data.ResultCode == 200) {
               // 存储 用户 shareID
               this.shareid = res.data.Data.ShareID
-
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
