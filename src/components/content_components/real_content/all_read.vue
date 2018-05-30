@@ -148,7 +148,7 @@
     }
   }
 
-  @media screen and(max-width: 414px) {
+  @media screen and(max-width: 430px) {
     .all_read_wrap .photo {
       width: 100% !important;
     }
@@ -207,10 +207,7 @@
           overflow: hidden;
           .top {
             display: flex;
-            max-height:60px;
             height:100%;
-            text-overflow:ellipsis;
-            white-space: nowrap;
             :nth-child(1) > p {
               margin-top: 2px;
               display: block;
@@ -237,9 +234,6 @@
               font-weight: 900;
               font-size: 18px;
               padding-left: 10px;
-              overflow:hidden;
-              text-overflow:ellipsis;
-              white-space: nowrap;
             }
           }
           .center {

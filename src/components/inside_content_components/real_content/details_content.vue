@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="details.Content" style="width: 100% ;">
+      <label v-html="details.Content" style="width: 100% ; font-weight:300">
 
       </label>
     </div>
@@ -136,8 +136,8 @@
       color: #999999;
       text-align: left;
       :nth-child(1) {
-        width: 2.8125rem;
-        height: 2.8125rem;
+        width: 30px;
+        height: 30px;
         display: inline-block;
         border: 1px solid gray;
         border-radius: 50%;

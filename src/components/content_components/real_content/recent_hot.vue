@@ -24,7 +24,7 @@
                 <i class="fa fa-clock-o"></i>
                 <span>發表時間：</span>
                 <!--| timezone_filter-->
-                <span>{{item.PublishTime }}</span>
+                <span>{{item.PublishTime |timezone_filter}}</span>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
       max-width: 69% !important;
     }
   }
-  @media screen and(max-width: 414px){
+  @media screen and(max-width: 430px){
     .recent_hot_content{
       .photo{
         width: 100% !important;
@@ -105,7 +105,7 @@
     border-radius: 3px;
     background-color: white;
     border-top: 8px solid #f39900;
-    padding: 1.25rem;
+    padding: 20px;
     text-align: left;
     .recent_hot_wrap {
       padding: 0;
@@ -149,10 +149,7 @@
           padding-left: 15px;
           .top {
             display: flex;
-            max-height:60px;
             height:100%;
-            text-overflow:ellipsis;
-            white-space: nowrap;
             :nth-child(1)> p{
               margin-top:2px;
               display: inline-block;

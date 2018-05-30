@@ -8,10 +8,10 @@
           <focus_news_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告 (适配)-->
-        <vue-lazy-component class="advertising_aside1_phone" style="display: none ;margin-top: 20px">
-          <advertising_aside1/>
-          <advertising_aside1_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component class="advertising_aside1_phone" style="display: none ;margin-top: 20px">-->
+          <!--<advertising_aside1/>-->
+          <!--<advertising_aside1_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
 
         <!--最近热门-->
         <vue-lazy-component style="margin-top: 20px">
@@ -19,10 +19,10 @@
           <recent_hot_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告-->
-        <vue-lazy-component style="margin-top: 20px" class="advertising_aside2_browser">
-          <advertising_aside2/>
-          <advertising_aside2_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component style="margin-top: 20px" class="advertising_aside2_browser">-->
+          <!--<advertising_aside2/>-->
+          <!--<advertising_aside2_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
         <!--大家都在读-->
         <vue-lazy-component style="margin-top: 20px" class="all_read_browser">
           <all_read :all_read="all_read" v-on:loadMore="load_more"/>
@@ -31,20 +31,20 @@
       </div>
       <div class="float-right right_content">
         <!--广告-->
-        <vue-lazy-component class="advertising_aside1_browser">
-          <advertising_aside1/>
-          <advertising_aside1_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component class="advertising_aside1_browser">-->
+          <!--<advertising_aside1/>-->
+          <!--<advertising_aside1_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
         <!--热门文章-->
-        <vue-lazy-component style="margin-top: 20px">
+        <vue-lazy-component style="">
           <aside_hot_article :hot_article="hot_article"/>
           <aside_hot_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <!--广告 (适配)-->
-        <vue-lazy-component style="margin-top: 20px;display: none" class="advertising_aside2_phone">
-          <advertising_aside2/>
-          <advertising_aside2_skeleton slot="skeleton"/>
-        </vue-lazy-component>
+        <!--<vue-lazy-component style="margin-top: 20px;display: none" class="advertising_aside2_phone">-->
+          <!--<advertising_aside2/>-->
+          <!--<advertising_aside2_skeleton slot="skeleton"/>-->
+        <!--</vue-lazy-component>-->
         <!--新增文章-->
         <vue-lazy-component style="margin-top: 20px">
           <aside_add_article :add_articles="add_articles"/>

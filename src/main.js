@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import VueMeta from 'vue-meta'
 Vue.use(VueMeta)
-
 Vue.config.productionTip = false
 // 路由攔截
 // router.beforeEach((to,from,next)=>{
@@ -40,6 +39,7 @@ Vue.use(BootstrapVue);
 // 上传头像
 import Croppa from 'vue-croppa'
 import 'vue-croppa/dist/vue-croppa.css'
+
 Vue.use(Croppa)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
@@ -55,7 +55,8 @@ import 'element-ui/lib/theme-chalk/Steps.css'
 import 'element-ui/lib/theme-chalk/Step.css'
 import 'element-ui/lib/theme-chalk/select.css'
 import 'element-ui/lib/theme-chalk/option.css'
-import {Loading,Steps,Step,Pagination,Icon,Message,MessageBox,Select,Option} from 'element-ui'
+import {Loading, Steps, Step, Pagination, Icon, Message, MessageBox, Select, Option} from 'element-ui'
+
 Vue.use(Loading.directive)
 Vue.use(Pagination)
 Vue.use(Icon)
@@ -70,15 +71,17 @@ Vue.component(Icon.name, Icon)
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+
 Vue.prototype.$NProgress = NProgress;
 import moment from 'moment'
+
 Vue.prototype.$moment = moment;
 /* eslint-disable no-new */
 let that = new Vue({
   el: '#app',
   router, // vue router
   store, //vuex
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
 

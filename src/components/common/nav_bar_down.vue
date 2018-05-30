@@ -108,8 +108,8 @@
     display: inline-block;
     width: 50%;
     border-radius: 30px;
-    background: rgb(10, 83, 162);
-    color: white !important;
+    /*background: rgb(10, 83, 162);*/
+    color:  rgb(10, 83, 162) !important;
     /*background: red;*/
   }
   .nav_down_content {
@@ -133,7 +133,7 @@
   }
 
   .nav_down_footer {
-    padding: 50px 50px;
+    padding: 50px 50px 0 50px;
     width: 100%;
     background: white;
     .row{

@@ -29,6 +29,35 @@
         <div v-show="$store.state.nav_down" class="nav_bar_down "
              style="position: absolute;transform: translateY(0%);left: 0">
           <nav_bar_down/>
+          <div class="the_footer clearfix">
+            <div class="float-left the_footer_chara">
+              <router-link to="">
+                聯係我們
+              </router-link>
+              <span class="want_line"></span>
+              <router-link to="">
+                幫助中心
+              </router-link>
+              <span class="want_line"></span>
+              <router-link to="">
+                2018OopsDaily
+              </router-link>
+              <router-link to="">
+                隱私政策
+              </router-link>
+              <router-link to="">
+                服務條款
+              </router-link>
+              <router-link to="">
+                京ICP証080268號
+              </router-link>
+            </div>
+            <div class="float-right the_footer_icon">
+              <facebook_share/>
+              <google_share/>
+              <twitter_share/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +66,9 @@
 
 <script>
   import nav_bar_down from "@/components/common/nav_bar_down"
-
+  import facebook_share from "@/components/common/share_button/facebook_share_btn"
+  import google_share from "@/components/common/share_button/google_share_btn"
+  import twitter_share from "@/components/common/share_button/twitter_share_btn"
   export default {
     name: "nav_bar",
     data() {
@@ -48,6 +79,9 @@
     },
     components: {
       "nav_bar_down": nav_bar_down, //導航下拉
+      "facebook_share":facebook_share,
+      "google_share":google_share,
+      "twitter_share":twitter_share,
       nav_type: []
     },
     created() {
@@ -73,11 +107,12 @@
 </script>
 
 <style scoped lang="less">
-  @media screen and(max-width: 414px){
-    .media_414_none{
+  @media screen and(max-width: 414px) {
+    .media_414_none {
       display: none;
     }
   }
+
   @media screen and(min-width: 768px ) {
     .media_block {
       display: none;
@@ -88,10 +123,19 @@
     .nav_name {
       display: none;
     }
-    .click_icon{
+    .the_footer_chara{
+      float: none;
+    }
+    .the_footer_icon{
+      float: none;
+      text-align: center;
+      width: 100%;
+    }
+    .click_icon {
       left: 50%;
       transform: translateX(-50%);
     }
+
     .media_block {
       display: block;
     }
@@ -108,6 +152,24 @@
       height: 100%;
       .active {
         background: rgb(70, 138, 237);
+      }
+
+      .want_line {
+        margin-right: 10px;
+        margin-left: 10px;
+        border-right: 1px solid rgb(213, 213, 213);
+      }
+      .the_footer {
+        padding: 50px;
+        background: rgb(244, 244, 244);
+        vertical-align: top;
+        a{
+          color: rgb(167, 167, 167);
+          background: none;
+        }
+        .the_footer_chara{
+          line-height: 38px;
+        }
       }
       .media_block {
         height: 100%;
