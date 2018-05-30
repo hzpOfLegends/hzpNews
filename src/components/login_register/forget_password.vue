@@ -44,8 +44,9 @@
     created(){
     },
     methods:{
+      // 使用vuex 來控制 步驟
       loadPage(){
-        this.active=parseInt(this.$route.query.step)?parseInt(this.$route.query.step):0
+        this.active = parseInt(this.$route.query.step)?parseInt(this.$route.query.step):0
       }
     },
     components:{

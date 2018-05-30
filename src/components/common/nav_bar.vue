@@ -148,7 +148,9 @@
       .active {
         background: rgb(70, 138, 237);
       }
-
+      .router-link-active{
+        background: rgb(70, 138, 237);
+      }
       .want_line {
         margin-right: 10px;
         margin-left: 10px;

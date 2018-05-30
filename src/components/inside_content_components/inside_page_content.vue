@@ -71,7 +71,9 @@
     },
     watch: {
       "$route.path":function () {
+        // 控制最頂部 進度條 將進度條歸零
         this.requestCount = 0
+        // 開啓進度條
         this.$NProgress.start()
         // 详情 请求
         inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
@@ -86,12 +88,14 @@
             // 进度条加1
             this.requestCount++
           })
+          // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
             let imgs = document.querySelectorAll('img')
             for (let i = 0; i < imgs.length; i++) {
               imgs[i].style.width = '100%'
             }
           }, 1)
+          // 設置定時器 10秒 用於后露記錄
           setTimeout(() => {
             verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
             }).catch(err => {
@@ -114,10 +118,10 @@
       '$route': function () {
         // 將滾輪 滾到 頂部
         if ($('html').scrollTop()) {
-          $('html').animate({scrollTop: 0}, 1000);
+          $('html').animate({scrollTop: 0}, 500);
           return false;
         }
-        $('body').animate({scrollTop: 0}, 1000);
+        $('body').animate({scrollTop: 0}, 500);
       },
       "requestCount":"closeNProgress"
     },

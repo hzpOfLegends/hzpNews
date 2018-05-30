@@ -160,7 +160,6 @@
       }
     },
     mounted() {
-      console.log(document.querySelector('#get_code').getAttribute('class'))
     }
   }
 </script>
