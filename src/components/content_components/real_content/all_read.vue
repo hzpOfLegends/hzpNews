@@ -4,7 +4,7 @@
     </h5>
     <div class=" all_read_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in all_read" :key="index"
-           @click="skip_inside_content(item.RelationID,item.CategoryID)">
+           >
         <router-link :to="{path:'/article/'+item.RelationID}">
           <div class="row">
             <!--<router-link to="index/particulars">-->
@@ -93,21 +93,12 @@
       }
     },
     methods: {
-      skip_inside_content(RelationID, CategoryID) {
-        if (CategoryID) {
-          sessionStorage.setItem("CategoryID", CategoryID)
-        }
-        if (RelationID) {
-          this.$router.push({
-            path: "/article/" + RelationID,
-          })
-        }
-      }
     },
     mounted() {
       // 用于判断 防止重复请求
       var isbool = true
       var that = this
+      // 監聽 加載更多
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() - 1 && isbool == true) {
           //大家都在读
@@ -115,6 +106,7 @@
             that.pageNum = that.pageNum + 1
             isbool = false
             index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
+              // 向父組件 發送數據 讓父組件再傳給子組件
               that.$emit("loadMore",res.data.Data.news)
               isbool = true
             }).catch(err => {
@@ -178,7 +170,7 @@
       .recent_hot_content {
         padding-bottom: 20px;
         border-bottom: 1px solid #f6f6f6;
-        margin-top: 3px;
+        margin-top: 20px;
         cursor: pointer;
         a {
           color: black;

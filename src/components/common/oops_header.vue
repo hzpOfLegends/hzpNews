@@ -3,7 +3,7 @@
     <div class="oops_header_content">
       <div class="container head1">
         <div class="oops_title row">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 oops_title_left" @click="skip_index" style="cursor: pointer">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 oops_title_left" @click="close_nav_down" style="cursor: pointer">
             <router-link to="/">
               <span>OOPSDAILY</span>
               <span class="media_none">|</span>
@@ -167,8 +167,11 @@
                 this.$store.state.judge_login = true
           }
       },
-      skip_index() {
-        this.$router.push({path: "/"})
+      // 點擊其他地方 關閉導航下拉
+      close_nav_down(){
+        console.log(1)
+        this.$store.state.nav_down = false;
+        this.$store.state.nav_down_icon = "fa fa-bars"
       },
       // //跳轉登錄
       // skip_login() {

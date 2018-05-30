@@ -371,7 +371,7 @@
   .oops_content_index {
     padding-top: 17px;
     padding-bottom: 17px;
-
+    background: #f4f4f4;
     .container {
       /*max-width: 73.75rem;*/
       /*width: 73.75rem;*/

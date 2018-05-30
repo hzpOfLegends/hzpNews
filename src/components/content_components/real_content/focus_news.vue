@@ -1,5 +1,5 @@
 <template>
-  <div class="focus_news card" @click="skip_inside_contnet(focus_news_data.RelationID,focus_news_data.CategoryID)">
+  <div class="focus_news card" >
     <router-link :to="{path:'/article/'+focus_news_data.RelationID}">
     <div class="focus_news_icon">
       <img src="/static/img/focusNews.png" alt="">
@@ -50,17 +50,6 @@
       }
     },
     methods: {
-      // 點擊跳轉
-      skip_inside_contnet(RelationID, CategoryID) {
-        if(CategoryID){
-          sessionStorage.setItem("CategoryID",CategoryID)
-        }
-        if (RelationID) {
-          this.$router.push({
-            path: "/article/"+ RelationID,
-          })
-        }
-      }
     },
     created() {
 

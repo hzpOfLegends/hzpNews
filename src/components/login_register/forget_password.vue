@@ -35,7 +35,7 @@
     name: "forget_password",
     data() {
       return {
-        active: parseInt(this.$route.query.step)?parseInt(this.$route.query.step):1
+        active: parseInt(this.$route.query.step)?parseInt(this.$route.query.step):0
       };
     },
     watch:{
@@ -59,6 +59,8 @@
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat fixed top"
+      oops_content_wrap.style.backgroundSize = "cover"
+      oops_content_wrap.style.height = 1080 + "px"
       // 將步驟條文字設小
       let el_step_title = document.querySelectorAll('.el-step__title')
       for(let i = 0 ; i<el_step_title.length ; i++){

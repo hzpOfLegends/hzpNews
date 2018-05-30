@@ -18,7 +18,7 @@
       },
       created(){
         console.log()
-          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href.split("/")[2];
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href;
       },
       watch:{
 

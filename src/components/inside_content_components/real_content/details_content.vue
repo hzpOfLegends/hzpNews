@@ -59,7 +59,6 @@
     ,
     data() {
       return {
-        // details: "",
         default_photo: "/static/img/timg.jpg",
       }
     },
@@ -76,11 +75,6 @@
       twitter_btn,
       facebook_comment
     },
-    created() {
-    },
-    mounted() {
-
-    }
   }
 </script>
 

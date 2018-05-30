@@ -3,7 +3,7 @@
     <div class="container clearfix">
       <div class="float-left left_content">
         <!--詳情内容-->
-        <vue-lazy-component @beforeInit="after_init">
+        <vue-lazy-component>
           <details_content :details="details" />
           <details_content_skeleton slot="skeleton"/>
         </vue-lazy-component>
@@ -76,6 +76,7 @@
         // 開啓進度條
         this.$NProgress.start()
         // 详情 请求
+            // other_article
         inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
           this.details = res.data.Data
           sessionStorage.setItem('CategoryID',this.details.CategoryID)
@@ -104,7 +105,6 @@
           }, 10000)
         }).catch(err => {
         })
-        // other_article
 
         // related
         inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
@@ -126,9 +126,6 @@
       "requestCount":"closeNProgress"
     },
     methods:{
-      after_init(){
-        console.log("ok")
-      },
       // 點擊其他地方 關閉導航下拉
       close_nav_down(){
         this.$store.state.nav_down = false;
@@ -270,6 +267,7 @@
     padding-top: 17px;
     padding-bottom: 17px;
     margin: 0 auto;
+    background: #f4f4f4;
     .container {
       padding: 0;
       margin: 0;
