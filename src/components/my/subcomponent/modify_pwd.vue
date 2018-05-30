@@ -3,11 +3,11 @@
       <div class="title">修改密碼</div>
       <div class="m-content">
             <div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="exampleInputEmail22">賬號</label>
                 <input type="text" class="form-control" id="exampleInputEmail22" placeholder="輸入郵箱" v-model="name" @input="verifyInput('name')" @keyup.enter="modify()">
                 <span class="err-message"  v-if="!ver.email">請輸入正確的郵箱</span>
-            </div>
+            </div>-->
             <div class="form-group">
                 <label for="exampleInputPassword1">原密碼</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="輸入原密碼" v-model="oldPassword" @input="verifyInput('oldPassword')" @keyup.enter="modify()">
@@ -44,7 +44,7 @@ import verify from '../../../assets/verify'
     export default {
       data(){
         return {
-            name:'',
+            name:'a@qq.com',
             oldPassword:'',
             newPassword:'',
             newPassword1:'',
@@ -128,7 +128,7 @@ import verify from '../../../assets/verify'
                 if(!this.ver.all) return
                 this.loading = true
                 accountAxios.modifyUserPassword({
-                    loginName:this.name,
+                    // loginName:this.name,
                     loginPwd:this.oldPassword,
                     NewPassword:this.newPassword
                 }).then(res=>{

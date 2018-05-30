@@ -1,25 +1,21 @@
 <template>
   <div class="modify-phone" v-loading="loading">
-      <div class="title" v-if="isPhoneUser">修改電話</div>
-      <div class="title" v-if="!isPhoneUser">綁定電話</div>
+      <div class="title" v-if="phoneNum">修改電話</div>
+      <div class="title" v-if="!phoneNum">綁定電話</div>
       <div class="m-content">
            <div class="m-step">
                 <el-steps :align-center="true" :active="currentStep" finish-status="success">
                     <el-step title="身份驗證"></el-step>
-                    <el-step title="重置電話" v-if="isPhoneUser"></el-step>
-                    <el-step title="綁定電話" v-if="!isPhoneUser"></el-step>
+                    <el-step title="重置電話" v-if="phoneNum"></el-step>
+                    <el-step title="綁定電話" v-if="!phoneNum"></el-step>
                     <el-step title="修改成功"></el-step>
                 </el-steps>
            </div>
             <div v-if="currentStep==1">
                 <div class="form-group">
                     <label for="oldPhone">原電話</label>
-                    <div style="padding-left:106px;position:relative">
-                        <!--<select class="form-control" id="cotegory" style="max-width:105px;position:absolute;left:0;top:0" v-model="step1.phoneCode" :disabled="step1.sendCode">
-                            <option value="" selected style="color:#ccc">選擇區號</option>
-                            <option  v-for="(v,i) in countryPhoneList" :value="v.dial_code" :key="i">{{v.dial_code}} </option>
-                        </select>-->
-                        <el-select v-model="step1.phoneCode" filterable placeholder="區號"  style="max-width:105px;position:absolute;left:0;top:0;"  :disabled="step1.sendCode">
+                    <div style=";position:relative">
+                        <!--<el-select v-model="step1.phoneCode" filterable placeholder="區號"  style="max-width:105px;position:absolute;left:0;top:0;"  :disabled="step1.sendCode">
                             <el-option
                             v-for="(item,i) in options"
                             :key="i"
@@ -27,15 +23,16 @@
                             :value="item.area_code">
                                 <span style="float: left">{{item.area_code}} {{item.area}}</span>
                             </el-option>
-                        </el-select>
-                        <input  type="text" class="form-control" id="oldPhone" placeholder="電話號碼" v-model="step1.name" :disabled="step1.sendCode">
+                        </el-select>-->
+                        <input  type="text" class="form-control" id="oldPhone" placeholder="電話號碼" v-model="step1.name" disabled>
                     </div>
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">{{step1.btnTXT}}</button>
+                    <button v-if="!step1.sendCode" type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">發送驗證碼</button>
+                    <button v-else type="" class="btn btn-default code-btn"  style="color:#48c321" disabled>驗證碼已發送</button>
                 </div>
                 </br>
                 <div class="btns">
@@ -72,7 +69,8 @@
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendPhoneCode('new')">{{step2.btnTXT}}</button>
+                    <button v-if="!step2.sendCode" type="" class="btn btn-default code-btn"  @click="sendPhoneCode('new')">發送驗證碼</button>
+                    <button v-else type="" class="btn btn-default code-btn"  style="color:#48c321" disabled>驗證碼已發送</button>
                 </div>
                 </br>
                 <div class="btns">
@@ -88,7 +86,7 @@
                 </div>
                 </br>
                 <div class="btns">
-                    <button type="" class="btn btn-success" @click="callClose(success)">確 定</button>
+                    <button type="" class="btn btn-success" @click="callClose(true)">確 定</button>
                 </div>
             </div>
 
@@ -113,27 +111,25 @@ import phoneAreaCode from '../../../assets/area_code'
             newPassword:'',
             newPassword1:'',
             loading:false,
-            currentStep:this.isPhoneUser ? 1:2, //根據父傳值判斷，是手機綁定用戶到step1
+            currentStep:1,
             step1:{
                 phoneCode:'',
-                name:'',
+                name:'', //号码
                 sendCode:false,
                 vCode:'',
-                btnTXT:'發送驗證碼',
                 r_id:''
             },
             step2:{
-                phoneCode:'',
-                name:'',
+                phoneCode:'', //区号
+                name:'', //号码
                 sendCode:false,
                 vCode:'',
-                btnTXT:'發送驗證碼',
                 r_id:''
             },
             options: '', //下拉列表
         }
       },
-      props:['isPhoneUser'],
+      props:['phoneNum'],
       watch:{
       },
       methods:{
@@ -142,7 +138,7 @@ import phoneAreaCode from '../../../assets/area_code'
           },
         sendPhoneCode(status){
             if(status==='old'){
-                if(!this.step1.name || !this.step1.phoneCode){
+                if(!this.step1.name){
                     this.$message({
                         message: '需輸入原電話',
                         type: 'warning'
@@ -153,13 +149,12 @@ import phoneAreaCode from '../../../assets/area_code'
                 this.loading = true
                 // 發手機驗證碼 {"phone":"+8618566086988"}
                 accountAxios.sendPhoneCode({
-                    phone:this.step1.phoneCode + this.step1.name,
+                    phone:'',
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
                         this.step1.r_id = res.data.Data.request_id
                         this.step1.sendCode = true
-                        this.step1.btnTXT = "驗證碼已發送"
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -183,7 +178,6 @@ import phoneAreaCode from '../../../assets/area_code'
                     if(res.data.ResultCode==200){
                         this.step2.r_id = res.data.Data.request_id
                         this.step2.sendCode = true
-                        this.step2.btnTXT = "驗證碼已發送"
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -208,7 +202,7 @@ import phoneAreaCode from '../../../assets/area_code'
                 this.loading = true
                 // 驗證手機 {"phone":"+8618566086988","request_id":"","code":""}
                 accountAxios.verifyPhone({
-                    phone:this.step1.phoneCode + this.step1.name,
+                    phone:"",
                     code:this.step1.vCode,
                     request_id:this.step1.r_id
                 }).then(res=>{
@@ -281,23 +275,12 @@ import phoneAreaCode from '../../../assets/area_code'
       },
       created(){
           this.options = phoneAreaCode
-        //   let arr = countryPhoneList.slice(0)
-        //   for(let i=0;i<arr.length;i++){
-        //       for(let j=0;j<arr.length-i;j++){
-        //           if(arr[j+1].dial_code){
-
-        //             if( Number(arr[j]['dial_code'])>Number(arr[j+1]['dial_code'])){
-        //                 console.log('JJJJJJJJJJJJJ',arr[j]['dial_code']);
-        //                 let temp = arr[j]
-        //                 arr[j] = arr[j+1]
-        //                 arr[j+1] = temp
-        //             }
-        //           }else{
-        //               arr.splice(j+1,1)
-        //           }
-        //       }
-        //   }
-        //   console.log("H",arr);
+          if(this.phoneNum){
+              this.currentStep = 1
+              this.step1.name = this.phoneNum
+          }else{
+              this.currentStep = 2
+          }
       }
     }
 </script>
@@ -330,8 +313,9 @@ import phoneAreaCode from '../../../assets/area_code'
     }
     .form-group.f-code{
         position: relative;
-        padding-right:99px;
+        padding-right:112px;
         .code-btn {
+            width:110px;
             position: absolute;
             right:0px;
             bottom:0px;
@@ -366,7 +350,7 @@ import phoneAreaCode from '../../../assets/area_code'
     // }
     }
     .el-select .el-input__inner {
-        height: 34px;
+        height: 34px !important;
         border:1px solid #cccccc !important;
         &::-webkit-input-placeholder {
             color:#999999;
