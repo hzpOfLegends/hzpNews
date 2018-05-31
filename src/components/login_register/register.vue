@@ -232,7 +232,8 @@
       this.$NProgress.done()
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "url('../static/img/background1.png') no-repeat  top"
+      let user_login = document.querySelector('.user_login')
+      user_login.style.height = 1080 + "px"
       oops_content_wrap.style.backgroundSize = "cover"
       oops_content_wrap.style.height = 1080 + "px"
     }

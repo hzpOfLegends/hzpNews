@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container user_login">
     <div class="row">
       <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
@@ -92,7 +92,8 @@
       }, 1)
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.height = 1080 + "px"
+      let user_login = document.querySelector('.user_login')
+      user_login.style.height = 1080 + "px"
       oops_content_wrap.style.background = "url('../static/img/background1.png')"
       oops_content_wrap.style.backgroundSize = "cover"
     },
