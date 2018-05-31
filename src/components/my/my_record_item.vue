@@ -29,9 +29,13 @@
                         <!--注：22汉字以内-->
                         <!--<p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>-->
                         <!--<p class="type">類別：政治</p>-->
-                        <p>{{recordList[0].Title}}</p>
-                        <p v-if="recordList[0].CategoryName" class="type">類別：{{recordList[0].CategoryName}}</p>
-                        <p v-else class="type">類別：未知 <span>|</span> ID:{{recordList[0].ID}}</p> 
+                        <div style="overflow: hidden;height:45px">
+                            <p style="font-size:16px">{{recordList[0].Title}}</p>
+                        </div>
+                        <div  class="type">
+                            <p v-if="recordList[0].CategoryName">類別:{{recordList[0].CategoryName}}<span style="padding:0 7px">|</span> ID:{{recordList[0].RelationID}}</p>
+                        </div>
+                        <!--<p v-else class="type">類別：未知 <span>|</span> ID:{{recordList[0].RelationID}}</p> -->
                     </div>
                 </div>
             </div>
@@ -131,6 +135,15 @@ import accountAxios from '../../axios_joggle/axios_account'
     .row {
         margin:0;
     }
+    thead {
+        tr {
+             background:#eeeeee;
+            //  th {
+            //      padding-top:8px !important;
+            //      padding-bottom:8px !important;
+            //  }
+        }
+    }
     .item {
         padding:2%;
         padding-top:1%;
@@ -185,7 +198,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                     // flex:0 0 33%;
                     position: absolute;
                     top:-2px;
-                    left:0px;
+                    left:-2px;
                 }
                 .tit {
                     font-size:13px;
@@ -196,6 +209,9 @@ import accountAxios from '../../axios_joggle/axios_account'
                     color:#bdbdbd;
                     margin-bottom:0;
                     font-size:12px;
+                    position: absolute;
+                    top:50px;
+                    left:120px;
                 }
             }
         }
@@ -212,10 +228,10 @@ import accountAxios from '../../axios_joggle/axios_account'
                 max-height:70px;
             }
             .tit {
-                font-size:13px;
+                font-size:15px;
                 padding-left:10px;
             }
-            p.type {
+            div.type {
                 color:#bdbdbd;
                 margin-bottom:0;
             }
@@ -230,6 +246,7 @@ import accountAxios from '../../axios_joggle/axios_account'
             color:#777;
             font-size:12px;
             border-radius:34px;
+            
         }
     }
     @media screen and (max-width:992px) {
@@ -256,7 +273,7 @@ import accountAxios from '../../axios_joggle/axios_account'
         .item .content {
             #doc-title {
                 img {
-                    display:none
+                    // display:none
                 }
                 .tit {
                     font-size:11px;

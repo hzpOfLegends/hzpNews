@@ -55,12 +55,12 @@
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                    <th class="title-header">標題</th>
-                    <th style="width:180px">日期</th>
-                    <th style="width:115px">自推數</th>
-                    <th style="width:115px">公推數</th>
-                    <th style="width:115px">撰寫數</th>
-                    <th style="width:115px">總點閱</th>
+                    <th class="title-header" style="padding-left:4%">標題</th>
+                    <th style="width:180px;">日期</th>
+                    <th style="width:115px;">自推數</th>
+                    <th style="width:115px;">公推數</th>
+                    <th style="width:115px;">撰寫數</th>
+                    <th style="width:115px;">總點閱</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -197,6 +197,10 @@ import accountAxios from '../../axios_joggle/axios_account'
          border-left: none;
          border-right: none;
          padding:15px;
+    }
+    .table-bordered > tbody > tr > td {
+        vertical-align: top;
+        // padding-top:15px;
     }
     thead {
         tr {

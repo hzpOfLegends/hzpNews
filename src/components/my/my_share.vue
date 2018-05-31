@@ -39,14 +39,16 @@
                         </router-link>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
-                                <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
+                                <div style="height:50px;overflow:hidden">
+                                    <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
+                                </div>
                                 <div class="sub-title">
                                     <span>時間：{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
                                     &nbsp;<i>|</i>&nbsp;
                                     <span>點閱：{{v.ClickRate}}</span>
                                 </div>
                             </div>
-                            <div class="" style="margin:15px 5px 15px">
+                            <div class="" style="margin:15px 0px 15px">
                                 <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
@@ -258,6 +260,7 @@ import Clipboard from 'clipboard';
             }
             .news-title {
                 height:82px;
+                position: relative;
                 span.flag {
                     display:inline-block;
                     height:20px;
@@ -272,12 +275,16 @@ import Clipboard from 'clipboard';
                     line-height: 20px;
                 }
                 span.txt {
-                    line-height:25px;
+                    line-height:24px;
                 }
                 .sub-title {
                     font-size:12px;
                     color:#999999;
                     padding-top:8px;
+                    position: absolute;
+                    left:0;
+                    bottom:0;
+
                 }
             }
             .btn-primary {

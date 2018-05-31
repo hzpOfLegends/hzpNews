@@ -5,7 +5,7 @@
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                <th>日期</th>
+                <th style="width:20%">日期</th>
                 <th>自推</th>
                 <th>共推</th>
                 <th>撰寫</th>
@@ -104,6 +104,15 @@ import accountAxios from '../../../axios_joggle/axios_account'
 
 <style lang="less" scoped>
 .income {
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            border-left: none;
+            border-right: none;
+            padding:8px 15px;
+            text-align:center;
+        }
+        .table-bordered > thead > tr > th {
+            background-color: #eeeeee;
+        }
         .content {
             // padding-top:20px;
             th.title-header {

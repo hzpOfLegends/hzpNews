@@ -96,6 +96,15 @@ import accountAxios from '../../../axios_joggle/axios_account'
 
 <style lang="less" scoped>
 .payout {
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            border-left: none;
+            border-right: none;
+            padding:8px 15px;
+            text-align:center;
+        }
+        .table-bordered > thead > tr > th {
+            background-color: #eeeeee;
+        }
         .content {
             // padding-top:20px;
             th.title-header {

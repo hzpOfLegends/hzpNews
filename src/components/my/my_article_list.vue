@@ -30,7 +30,7 @@
                     <th style="width:190px">時間</th>
                     <th style="width:220px">點閱</th>
                     <th>操作</th>-->
-                    <th class="title-header"  style="width:42%">標題</th>
+                    <th class="title-header"  style="width:42%;padding-left:4%">標題</th>
                     <th style="width:20%">時間</th>
                     <th style="width:12%">點閱</th>
                     <th>操作</th>
@@ -48,10 +48,14 @@
                                 <!--注：22汉字以内-->
                                 <!--<p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>-->
                                 <!--<p class="type">類別：政治</p>-->
-                                <p>{{v.NewsTitle}}</p>
+                                <div style="min-height:42px">
+                                    <p style="color:#333333">{{v.NewsTitle}}</p>
+                                </div>
                                 <p v-if="v.CategoryName" class="type">類別：{{v.CategoryName}}</p>
-                                <p v-else class="type">類別：未知</p>
+                                <!--<p v-else class="type">類別：未知</p>-->
                             </div>
+
+
                         </div>
                             </router-link>
                     </td>
@@ -234,9 +238,21 @@ import Clipboard from 'clipboard';
          border-right: none;
          padding:15px;
     }
+    thead {
+        tr {
+             background:#eeeeee;
+             th {
+                 padding-top:10px !important;
+                 padding-bottom:10px !important;
+             }
+        }
+    }
     .edit-btn,.del-btn {
         color:#999999;
-        margin:0 12px;
+        margin:0 10px;
+        cursor:pointer;
+        padding:7px;
+        display:inline-block;
     }
     .copy-btn {
         width:72px !important;
@@ -294,7 +310,7 @@ import Clipboard from 'clipboard';
                     width:33%;
                     object-fit: cover;
                     flex:0 0 33%;
-                    max-height:70px;
+                    max-height:72px;
                 }
                 .tit {
                     font-size:13px;
