@@ -4,6 +4,29 @@
           <div class="title">
               <h5>熱門好文</h5>
           </div>
+        <div class="m-search">
+                <!--<el-input style="width:122px;height:29px;;"
+                    placeholder="ID搜索"
+                    v-model="searchID"
+                    clearable>
+                </el-input>-->
+                <el-select v-model="selectCategoryID" filterable placeholder="文章類型" style="margin-right:12px;">
+                    <el-option
+                    v-for="item in $store.state.nav_type?$store.state.nav_type:1"
+                    :key="item.ID"
+                    :label="item.CategoryName"
+                    :value="item.ID">
+                    </el-option>
+                </el-select>
+                <el-date-picker  style="margin-right:5px"
+                    v-model="selectDate"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="開始日期"
+                    end-placeholder="結束日期">
+                </el-date-picker>
+                <el-button type="primary">篩選</el-button>
+          </div>
         <div class="content" style="text-align:left;min-height:300px">
             <div class="news-list" style="min-height:300px">
                 <div class="news-items" v-for="(v,i) in hotList" :key="i">
@@ -23,7 +46,7 @@
                                     <span>點閱：{{v.ClickRate}}</span>
                                 </div>
                             </div>
-                            <div class="" style="margin:17px 0">
+                            <div class="" style="margin:15px 5px 15px">
                                 <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
@@ -55,7 +78,7 @@
 
             </div>
           <!--分頁器 -->
-          <div style="text-align:center">
+          <div style="text-align:center;padding:18px 0;">
               <el-pagination
                   background
                   layout="prev, pager, next"
@@ -81,7 +104,9 @@ import Clipboard from 'clipboard';
                 total:1,
                 pageSize:12,
                 linkPathOrigin:'',
-                ShareID:''
+                ShareID:'',
+                selectCategoryID:'',
+                selectDate:''
             }
         },
         watch:{
@@ -198,9 +223,18 @@ import Clipboard from 'clipboard';
             padding-top:20px;
         }
     }
+    .m-search {
+        padding:15px 0;
+        display:flex;
+        border-bottom:1px solid #eeeeee;
+        // margin:0 8px;
+    }
     .news-list {
         display:flex;
         flex-wrap:wrap;
+        padding-left:-0.8%;
+        margin-left:-0.7%;
+        margin-right:-0.7%;
         .news-items {
             flex:0 0 25%;
             justify-content:space-between;
@@ -208,7 +242,7 @@ import Clipboard from 'clipboard';
             box-sizing: border-box;
             &>div{
                 border:1px solid #e5e5e5;
-                margin:1.5% 3% 5%;
+                margin:0% 3% 7%;
             }
             .photo {
                 width:100%;
@@ -245,6 +279,15 @@ import Clipboard from 'clipboard';
                     color:#999999;
                     padding-top:8px;
                 }
+            }
+            .btn-primary {
+                background-color: #2c7fdb;
+                height:45px;
+                border-color:#2c7fdb;
+                &:hover {
+                    background-color: #2d70cb;
+                }
+
             }
         }
     }
@@ -308,4 +351,9 @@ import Clipboard from 'clipboard';
         }
     }
 }
+</style>
+<style>
+    .m-search .el-range-separator {
+        padding:0 !important;
+    }
 </style>

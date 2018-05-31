@@ -32,25 +32,28 @@
         <div class="content" style="text-align:left" v-loading="loading">
             <form>
             <div class="form-group">
-                    <label for="category">分類：</label>
-                    <select class="form-control" id="cotegory" style="max-width:320px" v-model="article.category">
-                        <option value="" selected style="color:#ccc">請選擇分類</option>
-                        <option  v-for="(v,i) in categoryList" :value="v.ID" :key="i">{{v.CategoryName}}</option>
+                    <label for="category" style="color:#747474">分類：</label>
+                    <select class="form-control" id="cotegory" style="max-width:320px;color:#999999" v-model="article.category">
+                        <option value="" selected style="color:#ccc">請選擇</option>
+                        <option  v-for="(v,i) in $store.state.nav_type?$store.state.nav_type:1" :value="v.ID" :key="i">{{v.CategoryName}}</option>
                         <!--<option value="2">娱乐</option>
                         <option value="3">动漫</option>
                         <option value="4">汽车</option>
                         <option value="5">时政</option>-->
                     </select>
+
+
+
             </div>
             <div class="form-group">
-                    <label for="1">標題：</label>
-                    <input type="text" class="form-control" id="exampleTitle" placeholder="文章標題" v-model="article.title">
+                    <label for="1" style="color:#747474">標題：</label>
+                    <input type="text" class="form-control" id="" placeholder="文章標題" v-model="article.title">
             </div>
             <div class="form-group">
-                    <label for="">內容：</label>
+                    <label for="" style="color:#747474">內容：</label>
                 <div class="hidden-xs">
                     <!--编辑器-->
-                    <div id="editor">
+                    <div id="editor" spellcheck="false">
                         <!--<p>Welcome!</p>-->
                     </div>
                 </div>
@@ -59,8 +62,8 @@
                 </form>
             </div>
             
-            <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">發 表</button>
-            <button v-if="status==='edit'" type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="submitArticle()">保 存</button>
+            <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:13px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">發 表</button>
+            <button v-if="status==='edit'" type="button" class="btn btn-primary" style="padding:13px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">保 存</button>
             </form>
             <div v-html="xss"></div>
 
@@ -230,7 +233,7 @@ export default {
 
       },
       created(){
-          this.getCategories()
+        //   this.getCategories()
           if(this.$route.path.indexOf('/edit/')!==-1){
                 this.status = 'edit'
                 accountAxios.getNewInfo({
@@ -279,6 +282,9 @@ export default {
     padding-top:15px;
     .row {
         margin:0;
+    }
+    #editor ul,#editor ol {
+        list-style: none;
     }
     .item {
         padding:2%;
@@ -331,6 +337,7 @@ export default {
         font-size:12px;
         border-radius:34px;
     }
+
     @media screen and (max-width:992px) {
             .item .content {
                 padding:20px 0px;
@@ -351,3 +358,13 @@ export default {
     }
 }
 </style>
+<style>
+    .w-e-text-container {
+        z-index:0 !important;
+    }
+    .w-e-toolbar .w-e-menu {
+        z-index:1 !important;
+    }
+
+</style>
+

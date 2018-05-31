@@ -15,7 +15,7 @@
                 <ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="">
                         <a href="javascript:;"   id="btn-icon"  style="">
-                            <span aria-hidden="true"></span><i></i> 返回列表
+                            <span aria-hidden="true"></span><i></i> 文章撰寫
                         </a>
                     </li>
                 </ul>

@@ -15,13 +15,13 @@
                 </a>-->
           </div>
           <div class="m-search">
-              <el-input style="width:122px;height:29px;;"
+              <el-input style="width:122px;height:29px;margin-right:3px;" 
                     placeholder="ID搜索"
                     v-model="searchID"
                     clearable>
                 </el-input>
                 <el-button type="primary" style="margin-right:15px">搜索</el-button>
-                <el-date-picker
+                <el-date-picker  style="margin-right:3px"
                     v-model="selectDate"
                     type="daterange"
                     range-separator="至"
@@ -240,10 +240,11 @@ import accountAxios from '../../axios_joggle/axios_account'
                 border-radius:16px;
             }
         }
-        .m-search {
-            padding:15px 0;
-            text-align:left;
-        }
+    .m-search {
+        padding:15px 0;
+        display:flex;
+        border-bottom:1px solid #eeeeee;
+    }
         .m-tab {
             &>ul {
                 background-color: #ffffff;

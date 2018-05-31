@@ -92,7 +92,7 @@
           <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
-        <div class="go-index">
+        <div class="go-index-pc">
             <router-link to="/">
               OOPSDAILY首頁 <i class="glyphicon glyphicon-menu-right"></i>
             </router-link>
@@ -225,7 +225,7 @@ export default {
         max-width:1180px;
         margin-bottom: 0px;
         position: relative;
-        .go-index {
+        .go-index-pc {
           position: absolute;
           right:0px;
           top:14px;
@@ -308,8 +308,8 @@ export default {
         background-color: transparent;
       }
       @media (max-width: 767px) {
-        .go-index {
-          display:none;
+        .go-index-pc {
+          margin-right:35%;
         }
         .navbar-default .navbar-nav .open .dropdown-menu>li>a {
           color: #eee;
