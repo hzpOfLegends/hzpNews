@@ -138,6 +138,8 @@
       skip_top //點擊到頂部
     },
     created() {
+      // 进度条开始
+      this.$NProgress.start()
       var isbool = true
       $(window).scroll(function () {
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
@@ -255,8 +257,7 @@
 
     },
     mounted() {
-      // 进度条开始
-      this.$NProgress.start()
+
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "#f4f4f4"
