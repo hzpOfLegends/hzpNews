@@ -71,6 +71,7 @@
     },
     watch: {
       "$route.path":function () {
+        console.log("start")
         // 控制最頂部 進度條 將進度條歸零
         this.requestCount = 0
         // 開啓進度條
@@ -89,6 +90,7 @@
             this.$store.state.other_article_content = res.data.Data.news
             // 进度条加1
             this.requestCount++
+            console.log(1,this.requestCount)
           })
           // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
@@ -112,6 +114,7 @@
           this.hot_article = res.data.Data
           // 进度条加1
           this.requestCount++
+          console.log(2,this.requestCount)
         }).catch(err => {
           console.log(err)
         })
@@ -141,8 +144,7 @@
       },
     },
     mounted() {
-      // 进度条开始
-      this.$NProgress.start()
+
       // 將滾輪 滾到 頂部
       if ($('html').scrollTop()) {
         $('html').animate({scrollTop: 0}, 1000);
@@ -164,6 +166,10 @@
 
     },
     created() {
+      // 控制最頂部 進度條 將進度條歸零
+      this.requestCount = 0
+      // 进度条开始
+      this.$NProgress.start()
       // 详情 请求
       inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data

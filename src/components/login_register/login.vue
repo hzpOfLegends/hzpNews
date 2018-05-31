@@ -21,7 +21,7 @@
             <p style="color: red; font-size: 12px">{{password_hint}}</p>
             <div class="forget_password" style="text-align: right">
               <!--<a href="#" v-b-modal.modal ></a>-->
-              <router-link :to="{path:'/user/forgetpassword',query:{step:0}}">忘記密碼？</router-link>
+              <router-link :to="{path:'/user/forgetpassword',query:{step:0}}" style="">忘記密碼？</router-link>
               <b-modal size="xs" id="modal" :hide-header="true" :hide-footer="true">
                 <h5>找回密碼</h5>
               </b-modal>
@@ -35,7 +35,7 @@
         <div class="step2">
           <p>
             還沒有賬號？
-            <router-link to="/user/register" style="rgb(153,153,153)">前往注冊>></router-link>
+            <router-link to="/user/register" style="color: rgb(90, 148, 238);">前往注冊>></router-link>
           </p>
         </div>
 
@@ -182,6 +182,7 @@
             if (res.status == 200 && res.data.ResultCode == 200) {
               // 存储 用户 shareID
               this.shareid = res.data.Data.ShareID
+              sessionStorage.setItem("Ticket",res.data.Data.Ticket)
               users_page.login_user_info().then(res => {
                 sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
@@ -288,7 +289,7 @@
     .active {
       width: 100%;
       border: none;
-      background: #468bed;
+      background: rgb(70, 138, 237);
       color: white;
     }
     .email {
@@ -333,6 +334,9 @@
     }
     .forget_password {
       margin-bottom: 30px;
+      a{
+        color: rgb(90, 148, 238);
+      }
     }
     // 模態框
     #modal {

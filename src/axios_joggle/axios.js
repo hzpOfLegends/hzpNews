@@ -4,18 +4,24 @@ import {Message} from 'element-ui'
 import store from '../store/store'
 // axios.path = "http://35.194.241.228/"
 axios.path = "/apis/"
+// http 请求拦截器
+axios.interceptors.request.use(config => {
+let Ticket = sessionStorage.getItem("Ticket");
+Object.assign(config.headers, { 'Ticket': Ticket?Ticket:"" });
+return config;
+}, error => {
+  return Promise.reject(error)
+})
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
 
-  switch (data.data.ResultCode)
-  {
+  switch (data.data.ResultCode) {
     case 200 :
       break;
     case 202:
-      router.push({path:"/"})
+      router.push({path: "/"})
       break;
     case 401 :
-      // router.push({path:"/"})
       break;
     case 1003 :
       store.state.submit_hint = '登陆失败,用戶名或者密碼錯誤'
@@ -36,29 +42,29 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
   }
   return data
 }, error => {
-  if(error && error.response){
-    if(error.response.status == 401){
-        Message({
-            message: '此頁面需要登錄后操作！',
-            type: 'warning',
-            duration:2200,
-            showClose:true
-        });
-        store.commit('setIs401',true)  //通知有組件清除登錄信息
-    }else if(error.response.status == 1200){
-        Message({
-            message: '請勿頻繁操作！',
-            type: 'warning',
-            duration:2000,
-            showClose:true
-        });
-    }else if(error.response.status == 500 || error.response.status == 502){
-        Message({
-            message: '服務器異常，請稍後再試！',
-            type: 'warning',
-            duration:3000,
-            showClose:true
-        });
+  if (error && error.response) {
+    if (error.response.status == 401) {
+      Message({
+        message: '此頁面需要登錄后操作！',
+        type: 'warning',
+        duration: 2200,
+        showClose: true
+      });
+      store.commit('setIs401', true)  //通知有組件清除登錄信息
+    } else if (error.response.status == 1200) {
+      Message({
+        message: '請勿頻繁操作！',
+        type: 'warning',
+        duration: 2000,
+        showClose: true
+      });
+    } else if (error.response.status == 500 || error.response.status == 502) {
+      Message({
+        message: '服務器異常，請稍後再試！',
+        type: 'warning',
+        duration: 3000,
+        showClose: true
+      });
     }
   }
   // Message.error({

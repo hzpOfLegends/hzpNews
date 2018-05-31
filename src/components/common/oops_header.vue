@@ -3,7 +3,8 @@
     <div class="oops_header_content">
       <div class="container head1">
         <div class="oops_title row">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 oops_title_left" @click="close_nav_down" style="cursor: pointer">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 oops_title_left" @click="close_nav_down"
+               style="cursor: pointer">
             <router-link to="/">
               <span>OOPSDAILY</span>
               <span class="media_none">|</span>
@@ -12,20 +13,20 @@
           </div>
           <div v-if="$store.state.judge_login==false" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
           <div class="" id="login-register" v-if="$store.state.judge_login==false">
-              <div class="" id="login">
-                <router-link to="/user/login" class="login_btn">
-                  <i class="fa fa-user"></i>
-                  <span>登錄</span>
-                </router-link>
-              </div>
-              <div class="" id="register">
-                <router-link to="/user/register" class="register_btn">
-                  <i class="fa fa-plus-circle"></i>
-                  <span>注冊</span>
-                </router-link>
-              </div>
+            <div class="" id="login">
+              <router-link to="/user/login" class="login_btn">
+                <i class="fa fa-user"></i>
+                <span>登錄</span>
+              </router-link>
+            </div>
+            <div class="" id="register">
+              <router-link to="/user/register" class="register_btn">
+                <i class="fa fa-plus-circle"></i>
+                <span>注冊</span>
+              </router-link>
+            </div>
           </div>
-          <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2" v-if="$store.state.judge_login==true"></div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" v-if="$store.state.judge_login==true"></div>
           <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8 user_select" v-if="$store.state.judge_login==true">
             <div class="row media_user_none" style="margin: 0;">
               <div class="float-right user_message">
@@ -36,11 +37,12 @@
               </span>
                 <span class="subscript">
                   <div class="btn-group">
-                    <a href="javascript:;" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true">
+                    <a href="javascript:;" class="dropdown-toggle caret" style="height: 10px;width: 10px"
+                       data-toggle="dropdown" aria-haspopup="true">
                     </a>
                     <ul class="dropdown-menu">
                       <li style="padding: 5px 0"><router-link to="/my/user/dashboard">個人中心</router-link></li>
-                      <li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>
+                      <li style="padding: 5px 0"><a href="javascript:;" @click="login_out">登出</a></li>
                       <!--<li role="separator" class="divider"></li>-->
                     </ul>
                   </div>
@@ -59,36 +61,46 @@
             </div>
             <div class="media_user_block" style="display: none;text-align: right;padding-right: 20px">
               <div class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><i class="fa fa-ellipsis-h" style="font-size: 40px"></i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><i
+                  class="fa fa-ellipsis-h" style="font-size: 40px"></i></a>
                 <ul class="dropdown-menu">
-                  <li><div class="user_message" style="margin-left: 0;text-align: center">
-                    <i class="fa fa-money"></i>
-                    有效點擊數：                                        <!--第一步 用vuex同步信息 第二步防止刷新信息丟失 -->
-                    <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>
-                  </div></li>
-                  <li><div class="user_message" style="margin-left: 0;text-align: center">
-                    <i class="fa fa-file-text-o"></i>
-                    發表文章：
-                    <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
-                  </div></li>
-                  <li><div class="user_message" style="margin-left: 0;text-align: center">
-                    <i class="fa fa-user"></i>
-                    當前用戶：
-                    <span>
+                  <li>
+                    <div class="user_message" style="margin-left: 0;text-align: center">
+                      <i class="fa fa-money"></i>
+                      有效點擊數：                                        <!--第一步 用vuex同步信息 第二步防止刷新信息丟失 -->
+                      <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="user_message" style="margin-left: 0;text-align: center">
+                      <i class="fa fa-file-text-o"></i>
+                      發表文章：
+                      <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="user_message" style="margin-left: 0;text-align: center">
+                      <i class="fa fa-user"></i>
+                      當前用戶：
+                      <span>
                 <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>
               </span>
-                    <span class="subscript">
+                      <span class="subscript">
                   <div class="btn-group">
-                    <a href="#" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true"></a>
+                    <a href="#" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown"
+                       aria-haspopup="true"></a>
                     <ul class="dropdown-menu">
                       <li style="padding: 5px 0" @click="login_out"><router-link to="/">登出</router-link></li>
                       <li style="padding: 5px 0"><router-link to="/my">個人中心</router-link></li>
                     </ul>
                   </div>
               </span>
-                  </div></li>
+                    </div>
+                  </li>
                   <li role="separator" class="divider"></li>
-                  <li><router-link to="">個人中心</router-link></li>
+                  <li>
+                    <router-link to="">個人中心</router-link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -130,12 +142,12 @@
         },
         nav_down: false,  // 用來切換導航欄的隱藏
         nav_down_icon: "fa fa-bars",
-        user_info:{
-          name:'未命名'
+        user_info: {
+          name: '未命名'
         }
       }
     },
-    watch:{
+    watch: {
       "$store.state.is401": "is401Handler"
     },
     created() {
@@ -146,7 +158,7 @@
         this.$store.state.judge_login = false
       }
 
-      if(sessionStorage.getItem('user_info')){
+      if (sessionStorage.getItem('user_info')) {
         this.user_info = JSON.parse(sessionStorage.getItem('user_info'))
       }
     },
@@ -161,7 +173,7 @@
     },
     methods: {
       // 點擊其他地方 關閉導航下拉
-      close_nav_down(){
+      close_nav_down() {
         console.log(1)
         this.$store.state.nav_down = false;
         this.$store.state.nav_down_icon = "fa fa-bars"
@@ -175,25 +187,33 @@
       // },
       // 登出
       login_out() {
-        // 清除登錄ID
-        sessionStorage.setItem('ShareID', "")
-        // 清楚登錄  用戶信息
-        sessionStorage.setItem('user_info', "")
+        // 请求后台 登出
+        users_page.login_out().then(res => {
+          // 清除登錄ID
+          sessionStorage.setItem('ShareID', "")
+          // 清楚登錄  用戶信息
+          sessionStorage.setItem('user_info', "")
+
+          // 清除TICKET
+          sessionStorage.setItem('Ticket', "")
+        }).catch(err => {
+
+        })
+
         // 隱藏 用戶欄
         this.$store.state.judge_login = false
         this.$store.state.user_info = []
-        // 请求后台 登出
-        users_page.login_out()
+
         // 跳转到首页
-        this.$router.push({path:"/user/login"})
+        this.$router.push({path: "/user/login"})
       },
-      is401Handler(){
-         if(this.$store.state.is401){
-            this.login_out()
-         }
+      is401Handler() {
+        if (this.$store.state.is401) {
+          this.login_out()
+        }
       }
     },
-    created(){
+    created() {
     }
 
   }
@@ -204,21 +224,24 @@
     .head1 {
       display: none;
     }
-    .media_user_none{
+
+    .media_user_none {
       display: none;
     }
-    .media_user_block{
+
+    .media_user_block {
       display: block !important;
     }
   }
+
   @media screen and(max-width: 1000px) {
-    .media_none{
+    .media_none {
       display: none;
     }
   }
 
   .oops_header {
-      background: white;
+    background: white;
     .oops_header_content {
       .user_message {
         margin-left: 1.5rem;
@@ -227,7 +250,7 @@
       }
 
       // 用戶 下拉
-      .dropdown-menu{
+      .dropdown-menu {
         left: -150px;
       }
       .subscript {
@@ -260,7 +283,7 @@
           padding-left: 0;
           a {
             text-decoration: none;
-            display:flex;
+            display: flex;
             justify-content: flex-start;
             align-items: center;
           }
@@ -279,7 +302,7 @@
           }
         }
         #register {
-            margin-left:10px;
+          margin-left: 10px;
           .register_btn {
             display: inline-block;
             width: 82px;
@@ -350,15 +373,16 @@
       }
     }
     #login-register {
-      display:flex;
+      display: flex;
       justify-content: flex-end;
     }
-    @media screen and (max-width:768px){
-        .login_btn,.register_btn {
-            width: 62px !important;
-        }
-        padding-left:2% !important;
-        padding-right:2% !important;
+    @media screen and (max-width: 768px) {
+      .login_btn, .register_btn {
+        width: 62px !important;
+      }
+
+      padding-left: 2% !important;
+      padding-right: 2% !important;
     }
   }
 </style>
