@@ -194,8 +194,8 @@
         padding-left: 20px;
       }
       button {
-        max-width: 116px;
-        min-height: 45px;
+        min-width: 84px;
+        min-height: 46px;
       }
 
     }
