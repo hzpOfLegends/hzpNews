@@ -23,17 +23,17 @@
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{new_password_hint}}</p>
             <p style="color: red; font-size: 12px;text-align: center">{{register_hint}}</p>
-            <button class="btn" @click="submit_mess" :class="{'active':btnActive}" style="padding: 10px 0">
+            <button class="btn" @click="submit_mess" :class="{'active':btnActive}" style="padding: 10px 0;color: rgb(153, 153, 153)">
               注冊
             </button>
           </div>
 
 
         </div>
-        <div class="step2">
+        <div class="step2" style="font-family: '宋体';">
           <p>
             已有賬號？
-            <router-link to="/user/login">前往登錄>></router-link>
+            <router-link to="/user/login" style="color: rgb(90, 148, 238);">前往登錄>></router-link>
           </p>
         </div>
       </div>
@@ -245,7 +245,6 @@
   .container {
     padding: 0;
     margin: 0 auto;
-    font-family: "Microsoft YaHei";
     .row {
       margin: 0;
     }
@@ -271,13 +270,14 @@
         }
       }
       .email {
-        margin: 1rem 0;
+        margin: 16px 0;
         position: relative;
         color: rgb(153, 153, 153);
         text-align: left;
         input {
           width: 100%;
-          min-height: 50px;
+          min-height: 43px;
+          line-height: 43px;
           border: 1px solid rgb(241, 241, 241);
           border-radius: 3px;
           font-size: 12px;
@@ -292,12 +292,13 @@
         }
       }
       .password {
-        margin: 1rem 0;
+        margin: 16px 0;
         position: relative;
         color: rgb(153, 153, 153);
         input {
           width: 100%;
-          min-height: 50px;
+          min-height: 43px;
+          line-height: 43px;
           border: 1px solid rgb(244, 244, 244);
           border-radius: 3px;
           font-size: 12px;
@@ -317,7 +318,8 @@
         color: rgb(153, 153, 153);
         input {
           width: 100%;
-          min-height: 50px;
+          min-height: 43px;
+          line-height: 43px;
           border: 1px solid rgb(244, 244, 244);
           border-radius: 3px;
           font-size: 12px;
@@ -354,7 +356,7 @@
     }
     .btn {
       width: 100%;
-      min-height: 45px;
+      min-height: 55px;
       border: 1px solid rgb(241, 241, 241);
       background: rgb(246, 246, 246);
       margin-bottom: 45px;
@@ -363,7 +365,7 @@
       width: 100%;
       border: none;
       background: #468bed;
-      color: white;
+      color: white !important;
     }
     .email {
       margin: 16px 0;
