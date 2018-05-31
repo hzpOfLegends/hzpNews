@@ -106,7 +106,8 @@
             inside_page_message.other_article({
               pageSize: "20",
               pageIndex: that.pageNum,
-              CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):"-1"
+              CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID,
+              RelationID: this.$route.params.RelationID
             }).then(res => {
               for (let i = 0; i < res.data.Data.news.length; i++) {
                 that.$store.state.other_article_content.push(res.data.Data.news[i])
