@@ -21,8 +21,8 @@
     <div class="step3" v-if="active==2" style="padding: 20px 0 30px">
         <i class="fa fa-smile-o" style="color:rgb(251, 133, 7);font-size:50px;vertical-align: middle"></i><span style="font-size: 22px;font-weight: 600;margin-left: 10px">修改成功!</span>
     </div>
-    <div style="padding: 10px 0 ;border-top: 1px solid #f6f6f6">
-      <router-link to="/user/login">返回登錄>>></router-link>
+    <div class="return_login" style="padding: 10px 0 ;border-top: 1px solid #f6f6f6">
+      <router-link to="/user/login">返回登錄>></router-link>
     </div>
   </div>
   </div>
@@ -106,7 +106,9 @@
         }
 
       }
-
+      .return_login{
+        color: rgb(90, 148, 238);
+      }
     }
   }
 

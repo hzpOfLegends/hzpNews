@@ -354,7 +354,7 @@
     }
     .btn {
       width: 100%;
-      min-height: 55px;
+      min-height: 45px;
       border: 1px solid rgb(241, 241, 241);
       background: rgb(246, 246, 246);
       margin-bottom: 45px;
