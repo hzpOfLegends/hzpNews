@@ -221,6 +221,26 @@ export default {
     .row {
         margin:0;
     }
+    form {
+        font-size:14px;
+        .form-group {
+        }
+        label {
+            height: 45px;
+            line-height: 45px !important;
+        }
+        input,select {
+            height:45px;
+        }
+    }
+    .btn-primary {
+        background-color: #397fd9;
+        border-color: #397fd9;
+        &:hover {
+            background-color: #2e6da4;
+            border-color: #2e6da4;
+        }
+    }
     // 彈層
     .modify-cover {
         position:fixed;
@@ -264,7 +284,7 @@ export default {
             }
         }
         .content {
-            padding:20px 0px;
+            padding:32px 0px;
             .photo {
               margin:5px auto 25px;
               width:126px;
@@ -324,18 +344,18 @@ export default {
                     display:flex;
                     justify-content:space-between;
                     align-items:center;
-                    min-height:90px;
-                    padding-left:70px;
+                    min-height:92px;
+                    padding-left:80px;
                     border-bottom:1px solid #f3f3f3;
-                    background:url('/static/img/set_icon.png') no-repeat 0px 12px;
+                    background:url('/static/img/set_icon.png') no-repeat 0px 13px;
                     &:nth-child(2){
-                      background:url('/static/img/set_icon.png') no-repeat 0px -85px;
+                      background:url('/static/img/set_icon.png') no-repeat 0px -83px;
                     }
                     &:nth-child(3){
-                      background:url('/static/img/set_icon.png') no-repeat 0px -182px;
+                      background:url('/static/img/set_icon.png') no-repeat 0px -181px;
                     }
                     &:nth-child(4){
-                      background:url('/static/img/set_icon.png') no-repeat 0px -283px;
+                      background:url('/static/img/set_icon.png') no-repeat 0px -279px;
                     }
                    .u-btn {
 

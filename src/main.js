@@ -55,13 +55,22 @@ import 'element-ui/lib/theme-chalk/Steps.css'
 import 'element-ui/lib/theme-chalk/Step.css'
 import 'element-ui/lib/theme-chalk/select.css'
 import 'element-ui/lib/theme-chalk/option.css'
-import {Loading, Steps, Step, Pagination, Icon, Message, MessageBox, Select, Option} from 'element-ui'
-
+import 'element-ui/lib/theme-chalk/button.css'
+import 'element-ui/lib/theme-chalk/time-select.css'
+import 'element-ui/lib/theme-chalk/time-picker.css'
+import 'element-ui/lib/theme-chalk/date-picker.css'
+import 'element-ui/lib/theme-chalk/input.css'
+import {Loading,Steps,Step,Pagination,Icon,Message,MessageBox,Select,Option,Button,TimeSelect,TimePicker,DatePicker,Input} from 'element-ui'
 Vue.use(Loading.directive)
 Vue.use(Pagination)
 Vue.use(Icon)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Button)
+Vue.use(TimeSelect)
+Vue.use(TimePicker)
+Vue.use(DatePicker)
+Vue.use(Input)
 Vue.component(Steps.name, Steps);
 Vue.component(Step.name, Step);
 Vue.prototype.$message = Message;

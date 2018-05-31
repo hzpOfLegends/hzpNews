@@ -14,7 +14,7 @@ const state = {
   nav_down_icon:"fa fa-bars",
   nav_bar_down_contack:true, // 下拉聯係我們 // 在底部 不讓他顯示
   nav_type:[], // 導航分類
-  user_info:[] , // 登錄成功后 再次請求 返回的信息
+  user_info:"" , // 登錄成功后 再次請求 返回的信息
   meta:{},
   is401:false, //檢測此值變動，清除登錄信息
   index_requestCount: 0 , // 首页 - 页面进度条

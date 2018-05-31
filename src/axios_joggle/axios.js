@@ -41,23 +41,22 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
         Message({
             message: '此頁面需要登錄后操作！',
             type: 'warning',
-            duration:30000,
+            duration:2200,
             showClose:true
         });
-        console.log('clog 401');
         store.commit('setIs401',true)  //通知有組件清除登錄信息
     }else if(error.response.status == 1200){
         Message({
             message: '請勿頻繁操作！',
             type: 'warning',
-            duration:30000,
+            duration:2000,
             showClose:true
         });
-    }else if(error.response.status == 500){
+    }else if(error.response.status == 500 || error.response.status == 502){
         Message({
             message: '服務器異常，請稍後再試！',
             type: 'warning',
-            duration:30000,
+            duration:3000,
             showClose:true
         });
     }

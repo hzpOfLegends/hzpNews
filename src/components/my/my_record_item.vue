@@ -4,10 +4,17 @@
           <div class="title">
               <h5>點閱記錄</h5>
                 <router-link to="/my/record">
-                <ul class="pager write-btn" style="margin:0">
+                <!--<ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="background:#fb8608">
                         <a href="javascript:;" style="background:#fff;color:#777;">
                             <span aria-hidden="true"></span><i class="glyphicon glyphicon-share"></i> 返回列表
+                        </a>
+                    </li>
+                </ul>-->
+                <ul class="pager write-btn" style="margin:0">
+                    <li class="previous" style="">
+                        <a href="javascript:;"   id="btn-icon"  style="">
+                            <span aria-hidden="true"></span><i></i> 返回列表
                         </a>
                     </li>
                 </ul>
@@ -15,7 +22,7 @@
           </div>
         <div class="content" style="text-align:left;min-height:300px" >
             <div class="info">
-                <div id="doc-title">
+                <div id="doc-title" v-if="recordList.length>0">
                     <img v-if="recordList[0].CoverImges" :src="recordList[0].CoverImges" alt="">
                     <img v-else src="/static/img/OopsDaily.png" alt="">
                     <div class="tit">
@@ -41,7 +48,7 @@
             </thead>
             <tbody>
                 <tr v-for="(v,i) in recordList" :key="i">
-                    <td>{{$moment(v.Date).format("YYYY-MM-DD HH:mm:ss")}}</td>
+                    <td>{{$moment(v.Date).format("YYYY/MM/DD")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
@@ -78,7 +85,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 pageSize:15,
                 // total:1,
                 RelationID:'',
-                recordList:''
+                recordList:[]
             }
         },
         watch:{
@@ -183,6 +190,7 @@ import accountAxios from '../../axios_joggle/axios_account'
                 .tit {
                     font-size:13px;
                     padding-left:10px;
+                    height:100%;
                 }
                 p.type {
                     color:#bdbdbd;
@@ -191,27 +199,38 @@ import accountAxios from '../../axios_joggle/axios_account'
                 }
             }
         }
-            #doc-title {
-                // width:380px ;
-                display:flex;
-                align-items:flex-start;
-                // border:none;
-                // border-bottom:1px solid #dddddd;
-                img {
-                    width:33%;
-                    object-fit: cover;
-                    flex:0 0 33%;
-                    max-height:70px;
-                }
-                .tit {
-                    font-size:13px;
-                    padding-left:10px;
-                }
-                p.type {
-                    color:#bdbdbd;
-                    margin-bottom:0;
-                }
+        #doc-title {
+            // width:380px ;
+            display:flex;
+            align-items:flex-start;
+            // border:none;
+            // border-bottom:1px solid #dddddd;
+            img {
+                width:33%;
+                object-fit: cover;
+                flex:0 0 33%;
+                max-height:70px;
             }
+            .tit {
+                font-size:13px;
+                padding-left:10px;
+            }
+            p.type {
+                color:#bdbdbd;
+                margin-bottom:0;
+            }
+        }
+        #btn-icon {
+            // display:inline-block;
+            // height:15px;
+            // width:15px;
+            padding:8px 20px;
+            padding-left:38px;
+            background:url('/static/img/back_icon.png') no-repeat 19px 9px;;
+            color:#777;
+            font-size:12px;
+            border-radius:34px;
+        }
     }
     @media screen and (max-width:992px) {
         .item .content {

@@ -1,12 +1,12 @@
 <template>
-  <div class="account-payment" v-loading="loading">
+  <div class="account-payment">
       <div class="gains item row">
           <div class="title">
               <h5>我的收益</h5>
 
           </div>
         <div class="account-show">
-            我的賬戶餘額：<span>1000</span>
+            我的賬戶餘額：<span>{{userInfo.Profit}}</span>
         </div>
         <div class="m-tab">
             <ul class="clearfix">
@@ -79,7 +79,8 @@ import Payout from './subcomponent/payment_payout'
                 // pageSize:15,
                 // total:1,
                 // isEmpty:false,
-                active:1
+                active:1,
+                userInfo:''
             }
         },
         components:{
@@ -129,6 +130,8 @@ import Payout from './subcomponent/payment_payout'
       },
       created(){
           this.active = this.$route.path.split('/')[3]==='income' ? 1:2
+
+          this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
       }
     }
 </script>
@@ -211,7 +214,7 @@ import Payout from './subcomponent/payment_payout'
                         width:70px;
                         background-color: #4a8fdf;
                         position: absolute;
-                        bottom:2px;
+                        bottom:0px;
                         left:50%;
                         transform: translateX(-50%);
                         display:none

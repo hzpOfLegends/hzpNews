@@ -23,8 +23,8 @@
                     <p>发表文章(<span>{{userInfo.ArticleCount}}</span>)</p> 
                 </div>
                 <div>
-                    <!--<div class="bg bg3"></div>
-                    <p>本月收入(<span>{{userInfo.Profit}}</span>)</p> -->
+                    <div class="bg bg3"></div>
+                    <p>本月收入(<span>{{userInfo.Profit}}</span>)</p> 
                 </div>
           </div>
       </div>
@@ -48,7 +48,7 @@
             <tbody>
                 <tr v-for="(v,i) in profitStatisticsList" :key="i">
                     <!--<th scope="row">1</th>-->
-                    <td>{{$moment(v.Date).format("YYYY-MM-DD")}}</td>
+                    <td>{{$moment(v.Date).format("YYYY/MM/DD")}}</td>
                     <td>{{v.SelfSpread}}</td>
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
@@ -115,7 +115,8 @@ import Clipboard from 'clipboard';
                 linkPathOrigin:'',
                 requestCount:0,
                 ShareID:'',
-                isEmpty:false
+                isEmpty:false,
+                times:''
             }
         },
         watch:{
