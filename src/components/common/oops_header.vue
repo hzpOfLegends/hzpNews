@@ -162,7 +162,7 @@
     methods: {
       // 页面初始化函数
       init(){
-          if(!this.$store.state.user_info){
+          if(sessionStorage.getItem('user_info')){
                 this.$store.state.user_info = JSON.parse(sessionStorage.getItem('user_info'))
                 this.$store.state.judge_login = true
           }
