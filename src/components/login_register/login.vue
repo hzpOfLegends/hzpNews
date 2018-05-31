@@ -27,15 +27,15 @@
               </b-modal>
             </div>
             <p style="color: red; font-size: 12px;text-align: center">{{return_login_hint}}</p>
-            <button class="btn" @click="submit_mess" :class="{'active':btnActive}" style="padding: 10px 0">
+            <button class="btn" @click="submit_mess" :class="{'active':btnActive}" style="padding: 10px 0;color: rgb(153, 153, 153)">
               登錄
             </button>
           </div>
         </div>
-        <div class="step2">
+        <div class="step2" style="font-weight: 500;font-family: '宋体';">
           <p>
             還沒有賬號？
-            <router-link to="/user/register" style="color: rgb(90, 148, 238);">前往注冊>></router-link>
+            <router-link to="/user/register" style="color: rgb(90, 148, 238);font-size: 14px">前往注冊>></router-link>
           </p>
         </div>
 
@@ -285,20 +285,21 @@
       border: 1px solid rgb(241, 241, 241);
       background: rgb(246, 246, 246);
       margin-bottom: 79px;
+      min-height: 55px;
     }
     .active {
       width: 100%;
       border: none;
       background: rgb(70, 138, 237);
-      color: white;
+      color: white !important;
     }
     .email {
-      margin: 1rem 0;
+      margin: 16px 0;
       position: relative;
       color: rgb(153, 153, 153);
       input {
         width: 100%;
-        min-height: 46px;
+        min-height: 45px;
         border: 1px solid rgb(241, 241, 241);
         border-radius: 3px;
         font-size: 12px;
@@ -313,12 +314,12 @@
       }
     }
     .password {
-      margin: 1rem 0;
+      margin: 16px 0;
       position: relative;
       color: rgb(153, 153, 153);
       input {
         width: 100%;
-        min-height: 46px;
+        min-height: 45px;
         border: 1px solid rgb(244, 244, 244);
         border-radius: 3px;
         font-size: 12px;

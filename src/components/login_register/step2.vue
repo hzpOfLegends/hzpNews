@@ -12,7 +12,7 @@
     <p style="color: red;">{{again_password_hint}}</p>
     <div class="next_btn">
       <p style="color: red;font-size: 12px">{{next_hint}}</p>
-      <button type="button" id="next_step" :class="before_class1" @click="next_step">下一步</button>
+      <button type="button" id="next_step" :class="before_class1" style="color: rgb(153, 153, 153);background: #f6f6f6" @click="next_step">下一步</button>
     </div>
   </div>
 </template>
@@ -120,6 +120,10 @@
   .the_step2 {
     padding: 0 44px 50px 44px;
     text-align: left;
+    .btn-primary{
+      background: #468bed !important;
+      color: white !important;
+    }
     input {
       border: 1px solid rgb(241, 241, 241);
       border-radius: 3px;

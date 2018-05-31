@@ -129,6 +129,9 @@
       text-align: center;
       width: 100%;
     }
+    .router-link-active{
+      background: none !important;
+    }
     .click_icon {
       left: 50%;
       transform: translateX(-50%);
@@ -143,8 +146,14 @@
   .nav_bar {
     width: 100%;
     height: 50px;
+    .router-link-active{
+      background: rgb(70, 138, 237);
+    }
     .container-fluid {
       height: 100%;
+      .active {
+        background: rgb(70, 138, 237);
+      }
       .want_line {
         margin-right: 10px;
         margin-left: 10px;

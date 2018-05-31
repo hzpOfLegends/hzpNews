@@ -9,13 +9,13 @@
       <p style="color: red;font-size: 12px">{{email_hint}}</p>
       <div style="padding-bottom: 10px">驗證碼:</div>
       <input type="text" ref="code" @keyup="code_verify">
-      <button type="button" id="get_code" :class="before_class" @click="get_code">{{code_name}}</button>
+      <button type="button" id="get_code" :class="before_class" @click="get_code" style="color: rgb(153, 153, 153);background: #f6f6f6">{{code_name}}</button>
 
     </div>
     <p style="color: red;font-size: 12px">{{code_hint}}</p>
     <div class="next_btn">
       <p style="color: red;font-size: 12px">{{next_hint}}</p>
-      <button type="button" id="next_step" :class="before_class1" @click="next_step">下一步</button>
+      <button type="button" id="next_step" :class="before_class1"  style="color: rgb(153, 153, 153);background: #f6f6f6" @click="next_step">下一步</button>
     </div>
   </div>
 </template>
@@ -172,11 +172,15 @@
       border: 1px solid rgb(241, 241, 241);
       border-radius: 3px;
     }
+    .btn-primary{
+      background: #468bed !important;
+      color: white !important;
+    }
     .the_email {
       input {
         width: 100%;
         min-height: 45px;
-        font-size: 20px;
+        font-size: 12px;
         padding-left: 20px;
       }
     }
@@ -186,12 +190,12 @@
         max-width: 338px;
         width: 100%;
         min-height: 45px;
-        font-size: 20px;
+        font-size: 12px;
         padding-left: 20px;
       }
       button {
-        max-width: 116px;
-        min-height: 45px;
+        min-width: 84px;
+        min-height: 46px;
       }
 
     }
