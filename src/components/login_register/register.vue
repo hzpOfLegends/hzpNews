@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @enter="enter_submit">
+  <div class="container user_login" @enter="enter_submit">
     <div class="row">
       <div class="login_wrap" v-loading="shade_boo">
         <div class="step1">
@@ -234,6 +234,7 @@
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       let user_login = document.querySelector('.user_login')
       user_login.style.height = 1080 + "px"
+      oops_content_wrap.style.background = "url('../static/img/background1.jpg')"
       oops_content_wrap.style.backgroundSize = "cover"
       oops_content_wrap.style.height = 1080 + "px"
     }
