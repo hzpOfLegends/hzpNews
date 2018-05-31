@@ -160,13 +160,6 @@
       }
     },
     methods: {
-      // 页面初始化函数
-      init(){
-          if(sessionStorage.getItem('user_info')){
-                this.$store.state.user_info = JSON.parse(sessionStorage.getItem('user_info'))
-                this.$store.state.judge_login = true
-          }
-      },
       // 點擊其他地方 關閉導航下拉
       close_nav_down(){
         console.log(1)
@@ -201,7 +194,6 @@
       }
     },
     created(){
-        this.init()
     }
 
   }
