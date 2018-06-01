@@ -32,7 +32,7 @@
           <div class="title">
               <h5>最近收益</h5>
           </div>
-        <div class="content" style="text-align:left;min-height:200px" v-loading="paymentRequest">
+        <div class="content" style="text-align:left;min-height:100px" v-loading="paymentRequest">
             <table class="table table-striped table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
@@ -564,7 +564,7 @@ import Clipboard from 'clipboard';
                 }
             }
     }
-    @media screen and (max-width:414px) {
+    @media screen and (max-width:450px) {
             .news-list {
                 .news-items {
                     .photo {
@@ -572,6 +572,21 @@ import Clipboard from 'clipboard';
                     }
                 }
             }
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            padding:2px;
+        }
+        .record {
+            .content {
+                #doc-title {
+                    img {
+                        display:none
+                    }
+                }
+            }
+        }
+        .news-title {
+            height:62px !important;
+        }
     }
     @media screen and (max-width:330px) {
             .news-list {

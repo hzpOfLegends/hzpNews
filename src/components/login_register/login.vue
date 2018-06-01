@@ -15,7 +15,7 @@
             <div class="password">
               <input type="password" v-model="password" ref="user_password" @input="passwordVerify"
                      @keyup.enter="submit_mess" placeholder="請輸入密碼">
-              <i class="fa fa-lock"></i>
+              <i class="fa fa-lock" style="font-size:22px"></i>
 
             </div>
             <p style="color: red; font-size: 12px">{{password_hint}}</p>
@@ -33,9 +33,9 @@
           </div>
         </div>
         <div class="step2" style="font-weight: 500;font-family: '宋体'">
-          <p style="font-size: 12px">
+          <p style="font-size: 13px">
             還沒有賬號？
-            <router-link to="/user/register" style="color: rgb(90, 148, 238);font-size: 12px">前往注冊>></router-link>
+            <router-link to="/user/register" style="color: rgb(90, 148, 238);font-size: 13px">前往注冊>></router-link>
           </p>
         </div>
 
@@ -270,7 +270,7 @@
       border-top: 1px solid #eee;
       text-align: center;
       p {
-        padding: 12px 0;
+        padding: 18px 0 24px;
         font-size: 12px;
         color: #989898;
       }
@@ -302,7 +302,7 @@
         min-height: 45px;
         border: 1px solid rgb(241, 241, 241);
         border-radius: 3px;
-        font-size: 12px;
+        font-size: 13px;
         padding-left: 45px;
       }
       i {
@@ -322,7 +322,7 @@
         min-height: 45px;
         border: 1px solid rgb(244, 244, 244);
         border-radius: 3px;
-        font-size: 12px;
+        font-size: 13px;
         padding-left: 45px;
       }
       i {
