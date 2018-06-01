@@ -54,7 +54,6 @@
         <li class="float-left"><a href="javascript:;">聯係我們</a></li>
         <li class="float-left division">|</li>
         <li class="float-left"><a href="javascript:;">幫助中心</a></li>
-        <li class="float-left division">|</li>
         <li class="float-left"><a href="javascript:;">2018OopsDaily 隱私政策 服務條款 京ICP証080268號</a></li>
       </ul>
       <ul class="float-right clearfix">

@@ -30,7 +30,7 @@
              style="position: absolute;transform: translateY(0%);left: 0">
           <nav_bar_down/>
           <div class="the_footer clearfix">
-            <div class="float-left the_footer_chara">
+            <div class="float-left the_footer_chara col-xs-12" style="padding: 10px">
               <router-link to="/contactus">
                 聯係我們
               </router-link>
@@ -38,7 +38,14 @@
               <router-link to="/help">
                 幫助中心
               </router-link>
-              <span class="want_line"></span>
+              <span class="want_line "></span>
+              <span class="">
+              <facebook_share/>
+              <google_share/>
+              <twitter_share/>
+              </span>
+            </div>
+            <div class="float-right the_footer_icon col-xs-12">
               <router-link to="">
                 2018OopsDaily
               </router-link>
@@ -52,11 +59,7 @@
                 京ICP証080268號
               </router-link>
             </div>
-            <div class="float-right the_footer_icon">
-              <facebook_share/>
-              <google_share/>
-              <twitter_share/>
-            </div>
+
           </div>
         </div>
       </div>
@@ -69,17 +72,17 @@
   import facebook_share from "@/components/common/share_button/facebook_share_btn"
   import google_share from "@/components/common/share_button/google_share_btn"
   import twitter_share from "@/components/common/share_button/twitter_share_btn"
+
   export default {
     name: "nav_bar",
     data() {
-      return {
-      }
+      return {}
     },
     components: {
       "nav_bar_down": nav_bar_down, //導航下拉
-      "facebook_share":facebook_share,
-      "google_share":google_share,
-      "twitter_share":twitter_share,
+      "facebook_share": facebook_share,
+      "google_share": google_share,
+      "twitter_share": twitter_share,
       nav_type: []
     },
     created() {
@@ -121,17 +124,21 @@
     .nav_name {
       display: none;
     }
-    .the_footer_chara{
+
+    .the_footer_chara {
       float: none;
     }
-    .the_footer_icon{
+
+    .the_footer_icon {
       float: none;
       text-align: center;
       width: 100%;
     }
-    .router-link-active{
+
+    .router-link-active {
       background: none !important;
     }
+
     .click_icon {
       left: 50%;
       transform: translateX(-50%);
@@ -142,11 +149,10 @@
     }
   }
 
-
   .nav_bar {
     width: 100%;
     height: 50px;
-    .router-link-active{
+    .router-link-active {
       background: rgb(70, 138, 237);
     }
     .container-fluid {
@@ -160,14 +166,14 @@
         border-right: 1px solid rgb(213, 213, 213);
       }
       .the_footer {
-        padding: 50px;
+        padding: 50px 0 ;
         background: rgb(244, 244, 244);
         vertical-align: top;
-        a{
+        a {
           color: rgb(167, 167, 167);
           background: none;
         }
-        .the_footer_chara{
+        .the_footer_chara {
           line-height: 38px;
         }
       }

@@ -105,6 +105,8 @@
               console.log(err)
             })
           }
+        }else{
+          this.email_hint = "請輸入正確郵箱"
         }
       },
       // 定時器 秒數
@@ -156,6 +158,8 @@
             this.load = false
             console.log(err)
           })
+        }else{
+          this.next_hint = "請輸入正確的信息"
         }
       }
     },

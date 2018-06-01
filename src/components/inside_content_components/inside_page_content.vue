@@ -191,7 +191,8 @@
         setTimeout(() => {
           let imgs = document.querySelectorAll('img')
           for (let i = 0; i < imgs.length; i++) {
-            imgs[i].style.width = '100%'
+            imgs[i].style.maxWidth = '100%'
+            imgs[i].style.height = "auto"
           }
         }, 1)
         setTimeout(() => {

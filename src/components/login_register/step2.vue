@@ -2,12 +2,12 @@
   <div class="the_step2" v-loading="load">
     <div class="the_new_password">
       <div style="margin-bottom: 10px;">新密碼：</div>
-      <input type="password" ref="new_password" @keyup="pwd_verify">
+      <input type="password" v-model="new_password" @input="pwd_verify">
     </div>
     <div class="the_again_password">
       <p style="color: red;font-size: 12px">{{new_password_hint}}</p>
       <div style="margin-bottom: 10px;">確定密碼:</div>
-      <input type="password" ref="again_password" @keyup="again_verify">
+      <input type="password" v-model="again_password" @input="again_verify">
     </div>
     <p style="color: red;">{{again_password_hint}}</p>
     <div class="next_btn">
@@ -45,37 +45,50 @@
     methods: {
       //密碼嚴重
       pwd_verify() {
-        let reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
-        if (reg.test(this.$refs.new_password.value)) {
+        if (this.password_verfiy(this.new_password)) {
           this.new_password_hint = ""
         } else {
           this.new_password_hint = "請輸入正確的密碼，（8-24位長度字元，支援大寫英文、小寫英文、數字、半形標點，並包含至少三種）"
         }
-        if(this.$refs.new_password.value == ""){
+        if(this.new_password == ""){
           this.new_password_hint = ""
+        }
+        if(this.again_password) {
+          if (this.new_password == this.again_password) {
+            this.new_password_hint = ""
+          } else {
+            this.new_password_hint = "两次輸入的密碼不一致"
+          }
         }
         this.next_style()
         this.enter_submit()
       },
       // 在輸入一次 驗證
       again_verify() {
-        let newpwd = this.$refs.new_password.value
-        let againpwd = this.$refs.again_password.value
+        let newpwd = this.new_password
+        let againpwd = this.again_password
         if (newpwd === againpwd) {
           this.again_password_hint = ""
         } else {
           this.again_password_hint = "請保持兩次輸入密碼的一致性"
         }
-        if(this.$refs.again_password.value == ""){
+        if(this.again_password == ""){
           this.again_password_hint = ""
+        }
+        if(this.new_password) {
+          if (this.new_password == this.again_password) {
+            this.again_password_hint = ""
+          } else {
+            this.again_password_hint = "两次輸入的密碼不一致"
+          }
         }
         this.next_style()
         this.enter_submit()
       },
       // 下一步 樣式
       next_style() {
-        let reg1 = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,24}$/
-        if (reg1.test(this.$refs.new_password.value) && this.$refs.again_password.value === this.$refs.new_password.value) {
+        if (this.password_verfiy(this.new_password) && this.again_password === this.new_password) {
+          this.next_hint =""
           this.before_class1 = this.change_class
         } else {
           this.before_class1 = "btn btn-button"
@@ -84,10 +97,10 @@
       // 下一步
       next_step() {
         if (this.before_class1 == this.change_class) {
-          this.load = true
+            this.load = true
           users_page.reset_email_code({
             Email: this.$route.query.email ? this.$route.query.email : "",
-            newPassword: this.$refs.new_password.value
+            newPassword: this.again_password
           }).then(res => {
             if(res.data.ResultCode == 200){
               this.load = false
@@ -102,7 +115,28 @@
             console.log(err)
           })
         } else {
-          this.next_hint = this.$store.state.submit_hint
+          this.next_hint = "請輸入正確的信息"
+        }
+      },
+      // 密码正则
+      password_verfiy(password){
+        if(!password) return false;
+        //验证密码强度
+        var regArr = [];
+        var count = 0;
+        regArr.push(/[\x21-\x2f\x3a-\x40\x5b-\x60\x7B-\x7F]/); //匹配半角符号
+        regArr.push(/[a-z]/);
+        regArr.push(/[A-Z]/);
+        regArr.push(/[0-9]/);
+        regArr.forEach((v,i)=>{
+          if(v.test(password)){
+            count++;
+          }
+        })
+        if((password.length<8 || password.length>24) || count<3) {
+          return false;
+        } else {
+          return true;
         }
       },
       // 回车跳到提交
