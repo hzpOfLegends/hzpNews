@@ -133,7 +133,9 @@
                         </div>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
-                                <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
+                                <div style="height:50px;overflow:hidden">
+                                    <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
+                                </div>
                                 <div class="sub-title">
                                     <span>時間：{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
                                     &nbsp;<i>|</i>&nbsp;
@@ -575,6 +577,9 @@ import Clipboard from 'clipboard';
         .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
             padding:2px;
         }
+        .tit {
+            padding-left:2px !important;
+        }
         .record {
             .content {
                 #doc-title {
@@ -585,8 +590,9 @@ import Clipboard from 'clipboard';
             }
         }
         .news-title {
-            height:62px !important;
+            // height:62px !important;
         }
+
     }
     @media screen and (max-width:330px) {
             .news-list {

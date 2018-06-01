@@ -108,6 +108,7 @@
             :page-size="pageSize"
             @current-change="getCurrentPage"
             :current-page="2"
+            :pager-count = "5"
             :total="total">
             </el-pagination>
         </nav>
@@ -409,6 +410,9 @@ import accountAxios from '../../axios_joggle/axios_account'
                     padding:3px 6px;
                 }
             }
+        }
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            padding:3px;
         }
     }
 }

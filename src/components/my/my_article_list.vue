@@ -100,6 +100,7 @@
                     :page-size="pageSize"
                     :total="total"
                     @current-change="changePage"
+                    :pager-count = "5"
                 >
                 </el-pagination>
             </div>
@@ -373,6 +374,10 @@ import Clipboard from 'clipboard';
                 }
             }
         }
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            padding:3px;
+        }
+
     }
 }
 </style>

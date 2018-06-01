@@ -30,8 +30,8 @@
     </div>
 
     <div class="oops_footer2" v-if="$store.state.footer_style2">
-      <div class="oops_footer_wrap2 clearfix">
-        <div class="float-left" id="copy">
+      <div class="oops_footer_wrap2 clearfix" style="font-size:12px">
+        <div class="" id="copy">
           <router-link to=""><span>@2018OopsDaily</span></router-link>
           <router-link to=""><span>隱私政策</span></router-link>
           <router-link to=""><span>服務條款</span></router-link>
@@ -191,20 +191,20 @@
         justify-content: space-between;
         max-width: 1180px;
         width: 100%;
+        & > div {
+          flex: 0 0 50%;
+        }
+        #copy {
+          text-align: left;
+        }
+        #about {
+          text-align: right;
+        }
         a {
           min-height: 44px;
           line-height: 44px;
           color: #8d8d8d;
 
-          & > div {
-            flex: 0 0 50%;
-          }
-          #copy {
-            text-align: left;
-          }
-          #about {
-            text-align: right;
-          }
 
         }
         .want_line {

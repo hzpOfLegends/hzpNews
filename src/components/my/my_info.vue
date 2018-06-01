@@ -44,7 +44,6 @@
                       <div class="form-group l-side">
                         <label for="" class="col-sm-2 control-label"  style="max-width:110px"></label>
                         <div class="col-sm-10">
-                            </br>
                             <button type="button" class="btn btn-primary" style="padding:8px 25px;font-size:14px" @click="modifyInfo()">保存更改</button>
                         </div>
                       </div>
@@ -411,6 +410,11 @@ export default {
         }
         td,th {
             font-size:12px !important;
+        }
+        form {
+            label {
+                height:18px;
+            }
         }
     }
 }
