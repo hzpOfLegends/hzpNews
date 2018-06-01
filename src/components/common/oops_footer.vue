@@ -122,6 +122,7 @@
           height: 100%;
           h2 {
             font-weight: 900;
+            margin-top: 15px;
             color: #888888;
           }
           a{
