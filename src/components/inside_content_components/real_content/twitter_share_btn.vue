@@ -19,7 +19,7 @@
       }
     },
     created() {
-      this.share = sessionStorage.getItem('ShareID') ? sessionStorage.getItem('ShareID') : "";
+      this.share = localStorage.getItem('ShareID') ? localStorage.getItem('ShareID') : "";
       if(this.share){
         this.web_url = "javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent("+location.href+'?r='+this.share+"))));"
       }

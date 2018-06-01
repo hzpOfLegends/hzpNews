@@ -20,7 +20,7 @@
         }
       },
       created(){
-        this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):""
+        this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):""
         if(this.share){
           let a = window.location.href + "?r="+this.share
           this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+""

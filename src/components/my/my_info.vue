@@ -137,7 +137,7 @@ export default {
         getUserInfo(){
             accountAxios.userInfo({}).then(res=>{
                 if(res.data.ResultCode==200){
-                    sessionStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                    localStorage.setItem('user_info',JSON.stringify(res.data.Data))
                     this.$store.state.user_info = res.data.Data
                     this.init()  //重新初始化頁面
                 }
@@ -197,7 +197,7 @@ export default {
             this.modify=value
         },
         init(){
-            this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
+            this.userInfo = JSON.parse(localStorage.getItem('user_info'))
             this.userInfo.Language = this.userInfo.Language?this.userInfo.Language:'en'
             this.initUserInfo = JSON.parse(JSON.stringify(this.userInfo))
         }

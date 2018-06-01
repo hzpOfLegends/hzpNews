@@ -17,7 +17,7 @@
       }
     },
     created() {
-      this.share = sessionStorage.getItem('ShareID')?sessionStorage.getItem('ShareID'):"";
+      this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):"";
       if(this.share){
         this.web_url ="https://plus.google.com/share?url="+ window.location.href+'?r='+this.share
       }

@@ -222,8 +222,8 @@
           console.log(err)
         })
       // 獲取登錄后返回的用戶信息 存於 vuex
-      if(sessionStorage.getItem("user_info")){
-        this.$store.state.user_info=JSON.parse(sessionStorage.getItem("user_info"))
+      if(localStorage.getItem("user_info")){
+        this.$store.state.user_info=JSON.parse(localStorage.getItem("user_info"))
         this.$store.state.judge_login = true
       }
       this.getMeta()

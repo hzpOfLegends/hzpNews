@@ -106,7 +106,7 @@
             inside_page_message.other_article({
               pageSize: "20",
               pageIndex: that.pageNum,
-              CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID,
+              CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
               RelationID: that.$route.params.RelationID
             }).then(res => {
               for (let i = 0; i < res.data.Data.news.length; i++) {

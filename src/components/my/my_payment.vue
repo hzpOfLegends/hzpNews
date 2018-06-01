@@ -131,7 +131,7 @@ import Payout from './subcomponent/payment_payout'
       created(){
           this.active = this.$route.path.split('/')[3]==='income' ? 1:2
 
-          this.userInfo = JSON.parse(sessionStorage.getItem('user_info'))
+          this.userInfo = JSON.parse(localStorage.getItem('user_info'))
       }
     }
 </script>

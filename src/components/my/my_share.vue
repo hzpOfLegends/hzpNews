@@ -228,7 +228,7 @@ import Clipboard from 'clipboard';
             // this.hotArticle()
             this.init()
             this.linkPathOrigin = window.location.origin + '/article/'
-            this.ShareID = sessionStorage.getItem('ShareID') || ''
+            this.ShareID = localStorage.getItem('ShareID') || ''
         }
     }
 </script>

@@ -217,7 +217,7 @@ import Clipboard from 'clipboard';
 
       },
       created(){
-          this.ShareID = sessionStorage.getItem('ShareID') || ''
+          this.ShareID = localStorage.getItem('ShareID') || ''
           this.linkPathOrigin = window.location.origin + '/article/'
           this.init()
       }

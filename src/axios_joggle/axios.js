@@ -6,7 +6,7 @@ import store from '../store/store'
 axios.path = "/apis/"
 // http 请求拦截器
 axios.interceptors.request.use(config => {
-let Ticket = sessionStorage.getItem("Ticket");
+let Ticket = localStorage.getItem("Ticket");
 Object.assign(config.headers, { 'Ticket': Ticket?Ticket:"" });
 return config;
 }, error => {

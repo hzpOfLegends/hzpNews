@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 // router.beforeEach((to,from,next)=>{
 //   console.log(to.fullPath.indexOf('/my'))
 //   if(to.fullPath.indexOf('/my')==0){
-//     if(!sessionStorage.getItem('ShareID')){
+//     if(!localStorage.getItem('ShareID')){
 //       next({path:"/"})
 //     }else{
 //       next()

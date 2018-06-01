@@ -174,7 +174,7 @@
       },
       //获取个人资料
       getUserInfo() {
-        if (sessionStorage.getItem('user_info')) {
+        if (localStorage.getItem('user_info')) {
           this.show = true;
         } else {
           this.$message({
@@ -195,7 +195,7 @@
         // console.log(index);
       },
       init() {
-        // sessionStorage.setItem('user_info')
+        // localStorage.setItem('user_info')
         this.loading = true;
         accountAxios.userInfo({}).then(res => {
           if (res.data.ResultCode == 200) {
