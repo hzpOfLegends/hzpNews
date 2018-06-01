@@ -48,12 +48,12 @@
                   </div>
               </span>
               </div>
-              <div class="float-right user_message">
+              <div class="float-right user_message" style="padding-right:1.5%">
                 <i class="fa fa-file-text-o"></i>
                 發表文章：
                 <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
               </div>
-              <div class="float-right user_message">
+              <div class="float-right user_message" style="padding-right:1.5%">
                 <i class="fa fa-money"></i>
                 有效點擊數：
                 <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>

@@ -75,7 +75,7 @@
                         <li>
                            <div>
                                 <p style="margin-bottom:2px;">支付方式/賬號</p>
-                                <span style="color:#5aa1fa">支付寶 <span style="padding:0 5px;color:#2e3e4f">|</span> 5050000001@qq.com</span>
+                                <span style="color:#5aa1fa">支付寶 <span style="padding:0 5px;color:#2e3e4f">|</span> {{userInfo.Email}}</span>
                            </div>
                            <div class="u-btn">
                               <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('payment')">修改</button>
@@ -104,7 +104,7 @@
           <div class="m-view" >
                 <imgUpload @closeMe="closeSubcomponent" v-if="modify==='avatar'"></imgUpload>
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
-                <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'"></modifyMail>
+                <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'" :email="userInfo.Email"></modifyMail>
                 <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :phoneNum="phoneNum"></modifyPhone>
           </div>
       </div>
