@@ -84,9 +84,9 @@
       // 登出
       login_out() {
         // 清除登錄ID
-        sessionStorage.setItem('ShareID', "")
+        localStorage.setItem('ShareID', "")
         // 清楚登錄  用戶信息
-        sessionStorage.setItem('user_info', "")
+        localStorage.setItem('user_info', "")
         // 隱藏 用戶欄
         this.$store.state.judge_login = false
         this.$store.state.user_info = []

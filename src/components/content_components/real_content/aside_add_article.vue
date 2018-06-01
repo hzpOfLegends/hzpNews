@@ -51,10 +51,12 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 1.125rem;
-    border-top: 0.4375rem solid #f1463f;
+    padding: 0 18px;
+    border-top: 7px solid #f1463f;
+    padding-bottom: 60px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
     .hot_article_title {
-      padding: 0.875rem 0;
+      padding: 14px 0;
       border-bottom: 3px solid #eeeeee;
       position: relative;
       :nth-child(1) {
@@ -65,7 +67,8 @@
         }
       }
       .hot_article_title_line {
-        width: 5.875rem;
+        max-width: 84px;
+        width: 100%;
         border-bottom: 3px solid #f24740;
         position: absolute;
         bottom: 0;

@@ -80,11 +80,11 @@
             // other_article
         inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
           this.details = res.data.Data
-          sessionStorage.setItem('CategoryID',this.details.CategoryID)
+          localStorage.setItem('CategoryID',this.details.CategoryID)
           inside_page_message.other_article({
             pageSize: 20,
             pageIndex: 1,
-            CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID,
+            CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
             RelationID: this.$route.params.RelationID
           }).then(res=>{
             this.$store.state.other_article_content = res.data.Data.news
@@ -173,11 +173,11 @@
       // 详情 请求
       inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data
-        sessionStorage.setItem('CategoryID',this.details.CategoryID)
+        localStorage.setItem('CategoryID',this.details.CategoryID)
         inside_page_message.other_article({
           pageSize: 20,
           pageIndex: 1,
-          CategoryID: sessionStorage.getItem('CategoryID')?sessionStorage.getItem('CategoryID'):this.details.CategoryID,
+          CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
           RelationID: this.$route.params.RelationID
         }).then(res=>{
           this.$store.state.other_article_content = res.data.Data.news

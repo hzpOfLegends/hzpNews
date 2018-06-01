@@ -150,7 +150,7 @@
       //隐藏底部
       this.$store.state.foot_all_style = false
       this.$store.state.footer_style1 = true
-      if (sessionStorage.getItem('ShareID')) {
+      if (localStorage.getItem('ShareID')) {
         this.$store.state.foot_all_style = false
       }
       // 统一请求
