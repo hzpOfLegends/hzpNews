@@ -15,20 +15,25 @@
                 </a>-->
           </div>
           <div class="m-search">
-              <el-input style="width:122px;height:29px;margin-right:3px;" 
-                    placeholder="ID搜索"
+                <el-input  style="width:150px;margin-right:3px;"
+                    placeholder="請輸入ID"
                     v-model="searchID"
                     clearable>
                 </el-input>
-                <el-button type="primary" style="margin-right:15px">搜索</el-button>
-                <el-date-picker  style="margin-right:3px"
+                <el-button type="primary" style="margin-right:15px" @click="searchById()">搜索</el-button>
+                <!--<el-date-picker  style="margin-right:3px"
                     v-model="selectDate"
                     type="daterange"
                     range-separator="至"
                     start-placeholder="開始日期"
                     end-placeholder="結束日期">
+                </el-date-picker>-->
+                <el-date-picker   style="margin-right:3px"
+                    v-model="selectDate"
+                    type="date"
+                    placeholder="選擇日期">
                 </el-date-picker>
-                <el-button type="primary">篩選</el-button>
+                <el-button type="primary" @click="searchByDate()">篩選</el-button>
           </div>
 
         <div class="m-tab">
@@ -54,14 +59,14 @@
             <table class=" table-bordered" >
             <!--<caption>Optional table caption.</caption>-->
             <thead>
-                <tr>
+                <tr style="width:100%">
                     <th class="title-header" style="padding-left:4%">標題</th>
                     <th style="width:180px;">日期</th>
                     <th style="width:115px;">自推數</th>
                     <th style="width:115px;">公推數</th>
                     <th style="width:115px;">撰寫數</th>
                     <th style="width:115px;">總點閱</th>
-                    <th>操作</th>
+                    <th style="width:115px;">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,7 +107,7 @@
             layout="prev, pager, next"
             :page-size="pageSize"
             @current-change="getCurrentPage"
-            :current-page="2" 
+            :current-page="2"
             :total="total">
             </el-pagination>
         </nav>
@@ -128,10 +133,50 @@ import accountAxios from '../../axios_joggle/axios_account'
             }
         },
         watch:{
-            '$route.query':'getRecord'
+            '$route.query':'getRecord',
+            'selectDate':function(){
+                if(!this.selectDate){
+                    let query = Object.assign({},this.$route.query)
+                    query.Date = ""
+                    query.pageIndex = "1" 
+                    this.$router.push({query:query})
+                }
+            },
         },
         components:{},
         methods:{
+            searchByDate(){
+                if(this.selectDate){
+                    let query = Object.assign({},this.$route.query)
+                    query.Date = this.$moment(this.selectDate).utc().format("YYYY-MM-DD") //转utc
+                    let d = this.$moment(this.selectDate).format("YYYY-MM-DD") 
+                    query.sDateTime = this.$moment(d+" 00:00:00").utc().format() //转utc
+                    query.eDateTime = this.$moment(d+" 23:59:59").utc().format() //转utc
+                    query.pageIndex = "1" 
+                    this.$router.push({query:query})
+                }else {
+                    this.$message({
+                        message: '搜索日期不能為空！',
+                        type: 'warning',
+                        duration: 2500,
+                        showClose: true
+                    });
+                }
+            },
+            searchById(){
+                if(this.searchID){
+                    this.$router.push({
+                        path:'/my/record/'+ this.searchID
+                    })
+                }else {
+                    this.$message({
+                        message: '搜索ID不能為空！',
+                        type: 'warning',
+                        duration: 2500,
+                        showClose: true
+                    });
+                }
+            },
             getRecord(){
                 this.loading = true
                 this.isEmpty = false
@@ -141,9 +186,11 @@ import accountAxios from '../../axios_joggle/axios_account'
                     pageSize:String(this.pageSize),
                     pageIndex:this.$route.query.pageIndex || "1",
                     // CategoryID:this.$route.query.CategoryID,
-                    Date:'',
+                    Date:this.$route.query.Date || "",
                     type:this.$route.query.type || "-1",
-                    RelationID:''
+                    RelationID:'',
+                    sDateTime:this.$route.query.sDateTime || "",
+                    eDateTime:this.$route.query.eDateTime || "",
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
@@ -158,9 +205,12 @@ import accountAxios from '../../axios_joggle/axios_account'
             },
             changeQuery(type){
                 this.active = type
-                let q = Object.assign({},this.$route.query) 
-                q.type = type
-                this.$router.push({query:q})
+                let query = Object.assign({},this.$route.query)
+                query.Date = "" 
+                this.selectDate = ""
+                query.type = type
+                query.pageIndex = "1" 
+                this.$router.push({query:query})
             },
             getCurrentPage(page){
                 let q = JSON.parse(JSON.stringify(this.$route.query))
@@ -168,12 +218,17 @@ import accountAxios from '../../axios_joggle/axios_account'
                 this.$router.push({query:q})
             },
             init(){
-                if(!this.$route.query.pageIndex || !this.$route.query.type){
+                let Q = this.$route.query
+                if(Object.keys(Q).length < 1){
                     this.$router.push({query:{pageIndex:'1',type:'-1'}})
                 }else{
+                    if(Q.Date){
+                        // this.selectDate  = this.$moment(Q.Date)
+                        this.selectDate = this.$moment(Q.Date+'T00:00:00Z').format("YYYY-MM-DD")  // utc轉當地時間
+                    }
+                    this.active = Q.type || '-1'
                     this.getRecord()
                 }
-                // this.currentPage = Number(this.$route.query.pageIndex)
             }
         },
         mounted(){

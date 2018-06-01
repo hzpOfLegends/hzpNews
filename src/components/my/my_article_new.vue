@@ -62,8 +62,8 @@
                 </form>
             </div>
             
-            <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:13px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">發 表</button>
-            <button v-if="status==='edit'" type="button" class="btn btn-primary" style="padding:13px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">保 存</button>
+            <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:11px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">發 表</button>
+            <button v-if="status==='edit'" type="button" class="btn btn-primary" style="padding:11px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">保 存</button>
             </form>
             <div v-html="xss"></div>
 

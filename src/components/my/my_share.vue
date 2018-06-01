@@ -25,7 +25,7 @@
                     start-placeholder="開始日期"
                     end-placeholder="結束日期">
                 </el-date-picker>
-                <el-button type="primary">篩選</el-button>
+                <el-button type="primary" @click="search()">篩選</el-button>
           </div>
         <div class="content" style="text-align:left;min-height:300px">
             <div class="news-list" style="min-height:300px">
@@ -112,7 +112,15 @@ import Clipboard from 'clipboard';
             }
         },
         watch:{
-            '$route.query':'hotArticle'
+            '$route.query':'hotArticle',
+            'selectDate':function(){
+                if(this.selectDate === null){
+                    let query = Object.assign({},this.$route.query)
+                    query.sDateTime = ""
+                    query.eDateTime = ""
+                    this.$router.push({query:query})
+                }
+            }
         },
         metaInfo: {
             title: "hello!vue-meta",
@@ -124,6 +132,29 @@ import Clipboard from 'clipboard';
             // __dangerouslyDisableSanitizers: ['script']
         },
         methods:{
+            search(){
+                if(this.selectCategoryID || this.selectDate){
+                    let query = Object.assign({},this.$route.query)
+                    if(this.selectDate){
+                        let s = this.$moment(this.selectDate[0]).format("YYYY-MM-DD") 
+                        let e = this.$moment(this.selectDate[1]).format("YYYY-MM-DD") 
+                        query.sDateTime = this.$moment(s+" 00:00:00").utc().format() //转utc
+                        query.eDateTime = this.$moment(e+" 23:59:59").utc().format() //转utc
+                    }
+                    if(this.selectCategoryID){
+                        query.CategoryID = this.selectCategoryID
+                    }
+                    query.pageIndex = "1" 
+                    this.$router.push({query:query})
+                }else{
+                    this.$message({
+                        message: '搜索內容不能為空！',
+                        type: 'warning',
+                        duration: 2500,
+                        showClose: true
+                    });
+                }
+            },
             //熱門好文
             hotArticle(){
                 this.loading = true
@@ -131,9 +162,9 @@ import Clipboard from 'clipboard';
                 accountAxios.hotArticle({
                     pageSize:this.pageSize,
                     pageIndex:this.$route.query.pageIndex || "1",
-                    CategoryID:"-1",
-                    sDateTime:"",
-                    eDateTime:""
+                    CategoryID:this.$route.query.CategoryID || "-1",
+                    sDateTime:this.$route.query.sDateTime || "",
+                    eDateTime:this.$route.query.eDateTime || "",
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
@@ -167,6 +198,21 @@ import Clipboard from 'clipboard';
                     // console.error('Action:', e.action);
                     // console.error('Trigger:', e.trigger);
                 });
+            },
+            init(){
+                let Q = this.$route.query
+                if(Object.keys(Q).length < 1){
+                    this.$router.push({query:{pageIndex:'1',CategoryID:'-1'}})
+                }else{
+                    if(Q.sDateTime && Q.eDateTime){
+                        // this.selectDate  = this.$moment(Q.Date)
+                        this.selectDate = []
+                        this.selectDate[0] = this.$moment(Q.sDateTime).format("YYYY-MM-DD")  // utc轉當地時間
+                        this.selectDate[1] = this.$moment(Q.eDateTime).format("YYYY-MM-DD")  // utc轉當地時間
+                    }
+                    this.selectCategoryID = (Q.CategoryID&&Q.CategoryID!='-1') ? Number(Q.CategoryID) :''
+                    this.hotArticle()
+                }
             }
 
         },
@@ -175,11 +221,12 @@ import Clipboard from 'clipboard';
 
         },
         created(){
-            if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
-                this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
-            }else{
-            }
-            this.hotArticle()
+            // if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
+            //     this.$router.push({query:{CategoryID:'-1',pageIndex:'1'}})
+            // }else{
+            // }
+            // this.hotArticle()
+            this.init()
             this.linkPathOrigin = window.location.origin + '/article/'
             this.ShareID = sessionStorage.getItem('ShareID') || ''
         }

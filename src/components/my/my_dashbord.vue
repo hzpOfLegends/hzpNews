@@ -8,7 +8,7 @@
                   <!--<img src="/static/img/timg.jpg" alt="">-->
               </div>
               <div class="msg">
-                  <h5>{{userInfo.Name}}</h5>
+                  <h5 style="margin:0 0 5px 0">{{userInfo.Name}}</h5>
                   <span>我的会员等级：</span><span style="color:#fcae69">无</span> <br/>
                   <span>我的账户金额：</span><span style="color:#fb8b82">{{userInfo.Profit}}</span>
               </div>
@@ -37,12 +37,12 @@
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                <th>日期</th>
+                <th style="padding-left:3.5%">日期</th>
                 <th>自推</th>
                 <th>共推</th>
                 <th>撰寫</th>
                 <th>總點閱</th>
-                <th>收益</th>
+                <!--<th>收益</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -53,13 +53,68 @@
                     <td>{{v.Spread}}</td>
                     <td>{{v.Writeing}}</td>
                     <td>{{v.ViewCount}}</td>
-                    <td>{{123}}</td>
+                    <!--<td>{{123}}</td>-->
                 </tr>
 
             </tbody>
             </table>
             <p v-if="isEmpty" style="text-align:center">暂无数据</p>
         </div>   
+      </div>
+
+
+
+
+      <div class="gains item row record">
+          <div class="title">
+              <h5>最近點閱</h5>
+          </div>
+        <div class="content" style="text-align:left;min-height:300px">
+            <table class=" table-bordered" >
+            <!--<caption>Optional table caption.</caption>-->
+            <thead>
+                <tr>
+                    <th class="title-header" style="padding-left:4%">標題</th>
+                    <th style="width:180px;">日期</th>
+                    <th style="width:115px;">自推數</th>
+                    <th style="width:115px;">公推數</th>
+                    <th style="width:115px;">撰寫數</th>
+                    <th style="width:115px;">總點閱</th>
+                    <th style="width:115px;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(v,i) in articleList" :key="i">
+                    <!--<th scope="row">1</th>-->
+                    <td>
+                        <router-link :to="'/article/'+v.RelationID">
+                        <div id="doc-title">
+                            <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
+                            <img v-else src="/static/img/text.png" alt="">
+                            <div class="tit" style="color:#373737">
+                                <!--注：22汉字以内-->
+                                <div style="min-height:50px">
+                                    <p>{{v.Title}}</p>
+                                </div>
+                                <p class="type">類別:{{v.CategoryName}} <span style="padding:0 4px">|</span> ID:{{v.RelationID.length>12?v.RelationID.substr(0,12)+"...":v.RelationID}}</p>
+                            </div>
+                        </div>
+                        </router-link>
+                    </td>
+                    <td>{{$moment(v.Date).format("YYYY/MM/DD")}}</td>
+                    <td>{{v.SelfSpread}}</td>
+                    <td>{{v.Spread}}</td>
+                    <td>{{v.Writeing}}</td>
+                    <td>{{v.ViewCount}}</td>
+                    <td>
+                            <router-link :to="'/my/record/'+v.RelationID">全部</router-link>
+                    </td>
+                </tr>
+
+            </tbody>
+            </table>
+            <p v-if="isEmpty1" style="text-align:center">暂无数据</p>
+        </div>  
       </div>
       
       <div class="gains item row">
@@ -98,6 +153,11 @@
         </div>   
       </div>
 
+
+
+
+      
+
   </div>
 </template>
 
@@ -112,11 +172,14 @@ import Clipboard from 'clipboard';
                 profitStatisticsList:'',
                 hotList:'',
                 paymentRequest:false,
+                recordRequest:false,
                 linkPathOrigin:'',
                 requestCount:0,
                 ShareID:'',
                 isEmpty:false,
-                times:''
+                isEmpty1:false,
+                times:'',
+                articleList:''
             }
         },
         watch:{
@@ -126,10 +189,36 @@ import Clipboard from 'clipboard';
         },
         methods:{
             closeNProgress(){
-                if(this.requestCount === 2){
+                if(this.requestCount === 3){
                     this.$NProgress.done()
                     this.requestCount = 0
                 }
+            },
+            getRecord(){
+                this.recordRequest = true
+                this.isEmpty1 = false
+                // this.currentPage = Number(this.$route.query.pageIndex)
+                // {"pageSize":"","pageIndex":"","Date":"日期,可传入''或空","type":"1:共推,2:撰写,-1为全部","RelationID":"文章ID,用于查询单篇文章的点击信息可传入''或空"}
+                accountAxios.record({
+                    pageSize:String(this.pageSize),
+                    pageIndex:this.$route.query.pageIndex || "1",
+                    // CategoryID:this.$route.query.CategoryID,
+                    Date:'',
+                    type:this.$route.query.type || "-1",
+                    RelationID:''
+                }).then(res=>{
+                    this.requestCount++
+                    this.recordRequest = false
+                    if(res.data.ResultCode==200){
+                        this.articleList = res.data.Data.ArticleView.slice(0,5)
+                        this.total = res.data.Data.total
+                    }else if(res.data.ResultCode==201){
+                        this.isEmpty1 = true
+                    }
+                }).catch(err=>{
+                    this.recordRequest = false
+                    this.requestCount++
+                })
             },
             //最近收益
             getProfitStatistics(){
@@ -158,7 +247,7 @@ import Clipboard from 'clipboard';
             //熱門好文
             hotArticle(){
                 this.loading = true
-                // JSON {"pageSize":"15","pageIndex":"1","CategoryID":"-1","sDateTime":"","eDateTime":""}
+                // JSON {"pageSize":"15","pageIndex":"1","CategoryID":"-1","sDateTime":"","eDateTime":""} 
                 accountAxios.hotArticle({
                     pageSize:"12",
                     pageIndex:"1",
@@ -214,6 +303,7 @@ import Clipboard from 'clipboard';
                 this.getProfitStatistics()
             }
             this.hotArticle()
+            this.getRecord()
             this.linkPathOrigin = window.location.origin + '/article/'
             this.ShareID = sessionStorage.getItem('ShareID') || ''
         }
@@ -228,6 +318,20 @@ import Clipboard from 'clipboard';
     padding-top:15px;
     .row {
         margin:0;
+    }
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+         border-left: none;
+         border-right: none;
+         padding:15px;
+    }
+    thead {
+        tr {
+             background:#eeeeee;
+             th {
+                 padding-top:10px !important;
+                 padding-bottom:10px !important;
+             }
+        }
     }
     .user-info {
         background-color: #fff;
@@ -334,6 +438,37 @@ import Clipboard from 'clipboard';
             padding-top:20px;
         }
     }
+    .record {
+            .content {
+            min-height:200px;
+            padding-top:20px;
+            th.title-header {
+                width:380px ;
+            }
+            #doc-title {
+                // width:380px ;
+                display:flex;
+                align-items:flex-start;
+                // border:none;
+                // border-bottom:1px solid #dddddd;
+                img {
+                    width:33%;
+                    max-height:80px;
+                    object-fit: cover;
+                    flex:0 0 33%;
+                }
+                .tit {
+                    font-size:13px;
+                    padding-left:10px;
+                }
+                p.type {
+                    color:#bdbdbd;
+                    margin-bottom:0;
+                }
+            }
+        }
+    }
+
     .news-list {
         display:flex;
         flex-wrap:wrap;
@@ -381,6 +516,15 @@ import Clipboard from 'clipboard';
                     color:#999999;
                     padding-top:8px;
                 }
+            }
+            .btn-primary {
+                background-color: #2c7fdb;
+                height:45px;
+                border-color:#2c7fdb;
+                &:hover {
+                    background-color: #2d70cb;
+                }
+
             }
         }
     }
