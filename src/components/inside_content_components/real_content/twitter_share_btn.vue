@@ -3,7 +3,7 @@
               <a
                 class="twitter-share-button"
                 :href="web_url"
-                  target="_blank"
+                target="_blank"
                 data-size="large">
                 <img src="/static/img/twitter.png" alt="">
               </a>

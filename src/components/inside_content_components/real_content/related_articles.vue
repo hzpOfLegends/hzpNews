@@ -81,6 +81,8 @@
     padding: 0 18px;
     border-top: 7px solid #f1463f;
     border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    padding-bottom: 60px;
     .hot_article_title {
       width: 100%;
       padding: 14px 0;
@@ -93,7 +95,7 @@
         }
       }
       .hot_article_title_line {
-        max-width: 94px;
+        max-width: 84px;
         width: 100%;
         border-bottom: 3px solid #f24740;
         position: absolute;

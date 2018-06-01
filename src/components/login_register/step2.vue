@@ -129,6 +129,7 @@
       border-radius: 3px;
     }
     .the_new_password {
+      color: #999999;
       input {
         width: 100%;
         min-height: 45px;
@@ -138,6 +139,7 @@
     }
     .the_again_password {
       margin: 10px 0;
+      color: #999999;
       input {
         width: 100%;
         min-height: 45px;

@@ -177,6 +177,7 @@
       color: white !important;
     }
     .the_email {
+      color: #999999;
       input {
         width: 100%;
         min-height: 45px;
@@ -186,6 +187,7 @@
     }
     .the_code {
       margin: 10px 0;
+      color: #999999;
       input {
         max-width: 338px;
         width: 100%;

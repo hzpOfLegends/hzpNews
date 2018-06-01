@@ -152,19 +152,19 @@
     },
     created() {
       // vuex是状态管理 一刷新就没了  此步骤当记录
-      if (sessionStorage.getItem('ShareID')) {
+      if (localStorage.getItem('ShareID')) {
         this.$store.state.judge_login = true
       } else {
         this.$store.state.judge_login = false
       }
 
-      if (sessionStorage.getItem('user_info')) {
-        this.user_info = JSON.parse(sessionStorage.getItem('user_info'))
+      if (localStorage.getItem('user_info')) {
+        this.user_info = JSON.parse(localStorage.getItem('user_info'))
       }
     },
     mounted() {
       // 判斷是否存在shareID  也就是是否登錄
-      let shareID = sessionStorage.getItem('ShareID')
+      let shareID = localStorage.getItem('ShareID')
       if (shareID) {
         this.judge_login = true
       } else {
@@ -190,12 +190,12 @@
         // 请求后台 登出
         users_page.login_out().then(res => {
           // 清除登錄ID
-          sessionStorage.setItem('ShareID', "")
+          localStorage.setItem('ShareID', "")
           // 清楚登錄  用戶信息
-          sessionStorage.setItem('user_info', "")
+          localStorage.setItem('user_info', "")
 
           // 清除TICKET
-          sessionStorage.setItem('Ticket', "")
+          localStorage.setItem('Ticket', "")
         }).catch(err => {
 
         })

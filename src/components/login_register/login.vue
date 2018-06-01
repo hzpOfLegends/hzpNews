@@ -32,10 +32,10 @@
             </button>
           </div>
         </div>
-        <div class="step2" style="font-weight: 500;font-family: '宋体';">
-          <p>
+        <div class="step2" style="font-weight: 500;font-family: '宋体'">
+          <p style="font-size: 12px">
             還沒有賬號？
-            <router-link to="/user/register" style="color: rgb(90, 148, 238);font-size: 14px">前往注冊>></router-link>
+            <router-link to="/user/register" style="color: rgb(90, 148, 238);font-size: 12px">前往注冊>></router-link>
           </p>
         </div>
 
@@ -182,9 +182,9 @@
             if (res.status == 200 && res.data.ResultCode == 200) {
               // 存储 用户 shareID
               this.shareid = res.data.Data.ShareID
-              sessionStorage.setItem("Ticket",res.data.Data.Ticket)
+              localStorage.setItem("Ticket",res.data.Data.Ticket)
               users_page.login_user_info().then(res => {
-                sessionStorage.setItem('user_info', JSON.stringify(res.data.Data))
+                localStorage.setItem('user_info', JSON.stringify(res.data.Data))
                 this.$message.success("登录成功")
 
                 this.$store.state.user_info = res.data.Data
@@ -194,7 +194,7 @@
                 this.shade_boo = false
                 // 登錄失敗返回的文字
                 this.return_login_hint = ""
-                sessionStorage.setItem('ShareID', this.shareid)
+                localStorage.setItem('ShareID', this.shareid)
                 this.$router.push({path: "/"})
                 // 判断是否登录  用来改变样式
                 this.$store.state.judge_login = true
@@ -271,7 +271,7 @@
       text-align: center;
       p {
         padding: 12px 0;
-        font-size: 14px;
+        font-size: 12px;
         color: #989898;
       }
     }
@@ -296,7 +296,7 @@
     .email {
       margin: 16px 0;
       position: relative;
-      color: rgb(153, 153, 153);
+      color: #999;
       input {
         width: 100%;
         min-height: 45px;
@@ -309,14 +309,14 @@
         position: absolute;
         left: 15px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-60%);
         font-size: 15px;
       }
     }
     .password {
       margin: 16px 0;
       position: relative;
-      color: rgb(153, 153, 153);
+      color: #999999;
       input {
         width: 100%;
         min-height: 45px;
@@ -329,7 +329,7 @@
         position: absolute;
         left: 17px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-60%);
         font-size: 15px;
       }
     }

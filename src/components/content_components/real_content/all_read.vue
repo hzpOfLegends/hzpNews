@@ -159,6 +159,7 @@
     border-top: 8px solid #f39900;
     padding: 10px 20px 20px;
     text-align: left;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
 
     .all_read_wrap {
       padding: 0;
@@ -232,6 +233,7 @@
             margin-bottom: 16px;
             font-size: 14px;
             max-height: 80px;
+            color: #666;
             p{
                max-height: 60px;
                height: 100%;

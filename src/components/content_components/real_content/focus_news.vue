@@ -69,6 +69,7 @@
     max-height: 520px;
     background: white;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
     a{
       color: black;
     }
@@ -115,6 +116,7 @@
       }
       > p {
         margin-top: 10px;
+        color: #666;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;

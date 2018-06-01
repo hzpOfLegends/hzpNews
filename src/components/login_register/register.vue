@@ -31,7 +31,7 @@
 
         </div>
         <div class="step2" style="font-family: '宋体';">
-          <p>
+          <p style="font-size: 12px">
             已有賬號？
             <router-link to="/user/login" style="color: rgb(90, 148, 238);">前往登錄>></router-link>
           </p>
@@ -272,7 +272,7 @@
       .email {
         margin: 16px 0;
         position: relative;
-        color: rgb(153, 153, 153);
+        color: #999999;
         text-align: left;
         input {
           width: 100%;
@@ -287,14 +287,14 @@
           position: absolute;
           left: 15px;
           top: 50%;
-          transform: translateY(-50%);
+          transform: translateY(-60%);
           font-size: 15px;
         }
       }
       .password {
         margin: 16px 0;
         position: relative;
-        color: rgb(153, 153, 153);
+        color: #999999;
         input {
           width: 100%;
           min-height: 43px;
@@ -308,14 +308,14 @@
           position: absolute;
           left: 17px;
           top: 50%;
-          transform: translateY(-50%);
+          transform: translateY(-60%);
           font-size: 15px;
         }
       }
       .new_password{
         margin: 15px 0 30px;
         position: relative;
-        color: rgb(153, 153, 153);
+        color: #999999;
         input {
           width: 100%;
           min-height: 43px;
@@ -329,7 +329,7 @@
           position: absolute;
           left: 17px;
           top: 50%;
-          transform: translateY(-50%);
+          transform: translateY(-60%);
           font-size: 15px;
         }
       }
@@ -345,7 +345,7 @@
       border-top: 1px solid #eee;
       p {
         padding: 12px 0;
-        font-size: 14px;
+        font-size: 12px;
         color: #989898;
       }
     }
