@@ -14,12 +14,12 @@
             <p style="color: red ; font-size: 12px;text-align: left">{{email_hint}}</p>
             <div class="password">
               <input type="password" v-model="password" @input="passwordVerify" @keyup.enter="submit_mess" placeholder="請輸入密碼">
-              <i class="fa fa-lock"></i>
+              <i class="fa fa-lock"  style="font-size:22px"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{password_hint}}</p>
             <div class="new_password">
               <input type="password" v-model="new_password" @input="newpasswordVerify" @keyup.enter="submit_mess" placeholder="請再次輸入密碼">
-              <i class="fa fa-lock"></i>
+              <i class="fa fa-lock"  style="font-size:22px"></i>
             </div>
             <p style="color: red; font-size: 12px;text-align: left">{{new_password_hint}}</p>
             <p style="color: red; font-size: 12px;text-align: center">{{register_hint}}</p>
@@ -280,7 +280,7 @@
           line-height: 43px;
           border: 1px solid rgb(241, 241, 241);
           border-radius: 3px;
-          font-size: 12px;
+          font-size: 13px;
           padding-left: 45px;
         }
         i {
@@ -301,7 +301,7 @@
           line-height: 43px;
           border: 1px solid rgb(244, 244, 244);
           border-radius: 3px;
-          font-size: 12px;
+          font-size: 13px;
           padding-left: 45px;
         }
         i {
@@ -322,7 +322,7 @@
           line-height: 43px;
           border: 1px solid rgb(244, 244, 244);
           border-radius: 3px;
-          font-size: 12px;
+          font-size: 13px;
           padding-left: 45px;
         }
         i {
@@ -344,7 +344,7 @@
     .step2 {
       border-top: 1px solid #eee;
       p {
-        padding: 12px 0;
+        padding: 18px 0 24px;
         font-size: 12px;
         color: #989898;
       }
