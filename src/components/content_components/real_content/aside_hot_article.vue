@@ -40,6 +40,9 @@
       width: 48%;
       display: inline-block;
       margin-right: 2%;
+      img{
+        height: 130px;
+      }
     }
   }
   @media screen and (max-width:1200px ){

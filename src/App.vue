@@ -213,6 +213,11 @@
       }
     },
     created() {
+      if(window.innerWidth<=768){
+        this.$store.state.phone_use = true
+      }else{
+        this.$store.state.phone_use = false
+      }
       // 獲取導航分類
         header_message.nav_type().then(res => {
           if(res.data.Data){

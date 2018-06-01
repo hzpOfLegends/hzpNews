@@ -68,6 +68,7 @@
     width: 100%;
     max-height: 520px;
     background: white;
+    position: relative;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
     a{
@@ -94,7 +95,6 @@
       padding: 20px 20px 40px;
       text-align: left;
       font-size: 13px;
-      max-height: 180px;
       overflow: hidden;
       :nth-child(1){
         display: inline-block;

@@ -21,6 +21,7 @@ const state = {
   inside_requestCount: 0, // 内页 - 页面进度条
   other_article_content:[], // 内页其他文章 , 由于转发 session里没有id  所以 在请求完详情 返回id 后 再去请求 同区其他文章
   submit_hint:"", // 登陸注冊提示語 ， 在axios.js 統一處理
+  phone_use:false, //移動端不用骨架
 }
 const mutations = {
     setMeta(state,value){

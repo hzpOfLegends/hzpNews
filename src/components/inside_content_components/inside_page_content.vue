@@ -3,27 +3,30 @@
     <div class="container clearfix">
       <div class="float-left left_content">
         <!--詳情内容-->
-        <vue-lazy-component>
+        <vue-lazy-component  v-if="$store.state.phone_use==false">
           <details_content :details="details" />
           <details_content_skeleton slot="skeleton"/>
         </vue-lazy-component>
+        <details_content v-if="$store.state.phone_use==true" :details="details" />
         <div class="float-right right_content related_articles_phone" style="display: none">
           <!--相關文章(适配)-->
           <related_articles/>
         </div>
         <!--同區的其他文章-->
-        <vue-lazy-component>
+        <vue-lazy-component v-if="$store.state.phone_use==false">
           <other_article style="margin-top: 20px"/>
           <other_article_skeleton slot="skeleton" style="margin-top: 20px"/>
         </vue-lazy-component>
+        <other_article v-if="$store.state.phone_use==true" style="margin-top: 20px"/>
         <!--<div id="fb-root"><div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div></div>-->
       </div>
       <div class="float-right right_content related_articles_browser">
         <!--&lt;!&ndash;相關文章&ndash;&gt;-->
-        <vue-lazy-component>
+        <vue-lazy-component v-if="$store.state.phone_use==false">
           <related_articles :hot_article="hot_article"/>
           <related_articles_skeleton slot="skeleton"/>
         </vue-lazy-component>
+        <related_articles v-if="$store.state.phone_use==true" :hot_article="hot_article" />
       </div>
     </div>
     <skip_top/>
