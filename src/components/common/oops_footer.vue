@@ -118,6 +118,7 @@
       margin: 0 auto;
       .row {
         height: 100%;
+        padding: 20px 0;
         .web_name {
           height: 100%;
           h2 {

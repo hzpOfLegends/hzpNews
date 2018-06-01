@@ -1,6 +1,6 @@
 <template>
   <div class="details_content">
-    <h3 >{{details.NewsTitle}}</h3>
+    <h3 style="margin:0;margin-bottom: 20px">{{details.NewsTitle}}</h3>
     <div class="author">
       <span><img :src="details.Avatar?details.Avatar:default_photo"></span>
       <span>{{details.AuthorName}}</span>

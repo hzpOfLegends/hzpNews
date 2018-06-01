@@ -43,7 +43,7 @@
           <aside_hot_article :hot_article="hot_article"/>
           <aside_hot_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
-        <aside_hot_article v-if="$store.state.phone_use==true" :hot_article="hot_article"/>
+        <aside_hot_article style="margin-top: 20px" v-if="$store.state.phone_use==true" :hot_article="hot_article"/>
         <!--广告 (适配)-->
         <!--<vue-lazy-component style="margin-top: 20px;display: none" class="advertising_aside2_phone">-->
           <!--<advertising_aside2/>-->
