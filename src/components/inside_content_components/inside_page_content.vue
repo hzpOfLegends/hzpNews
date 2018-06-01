@@ -96,7 +96,8 @@
           setTimeout(() => {
             let imgs = document.querySelectorAll('img')
             for (let i = 0; i < imgs.length; i++) {
-              imgs[i].style.width = '100%'
+              imgs[i].style.maxWidth = '100%'
+              imgs[i].style.height = "auto"
             }
           }, 1)
           // 設置定時器 10秒 用於后露記錄
