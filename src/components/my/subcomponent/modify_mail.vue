@@ -12,13 +12,14 @@
             <div v-if="currentStep==1">
                 <div class="form-group">
                     <label for="oldEmail">原郵箱</label>
-                    <input type="text" class="form-control" id="oldEmail" placeholder="郵箱" v-model="step1.name" :disabled="step1.sendCode">
+                    <input type="text" class="form-control" id="oldEmail" placeholder="郵箱" v-model="step1.name" :disabled="step1.sendCode" disabled>
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendEmailCode('old')">{{step1.btnTXT}}</button>
+                    <button v-if="!step1.sendCode" type="" class="btn btn-default code-btn"  @click="sendEmailCode('old')">發送驗證碼</button>
+                    <button v-else type="" class="btn btn-default code-btn"  style="background:#f0f9ec;color:#48c321" disabled>驗證碼已發送</button>
                 </div>
                 </br>
                 <div class="btns">
@@ -36,7 +37,8 @@
                     <label for="exampleInputPassword1">驗證碼</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
-                    <button type="" class="btn btn-default code-btn"  @click="sendEmailCode('new')">{{step2.btnTXT}}</button>
+                    <button v-if="!step2.sendCode" type="" class="btn btn-default code-btn"  @click="sendEmailCode('new')">發送驗證碼</button>
+                    <button v-else type="" class="btn btn-default code-btn"  style="background:#f0f9ec;color:#48c321" disabled>驗證碼已發送</button>
                 </div>
                 </br>
                 <div class="btns">
@@ -88,6 +90,7 @@ import verify from '../../../assets/verify'
             },
         }
       },
+      props:['Email'],
       watch:{
       },
       methods:{
@@ -103,13 +106,13 @@ import verify from '../../../assets/verify'
                     });
                     return;
                 }
-                if(!verify.email(this.step1.name)){
-                    this.$message({
-                        message: '郵箱格式不正確',
-                        type: 'warning'
-                    });
-                    return;
-                }
+                // if(!verify.email(this.step1.name)){
+                //     this.$message({
+                //         message: '郵箱格式不正確',
+                //         type: 'warning'
+                //     });
+                //     return;
+                // }
 
                 this.loading = true
                 // 发送邮箱验证（需登陆） 验证注册邮箱:{"email":""} 修改用户邮箱:{"email":"新邮箱地址"} 频繁操作会返回1200
@@ -245,7 +248,7 @@ import verify from '../../../assets/verify'
       mounted(){
       },
       created(){
-          
+          this.step1.name = this.Email
       }
     }
 </script>
@@ -254,8 +257,8 @@ import verify from '../../../assets/verify'
 .modify-mail {
     .title {
         text-align: center;
-        height:62px;
-        line-height: 62px;
+        height:68px;
+        line-height: 68px;
         font-size:18px;
         border-bottom:4px solid #0a53a2;
         color:#2665ab;
@@ -278,8 +281,9 @@ import verify from '../../../assets/verify'
     }
     .form-group.f-code{
         position: relative;
-        padding-right:99px;
+        padding-right:112px;
         .code-btn {
+            width:110px;
             position: absolute;
             right:0px;
             bottom:0px;
@@ -312,6 +316,20 @@ import verify from '../../../assets/verify'
         // border: 2px solid;
         // border-color: inherit;
     // }
+    }
+    .form-control {
+        height: 41px;
+    }
+    label {
+        color: #666666;
+        font-weight: 400;
+    }
+    .form-group.f-code .code-btn {
+        height: 41px;
+    }
+    .m-step .el-step__title.is-success,.m-step .el-step__title.is-process,.m-step .el-step__title.is-wait {
+        font-size: 12px !important;
+        font-weight:400px !important;
     }
 }
 </style>

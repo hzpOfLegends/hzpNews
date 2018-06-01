@@ -32,7 +32,7 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
                     <button v-if="!step1.sendCode" type="" class="btn btn-default code-btn"  @click="sendPhoneCode('old')">發送驗證碼</button>
-                    <button v-else type="" class="btn btn-default code-btn"  style="color:#48c321" disabled>驗證碼已發送</button>
+                    <button v-else type="" class="btn btn-default code-btn"  style="background:#f0f9ec;color:#48c321" disabled>驗證碼已發送</button>
                 </div>
                 </br>
                 <div class="btns">
@@ -70,7 +70,7 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step2.vCode" :disabled="!step2.sendCode">
                     <!--發送驗證碼-->
                     <button v-if="!step2.sendCode" type="" class="btn btn-default code-btn"  @click="sendPhoneCode('new')">發送驗證碼</button>
-                    <button v-else type="" class="btn btn-default code-btn"  style="color:#48c321" disabled>驗證碼已發送</button>
+                    <button v-else type="" class="btn btn-default code-btn"  style="background:#f0f9ec;color:#48c321" disabled>驗證碼已發送</button>
                 </div>
                 </br>
                 <div class="btns">
@@ -289,8 +289,8 @@ import phoneAreaCode from '../../../assets/area_code'
 .modify-phone {
     .title {
         text-align: center;
-        height:62px;
-        line-height: 62px;
+        height:68px;
+        line-height: 68px;
         font-size:18px;
         border-bottom:4px solid #0a53a2;
         color:#2665ab;
@@ -360,6 +360,20 @@ import phoneAreaCode from '../../../assets/area_code'
         // border:1px solid #ccc !important;
     }
     .el-input {
+    }
+    .form-control {
+        height: 41px;
+    }
+    label {
+        color: #666666;
+        font-weight: 400;
+    }
+    .form-group.f-code .code-btn {
+        height: 41px;
+    }
+    .m-step .el-step__title.is-success,.m-step .el-step__title.is-process,.m-step .el-step__title.is-wait {
+        font-size: 12px !important;
+        font-weight:400px !important;
     }
 }
 </style>

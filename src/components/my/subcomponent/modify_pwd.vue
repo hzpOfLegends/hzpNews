@@ -161,8 +161,8 @@ import verify from '../../../assets/verify'
 .modify-pwd {
     .title {
         text-align: center;
-        height:62px;
-        line-height: 62px;
+        height:68px;
+        line-height: 68px;
         font-size:18px;
         border-bottom:4px solid #0a53a2;
         color:#2665ab;
@@ -188,11 +188,18 @@ import verify from '../../../assets/verify'
         .err-message {
             // text-align:right;
             position: absolute;
-            top:60px;
+            top:66px;
             left:1px;
             color:red;
             font-size:12px;
         }
+    }
+    .form-control {
+        height: 41px;
+    }
+    label {
+        color: #666666;
+        font-weight: 400;
     }
 }
 </style>
