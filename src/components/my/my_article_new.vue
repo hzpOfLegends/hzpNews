@@ -51,15 +51,15 @@
             </div>
             <div class="form-group">
                     <label for="" style="color:#747474">內容：</label>
-                <div class="hidden-xs">
+                <div class="">
                     <!--编辑器-->
                     <div id="editor" spellcheck="false">
                         <!--<p>Welcome!</p>-->
                     </div>
                 </div>
-                <form class="visible-xs">
+                <!--<form class="visible-xs">
                     <textarea class="form-control" rows="10" placeholder="文章內容"></textarea>
-                </form>
+                </form>-->
             </div>
             
             <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:11px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">發 表</button>

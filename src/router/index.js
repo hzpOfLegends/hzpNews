@@ -44,7 +44,7 @@ import no_get_email from "@/components/help/no_get_email"
 import change_password from "@/components/help/change_password"
 import how_embody from "@/components/help/how_embody"
 import account_class from "@/components/help/account_class"
-export default new Router({
+const vueRouter = new Router({
   mode: 'history',
   routes: [
     {
@@ -109,3 +109,9 @@ export default new Router({
     // {path:'*',redirect:'/'}
   ]
 })
+
+vueRouter.afterEach((to, from, next) => {
+	window.scrollTo(0, 0);
+})
+
+export default vueRouter
