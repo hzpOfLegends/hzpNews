@@ -35,16 +35,19 @@
     },
     created() {
 // <img src="http://35.234.61.6/upload/image/2018/060409/tepkFXiq.jpeg" alt="8a732d742e70295b9f5e55a2471f3958.jpg" data-height="1244" data-width="995" />
+        let viewWidth = 300
         this.c.replace(/<\s?img[^>]*>/gi,'')
         this.c.replace(/<\s?img[^>]*>/gi,function(tag){
             let w , h
             tag.replace(/\s?data-width="[^"]*"/,function(attr){
                w = attr.split('"')[1]
             })
-            console.log('tag',tag);
-            tag.replace(/\s?data-width="[^"]*"/,function(attr){
+            tag.replace(/\s?data-height="[^"]*"/,function(attr){
                h = attr.split('"')[1]
             })
+            if(w>viewWidth){
+               
+            }
         });
     }
   }
