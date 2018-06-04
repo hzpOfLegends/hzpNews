@@ -29,7 +29,7 @@
         </div>
         <div class="col-xs-4 user_message" style="text-align: center">
           <i class="fa fa-money"></i>
-          有效點擊數：
+          我的收入：
           <p style="color:red;">{{$store.state.user_info.Profit}}</p>
         </div>
       </div>

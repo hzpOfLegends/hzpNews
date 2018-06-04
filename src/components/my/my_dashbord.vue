@@ -9,8 +9,8 @@
               </div>
               <div class="msg">
                   <h5 style="margin:0 0 5px 0">{{userInfo.Name}}</h5>
-                  <span>我的会员等级：</span><span style="color:#fcae69">无</span> <br/>
-                  <span>我的账户金额：</span><span style="color:#fb8b82">{{userInfo.Profit}}</span>
+                  <span>我的會員等級：</span><span style="color:#fcae69">1級</span> <br/>
+                  <span>我的賬戶金額：</span><span style="color:#fb8b82">{{userInfo.Profit}}</span>
               </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 r-box">
@@ -20,11 +20,11 @@
                 </div>
                 <div>
                     <div class="bg bg2"></div>
-                    <p>发表文章(<span>{{userInfo.ArticleCount}}</span>)</p> 
+                    <p>發表文章(<span>{{userInfo.ArticleCount}}</span>)</p> 
                 </div>
                 <div>
                     <div class="bg bg3"></div>
-                    <p>本月收入(<span>{{userInfo.Profit}}</span>)</p> 
+                    <p>我的收入(<span>{{userInfo.Profit}}</span>)</p> 
                 </div>
           </div>
       </div>
@@ -58,7 +58,7 @@
 
             </tbody>
             </table>
-            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
+            <p v-if="isEmpty" style="text-align:center">暫無數據</p>
         </div>   
       </div>
 
@@ -113,7 +113,7 @@
 
             </tbody>
             </table>
-            <p v-if="isEmpty1" style="text-align:center">暂无数据</p>
+            <p v-if="isEmpty1" style="text-align:center;padding-top:18px">暫無數據</p>
         </div>  
       </div>
       
@@ -133,8 +133,9 @@
                         </div>
                         <div style="padding:0 4% 5%">
                             <div class="news-title">
-                                <div style="height:50px;overflow:hidden">
-                                    <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>
+                                <div style="height:50px;overflow:hidden;" class="hot-title">
+                                    <span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle }}</span>
+                                    <!--<span class="flag">{{v.CategoryName}}</span> <span class="txt">{{v.NewsTitle.length<25?v.NewsTitle:v.NewsTitle.substr(0,25)+'...' }}</span>-->
                                 </div>
                                 <div class="sub-title">
                                     <span>時間：{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</span>
@@ -181,7 +182,8 @@ import Clipboard from 'clipboard';
                 isEmpty:false,
                 isEmpty1:false,
                 times:'',
-                articleList:''
+                articleList:'',
+                pageSize:10
             }
         },
         watch:{
@@ -302,8 +304,8 @@ import Clipboard from 'clipboard';
             if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
                 this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
             }else{
-                this.getProfitStatistics()
             }
+            this.getProfitStatistics()
             this.hotArticle()
             this.getRecord()
             this.linkPathOrigin = window.location.origin + '/article/'
@@ -320,6 +322,18 @@ import Clipboard from 'clipboard';
     padding-top:15px;
     .row {
         margin:0;
+    }
+    .hot-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        &:nth-child(1){
+            display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+        }
     }
     .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
          border-left: none;
@@ -354,7 +368,7 @@ import Clipboard from 'clipboard';
                 overflow: hidden;
                 margin:15px;
                 margin-left:40px;
-                border:1px solid #000;
+                border:1px solid #ccc;
                 img {
                     width:100%;
                     height:auto;
@@ -383,17 +397,17 @@ import Clipboard from 'clipboard';
                 .bg{
                     width:50px;
                     height:50px;
-                    margin:0 auto;
+                    margin:2px auto;
                     background-color:#eee;
                 }
                 .bg1 {
-                    background:url('/static/img/msg_icon.png') no-repeat;
+                    background:url('/static/img/msg_icon.png') no-repeat 0px 7px;
                 }
                 .bg2 {
-                    background:url('/static/img/doc_icon.png') no-repeat;
+                    background:url('/static/img/doc_icon.png') no-repeat 0px 7px;
                 }
                 .bg3 {
-                    background:url('/static/img/gains_icon.png') no-repeat;
+                    background:url('/static/img/gains_icon.png') no-repeat 0px 7px;
                 }
                 p{
                     font-size:13px;

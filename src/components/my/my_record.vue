@@ -99,7 +99,7 @@
 
             </tbody>
             </table>
-            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
+            <p v-if="isEmpty" style="text-align:center;padding-top:18px">暫無數據</p>
         </div>
         <nav style="text-align:center;padding-top:30px;">
             <el-pagination

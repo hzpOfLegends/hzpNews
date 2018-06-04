@@ -2,7 +2,8 @@ import axios from 'axios'
 import router from '@/router/index'
 import {Message} from 'element-ui'
 import store from '../store/store'
-// axios.path = "http://35.194.241.228/"
+// axios.path = "http://192.168.30.10:3300/"
+// axios.path = "http://35.234.61.6/"
 axios.path = "/apis/"
 // http 请求拦截器
 axios.interceptors.request.use(config => {
@@ -14,7 +15,6 @@ return config;
 })
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
-
   switch (data.data.ResultCode) {
     case 200 :
       break;

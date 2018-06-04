@@ -184,6 +184,7 @@
           CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
           RelationID: this.$route.params.RelationID
         }).then(res=>{
+          console.log(res);
           this.$store.state.other_article_content = res.data.Data.news
           // 进度条加1
           this.requestCount++
@@ -202,6 +203,7 @@
           })
         }, 10000)
       }).catch(err => {
+        console.log(err);
       })
       // related
       inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {

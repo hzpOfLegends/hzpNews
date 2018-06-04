@@ -21,7 +21,7 @@
 
             </tbody>
             </table>
-            <p v-if="isEmpty" style="text-align:center">暂无数据</p>
+            <p v-if="isEmpty" style="text-align:center">暫無數據</p>
         </div> 
         <div style="text-align:center">
                 <el-pagination

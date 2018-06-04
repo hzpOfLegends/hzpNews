@@ -179,6 +179,7 @@
             loginName: this.email,
             loginPwd: this.password
           }).then(res => {
+            console.log(res);
             if (res.status == 200 && res.data.ResultCode == 200) {
               // 存储 用户 shareID
               this.shareid = res.data.Data.ShareID

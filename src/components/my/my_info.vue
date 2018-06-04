@@ -19,7 +19,7 @@
                           <input type="text" class="form-control" placeholder="Name" v-model="userInfo.Name">
                         </div>
                       </div>
-                      <div class="form-group l-side">
+                      <!--<div class="form-group l-side">
                         <label for="select1" class="col-sm-2 control-label"  style="max-width:110px">喜好語言：</label>
                         <div class="col-sm-10">
                           <select class="form-control"  v-model="userInfo.Language">
@@ -40,7 +40,7 @@
                         <div class="col-sm-10">
                           <input type="text" class="form-control" id="inputEmail1" placeholder="總類" disabled>
                         </div>
-                      </div>
+                      </div>-->
                       <div class="form-group l-side">
                         <label for="" class="col-sm-2 control-label"  style="max-width:110px"></label>
                         <div class="col-sm-10">
