@@ -108,10 +108,10 @@
         if(this.new_password){
           if(this.password == this.new_password){
             this.btn_boo2 = true
-            this.password_hint = ""
+            this.new_password_hint = ""
           }else{
             this.btn_boo2 = false
-            this.password_hint = "两次輸入的密碼不一致"
+            this.new_password_hint = "两次輸入的密碼不一致"
           }
         }
         // 密码输入为空 提示消失
@@ -143,7 +143,7 @@
             this.password_hint = ""
           }else{
             this.btn_boo2 = false
-            this.password_hint = "两次輸入的密碼不一致"
+            // this.password_hint = "两次輸入的密碼不一致"
           }
         }
         // 再次输入密码为空 提示消失
@@ -171,9 +171,7 @@
               this.register_hint = ""
               // 提示成功
               this.$message.success("注冊成功")
-              // 遮罩
-              this.shade_boo = false
-              this.$router.push({path: '/user/login'})
+              this.success_register(this.email,this.new_password)
               this.reset_input()
             } else {
               this.register_hint = this.$store.state.submit_hint
@@ -218,6 +216,44 @@
           this.submit_mess()
           console.log("enter")
         }
+      },
+      // 注冊成功后調用登錄接口
+      success_register(user,pwd){
+        users_page.login({
+          loginName: user,
+          loginPwd: pwd
+        }).then(res => {
+          if (res.status == 200 && res.data.ResultCode == 200) {
+            // 存储 用户 shareID
+            let shareid ;
+            shareid = res.data.Data.ShareID
+            localStorage.setItem("Ticket",res.data.Data.Ticket)
+            users_page.login_user_info().then(res => {
+              // 遮罩
+              this.shade_boo = false
+              // 存儲user_info
+              localStorage.setItem('user_info', JSON.stringify(res.data.Data))
+              this.$store.state.user_info = res.data.Data
+              localStorage.setItem('ShareID', shareid)
+              // 判断是否登录  用来改变样式
+              this.$store.state.judge_login = true
+              // 提示彈框
+              this.$confirm('是否到個人中心', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(() => {
+                this.$router.push({path:"/my/user/dashboard"})
+              }).catch(() => {
+                this.$router.push({path:"/"})
+              });
+
+            }).catch(err => {
+              console.log(err)
+            })
+          }
+        }).catch(err => {
+        })
       },
       // 清空 input
       reset_input() {

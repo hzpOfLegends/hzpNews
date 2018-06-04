@@ -212,6 +212,9 @@
     },
     mounted() {
       this.changeRoute()
+      // 更换背景
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      oops_content_wrap.style.background = "#f4f4f4"
     },
     created() {
       // this.init()

@@ -32,11 +32,15 @@
           <div class="the_footer clearfix">
             <div class="float-left the_footer_chara col-xs-12" style="padding: 10px">
               <router-link to="/contactus">
+                <span @click="footer_show">
                 聯係我們
+                  </span>
               </router-link>
               <span class="want_line"></span>
               <router-link to="/help">
+                <span @click="footer_show">
                 幫助中心
+                  </span>
               </router-link>
               <span class="want_line "></span>
               <span class="">
@@ -99,6 +103,10 @@
           this.$store.state.nav_down = false
           this.$store.state.nav_down_icon = "fa fa-bars"
         }
+      },
+      footer_show(){
+        console.log(111)
+        this.$store.state.foot_all_style = true;
       }
     },
     mounted() {

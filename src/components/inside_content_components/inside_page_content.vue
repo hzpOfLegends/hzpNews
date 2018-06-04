@@ -189,10 +189,12 @@
           this.requestCount++
         })
         setTimeout(() => {
-          let imgs = document.querySelectorAll('img')
+          let imgs = document.querySelectorAll('.article_conten img')
+
           for (let i = 0; i < imgs.length; i++) {
+            // imgs[i].style.height = imgs[i].getAttribute('data-height')
+            // imgs[i].style.width = imgs[i].getAttribute('data-width')
             imgs[i].style.maxWidth = '100%'
-            imgs[i].style.height = "auto"
           }
         }, 1)
         setTimeout(() => {

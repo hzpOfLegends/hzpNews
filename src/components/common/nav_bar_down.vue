@@ -49,28 +49,28 @@
         注冊
       </router-link>
     </div>
-    <div class="clearfix media_none contact" v-show="$store.state.nav_bar_down_contack">
-      <ul class="float-left">
-        <li class="float-left"><a href="javascript:;">聯係我們</a></li>
-        <li class="float-left division">|</li>
-        <li class="float-left"><a href="javascript:;">幫助中心</a></li>
-        <li class="float-left"><a href="javascript:;">2018OopsDaily 隱私政策 服務條款 京ICP証080268號</a></li>
-      </ul>
-      <ul class="float-right clearfix">
-        <li class="float-right" style="margin-left: 12px">
-          <img src="/static/img/team1.png" alt="">
-        </li>
-        <li class="float-right" style="margin-left: 12px">
-          <img src="/static/img/team2.png" alt="">
-        </li>
-        <li class="float-right" style="margin-left: 12px">
-          <img src="/static/img/team3.png" alt="">
-        </li>
-        <li class="float-right" style="margin-left: 12px">
-          <img src="/static/img/team4.png" alt="">
-        </li>
-      </ul>
-    </div>
+    <!--<div class="clearfix media_none contact" v-show="$store.state.nav_bar_down_contack">-->
+      <!--<ul class="float-left">-->
+        <!--<li class="float-left"><a href="javascript:;">聯係我們</a></li>-->
+        <!--<li class="float-left division">|</li>-->
+        <!--<li class="float-left"><a href="javascript:;">幫助中心</a></li>-->
+        <!--<li class="float-left"><a href="javascript:;">2018OopsDaily 隱私政策 服務條款 京ICP証080268號</a></li>-->
+      <!--</ul>-->
+      <!--<ul class="float-right clearfix">-->
+        <!--<li class="float-right" style="margin-left: 12px">-->
+          <!--<img src="/static/img/team1.png" alt="">-->
+        <!--</li>-->
+        <!--<li class="float-right" style="margin-left: 12px">-->
+          <!--<img src="/static/img/team2.png" alt="">-->
+        <!--</li>-->
+        <!--<li class="float-right" style="margin-left: 12px">-->
+          <!--<img src="/static/img/team3.png" alt="">-->
+        <!--</li>-->
+        <!--<li class="float-right" style="margin-left: 12px">-->
+          <!--<img src="/static/img/team4.png" alt="">-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
 
   </div>
 

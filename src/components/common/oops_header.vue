@@ -193,7 +193,6 @@
           localStorage.setItem('ShareID', "")
           // 清楚登錄  用戶信息
           localStorage.setItem('user_info', "")
-
           // 清除TICKET
           localStorage.setItem('Ticket', "")
         }).catch(err => {
