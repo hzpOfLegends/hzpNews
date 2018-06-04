@@ -39,14 +39,14 @@
       </div>
       </div>
       <div class="row">
-
+      <login_component :success_register="success_register"/>
       </div>
     </div>
 </template>
 
 <script>
   import users_page from '@/axios_joggle/axios_users'
-
+  import login_component from '@/components/login_register/login'
   export default {
     name: "register",
     data() {
@@ -62,8 +62,16 @@
         btn_boo3: false, //用來判斷btnactive顔色
         new_password_hint: "", //郵箱提示
         shade_boo: false, // 點擊登錄時的遮罩
-        register_hint:"" // 注册失败返回的信息
+        register_hint:"", // 注册失败返回的信息
+        success_register:{
+          email:"",
+          password:""
+        }
       }
+    },
+    components:{
+      // 引入登錄組件 作爲子組件 用來注冊成功 讓登錄組件登錄
+      "login_component":login_component
     },
     created() {
       //隐藏导航栏
@@ -171,7 +179,9 @@
               this.register_hint = ""
               // 提示成功
               this.$message.success("注冊成功")
-              this.success_register(this.email,this.new_password)
+              this.success_register.email = this.email
+              this.success_register.password = this.new_password
+
               this.reset_input()
             } else {
               this.register_hint = this.$store.state.submit_hint
@@ -218,43 +228,43 @@
         }
       },
       // 注冊成功后調用登錄接口
-      success_register(user,pwd){
-        users_page.login({
-          loginName: user,
-          loginPwd: pwd
-        }).then(res => {
-          if (res.status == 200 && res.data.ResultCode == 200) {
-            // 存储 用户 shareID
-            let shareid ;
-            shareid = res.data.Data.ShareID
-            localStorage.setItem("Ticket",res.data.Data.Ticket)
-            users_page.login_user_info().then(res => {
-              // 遮罩
-              this.shade_boo = false
-              // 存儲user_info
-              localStorage.setItem('user_info', JSON.stringify(res.data.Data))
-              this.$store.state.user_info = res.data.Data
-              localStorage.setItem('ShareID', shareid)
-              // 判断是否登录  用来改变样式
-              this.$store.state.judge_login = true
-              // 提示彈框
-              this.$confirm('是否到個人中心', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-              }).then(() => {
-                this.$router.push({path:"/my/user/dashboard"})
-              }).catch(() => {
-                this.$router.push({path:"/"})
-              });
-
-            }).catch(err => {
-              console.log(err)
-            })
-          }
-        }).catch(err => {
-        })
-      },
+      // success_register(user,pwd){
+      //   users_page.login({
+      //     loginName: user,
+      //     loginPwd: pwd
+      //   }).then(res => {
+      //     if (res.status == 200 && res.data.ResultCode == 200) {
+      //       // 存储 用户 shareID
+      //       let shareid ;
+      //       shareid = res.data.Data.ShareID
+      //       localStorage.setItem("Ticket",res.data.Data.Ticket)
+      //       users_page.login_user_info().then(res => {
+      //         // 遮罩
+      //         this.shade_boo = false
+      //         // 存儲user_info
+      //         localStorage.setItem('user_info', JSON.stringify(res.data.Data))
+      //         this.$store.state.user_info = res.data.Data
+      //         localStorage.setItem('ShareID', shareid)
+      //         // 判断是否登录  用来改变样式
+      //         this.$store.state.judge_login = true
+      //         // 提示彈框
+      //         this.$confirm('是否到個人中心', '提示', {
+      //           confirmButtonText: '确定',
+      //           cancelButtonText: '取消',
+      //           type: 'warning'
+      //         }).then(() => {
+      //           this.$router.push({path:"/my/user/dashboard"})
+      //         }).catch(() => {
+      //           this.$router.push({path:"/"})
+      //         });
+      //
+      //       }).catch(err => {
+      //         console.log(err)
+      //       })
+      //     }
+      //   }).catch(err => {
+      //   })
+      // },
       // 清空 input
       reset_input() {
         this.email = ""
