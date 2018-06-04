@@ -77,8 +77,7 @@
 
     },
     watch: {
-      getWrap: function (val) {
-      }
+      // "$store.state"
     },
     mounted() {
       // 进度条关闭

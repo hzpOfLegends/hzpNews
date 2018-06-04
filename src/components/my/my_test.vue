@@ -1,6 +1,6 @@
 <template>
-  <div class="account" v-html="content" style="width:960px;margin:0 auto;text-align:left">
-  <!--<div class="account"  style="width:960px;margin:0 auto;text-align:left">-->
+  <!--<div class="account" v-html="content" style="width:960px;margin:0 auto;text-align:left">-->
+  <div class="account"  style="width:960px;margin:0 auto;text-align:left">
     <!--<div style="height:400px">
         <img src="/" alt="" style="display:inline-block;width:200px,height:300px;border:1px solid red">
     </div>-->
@@ -35,7 +35,17 @@
     },
     created() {
 // <img src="http://35.234.61.6/upload/image/2018/060409/tepkFXiq.jpeg" alt="8a732d742e70295b9f5e55a2471f3958.jpg" data-height="1244" data-width="995" />
-        // c.replace(//)
+        this.c.replace(/<\s?img[^>]*>/gi,'')
+        this.c.replace(/<\s?img[^>]*>/gi,function(tag){
+            let w , h
+            tag.replace(/\s?data-width="[^"]*"/,function(attr){
+               w = attr.split('"')[1]
+            })
+            console.log('tag',tag);
+            tag.replace(/\s?data-width="[^"]*"/,function(attr){
+               h = attr.split('"')[1]
+            })
+        });
     }
   }
 </script>

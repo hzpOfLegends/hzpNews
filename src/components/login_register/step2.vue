@@ -55,9 +55,9 @@
         }
         if(this.again_password) {
           if (this.new_password == this.again_password) {
-            this.new_password_hint = ""
+            this.again_password_hint = ""
           } else {
-            this.new_password_hint = "两次輸入的密碼不一致"
+            this.again_password_hint = "两次輸入的密碼不一致"
           }
         }
         this.next_style()
