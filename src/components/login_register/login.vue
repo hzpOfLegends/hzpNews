@@ -76,8 +76,19 @@
       this.$store.state.footer_style1 = false
 
     },
+    // 從父組件傳值過來 用於注冊成功后登陸
+    props:["success_register"],
     watch: {
-      // "$store.state"
+      "success_register.email":function (val) {
+        // 判斷值有無存在
+        if(val){
+          this.email = this.success_register.email
+          this.password = this.success_register.password
+          this.btnActive = true
+          this.submit_mess()
+
+        }
+      }
     },
     mounted() {
       // 进度条关闭
@@ -195,7 +206,8 @@
                 // 登錄失敗返回的文字
                 this.return_login_hint = ""
                 localStorage.setItem('ShareID', this.shareid)
-                this.$router.push({path: "/"})
+
+                this.$router.push({path: "/my"})
                 // 判断是否登录  用来改变样式
                 this.$store.state.judge_login = true
                 this.reset_input()
