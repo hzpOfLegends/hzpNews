@@ -89,7 +89,7 @@
           }
           return `<div style="display:inline-block;width:${w}px;height:${h}px"> ${tag}</div>`
         });
-        
+
         return newContent
       }
     },
