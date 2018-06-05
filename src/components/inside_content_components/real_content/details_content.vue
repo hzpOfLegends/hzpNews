@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="details.Content" style="width: 100% ; font-weight:300">
+      <label v-html="detail_content" style="width: 100% ; font-weight:300">
 
       </label>
     </div>
@@ -60,6 +60,7 @@
     data() {
       return {
         default_photo: "/static/img/timg.jpg",
+        detail_content:""
       }
     },
     filters: {
@@ -67,7 +68,40 @@
         return filtration.timezone_filter(value)
       }
     },
+    methods:{
+      // 將後臺返回的html字段 中的img加上父元素
+      imgHandler(dom, htmlStr) {
+        if (dom.nodeType !== 1 || (typeof htmlStr) !== 'string') return
+        let viewWidth = dom.offsetWidth
+        // let viewWidth = this.$refs.content.offsetWidth
+        htmlStr.replace(/<\s?img[^>]*>/gi, '')
+        let newContent = htmlStr.replace(/<\s?img[^>]*>/gi, function (tag) {
+          let w, h
+          tag.replace(/\s?data-width="[^"]*"/, function (attr) {
+            w = attr.split('"')[1]
+          })
+          tag.replace(/\s?data-height="[^"]*"/, function (attr) {
+            h = attr.split('"')[1]
+          })
+          if (w > viewWidth) {
+            w = Math.floor(viewWidth)
+            h = Math.floor(h * (h / w))
+          }
+          return `<div style="display:inline-block;width:${w}px;height:${h}px"> ${tag}</div>`
+        });
+
+        return newContent
+      }
+    },
     watch: {
+      "details.Content":function (val) {
+        if(val){
+          // 獲取包裹詳情内容的 標簽
+          let detail_wrap = document.querySelector('.article_conten label')
+          let a =this.imgHandler(detail_wrap,val)
+          this.detail_content = a ;
+        }
+      }
     },
     components: {
       facebook_btn,
@@ -75,6 +109,12 @@
       twitter_btn,
       facebook_comment
     },
+    mounted(){
+      // 獲取包裹詳情内容的 標簽
+      let detail_wrap = document.querySelector('.article_conten label')
+      let a =this.imgHandler(detail_wrap,this.details.Content)
+      this.detail_content = a ;
+    }
   }
 </script>
 
