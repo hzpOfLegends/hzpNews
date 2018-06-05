@@ -186,12 +186,17 @@
       })
       //大家都在读
       index_message.all_read({"pageSize": "20", "pageIndex": 1}).then(res => {
-
-        if( res.data.Data.news.length < 20){
+        this.requestCount++
+        if(res.data.Data){
+          if( res.data.Data.news.length < 20 || res.data.ResultCode==201){
+            this.$store.state.loading_style = false
+            return
+          }
+          this.all_read = res.data.Data.news
+        }else{
           this.$store.state.loading_style = false
         }
-        this.all_read = res.data.Data.news
-        this.requestCount++
+
       }).catch(err => {
       })
       //新增文章

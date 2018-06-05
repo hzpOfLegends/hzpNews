@@ -91,9 +91,13 @@
             CategoryID: localStorage.getItem('CategoryID') ? localStorage.getItem('CategoryID') : this.details.CategoryID,
             RelationID: this.$route.params.RelationID
           }).then(res => {
-            this.$store.state.other_article_content = res.data.Data.news
             // 进度条加1
             this.requestCount++
+            if(res.data.Data){
+              this.$store.state.other_article_content = res.data.Data.news
+            }
+
+
           })
           // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
@@ -180,7 +184,6 @@
       // 详情 请求
       inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data
-
         localStorage.setItem('CategoryID', this.details.CategoryID)
         inside_page_message.other_article({
           pageSize: 20,
@@ -188,14 +191,19 @@
           CategoryID: localStorage.getItem('CategoryID') ? localStorage.getItem('CategoryID') : this.details.CategoryID,
           RelationID: this.$route.params.RelationID
         }).then(res => {
-          // 判断如果不够20条 就不显示加载条
-          if(res.data.Data.news.length<20){
-            this.$store.state.loading_more = false
-            this.$store.state.loading_progress = false
-          }
-          this.$store.state.other_article_content = res.data.Data.news
           // 进度条加1
           this.requestCount++
+          if(res.data.Data){
+            // 判断如果不够20条 就不显示加载条
+            if( res.data.ResultCode==201 || res.data.Data.news.length<20){
+              this.$store.state.loading_more = false
+              this.$store.state.loading_progress = false
+            }
+            this.$store.state.other_article_content = res.data.Data.news
+          }else{
+            this.$store.state.loading_progress = false
+          }
+
         })
         // 10秒发送请求
         setTimeout(() => {
