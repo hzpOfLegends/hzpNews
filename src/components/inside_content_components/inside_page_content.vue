@@ -4,10 +4,10 @@
       <div class="float-left left_content">
         <!--詳情内容-->
         <vue-lazy-component  v-if="$store.state.phone_use==false">
-          <details_content :details="details" />
+          <details_content :details="details"/>
           <details_content_skeleton slot="skeleton"/>
         </vue-lazy-component>
-        <details_content v-if="$store.state.phone_use==true" :details="details" />
+        <details_content v-if="$store.state.phone_use==true" :details="details"/>
         <div class="float-right right_content related_articles_phone" style="display: none">
           <!--相關文章(适配)-->
           <related_articles/>
@@ -26,7 +26,7 @@
           <related_articles :hot_article="hot_article"/>
           <related_articles_skeleton slot="skeleton"/>
         </vue-lazy-component>
-        <related_articles v-if="$store.state.phone_use==true" :hot_article="hot_article" />
+        <related_articles v-if="$store.state.phone_use==true" :hot_article="hot_article"/>
       </div>
     </div>
     <skip_top/>
@@ -53,6 +53,7 @@
   // 引入路由
   import inside_page_message from '@/axios_joggle/axios_inside'
   import verify_time from '@/axios_joggle/axios_verify_10'
+
   export default {
     name: "inside_page_content",
     components: {
@@ -65,35 +66,34 @@
       'vue-lazy-component': VueLazyComponent,
       skip_top //點擊到頂部
     },
-    data(){
+    data() {
       return {
-        details:"", // 传过去details 子组件的值
-        hot_article:"", // 传过去 子组件relate的值
-        requestCount:0 // 进度条的值
+        details: "", // 传过去details 子组件的值
+        hot_article: "", // 传过去 子组件relate的值
+        requestCount: 0 // 进度条的值
       }
     },
     watch: {
-      "$route.path":function () {
-        console.log("start")
+      "$route.path": function () {
         // 控制最頂部 進度條 將進度條歸零
         this.requestCount = 0
         // 開啓進度條
         this.$NProgress.start()
         // 详情 请求
-            // other_article
+        // other_article
         inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
           this.details = res.data.Data
-          localStorage.setItem('CategoryID',this.details.CategoryID)
+
+          localStorage.setItem('CategoryID', this.details.CategoryID)
           inside_page_message.other_article({
             pageSize: 20,
             pageIndex: 1,
-            CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
+            CategoryID: localStorage.getItem('CategoryID') ? localStorage.getItem('CategoryID') : this.details.CategoryID,
             RelationID: this.$route.params.RelationID
-          }).then(res=>{
+          }).then(res => {
             this.$store.state.other_article_content = res.data.Data.news
             // 进度条加1
             this.requestCount++
-            console.log(1,this.requestCount)
           })
           // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
@@ -105,7 +105,10 @@
           }, 1)
           // 設置定時器 10秒 用於后露記錄
           setTimeout(() => {
-            verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
+            verify_time.timed_10({
+              "RelationID": this.$route.params.RelationID,
+              "ShareID": this.$route.query.r ? this.$route.query.r : ""
+            }).then(res => {
             }).catch(err => {
               console.log(err)
             })
@@ -114,11 +117,11 @@
         })
 
         // related
-        inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
+        inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
           this.hot_article = res.data.Data
           // 进度条加1
           this.requestCount++
-          console.log(2,this.requestCount)
+          console.log(2, this.requestCount)
         }).catch(err => {
           console.log(err)
         })
@@ -131,21 +134,22 @@
         }
         $('body').animate({scrollTop: 0}, 500);
       },
-      "requestCount":"closeNProgress"
+      "requestCount": "closeNProgress"
     },
-    methods:{
+    methods: {
       // 點擊其他地方 關閉導航下拉
-      close_nav_down(){
+      close_nav_down() {
         this.$store.state.nav_down = false;
         this.$store.state.nav_down_icon = "fa fa-bars"
       },
       // 关闭进度条
-      closeNProgress(){
-        if(this.requestCount >= 2){
+      closeNProgress() {
+        if (this.requestCount >= 2) {
           this.$NProgress.done()
           this.requestCount = 0
         }
       },
+
     },
     mounted() {
 
@@ -177,14 +181,14 @@
       // 详情 请求
       inside_page_message.get_new_info({RelationID: this.$route.path.split('/')[2]}).then(res => {
         this.details = res.data.Data
-        localStorage.setItem('CategoryID',this.details.CategoryID)
+
+        localStorage.setItem('CategoryID', this.details.CategoryID)
         inside_page_message.other_article({
           pageSize: 20,
           pageIndex: 1,
-          CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
+          CategoryID: localStorage.getItem('CategoryID') ? localStorage.getItem('CategoryID') : this.details.CategoryID,
           RelationID: this.$route.params.RelationID
-        }).then(res=>{
-          console.log(res);
+        }).then(res => {
           this.$store.state.other_article_content = res.data.Data.news
           // 进度条加1
           this.requestCount++
@@ -199,7 +203,10 @@
           }
         }, 1)
         setTimeout(() => {
-          verify_time.timed_10({"RelationID":this.$route.params.RelationID,"ShareID":this.$route.query.r?this.$route.query.r:""}).then(res => {
+          verify_time.timed_10({
+            "RelationID": this.$route.params.RelationID,
+            "ShareID": this.$route.query.r ? this.$route.query.r : ""
+          }).then(res => {
           }).catch(err => {
             console.log(err)
           })
@@ -208,7 +215,7 @@
         console.log(err);
       })
       // related
-      inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
+      inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
         this.hot_article = res.data.Data
         // 进度条加1
         this.requestCount++
