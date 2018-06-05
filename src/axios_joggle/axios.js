@@ -3,8 +3,8 @@ import router from '@/router/index'
 import {Message} from 'element-ui'
 import store from '../store/store'
 // axios.path = "http://192.168.30.10:3300/"
-axios.path = "http://35.234.61.6/"
-// axios.path = "/apis/"
+// axios.path = "http://35.234.61.6/"
+axios.path = "/apis/"
 // http 请求拦截器
 axios.interceptors.request.use(config => {
 let Ticket = localStorage.getItem("Ticket");
@@ -44,13 +44,13 @@ axios.interceptors.response.use(data => {// 响应成功关闭loading
 }, error => {
   if (error && error.response) {
     if (error.response.status == 401) {
-      Message({
-        message: '此頁面需要登錄后操作！',
-        type: 'warning',
-        duration: 2200,
-        showClose: true
-      });
-      store.commit('setIs401', true)  //通知有組件清除登錄信息
+      // Message({
+      //   message: '此頁面需要登錄后操作！',
+      //   type: 'warning',
+      //   duration: 2200,
+      //   showClose: true
+      // });
+      store.commit('setIs401', true)  //通知組件清除登錄信息
     } else if (error.response.status == 1200) {
       Message({
         message: '請勿頻繁操作！',

@@ -123,15 +123,7 @@ import Clipboard from 'clipboard';
                 }
             }
         },
-        metaInfo: {
-            title: "hello!vue-meta",
-            // titleTemplate: '%s - by vue-meta',
-            // htmlAttrs: {
-            // lang: 'zh'
-            // },
-            // script: [{innerHTML: 'console.log("hello hello!")', type: 'text/javascript'}],
-            // __dangerouslyDisableSanitizers: ['script']
-        },
+
         methods:{
             search(){
                 if(this.selectCategoryID || this.selectDate){

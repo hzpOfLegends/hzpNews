@@ -166,6 +166,7 @@ import Clipboard from 'clipboard';
                             this.loading = false
                             if(res.data.ResultCode==200){
                                 this.getMyNews()
+                                this.$store.state.refreshUserInfo = true  //通知刷新userinfo
                                 this.$message({
                                     message: '刪除成功！',
                                     type: 'success'
