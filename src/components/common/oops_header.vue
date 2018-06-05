@@ -33,7 +33,7 @@
                 <i class="fa fa-user"></i>
                 當前用戶：
                 <span>
-                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>
+                <router-link to="/my/user/dashboard" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>
               </span>
                 <span class="subscript">
                   <div class="btn-group">

@@ -27,7 +27,7 @@
             </br>
             <div class="btns">
                 <button type="" class="btn btn-default" @click="callClose()">取 消</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="" class="btn btn-default"  v-if="ver.all"  @click="modify()" style="background:#eeeeee">保存更改</button>
+                <button type="" class="btn btn-primary"  v-if="ver.all"  @click="modify()">保存更改</button>
                 <button type="" class="btn btn-default" v-else  disabled>保存更改</button>
             </div>
             </div>
@@ -87,7 +87,7 @@ import verify from '../../../assets/verify'
                     this.ver.newPwd1 = verify.password(this.newPassword1) ? true:false
                     this.ver.newPwdSame = this.newPassword1 === this.newPassword ? true:false
                 }
-                if(this.ver.email && this.ver.oldPwd &&this.ver.newPwd && this.ver.newPwd1 && this.ver.newPwdSame){
+                if(this.oldPassword && this.newPassword && this.newPassword1 && this.ver.email && this.ver.oldPwd &&this.ver.newPwd && this.ver.newPwd1 && this.ver.newPwdSame){
                     this.ver.all = true
                 }else{
                     this.ver.all = false

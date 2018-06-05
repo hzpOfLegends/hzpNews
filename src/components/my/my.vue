@@ -137,7 +137,7 @@
             this.getUserInfo(()=>{
                 this.$store.state.refreshUserInfo=false
                 // console.log('获取成功');
-            })
+            }) 
         }
       }
     },
@@ -146,7 +146,6 @@
       changeRoute() {
         //获取第一个//中的字段
         let currentPath = this.$route.path;
-        console.log(currentPath.indexOf('/my/article'));
         let index = '';
         for (let key in this.routeObj) {
           if (currentPath.indexOf(this.routeObj[key]) !== -1) {
@@ -186,7 +185,6 @@
               if(res.data.ResultCode==200){
                   localStorage.setItem('user_info',JSON.stringify(res.data.Data))
                   this.$store.state.user_info = res.data.Data
-                  this.show = true;
                   this.$NProgress.done()
                   // this.init()  //重新初始化頁面
                   callback && callback()
@@ -196,7 +194,7 @@
       //初始化函数
       init() {
         if (localStorage.getItem('user_info')) {
-          this.getUserInfo()
+            this.show = true;
         } else {
           this.$message({
             showClose: true,

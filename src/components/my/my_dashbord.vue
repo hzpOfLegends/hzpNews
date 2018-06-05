@@ -299,9 +299,7 @@ import Clipboard from 'clipboard';
 
         },
         created(){
-            // this.userInfo = JSON.parse(localStorage.getItem('myUserInfo'))
-            this.userInfo = JSON.parse(localStorage.getItem('user_info'))
-
+            this.$store.state.refreshUserInfo = true  //通知刷新userinfo
             if(!this.$route.query.CategoryID || !this.$route.query.pageIndex){
                 this.$router.push({query:{CategoryID:'0',pageIndex:'1'}})
             }else{
