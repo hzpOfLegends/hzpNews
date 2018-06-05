@@ -72,7 +72,7 @@
     },
     methods:{
       // 將後臺返回的html字段 中的img加上父元素
-      imgHandler(dom, htmlStr,callback) {
+      imgHandler(dom, htmlStr,callback1,callback2) {
         if (dom.nodeType !== 1 || (typeof htmlStr) !== 'string') return
         let viewWidth = dom.offsetWidth
         console.log("viewWidth",viewWidth)
@@ -91,14 +91,21 @@
             w = Math.floor(viewWidth)
             h = Math.floor(w * (h / temp_w))
           }
-          return `<div style="display:inline-block;width:${w}px;height:${h}px"> ${tag}</div>`
+          return `<div class="details_img_wrap" style="display:inline-block;width:${w}px;height:${h}px;margin-bottom: 10px;"> ${tag}</div>`
         });
-        console.log(advertising)
         setTimeout(()=>{
-          callback && callback(dom,advertising.createAdvert())
-
+          callback1 && callback1(dom,advertising.createAdvert())
+          // 回调 用来设置图片最大宽
+          callback2()
         },50)
         return newContent
+      },
+      // 用来设置图片最大宽
+      img_set_width(){
+          let imgs = document.querySelectorAll('.details_img_wrap img')
+          for(let i = 0 ; i<imgs.length ; i++){
+            imgs[i].style.maxWidth = "100%"
+          }
       }
     },
     watch: {
@@ -106,7 +113,7 @@
         if(val){
           // 獲取包裹詳情内容的 標簽
           let detail_wrap = document.querySelector('.article_conten label')
-          let a =this.imgHandler(detail_wrap,val,advertising.insertToContent)
+          let a =this.imgHandler(detail_wrap,val,advertising.insertToContent,this.img_set_width)
           this.detail_content = a ;
         }
       }
@@ -121,7 +128,7 @@
       console.log(advertising.insertToContent)
       // 獲取包裹詳情内容的 標簽
       let detail_wrap = document.querySelector('.article_conten label')
-      let a =this.imgHandler(detail_wrap,this.details.Content,advertising.insertToContent)
+      let a =this.imgHandler(detail_wrap,this.details.Content,advertising.insertToContent,this.img_set_width)
       this.detail_content = a ;
     }
   }
