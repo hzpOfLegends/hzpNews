@@ -197,6 +197,12 @@
           // 进度条加1
           this.requestCount++
         })
+        setTimeout(()=>{
+          let imgs = document.querySelectorAll('.article_conten label img')
+          for(let i = 0 ; i<imgs.length ; i++){
+            imgs[i].style.maxWidth = "100%"
+          }
+        },1)
         // 10秒发送请求
         setTimeout(() => {
           verify_time.timed_10({

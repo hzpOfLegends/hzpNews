@@ -75,6 +75,7 @@
       imgHandler(dom, htmlStr,callback) {
         if (dom.nodeType !== 1 || (typeof htmlStr) !== 'string') return
         let viewWidth = dom.offsetWidth
+        console.log("viewWidth",viewWidth)
         // let viewWidth = this.$refs.content.offsetWidth
         htmlStr.replace(/<\s?img[^>]*>/gi, '')
         let newContent = htmlStr.replace(/<\s?img[^>]*>/gi, function (tag) {
@@ -86,8 +87,9 @@
             h = attr.split('"')[1]
           })
           if (w > viewWidth) {
+            let temp_w = w
             w = Math.floor(viewWidth)
-            h = Math.floor(h * (h / w))
+            h = Math.floor(w * (h / temp_w))
           }
           return `<div style="display:inline-block;width:${w}px;height:${h}px"> ${tag}</div>`
         });
