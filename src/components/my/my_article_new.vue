@@ -151,7 +151,6 @@ export default {
       },
       methods:{
           submitArticle(){
-              console.log(this.editor.txt.html());return;
             if( !this.article.category){
                 this.$message({
                     message: '請輸入類別',

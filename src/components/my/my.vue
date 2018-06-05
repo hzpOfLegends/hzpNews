@@ -104,7 +104,7 @@
 
     </div>
 
-    <div style="min-height:400px;width:100%;" v-loading="loading">
+    <div style="min-height:555px;width:100%;" v-loading="loading">
       <router-view v-if="show"></router-view>
     </div>
   </div>

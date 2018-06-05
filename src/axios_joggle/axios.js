@@ -3,8 +3,8 @@ import router from '@/router/index'
 import {Message} from 'element-ui'
 import store from '../store/store'
 // axios.path = "http://192.168.30.10:3300/"
-// axios.path = "http://35.234.61.6/"
-axios.path = "/apis/"
+axios.path = "http://35.234.61.6/"
+// axios.path = "/apis/"
 // http 请求拦截器
 axios.interceptors.request.use(config => {
 let Ticket = localStorage.getItem("Ticket");
