@@ -186,6 +186,10 @@
       })
       //大家都在读
       index_message.all_read({"pageSize": "20", "pageIndex": 1}).then(res => {
+
+        if( res.data.Data.news.length < 20){
+          this.$store.state.loading_style = false
+        }
         this.all_read = res.data.Data.news
         this.requestCount++
       }).catch(err => {

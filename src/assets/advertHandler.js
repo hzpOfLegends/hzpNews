@@ -8,8 +8,7 @@ export default {
     },
     // 内文广告插入 （大於屏幕高度 插入）
     // params :  target目标DOM,advert广告Dom内容
-    insertToContent(target,advert=this.createAdvert()){
-        console.log(advert);
+    insertToContent(target,advert){
         let vh = window.innerHeight  // 用戶當前窗口高度
         let offset = 0
         let ah = 100  //廣告dom高度 (先假設)
@@ -27,7 +26,7 @@ export default {
                         i++
                     }else if( (doms[i].offsetTop+doms[i].offsetHeight) >= (offset+ah+vh*2) ){
                         insert(doms[i],advertDom) //递归遍历（对于大于两个屏幕以上的元素）
-                        // i--  
+                        // i--
                     }
                 }
             }else{

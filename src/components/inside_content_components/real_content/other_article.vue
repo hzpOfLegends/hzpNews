@@ -36,7 +36,7 @@
         </router-link>
       </div>
       <div>
-        <loading/>
+        <loading v-show="$store.state.loading_progress"/>
       </div>
     </div>
   </div>
@@ -98,26 +98,34 @@
       var that = this
       // 監聽 滾動加載更多數據
       $(window).scroll(function () {
-        if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
-          //同区其他文章
-          if (isbool) {
-            that.pageNum = that.pageNum + 1
-            isbool = false
-            inside_page_message.other_article({
-              pageSize: "20",
-              pageIndex: that.pageNum,
-              CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
-              RelationID: that.$route.params.RelationID
-            }).then(res => {
-              for (let i = 0; i < res.data.Data.news.length; i++) {
-                that.$store.state.other_article_content.push(res.data.Data.news[i])
-              }
-              isbool = true
-            }).catch(err => {
-            })
+          if (($(this).scrollTop() + $(window).height()) >= $(document).height()-1 && isbool == true) {
+            if(that.$store.state.loading_progress){
+            //同区其他文章
+            if (isbool) {
+              that.pageNum = that.pageNum + 1
+              isbool = false
+              inside_page_message.other_article({
+                pageSize: "20",
+                pageIndex: that.pageNum,
+                CategoryID: localStorage.getItem('CategoryID')?localStorage.getItem('CategoryID'):this.details.CategoryID,
+                RelationID: that.$route.params.RelationID
+              }).then(res => {
+                if(res.data.ResultCode==201){
+                  that.$store.state.loading_progress = false
+                  return
+                }
+                  for (let i = 0; i < res.data.Data.news.length; i++) {
+                    that.$store.state.other_article_content.push(res.data.Data.news[i])
+                  }
+                  isbool = true
+
+              }).catch(err => {
+                isbool = true
+              })
+            }
           }
-          isbool = false
         }
+
       })
     }
   }

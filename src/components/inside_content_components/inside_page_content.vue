@@ -152,7 +152,6 @@
 
     },
     mounted() {
-
       // 將滾輪 滾到 頂部
       if ($('html').scrollTop()) {
         $('html').animate({scrollTop: 0}, 1000);
@@ -189,19 +188,16 @@
           CategoryID: localStorage.getItem('CategoryID') ? localStorage.getItem('CategoryID') : this.details.CategoryID,
           RelationID: this.$route.params.RelationID
         }).then(res => {
+          // 判断如果不够20条 就不显示加载条
+          if(res.data.Data.news.length<20){
+            this.$store.state.loading_more = false
+            this.$store.state.loading_progress = false
+          }
           this.$store.state.other_article_content = res.data.Data.news
           // 进度条加1
           this.requestCount++
         })
-        setTimeout(() => {
-          let imgs = document.querySelectorAll('.article_conten img')
-
-          for (let i = 0; i < imgs.length; i++) {
-            // imgs[i].style.height = imgs[i].getAttribute('data-height')
-            // imgs[i].style.width = imgs[i].getAttribute('data-width')
-            imgs[i].style.maxWidth = '100%'
-          }
-        }, 1)
+        // 10秒发送请求
         setTimeout(() => {
           verify_time.timed_10({
             "RelationID": this.$route.params.RelationID,

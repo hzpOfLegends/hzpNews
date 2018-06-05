@@ -4,7 +4,7 @@
     </h5>
     <div class=" all_read_wrap">
       <div class="recent_hot_content clearfix " v-for="(item,index) in all_read" :key="index"
-           >
+      >
         <router-link :to="{path:'/article/'+item.RelationID}">
           <div class="row">
             <!--<router-link to="index/particulars">-->
@@ -33,7 +33,7 @@
           </div>
         </router-link>
       </div>
-      <loading v-if="$store.state.loading_style"/>
+      <loading v-show="$store.state.loading_style"/>
     </div>
   </div>
 </template>
@@ -47,7 +47,6 @@
   import loading from '../../oneself/loading'
 
   export default {
-    name: "all_read",
     data() {
       return {
         recent_hot: [{
@@ -83,7 +82,7 @@
     components: {
       loading //loading组件引入
     },
-    props:['all_read'],
+    props: ['all_read'],
     created() {
 
     },
@@ -92,29 +91,37 @@
         return filtration.timezone_filter(value)
       }
     },
-    methods: {
-    },
+    methods: {},
     mounted() {
       // 用于判断 防止重复请求
       var isbool = true
       var that = this
       // 監聽 加載更多
       $(window).scroll(function () {
-        if (($(this).scrollTop() + $(window).height()) >= $(document).height() - 1 && isbool == true) {
-          //大家都在读
-          if (isbool && that.all_read) {
-            that.pageNum = that.pageNum + 1
-            isbool = false
-            index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
-              // 向父組件 發送數據 讓父組件再傳給子組件
-              that.$emit("loadMore",res.data.Data.news)
-              isbool = true
-            }).catch(err => {
-              isbool = true
-            })
-          }
+        // 此操作 是为了防止无数据了 加载条还在加载
 
+        if (($(this).scrollTop() + $(window).height()) >= $(document).height() - 1 && isbool == true) {
+          if (that.$store.state.loading_style) {
+            //大家都在读
+            if (isbool && that.all_read) {
+              that.pageNum = that.pageNum + 1
+              isbool = false
+              index_message.all_read({"pageSize": "20", "pageIndex": that.pageNum}).then(res => {
+                if (res.data.ResultCode == 201) {
+                  that.$store.state.loading_style = false
+                  return
+                }
+                // 向父組件 發送數據 讓父組件再傳給子組件
+                that.$emit("loadMore", res.data.Data.news)
+                isbool = true
+              }).catch(err => {
+                isbool = true
+              })
+            }
+
+          }
         }
+
       })
 
     }
@@ -159,7 +166,7 @@
     border-top: 8px solid #f39900;
     padding: 10px 20px 20px;
     text-align: left;
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 
     .all_read_wrap {
       padding: 0;
@@ -199,7 +206,7 @@
           padding-left: 15px;
           .top {
             display: flex;
-            height:100%;
+            height: 100%;
             :nth-child(1) > p {
               margin-top: 2px;
               display: block;
@@ -215,7 +222,7 @@
               line-height: 26px;
               border-radius: 3px;
             }
-            :nth-child(2){
+            :nth-child(2) {
               max-width: 460px;
               overflow: hidden;
             }
@@ -234,14 +241,14 @@
             font-size: 14px;
             max-height: 80px;
             color: #666;
-            p{
-               max-height: 60px;
-               height: 100%;
-               display: -webkit-box;
-               -webkit-box-orient: vertical;
-               -webkit-line-clamp: 3;
-               overflow: hidden;
-             }
+            p {
+              max-height: 60px;
+              height: 100%;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+            }
           }
           .bottom {
             .author {

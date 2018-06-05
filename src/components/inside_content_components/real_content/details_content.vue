@@ -44,6 +44,8 @@
   // 引入路由
   import inside_page_message from '@/axios_joggle/axios_inside'
   import verify_time from '@/axios_joggle/axios_verify_10'
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
   // 时区转换
   import filtration from '@/assets/filtration'
   // facebook 评论插件
@@ -70,7 +72,7 @@
     },
     methods:{
       // 將後臺返回的html字段 中的img加上父元素
-      imgHandler(dom, htmlStr) {
+      imgHandler(dom, htmlStr,callback) {
         if (dom.nodeType !== 1 || (typeof htmlStr) !== 'string') return
         let viewWidth = dom.offsetWidth
         // let viewWidth = this.$refs.content.offsetWidth
@@ -89,7 +91,11 @@
           }
           return `<div style="display:inline-block;width:${w}px;height:${h}px"> ${tag}</div>`
         });
+        console.log(advertising)
+        setTimeout(()=>{
+          callback && callback(dom,advertising.createAdvert())
 
+        },50)
         return newContent
       }
     },
@@ -98,7 +104,7 @@
         if(val){
           // 獲取包裹詳情内容的 標簽
           let detail_wrap = document.querySelector('.article_conten label')
-          let a =this.imgHandler(detail_wrap,val)
+          let a =this.imgHandler(detail_wrap,val,advertising.insertToContent)
           this.detail_content = a ;
         }
       }
@@ -110,9 +116,10 @@
       facebook_comment
     },
     mounted(){
+      console.log(advertising.insertToContent)
       // 獲取包裹詳情内容的 標簽
       let detail_wrap = document.querySelector('.article_conten label')
-      let a =this.imgHandler(detail_wrap,this.details.Content)
+      let a =this.imgHandler(detail_wrap,this.details.Content,advertising.insertToContent)
       this.detail_content = a ;
     }
   }

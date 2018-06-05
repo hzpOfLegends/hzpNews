@@ -51,12 +51,12 @@
               <div class="float-right user_message" style="padding-right:1.5%">
                 <i class="fa fa-file-text-o"></i>
                 發表文章：
-                <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
+                <span style="color:red" >{{$store.state.user_info.ArticleCount}}</span>
               </div>
               <div class="float-right user_message" style="padding-right:1.5%">
                 <i class="fa fa-money"></i>
                 我的收入：
-                <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>
+                <span style="color:red" >{{$store.state.user_info.Profit}}</span>
               </div>
             </div>
             <div class="media_user_block" style="display: none;text-align: right;padding-right: 20px">
@@ -68,14 +68,14 @@
                     <div class="user_message" style="margin-left: 0;text-align: center">
                       <i class="fa fa-money"></i>
                       我的收入：                                        <!--第一步 用vuex同步信息 第二步防止刷新信息丟失 -->
-                      <span style="color:red" @click="skip_center()">{{$store.state.user_info.Profit}}</span>
+                      <span style="color:red" >{{$store.state.user_info.Profit}}</span>
                     </div>
                   </li>
                   <li>
                     <div class="user_message" style="margin-left: 0;text-align: center">
                       <i class="fa fa-file-text-o"></i>
                       發表文章：
-                      <span style="color:red" @click="skip_center()">{{$store.state.user_info.ArticleCount}}</span>
+                      <span style="color:red" >{{$store.state.user_info.ArticleCount}}</span>
                     </div>
                   </li>
                   <li>
