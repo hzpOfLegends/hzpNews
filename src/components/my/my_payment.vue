@@ -6,7 +6,7 @@
 
           </div>
         <div class="account-show">
-            我的賬戶餘額：<span>{{userInfo.Profit}}</span>
+            我的賬戶餘額：<span>{{$store.state.user_info.Profit}}</span>
         </div>
         <div class="m-tab">
             <ul class="clearfix">
