@@ -33,7 +33,7 @@
       oopsFooter
     },
     watch: {
-      "$route.fullPath": "getMeta",
+      "$route.fullPath": "getMeta"
     },
     metaInfo() {
       return {
@@ -41,6 +41,11 @@
         meta: this.$store.state.meta.meta || '',
         link: this.$store.state.meta.link || ''
       }
+    },
+    mounted(){
+
+      console.log(this.$route)
+
     },
     methods: {
       getMeta() {
@@ -197,7 +202,11 @@
           }
           this.$store.commit('setMeta', meta)
         })
+      },
+      setBackground(){
+
       }
+
     },
     data() {
       return {

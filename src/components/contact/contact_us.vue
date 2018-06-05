@@ -91,6 +91,12 @@
           console.log('no')
         }
       }
+    },
+    mounted(){
+      this.$store.state.footer_style1 = true
+      // 更换背景
+      let oops_content_wrap = document.querySelector('.oops_content_wrap')
+      oops_content_wrap.style.background = "#f4f4f4"
     }
   }
 </script>
