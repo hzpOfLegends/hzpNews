@@ -128,6 +128,11 @@ export default {
             phoneNum:'',
         }
     },
+    watch:{
+        'this.$store.state.refreshUserInfo':function(){
+            this.init()
+        }
+    },
     components:{
         modifyPWD,modifyMail,modifyPhone,imgUpload
     },
@@ -145,7 +150,8 @@ export default {
         // 監聽子組件關閉信號
         closeSubcomponent(success){
             if(success){
-                this.getUserInfo()
+                // this.getUserInfo()
+                this.$store.state.refreshUserInfo = true  //通知刷新userinfo
             }
             this.modify = ''
         },
@@ -166,7 +172,8 @@ export default {
           }).then(res=>{
               this.loading = false
               if(res.data.ResultCode==200){
-                    this.getUserInfo()
+                    // this.getUserInfo()
+                    this.$store.state.refreshUserInfo = true  //通知刷新userinfo
                     this.$message({
                     message: '修改成功！',
                     type: 'success'

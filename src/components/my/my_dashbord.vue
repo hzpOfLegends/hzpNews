@@ -2,29 +2,30 @@
   <div class="account-home">
       <div class="user-info row">
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 l-box">
-              <div class="photo">
-                    <img v-if="userInfo.Avatar" :src="userInfo.Avatar" alt="">
+              <div class="photo"  @click="$router.push({path:'/my/user/info'})" style="cursor:pointer">
+                    <img v-if="$store.state.user_info.Avatar" :src="$store.state.user_info.Avatar" alt="">
                     <img v-else src="/static/img/timg.jpg" alt="">
                   <!--<img src="/static/img/timg.jpg" alt="">-->
               </div>
               <div class="msg">
-                  <h5 style="margin:0 0 5px 0">{{userInfo.Name}}</h5>
+                  <h5 style="margin:0 0 5px 0">{{$store.state.user_info.Name}}</h5>
                   <span>我的會員等級：</span><span style="color:#fcae69">1級</span> <br/>
-                  <span>我的賬戶金額：</span><span style="color:#fb8b82">{{userInfo.Profit}}</span>
+                  <span>我的賬戶金額：</span><span style="color:#fb8b82">{{$store.state.user_info.Profit || 0}}</span>
               </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 r-box">
                 <div>
                     <div class="bg bg1"></div>
-                    <p>最新消息(<span>无</span>)</p> 
+                    <p>最新消息(<span>0</span>)</p> 
                 </div>
                 <div>
-                    <div class="bg bg2"></div>
-                    <p>發表文章(<span>{{userInfo.ArticleCount}}</span>)</p> 
+                    <div class="bg bg2" @click="$router.push({path:'/my/article/list?CategoryID=0&pageIndex=1'})"></div>
+                    <p>發表文章(<span>{{$store.state.user_info.ArticleCount || 0}}</span>)</p> 
                 </div>
                 <div>
-                    <div class="bg bg3"></div>
-                    <p>我的收入(<span>{{userInfo.Profit}}</span>)</p> 
+                    <div class="bg bg3" @click="$router.push({path:'/my/payment/income?CategoryID=0&pageIndex=1'})"></div>
+                    <p>我的收益(<span>{{$store.state.user_info.Profit || 0}}</span>)</p> 
+                    
                 </div>
           </div>
       </div>
@@ -404,9 +405,11 @@ overflow: hidden;
                     background:url('/static/img/msg_icon.png') no-repeat 0px 7px;
                 }
                 .bg2 {
+                    cursor:pointer;
                     background:url('/static/img/doc_icon.png') no-repeat 0px 7px;
                 }
                 .bg3 {
+                    cursor:pointer;
                     background:url('/static/img/gains_icon.png') no-repeat 0px 7px;
                 }
                 p{

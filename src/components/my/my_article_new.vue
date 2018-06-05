@@ -65,9 +65,9 @@
             <button v-if="status==='add'" type="button" class="btn btn-primary" style="padding:11px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">發 表</button>
             <button v-if="status==='edit'" type="button" class="btn btn-primary" style="padding:11px 35px;margin-top:18px;font-size:14px" @click="submitArticle()">保 存</button>
             </form>
-            <div v-html="xss"></div>
+            <!--<div v-html="xss"></div>
 
-            </div>
+            </div>-->
         </div>
           
       </div>
@@ -186,6 +186,10 @@ export default {
                             type: 'success'
                         });
                     }
+                    this.$store.state.refreshUserInfo = true  //通知刷新userinfo
+                    this.article.title = ''
+                    this.article.category = ''
+                    this.editor.txt.html('<p><br></p>')
                 }).catch(err=>{
                     this.loading = false;
                     console.log('error!',err);
@@ -206,6 +210,9 @@ export default {
                             type: 'success'
                         });
                     }
+                    this.$router.push({
+                        path:'/my/article/list?CategoryID=0&pageIndex=1'
+                    })
                 }).catch(err=>{
                     this.loading = false;
                     console.log('error!',err);
@@ -252,7 +259,7 @@ export default {
           }else{
               this.status = 'add'
           }
-
+          console.log(this.$route);
                     //   this.xss = '<button onclick="eval(alert(/12345/))">xss</button>'
                     //   this.xss = '<button onmouseenter="eval(alert(/12345/))">xss</button>'
                     //   this.xss = '<anytag onmouseover=alert(15)>M'

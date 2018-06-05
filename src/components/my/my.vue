@@ -30,33 +30,33 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:0">
               <ul class="nav navbar-nav nav-list">
-                <li index='0' @click="clickNav('0')">
+                <li index='0'>
                   <router-link to="/my/user/dashboard">
                     <i class="fa fa-pie-chart"></i> 總覽
                   </router-link>
                 </li>
-                <li index='1' @click="clickNav('1')">
+                <li index='1'>
                   <router-link to="/my/user/info">
                     <i class="fa fa-user" style="font-size:16px"></i> 資料
                   </router-link>
                 </li>
-                <li index='2' @click="clickNav('2')">
+                <li index='2'>
                   <!--<router-link to="/my/article/list" >-->
-                  <router-link to="/my/article/list">
+                  <router-link to="/my/article/list?CategoryID=0&pageIndex=1">
                     <i class="fa fa-file-text" style="font-size:13px"></i> 文章
                   </router-link>
                 </li>
-                <li index='3' @click="clickNav('3')">
+                <li index='3'>
                   <router-link to="/my/record">
                     <img src="/static/img/my_record_icon.png" alt="" style="margin-top:-5px;width:18px;"> 點閱
                   </router-link>
                 </li>
-                <li index='4' @click="clickNav('4')">
+                <li index='4'>
                   <router-link to="/my/share">
                     <i class="fa fa-thumbs-up" style="font-size:16px"></i> 好文
                   </router-link>
                 </li>
-                <li index='5' @click="clickNav('5')">
+                <li index='5'>
                   <router-link to="/my/payment/income">
                     <img src="/static/img/my_payment_icon.png" alt="" style="height:14px;margin-top:-2px"> 收益
                   </router-link>
@@ -112,7 +112,6 @@
 
 <script>
   import accountAxios from '../../axios_joggle/axios_account'
-
   export default {
     data() {
       return {
@@ -133,12 +132,21 @@
     components: {},
     watch: {
       '$route.path': 'changeRoute',
+      '$store.state.refreshUserInfo':function(){
+        if(this.$store.state.refreshUserInfo){
+            this.getUserInfo(()=>{
+                this.$store.state.refreshUserInfo=false
+                // console.log('获取成功');
+            })
+        }
+      }
     },
     methods: {
       //路由改变处理
       changeRoute() {
         //获取第一个//中的字段
         let currentPath = this.$route.path;
+        console.log(currentPath.indexOf('/my/article'));
         let index = '';
         for (let key in this.routeObj) {
           if (currentPath.indexOf(this.routeObj[key]) !== -1) {
@@ -151,15 +159,15 @@
       //设置主导航
       setNavStyle(currentIndex) {
         document.querySelectorAll('.nav-list>li').forEach((v, i) => {
-          let a = v.querySelector('a')
           if (v.getAttribute('index') == currentIndex) {
-            a.classList.add('c-active');
+            v.classList.add('c-active');
           } else {
-            a.classList.remove('c-active');
+            v.classList.remove('c-active');
           }
 
         })
       },
+      // 自动登录 （开发测试用）
       login() {
         accountAxios.login({
           loginName: "18566086988@163.com",
@@ -173,9 +181,22 @@
         })
       },
       //获取个人资料
-      getUserInfo() {
+      getUserInfo(callback){
+          accountAxios.userInfo({}).then(res=>{
+              if(res.data.ResultCode==200){
+                  localStorage.setItem('user_info',JSON.stringify(res.data.Data))
+                  this.$store.state.user_info = res.data.Data
+                  this.show = true;
+                  this.$NProgress.done()
+                  // this.init()  //重新初始化頁面
+                  callback && callback()
+              }
+          })
+      },
+      //初始化函数
+      init() {
         if (localStorage.getItem('user_info')) {
-          this.show = true;
+          this.getUserInfo()
         } else {
           this.$message({
             showClose: true,
@@ -184,42 +205,21 @@
           });
           this.$router.push({path: '/user/login'})
         }
-        // accountAxios.userInfo({}).then(res=>{
-        //     if(res.data.ResultCode==200){
-        //         localStorage.setItem('myUserInfo',JSON.stringify(res.data.Data))
-        //         this.show = true;
-        //     }
-        // })
-      },
-      clickNav(index) {
-        // console.log(index);
-      },
-      init() {
-        // localStorage.setItem('user_info')
-        this.loading = true;
-        accountAxios.userInfo({}).then(res => {
-          if (res.data.ResultCode == 200) {
-            localStorage.setItem('myUserInfo', JSON.stringify(res.data.Data))
-            localStorage.setItem('myUserInfo', JSON.stringify(res.data.Data))
-            this.show = true;
-          }
-          this.loading = false;
-        }).catch(err => {
-          this.loading = false;
-        })
+
       }
 
     },
     mounted() {
       this.changeRoute()
+      this.$NProgress.start()
       // 更换背景
       let oops_content_wrap = document.querySelector('.oops_content_wrap')
       oops_content_wrap.style.background = "#f4f4f4"
     },
     created() {
-      // this.init()
-      // this.login()
-      this.getUserInfo()
+      this.init()
+
+
       // 因爲 點進來 要刷新才出現 底部 所以 在這裏開啓
       this.$store.state.foot_all_style = true
     }
@@ -292,7 +292,7 @@
         // color: red;
       }
       .router-link-active {
-        background-color: #053871 !important;
+        // background-color: #053871 !important;
         // text-align:left;
         // color: red;
       }

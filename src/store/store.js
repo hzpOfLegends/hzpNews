@@ -24,6 +24,7 @@ const state = {
   phone_use:false, //移動端不用骨架
   loading_progress:true, //同区其他文章 下拉无限加载
   loading_more:true, // 判断返回的数据如果少于20条 就不在加载更多
+  refreshUserInfo:false, //通知全局获取userinfo
 }
 const mutations = {
     setMeta(state,value){
