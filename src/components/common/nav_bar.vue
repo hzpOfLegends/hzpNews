@@ -28,43 +28,46 @@
       <div style="height: 100%">
         <div v-show="$store.state.nav_down" class="nav_bar_down "
              style="position: absolute;transform: translateY(0%);left: 0">
-          <nav_bar_down/>
-          <div class="the_footer clearfix">
-            <div class="float-left the_footer_chara col-xs-12" style="padding: 10px">
-              <router-link to="/contactus">
-                <span @click="footer_show">
-                聯係我們
-                  </span>
-              </router-link>
-              <span class="want_line"></span>
-              <router-link to="/help">
-                <span @click="footer_show">
-                幫助中心
-                  </span>
-              </router-link>
-              <span class="want_line "></span>
-              <span class="">
-              <facebook_share/>
-              <google_share/>
-              <twitter_share/>
-              </span>
-            </div>
-            <div class="float-right the_footer_icon col-xs-12">
-              <router-link to="">
-                2018OopsDaily
-              </router-link>
-              <router-link to="">
-                隱私政策
-              </router-link>
-              <router-link to="">
-                服務條款
-              </router-link>
-              <router-link to="">
-                京ICP証080268號
-              </router-link>
-            </div>
-
+          <div class="col-lg-4">
+            123
           </div>
+          <!--<nav_bar_down/>-->
+          <!--<div class="the_footer clearfix">-->
+            <!--<div class="float-left the_footer_chara col-xs-12" style="padding: 10px">-->
+              <!--<router-link to="/contactus">-->
+                <!--<span @click="footer_show">-->
+                <!--聯係我們-->
+                  <!--</span>-->
+              <!--</router-link>-->
+              <!--<span class="want_line"></span>-->
+              <!--<router-link to="/help">-->
+                <!--<span @click="footer_show">-->
+                <!--幫助中心-->
+                  <!--</span>-->
+              <!--</router-link>-->
+              <!--<span class="want_line "></span>-->
+              <!--<span class="">-->
+              <!--<facebook_share/>-->
+              <!--<google_share/>-->
+              <!--<twitter_share/>-->
+              <!--</span>-->
+            <!--</div>-->
+            <!--<div class="float-right the_footer_icon col-xs-12">-->
+              <!--<router-link to="">-->
+                <!--2018OopsDaily-->
+              <!--</router-link>-->
+              <!--<router-link to="">-->
+                <!--隱私政策-->
+              <!--</router-link>-->
+              <!--<router-link to="">-->
+                <!--服務條款-->
+              <!--</router-link>-->
+              <!--<router-link to="">-->
+                <!--京ICP証080268號-->
+              <!--</router-link>-->
+            <!--</div>-->
+
+          <!--</div>-->
         </div>
       </div>
     </div>

@@ -1,39 +1,39 @@
 <template>
 
   <div class="nav_down_footer" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
-    <div class="col-xs-12 media_user_info" style="display: none" v-if="$store.state.judge_login==true">
-      <div class="row media_user_none" style="margin: 0;text-align: left;color: #888888;margin-bottom: 10px;">
-        <div class="col-xs-4 user_message" style="text-align: center">
-          <i class="fa fa-user"></i>
-          當前用戶：
-          <p>
-                <router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>
-            <span class="subscript">
-                  <div class="btn-group">
-                    <a href="javascript:;" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true">
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li style="padding: 5px 0"><router-link to="/my/user/dashboard">個人中心</router-link></li>
-                      <li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>
-                      <!--<li role="separator" class="divider"></li>-->
-                    </ul>
-                  </div>
-              </span>
-          </p>
+    <!--<div class="col-xs-12 media_user_info" style="display: none" v-if="$store.state.judge_login==true">-->
+      <!--<div class="row media_user_none" style="margin: 0;text-align: left;color: #888888;margin-bottom: 10px;">-->
+        <!--<div class="col-xs-4 user_message" style="text-align: center">-->
+          <!--<i class="fa fa-user"></i>-->
+          <!--當前用戶：-->
+          <!--<p>-->
+                <!--<router-link to="/my" style="color:#37abe3">{{$store.state.user_info.Name}}</router-link>-->
+            <!--<span class="subscript">-->
+                  <!--<div class="btn-group">-->
+                    <!--<a href="javascript:;" class="dropdown-toggle caret" style="height: 10px;width: 10px" data-toggle="dropdown" aria-haspopup="true">-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu">-->
+                      <!--<li style="padding: 5px 0"><router-link to="/my/user/dashboard">個人中心</router-link></li>-->
+                      <!--<li style="padding: 5px 0"><a href="javascript:;"  @click="login_out">登出</a></li>-->
+                      <!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
+                    <!--</ul>-->
+                  <!--</div>-->
+              <!--</span>-->
+          <!--</p>-->
 
-        </div>
-        <div class="col-xs-4 user_message" style="text-align: center">
-          <i class="fa fa-file-text-o"></i>
-          發表文章：
-          <p style="color:red">{{$store.state.user_info.ArticleCount}}</p>
-        </div>
-        <div class="col-xs-4 user_message" style="text-align: center">
-          <i class="fa fa-money"></i>
-          我的收入：
-          <p style="color:red;">{{$store.state.user_info.Profit}}</p>
-        </div>
-      </div>
-    </div>
+        <!--</div>-->
+        <!--<div class="col-xs-4 user_message" style="text-align: center">-->
+          <!--<i class="fa fa-file-text-o"></i>-->
+          <!--發表文章：-->
+          <!--<p style="color:red">{{$store.state.user_info.ArticleCount}}</p>-->
+        <!--</div>-->
+        <!--<div class="col-xs-4 user_message" style="text-align: center">-->
+          <!--<i class="fa fa-money"></i>-->
+          <!--我的收入：-->
+          <!--<p style="color:red;">{{$store.state.user_info.Profit}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="row all_type">
       <ul class="col-lg-2 col-md-2 col-sm-2 col-xs-4" v-for="(item,index) in $store.state.nav_type" :key="index">
         <li>
