@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <!--導航-->
     <oops-header></oops-header>
     <!--面包屑-->
@@ -220,6 +220,9 @@
           oops_content_wrap.style.background = "#f4f4f4"
           },1)
         }
+        // 點擊其他地方 關閉導航下拉
+        this.$store.state.nav_down = false;
+        this.$store.state.nav_down_icon = "fa fa-bars"
       }
 
     },

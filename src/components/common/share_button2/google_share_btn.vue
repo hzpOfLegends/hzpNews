@@ -40,13 +40,15 @@
 
 <style scoped lang="less">
   .google {
+    position: relative;
     display: inline-block;
-    max-width: 100px;
+    max-width: 38px;
     max-height: 38px;
     width: 100%;
     border-radius: 3px;
     line-height: 40px;
     text-align: center;
+    margin-left: 15px;
     a {
       color: white;
       text-decoration: none;

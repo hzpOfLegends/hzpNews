@@ -8,7 +8,7 @@
             <router-link to="/">
               <span>OOPSDAILY</span>
               <span class="media_none">|</span>
-              <span class="media_none">文章創作分享平台</span>
+              <span class="media_none">文章創作分享平臺</span>
             </router-link>
           </div>
           <div v-if="$store.state.judge_login==false" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
