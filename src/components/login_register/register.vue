@@ -39,7 +39,7 @@
       </div>
       </div>
       <div class="row">
-      <login_component :success_register="success_register"/>
+      <login_component v-show="false" :success_register="success_register"/>
       </div>
     </div>
 </template>

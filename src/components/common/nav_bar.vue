@@ -105,7 +105,6 @@
         }
       },
       footer_show(){
-        console.log(111)
         this.$store.state.foot_all_style = true;
       }
     },

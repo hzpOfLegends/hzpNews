@@ -144,7 +144,6 @@
       skip_top //點擊到頂部
     },
     created() {
-
       // 进度条开始
       this.$NProgress.start()
       var isbool = true
