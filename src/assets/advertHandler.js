@@ -6,25 +6,34 @@ export default {
         advertContent.innerHTML = '<div style="width:100%;height:100px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">廣告內容</div>'
         return advertContent
     },
-    // 内文广告插入 （大於屏幕高度 插入）
+    // 内文广告嵌入 （大於屏幕高度 嵌入）
     insertToContent(target,advert){
         let vh = window.innerHeight  // 用戶當前窗口高度
         let offset = 0
         let ah = 100+15  //廣告dom高度 (先假設)
         insert(target,advert)
-        function insert(targetDom,advertDom){
+        function insert(targetDom,advertDom,noParent){  //noParent表示非始祖父元素
             if(targetDom.nodeType === 1){
                 let doms = targetDom.children
                 if(doms.length<1){
+                    if(!noParent) return
+                    if(targetDom.offsetTop + targetDom.offsetHeight > (offset+vh)){
+                        offset = (targetDom.offsetTop+targetDom.offsetHeight) + ah
+                        if(targetDom.nodeName === "IMG"){
+                            targetDom.parentNode.parentNode.insertBefore(advertDom.cloneNode(true),targetDom.parentNode.nextElementSibling)  //由于img做了处理，因此在其父元素下面嵌入
+                        }else{
+                            targetDom.parentNode.appendChild(advertDom.cloneNode(true))  //在次元素末尾嵌入
+                        } 
+                    }
                     return;
                 }
                 for(let i=0;i<doms.length;i++){
                     if( (doms[i].offsetTop+doms[i].offsetHeight) > (offset+vh) && (doms[i].offsetTop+doms[i].offsetHeight)<(offset+ah+vh*2) ){
                         offset = (doms[i].offsetTop+doms[i].offsetHeight) + ah
-                        targetDom.insertBefore(advertDom.cloneNode(true),doms[i].nextElementSibling)  //在下一個元素前插入
+                        targetDom.insertBefore(advertDom.cloneNode(true),doms[i].nextElementSibling)  //在下一個元素前嵌入
                         i++
                     }else if( (doms[i].offsetTop+doms[i].offsetHeight) >= (offset+ah+vh*2) ){
-                        insert(doms[i],advertDom) //递归遍历（对于大于两个屏幕以上的元素）
+                        insert(doms[i],advertDom,true) //递归遍历（对于大于两个屏幕以上的元素） true参数表示非始祖父元素
                         // i--
                     }
                 }
