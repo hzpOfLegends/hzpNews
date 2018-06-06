@@ -2,7 +2,7 @@
     <span class="facebook">
        <a class="fb-xfbml-parse-ignore" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')"
           :href="share_url">
-         <img src="/static/img/team2.png">
+         <img src="/static/img/facebook.png">
        </a>
           </span>
 </template>
@@ -30,13 +30,12 @@
   .facebook {
     position: relative;
     display: inline-block;
-    max-width: 38px;
+    max-width: 100px;
     max-height: 38px;
     width: 100%;
     border-radius: 3px;
     line-height: 40px;
     text-align: center;
-    margin-left: 15px;
     a{
       color: white;
       img{

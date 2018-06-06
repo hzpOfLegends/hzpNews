@@ -26,48 +26,61 @@
         </div>
       </div>
       <div style="height: 100%">
-        <div v-show="$store.state.nav_down" class="nav_bar_down "
-             style="position: absolute;transform: translateY(0%);left: 0">
-          <div class="col-lg-4">
-            123
+        <div v-show="$store.state.nav_down" class="nav_bar_down"
+             style="position: absolute;transform: translateY(3%);right: 0">
+          <div>
+            <div class="triangle_border_up">
+              <span></span>
+            </div>
+            <div class="relation_us">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 relation_chara">
+                <div>
+                  <img src="/static/img/relation.png">
+                </div>
+                <div style="padding-left: 15px">
+                  <div>聯係我們</div>
+                  <div style="color: #999999;font-size: 12px">在綫時間：9:30-18:30</div>
+                </div>
+                <div></div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 relation_btn">
+                <div>
+                  <router-link to="/contactus">
+                    在綫留言
+                  </router-link>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <nav_bar_down/>
+            <div class="line"></div>
+            <div class="relation_foot row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 chara">
+                <div>
+                  <router-link to="">意見反饋</router-link>
+                  <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
+                  <router-link to="">幫助中心</router-link>
+                </div>
+                <div style="color: #999">
+                  2018OopsDaily
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 " style="text-align: right">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-share-alt"></i>
+                    分享到
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><facebook_share/></li>
+                    <li><google_share/></li>
+                    <li><twitter_share/></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--<nav_bar_down/>-->
-          <!--<div class="the_footer clearfix">-->
-            <!--<div class="float-left the_footer_chara col-xs-12" style="padding: 10px">-->
-              <!--<router-link to="/contactus">-->
-                <!--<span @click="footer_show">-->
-                <!--聯係我們-->
-                  <!--</span>-->
-              <!--</router-link>-->
-              <!--<span class="want_line"></span>-->
-              <!--<router-link to="/help">-->
-                <!--<span @click="footer_show">-->
-                <!--幫助中心-->
-                  <!--</span>-->
-              <!--</router-link>-->
-              <!--<span class="want_line "></span>-->
-              <!--<span class="">-->
-              <!--<facebook_share/>-->
-              <!--<google_share/>-->
-              <!--<twitter_share/>-->
-              <!--</span>-->
-            <!--</div>-->
-            <!--<div class="float-right the_footer_icon col-xs-12">-->
-              <!--<router-link to="">-->
-                <!--2018OopsDaily-->
-              <!--</router-link>-->
-              <!--<router-link to="">-->
-                <!--隱私政策-->
-              <!--</router-link>-->
-              <!--<router-link to="">-->
-                <!--服務條款-->
-              <!--</router-link>-->
-              <!--<router-link to="">-->
-                <!--京ICP証080268號-->
-              <!--</router-link>-->
-            <!--</div>-->
-
-          <!--</div>-->
         </div>
       </div>
     </div>
@@ -107,7 +120,7 @@
           this.$store.state.nav_down_icon = "fa fa-bars"
         }
       },
-      footer_show(){
+      footer_show() {
         this.$store.state.foot_all_style = true;
       }
     },
@@ -176,7 +189,7 @@
         border-right: 1px solid rgb(213, 213, 213);
       }
       .the_footer {
-        padding: 50px 0 ;
+        padding: 50px 0;
         background: rgb(244, 244, 244);
         vertical-align: top;
         a {
@@ -240,9 +253,93 @@
   }
 
   .nav_bar_down {
-    max-width: 1180px;
+    max-width: 448px;
     width: 100%;
     box-shadow: 2px 2px 15px gray;
-    z-index: 99;
+    z-index: 2;
+    background: white;
+    .triangle_border_up{
+      width:0;
+      height:0;
+      border-width:0 6px 10px;
+      border-style:solid;
+      border-color:transparent transparent white;/*透明 透明  灰*/
+      position:absolute;
+      right: 15px;
+      top: -10px;
+    }
+    .nav_down_footer{
+      height: 272px;
+      overflow-y: auto;
+    }
+    .line {
+      border-bottom: 1px solid #eeeeee;
+    }
+    .relation_us {
+      padding: 30px;
+      display: flex;
+      .relation_chara {
+        display: flex;
+        text-align: left;
+      }
+      .relation_btn {
+        display: flex;
+        flex-direction: row-reverse;
+        > div {
+          max-width: 90px;
+          width: 100%;
+          text-align: center;
+          height: 35px;
+          line-height: 35px;
+          background: #269ff1;
+          border-radius: 3px;
+          a {
+            color: white;
+
+          }
+        }
+      }
+    }
+    .row{
+      margin: 0;
+    }
+    .relation_foot{
+      padding: 26px;
+      .open > .dropdown-toggle.btn-default:hover{
+        background: none;
+      }
+      .open > .dropdown-toggle.btn-default:focus{
+        background: none;
+      }
+      .btn-default:hover{
+        background: none;
+      }
+      .btn-default:focus{
+        background: none !important;
+      }
+      .dropdown{
+        .btn{
+          padding: 6px 20px;
+          color: #999;
+        }
+      }
+      .dropdown-menu{
+        width: 100%;
+        max-width: 110px;
+        min-width: 110px;
+        transform: translateX(80%);
+        li{
+          padding: 3px 0;
+          text-align: center;
+        }
+      }
+      .chara{
+        text-align: left;
+        a{
+          color: #999;
+          background: none;
+        }
+      }
+    }
   }
 </style>
