@@ -26,7 +26,7 @@
           this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
 
         }
-        window.open(this.share_url, 'Facebook', 'width=1140,height=300')
+        window.open(this.share_url, 'Facebook', 'width=600,height=600')
       }
     },
     created(){
