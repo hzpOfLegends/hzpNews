@@ -67,17 +67,21 @@
                                 <span v-else style="color:#fb8507"><i class="glyphicon glyphicon-exclamation-sign"></i> 未綁定</span>
                            </div>
                            <div class="u-btn">
-                              <button v-if="userInfo.Phone" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('phone',userInfo.Phone)">修改</button>
+                              <button v-if="typeof(userInfo.Phone)==='string' && userInfo.Phone.length>=2" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('phone',userInfo.Phone)">修改</button>
                               <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;background:#f78323"  @click="clickModify('phone','')">綁定</button>
                            </div>
                         </li>
                         <li>
                            <div>
-                                <p style="margin-bottom:2px;">支付方式/賬號</p>
-                                <span style="color:#5aa1fa">支付寶 <span style="padding:0 5px;color:#2e3e4f">|</span> {{userInfo.Email}}</span>
+                               <p style="margin-bottom:2px;">支付方式/賬號</p>
+                                <!-- <span style="color:#5aa1fa">支付寶 <span style="padding:0 5px;color:#2e3e4f">|</span> {{userInfo.Email}}</span>-->
+                                <span v-if="typeof(userInfo.AccountNumber)==='string' && userInfo.AccountNumber.length>=2" style="color:#5aa1fa">{{userInfo.AccountNumber}}</span>
+                                <span v-else style="color:#fb8507"><i class="glyphicon glyphicon-exclamation-sign"></i> 未設定</span>
                            </div>
                            <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('payment')">修改</button>
+                              <button v-if="typeof(userInfo.AccountNumber)==='string' && userInfo.AccountNumber.length>=2" type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('payment',userInfo.Phone,userInfo.AccountNumber)">修改</button>
+                              <button v-else type="button" class="btn btn-warning" style="padding:6px 22px;background:#f78323"  @click="clickModify('payment',userInfo.Phone,'')">設定</button>
+                              <!--<button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('payment')">修改</button>-->
                            </div>
                         </li>
                         <li>
@@ -105,6 +109,7 @@
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
                 <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'" :email="userInfo.Email"></modifyMail>
                 <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :phoneNum="phoneNum"></modifyPhone>
+                <modifyPayment @closeMe="closeSubcomponent" v-if="modify==='payment'" :accountNumber="userInfo.AccountNumber" :paymentMethod="userInfo.PaymentMethod" :phoneNum="phoneNum"></modifyPayment>
           </div>
       </div>
       <!--<imgUpload></imgUpload>-->
@@ -117,6 +122,7 @@ import accountAxios from '../../axios_joggle/axios_account'
 import modifyPWD from './subcomponent/modify_pwd'
 import modifyMail from './subcomponent/modify_mail'
 import modifyPhone from './subcomponent/modify_phone'
+import modifyPayment from './subcomponent/modify_payment'
 import imgUpload from './subcomponent/img_upload'
 export default {
     data(){
@@ -134,7 +140,7 @@ export default {
         }
     },
     components:{
-        modifyPWD,modifyMail,modifyPhone,imgUpload
+        modifyPWD,modifyMail,modifyPhone,imgUpload,modifyPayment
     },
     methods:{
         // 重新獲取個人信息（修改成功后調用）
@@ -183,22 +189,27 @@ export default {
               this.loading = false
           })
         },
-        clickModify(value,phoneNum){
-            if(value==='payment'){
-                this.$alert('功能接口暫未開通', '提示', {
-                    confirmButtonText: '确定',
-                    callback: action => {
-                        // this.$message({
-                        // type: 'info',
-                        // message: `action: ${ action }`
-                        // });
-                    }
-                });
-                return;
+        clickModify(value,phoneNum,accountNumber){
+            if(value==='payment' ){  //&& (typeof(paymentMethod)==='string' && paymentMethod.length>3)
+                if(typeof(phoneNum)!=='string' || phoneNum.length<2){  //判斷是否綁定了手機
+                    this.$alert('此操作需要先綁定電話', '提示：', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            this.modify='phone'
+                        }
+                    }); 
+                    return
+                }else{
+                    this.phoneNum = phoneNum //是手機用戶
+                    this.modify=value
+                    return
+                }
             }
             // 操作手机  判斷是否是手機用戶
-            if(phoneNum){
+            if(value==='phone' && phoneNum){
                 this.phoneNum = phoneNum //是手機用戶
+                this.modify=value
+                return
             }
             this.modify=value
         },
