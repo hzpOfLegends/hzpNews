@@ -56,12 +56,6 @@
     mounted() {
       // 进度条关闭
       this.$NProgress.done()
-      // 更换背景
-      let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "url('../static/img/background1.jpg') no-repeat fixed top"
-      oops_content_wrap.style.backgroundSize = "cover"
-      let user_login = document.querySelector('.user_login')
-      user_login.style.height = 1080 + "px"
       // 將步驟條文字設小
       let el_step_title = document.querySelectorAll('.el-step__title')
       for(let i = 0 ; i<el_step_title.length ; i++){

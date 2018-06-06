@@ -1,6 +1,6 @@
 <template>
     <span class="facebook">
-       <a class="fb-xfbml-parse-ignore" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')"
+       <a class="fb-xfbml-parse-ignore" target="_blank" @click="skpi_page"
           :href="share_url"><img src="/static/img/facebook.png"></a>
             <!--<a target="_blank"-->
                <!--:href="share_url"-->
@@ -19,6 +19,19 @@
           share_url:""
         }
       },
+      methods:{
+        skpi_page(){
+          this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):""
+          if(this.share){
+            let a = window.location.href + "?r="+this.share
+            this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+""
+          }else{
+            this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
+
+          }
+          window.open(this.share_url, 'Facebook', 'width=1140,height=300')
+        }
+      },
       created(){
         this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):""
         if(this.share){
@@ -28,9 +41,6 @@
           this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
 
         }
-
-      },
-      watch:{
 
       }
     }

@@ -15,9 +15,9 @@
     <div class="share">
       <span style="color: rgb(184, 184, 184)">分享至:</span>
       <div style="display: inline-block">
-        <facebook_btn/>
-        <google_btn/>
-        <twitter_btn/>
+        <facebook_btn />
+        <google_btn />
+        <twitter_btn />
       </div>
     </div>
     <div class="article_conten">
@@ -28,9 +28,9 @@
     <div class="share">
       <span style="color: rgb(184, 184, 184)">分享至:</span>
       <div style="display: inline-block;margin-bottom: 20px">
-        <facebook_btn/>
-        <google_btn/>
-        <twitter_btn/>
+        <facebook_btn />
+        <google_btn />
+        <twitter_btn />
       </div>
     </div>
     <div class="line"></div>
@@ -62,7 +62,8 @@
     data() {
       return {
         default_photo: "/static/img/timg.jpg",
-        detail_content:""
+        detail_content:"",
+        share_path:""
       }
     },
     filters: {
@@ -116,6 +117,7 @@
           let a =this.imgHandler(detail_wrap,val,advertising.insertToContent,this.img_set_width)
           this.detail_content = a ;
         }
+        this.share_path = window.location.href
       }
     },
     components: {

@@ -1,7 +1,9 @@
 <template>
     <span class="google">
             <a target="_blank"
-              :href="web_url" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+               @click="skip_page"
+              :href="web_url"
+            >
               <img src="/static/img/google.png" alt="">
             </a>
           </span>
@@ -16,12 +18,23 @@
         web_url: ""
       }
     },
+    props:["share_path"],
     created() {
       this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):"";
       if(this.share){
-        this.web_url ="https://plus.google.com/share?url="+ window.location.href+'?r='+this.share
+        this.web_url ="https://plus.google.com/share?url="+ this.share_path+'?r='+this.share
       }
-      this.web_url ="https://plus.google.com/share?url="+ window.location.href
+      this.web_url ="https://plus.google.com/share?url="+ this.share_path
+    },
+    methods:{
+      skip_page(){
+        this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):"";
+        if(this.share){
+          this.web_url ="https://plus.google.com/share?url="+ this.share_path+'?r='+this.share
+        }
+        this.web_url ="https://plus.google.com/share?url="+ this.share_path
+        window.open(this.web_url,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+      }
     }
   }
 </script>

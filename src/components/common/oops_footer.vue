@@ -66,10 +66,10 @@
 </template>
 
 <script>
-  import type_name from "@/components/common/nav_bar_down"
-  import facebook_share from "@/components/common/share_button/facebook_share_btn"
-  import google_share from "@/components/common/share_button/google_share_btn"
-  import twitter_share from "@/components/common/share_button/twitter_share_btn"
+  import type_name from "@/components/common/nav_bar_down2"
+  import facebook_share from "@/components/common/share_button2/facebook_share_btn"
+  import google_share from "@/components/common/share_button2/google_share_btn"
+  import twitter_share from "@/components/common/share_button2/twitter_share_btn"
   export default {
     data() {
       return {

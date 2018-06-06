@@ -10,7 +10,7 @@
         <details_content v-if="$store.state.phone_use==true" :details="details"/>
         <div class="float-right right_content related_articles_phone" style="display: none">
           <!--相關文章(适配)-->
-          <related_articles/>
+          <related_articles style="margin-top: 20px" :hot_article="hot_article"/>
         </div>
         <!--同區的其他文章-->
         <vue-lazy-component v-if="$store.state.phone_use==false">
@@ -70,7 +70,7 @@
       return {
         details: "", // 传过去details 子组件的值
         hot_article: "", // 传过去 子组件relate的值
-        requestCount: 0 // 进度条的值
+        requestCount: 0, // 进度条的值
       }
     },
     watch: {
@@ -171,10 +171,6 @@
         js.src = 'https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.0';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'))
-      // 更换背景
-      let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "#f4f4f4"
-
     },
     created() {
       // 控制最頂部 進度條 將進度條歸零

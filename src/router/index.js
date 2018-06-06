@@ -8,16 +8,7 @@ import oops_content from '@/components/common/oops_content'
 import oops_content_index from '@/components/content_components/oops_content_index'
 // 内頁 詳情頁面
 import inside_page_content from "@/components/inside_content_components/inside_page_content"
-// 个人中心
-// import account from '@/components/account/account'
-// import account_home from '@/components/account/account_home'
-// import account_data from '@/components/account/account_data'
-// import account_doc from '@/components/account/account_doc'
-// import account_doc_editor from '@/components/account/account_doc_editor'
-// import account_gains from '@/components/account/account_gains'
-// import account_gooddoc from '@/components/account/account_gooddoc'
-// import account_message from '@/components/account/account_message'
-// import account_open from '@/components/account/account_open'
+
 import my from '@/components/my/my'
 import my_dashbord from '@/components/my/my_dashbord'
 import my_info from '@/components/my/my_info'

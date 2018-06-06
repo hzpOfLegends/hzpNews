@@ -2,7 +2,7 @@
     <span class="facebook">
        <a class="fb-xfbml-parse-ignore" target="_blank" @click="skpi_page"
           :href="share_url">
-         <img src="/static/img/facebook.png">
+         <img src="/static/img/team2.png">
        </a>
           </span>
 </template>
@@ -40,7 +40,7 @@
       }
 
     }
-    }
+  }
 </script>
 
 <style scoped lang="less">

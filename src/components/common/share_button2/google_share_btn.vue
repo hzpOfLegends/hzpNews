@@ -2,8 +2,8 @@
     <span class="google">
             <a target="_blank"
                @click="skip_page"
-              :href="web_url">
-              <img src="/static/img/google.png" alt="">
+               :href="web_url">
+              <img src="/static/img/team4.png" alt="">
             </a>
           </span>
 </template>

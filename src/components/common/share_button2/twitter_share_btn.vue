@@ -6,7 +6,7 @@
                 :href="web_url"
                 target="_blank"
                 data-size="large">
-                <img src="/static/img/twitter.png" alt="">
+                <img src="/static/img/team3.png" alt="">
               </a>
           </span>
 </template>
@@ -42,9 +42,9 @@
 <style scoped lang="less">
   .twitter {
     display: inline-block;
+    max-width: 100px;
+    max-height: 38px;
     width: 100%;
-    height: 40px;
-    background-color: #28a2f0;
     border-radius: 3px;
     line-height: 40px;
     text-align: center;

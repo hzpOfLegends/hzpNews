@@ -100,12 +100,7 @@
           modal_padding.style.padding = '0';
         }
       }, 1)
-      // 更换背景
-      let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      let user_login = document.querySelector('.user_login')
-      user_login.style.height = 1080 + "px"
-      oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
-      oops_content_wrap.style.backgroundSize = "cover"
+
     },
 
     methods: {

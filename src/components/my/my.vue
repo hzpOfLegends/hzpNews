@@ -137,7 +137,7 @@
             this.getUserInfo(()=>{
                 this.$store.state.refreshUserInfo=false
                 // console.log('获取成功');
-            }) 
+            })
         }
       }
     },
@@ -210,14 +210,9 @@
     mounted() {
       this.changeRoute()
       this.$NProgress.start()
-      // 更换背景
-      let oops_content_wrap = document.querySelector('.oops_content_wrap')
-      oops_content_wrap.style.background = "#f4f4f4"
     },
     created() {
       this.init()
-
-
       // 因爲 點進來 要刷新才出現 底部 所以 在這裏開啓
       this.$store.state.foot_all_style = true
     }

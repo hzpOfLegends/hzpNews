@@ -42,11 +42,6 @@
         link: this.$store.state.meta.link || ''
       }
     },
-    mounted(){
-
-      console.log(this.$route)
-
-    },
     methods: {
       getMeta() {
         accountAxios.getMeta({url: this.$route.fullPath}).then(res => {
@@ -202,9 +197,29 @@
           }
           this.$store.commit('setMeta', meta)
         })
-      },
-      setBackground(){
-
+        // 判斷底部 分類
+        if(this.$route.fullPath.indexOf("/my")!="-1"){
+          this.$store.state.footer_style1 = true
+        }else{
+          this.$store.state.footer_style1 = false
+        }
+        // 控制背景圖 儅在登錄 注冊 忘記 密碼的時候換背景圖
+        if(this.$route.fullPath.indexOf("/user/login")!="-1" || this.$route.fullPath.indexOf("/user/register")!="-1" || this.$route.fullPath.indexOf("/user/forgetpassword")!="-1" ||this.$route.fullPath.indexOf("/contactus")!="-1" || this.$route.fullPath.indexOf("/help")!="-1" ){
+          // 更换背景
+          setTimeout(()=>{
+            let oops_content_wrap = document.querySelector('.oops_content_wrap')
+            let user_login = document.querySelector('.user_login')
+            user_login.style.height = 1080 + "px"
+            oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
+            oops_content_wrap.style.backgroundSize = "cover"
+          },1)
+        }else{
+          // 更换背景
+          setTimeout(()=>{
+          let oops_content_wrap = document.querySelector('.oops_content_wrap')
+          oops_content_wrap.style.background = "#f4f4f4"
+          },1)
+        }
       }
 
     },
