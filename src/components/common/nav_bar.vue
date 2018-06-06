@@ -147,7 +147,16 @@
     .nav_name {
       display: none;
     }
-
+    .dropdown-menu{
+      width: 100%;
+      max-width: 110px;
+      min-width: 110px;
+      transform: translateX(46%) !important;
+      li{
+        padding: 3px 0;
+        text-align: center;
+      }
+    }
     .the_footer_chara {
       float: none;
     }
