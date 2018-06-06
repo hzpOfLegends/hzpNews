@@ -86,6 +86,10 @@ class account {
   modifyPhone(data){
       return axios.post(axios.path + 'api/User/ModifyUserPhone',data)
   }
+  // 設置支付方式
+  setPayment(data){
+      return axios.post(axios.path + 'api/User/RetrievePaymentMethod',data)
+  }
   // 上传头像像接口, 最大支持80k 文件格式为jpg\png\jpeg
   uploadAvatar(data){
       return axios.post(axios.path + 'api/Upload/UploadAvatar',data,{headers: {'Content-Type': 'multipart/form-data'}})

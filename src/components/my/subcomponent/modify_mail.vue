@@ -48,12 +48,13 @@
                 </div>
             </div>
             <div v-if="currentStep==3">
-                <div class="s3-success">
-                    修改成功！
+                <div class="s3-success" style="display:flex;align-items:center;justify-content: center;">
+                    <i class="fa fa-smile-o" aria-hidden="true" style="font-size:50px;color:#fb8507"></i>
+                    <span style="font-size:22px;font-weight:700;padding-left:10px">操作成功!</span>
                 </div>
                 </br>
-                <div class="btns">
-                    <button type="" class="btn btn-success" @click="callClose(true)">確 定</button>
+                <div class="btns" style="padding-top:20px">
+                    <button type="" class="btn btn-success" style="background:#f7872b;border:1px solid #f7872b" @click="callClose(true)">確 定</button>
                 </div>
             </div>
 
