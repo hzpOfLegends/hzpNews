@@ -207,10 +207,7 @@
           overflow: hidden;
           .top {
             display: flex;
-            max-height:60px;
-            height:100%;
-            text-overflow:ellipsis;
-            white-space: nowrap;
+            height: 100%;
             :nth-child(1) >p{
               margin-top: 2px;
               display: block;
@@ -237,9 +234,11 @@
               font-weight: 900;
               font-size: 18px;
               padding-left: 10px;
-              overflow:hidden;
-              text-overflow:ellipsis;
-              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp:3;
+              -webkit-box-orient: vertical
             }
           }
           .center {

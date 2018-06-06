@@ -233,6 +233,11 @@
               font-weight: 900;
               font-size: 18px;
               padding-left: 10px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical
             }
           }
           .center {
