@@ -94,7 +94,7 @@
                             <img v-else src="/static/img/text.png" alt="">
                             <div class="tit" style="color:#373737">
                                 <!--注：22汉字以内-->
-                                <div style="min-height:50px">
+                                <div style="min-height:42px;max-height:55px;overflow:hidden;text-overflow:ellipsis;">
                                     <p>{{v.Title}}</p>
                                 </div>
                                 <p class="type">類別:{{v.CategoryName}} <span style="padding:0 4px">|</span> ID:{{v.RelationID.length>12?v.RelationID.substr(0,12)+"...":v.RelationID}}</p>

@@ -37,7 +37,7 @@
                                 <!--注：22汉字以内-->
                                 <!--<p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>-->
                                 <!--<p class="type">類別：政治</p>-->
-                                <div style="min-height:42px">
+                                <div style="min-height:42px;max-height:55px;overflow:hidden;text-overflow:ellipsis;">
                                     <p style="color:#333333">{{v.NewsTitle}}</p>
                                 </div>
                                 <p v-if="v.CategoryName" class="type">類別：{{v.CategoryName}}</p>

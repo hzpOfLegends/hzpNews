@@ -21,9 +21,9 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="detail_content" style="width: 100% ; font-weight:300">
+      <div v-html="detail_content" style="width: 100% ; font-weight:300">
 
-      </label>
+      </div>
     </div>
     <div class="share">
       <span style="color: rgb(184, 184, 184)">分享至:</span>

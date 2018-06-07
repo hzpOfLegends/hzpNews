@@ -37,18 +37,18 @@ export default {
                 return;
             }
             for (let i = 0; i < doms.length; i++) {
-            if ((doms[i].offsetTop + doms[i].offsetHeight) > (offset + vh) && (doms[i].offsetTop + doms[i].offsetHeight) < (offset + ah + vh * 2)) {
-                offset = (doms[i].offsetTop + doms[i].offsetHeight)+ah
-                if (i !== (doms.length - 1)) {
-                    targetDom.insertBefore(advertDom.cloneNode(true), doms[i].nextElementSibling)  //不是最后一个元素，在下一個元素前嵌入
-                } else {
-                    targetDom.parentNode.appendChild(advertDom.cloneNode(true))  // 最后一个元素，嵌入末尾
+                if ((doms[i].offsetTop + doms[i].offsetHeight) > (offset + vh) && (doms[i].offsetTop + doms[i].offsetHeight) < (offset + ah + vh * 2)) {
+                    offset = (doms[i].offsetTop + doms[i].offsetHeight)+ah
+                    if (i !== (doms.length - 1)) {
+                        targetDom.insertBefore(advertDom.cloneNode(true), doms[i].nextElementSibling)  //不是最后一个元素，在下一個元素前嵌入
+                    } else {
+                        targetDom.parentNode.appendChild(advertDom.cloneNode(true))  // 最后一个元素，嵌入末尾
+                    }
+                    // i++
+                } else if ((doms[i].offsetTop + doms[i].offsetHeight) >= (offset + ah + vh * 2)) {
+                    insert(doms[i], advertDom, true) //递归遍历（对于大于两屏以上的元素） true参数表示非始祖父元素
+                    // i--
                 }
-                // i++
-            } else if ((doms[i].offsetTop + doms[i].offsetHeight) >= (offset + ah + vh * 2)) {
-                insert(doms[i], advertDom, true) //递归遍历（对于大于两屏以上的元素） true参数表示非始祖父元素
-                // i--
-            }
             }
         } else {
             // return console.log('參數錯誤');
