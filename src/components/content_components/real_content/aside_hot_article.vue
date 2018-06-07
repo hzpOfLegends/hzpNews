@@ -130,7 +130,7 @@
       }
       img {
         width: 100%;
-        max-height: 130px;
+        height: 130px;
         object-fit: cover;
       }
       p {
