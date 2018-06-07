@@ -239,6 +239,11 @@
       }
     },
     created() {
+      if(window.innerWidth<=1200){
+        this.$store.state.related_article_cut = false
+      }else{
+        this.$store.state.related_article_cut = true
+      }
       if(window.innerWidth<=768){
         this.$store.state.phone_use = true
       }else{

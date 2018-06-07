@@ -8,10 +8,10 @@
           <details_content_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <details_content v-if="$store.state.phone_use==true" :details="details"/>
-        <div class="float-right right_content related_articles_phone" style="display: none">
+        <!--<div class="float-right right_content related_articles_phone" style="display: none">-->
           <!--相關文章(适配)-->
-          <related_articles style="margin-top: 20px" :hot_article="hot_article"/>
-        </div>
+          <related_articles v-if="$store.state.related_article_cut == false" class="related_articles_phone" style="margin-top: 20px" :related_article="related_article"/>
+        <!--</div>-->
         <!--同區的其他文章-->
         <vue-lazy-component v-if="$store.state.phone_use==false">
           <other_article style="margin-top: 20px"/>
@@ -23,10 +23,10 @@
       <div class="float-right right_content related_articles_browser">
         <!--&lt;!&ndash;相關文章&ndash;&gt;-->
         <vue-lazy-component v-if="$store.state.phone_use==false">
-          <related_articles :hot_article="hot_article"/>
+          <related_articles :related_article="related_article"/>
           <related_articles_skeleton slot="skeleton"/>
         </vue-lazy-component>
-        <related_articles v-if="$store.state.phone_use==true" :hot_article="hot_article"/>
+        <related_articles v-if="$store.state.phone_use==true" :related_article="related_article"/>
       </div>
     </div>
     <skip_top/>
@@ -69,7 +69,7 @@
     data() {
       return {
         details: "", // 传过去details 子组件的值
-        hot_article: "", // 传过去 子组件relate的值
+        related_article: "", // 传过去 子组件relate的值
         requestCount: 0, // 进度条的值
       }
     },
@@ -122,7 +122,7 @@
 
         // related
         inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
-          this.hot_article = res.data.Data
+          this.realated_article = res.data.Data
           // 进度条加1
           this.requestCount++
           console.log(2, this.requestCount)
@@ -216,7 +216,7 @@
       })
       // related
       inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
-        this.hot_article = res.data.Data
+        this.related_article = res.data.Data
         // 进度条加1
         this.requestCount++
       }).catch(err => {

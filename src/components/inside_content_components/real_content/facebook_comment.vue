@@ -13,9 +13,6 @@
 
          document.querySelector('.fb-comments').setAttribute('data-href',window.location.href)
        }
-      },
-      created(){
-        document.querySelector('.fb-comments').setAttribute('data-href',window.location.href)
       }
     }
 </script>

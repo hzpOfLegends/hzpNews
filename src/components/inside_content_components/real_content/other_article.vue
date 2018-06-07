@@ -3,7 +3,7 @@
     <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart"
                                                     style="color: #f39900;margin-right: 20px"></i>同區的其他文章</h5>
     <div class="other_article_wrap">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in $store.state.other_article_content" :key="index"
+      <div class="recent_hot_content clearfix other_article_content" v-for="(item,index) in $store.state.other_article_content" :key="index"
           >
         <router-link :to="{path:'/article/'+ item.RelationID}">
         <div class="row">
@@ -49,6 +49,8 @@
   import loading from '@/components/oneself/loading'
   // 时区转换 / 類型轉化
   import filtration from '@/assets/filtration'
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
   export default {
     name: "other_article",
     data() {
@@ -91,9 +93,32 @@
         return filtration.timezone_filter(value)
       }
     },
+    watch:{
+      "$store.state.other_article_content":{
+        deep:true,
+        handler(newval,oldval){
+          if (newval) {
+            let advertisings = document.querySelectorAll(".other_article_wrap .advertising")
+            advertising.reloadAdvert(advertisings)
+            setTimeout(() => {
+              let other_article_content = advertising.createDiv(".other_article_content")
+              if(other_article_content.length > 0) {
+                advertising.insertToAside(other_article_content)
+              }
+            }, 30)
+          }
+        }
+      }
+    },
     methods: {
     },
     mounted() {
+      setTimeout(() => {
+        let other_article_content = advertising.createDiv(".other_article_content")
+        if(other_article_content.length > 0) {
+          advertising.insertToAside(other_article_content)
+        }
+      }, 30)
       var isbool = true
       var that = this
       // 監聽 滾動加載更多數據
@@ -238,9 +263,6 @@
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp:3;
-              /*! autoprefixer: off */
-              -webkit-box-orient: vertical
-              /* autoprefixer: on */
             }
           }
           .center {

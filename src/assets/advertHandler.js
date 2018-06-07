@@ -54,7 +54,7 @@ export default {
   },
   // 側邊插入廣告
   insertToAside(target) {
-    if (target) {
+    if (target.length>1) {
       let parent = target[0].parentNode
       let reg = /^\+?[1-9][0-9]*$/
       // if(parent.lastChild == target){
@@ -76,7 +76,16 @@ export default {
 
       }
     }
-
-
-  }
+  },
+  // 监听 新数据回来 刷新 重新加载广告
+    reloadAdvert(target){
+      if (target.length > 1) {
+        for (let i = target.length; i >= 0; i--) {
+          let ele = target[i]
+          $(ele).remove()
+        }
+      } else {
+        $(target[0]).remove()
+      }
+    }
 }
