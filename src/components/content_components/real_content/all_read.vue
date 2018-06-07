@@ -2,8 +2,8 @@
   <div class="all_read card">
     <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-eye" style="color: #f39900;margin-right: 20px"></i>大家都在讀
     </h5>
-    <div class=" all_read_wrap">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in all_read" :key="index"
+    <div class="all_read_wrap">
+      <div class="recent_hot_content all_read_content clearfix " v-for="(item,index) in all_read" :key="index"
       >
         <router-link :to="{path:'/article/'+item.RelationID}">
           <div class="row">
@@ -14,7 +14,7 @@
             <div class="charater">
               <div class="top">
                 <div><p>{{item.CategoryName }}</p></div>
-                <div><p>{{item.NewsTitle}}</p></div>
+                <div><p style=" -webkit-box-orient: vertical">{{item.NewsTitle}}</p></div>
               </div>
               <div class="center">
                 <p>{{item.Profile}}</p>
@@ -45,6 +45,8 @@
   import filtration from '../../../assets/filtration'
   // loading 引入
   import loading from '../../oneself/loading'
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
 
   export default {
     data() {
@@ -83,8 +85,26 @@
       loading //loading组件引入
     },
     props: ['all_read'],
-    created() {
-
+    watch: {
+      "all_read": {
+        deep: true,
+        handler(newval, oldval) {
+          if (newval) {
+            let parent = document.querySelector(".all_read_wrap")
+            let advertisings = document.querySelectorAll(".all_read_wrap .advertising")
+            // if (advertisings.length > 1) {
+            //   for (let i = advertisings.length; i >=0; i--) {
+            //     parent.removeChild(advertisings[i])
+            //   }
+            // } else {
+            //   parent.removeChild(advertisings[0])
+            // }
+            let all_read_content = advertising.createDiv(".all_read_content")
+            console.log(all_read_content)
+            // advertising.insertToAside(all_read_content)
+          }
+        }
+      }
     },
     filters: {
       timezone_filter: function (value) {
@@ -93,6 +113,8 @@
     },
     methods: {},
     mounted() {
+      let all_read_content = document.querySelectorAll('.all_read_content')
+      advertising.insertToAside(all_read_content)
       // 用于判断 防止重复请求
       var isbool = true
       var that = this
@@ -113,6 +135,7 @@
                 }
                 // 向父組件 發送數據 讓父組件再傳給子組件
                 that.$emit("loadMore", res.data.Data.news)
+
                 isbool = true
               }).catch(err => {
                 isbool = true
@@ -237,7 +260,9 @@
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp: 3;
+              /*! autoprefixer: off */
               -webkit-box-orient: vertical
+              /* autoprefixer: on */
             }
           }
           .center {

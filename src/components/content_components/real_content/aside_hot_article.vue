@@ -5,7 +5,7 @@
       <span style="font-weight: 900">熱門文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content" v-for="(item,index) in hot_article" :key="index" style="text-align:left">
+    <div class="hot_article_content aside_hot" v-for="(item,index) in hot_article" :key="index" style="text-align:left">
       <router-link :to="{path:'/article/'+item.RelationID}">
       <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
       <p>{{item.NewsTitle}}</p>
@@ -17,7 +17,8 @@
 <script>
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
-
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
   export default {
     name: "aside_hot_article",
     data() {
@@ -26,7 +27,39 @@
       }
     },
     props:["hot_article"],
+    watch:{
+      "hot_article" :{
+        deep :true ,
+        handler(newval,oldval){
+          if(newval){
+            let parent = document.querySelector(".aside_hot")
+            let advertisings = document.querySelectorAll(".aside_hot .advertising")
+            if(advertisings.length>1){
+              for(let i = 0 ; i<advertisings.length ; i++){
+                parent.removeChild(advertisings[i])
+              }
+            }else{
+              parent.removeChild(advertisings[0])
+            }
+            let aside_hot = advertising.createDiv(".aside_hot")
+            advertising.insertToAside(aside_hot)
+          }
+        }
+      }
+    },
     methods: {
+    },
+    mounted(){
+      let aside_hot = document.querySelectorAll('.aside_hot')
+      advertising.insertToAside(aside_hot)
+    },
+    watch:{
+      "hot_article": {
+        deep: true,
+        handler(newval, oldval) {
+
+        }
+      }
     },
     created() {
 
@@ -57,7 +90,7 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 18px;
+    padding: 0 7px;
     border-top: 7px solid #f1463f;
     padding-bottom: 60px;
     box-shadow: 0 0 10px rgba(0,0,0,.2);

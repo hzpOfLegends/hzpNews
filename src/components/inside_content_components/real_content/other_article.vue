@@ -16,7 +16,7 @@
           <div class="charater">
             <div class="top">
               <div><p>{{item.CategoryName }}</p></div>
-              <div><p>{{item.NewsTitle}}</p></div>
+              <div><p style=" -webkit-box-orient: vertical">{{item.NewsTitle}}</p></div>
             </div>
             <div class="center">
               <p>{{item.Profile}}</p>
@@ -238,7 +238,9 @@
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp:3;
+              /*! autoprefixer: off */
               -webkit-box-orient: vertical
+              /* autoprefixer: on */
             }
           }
           .center {

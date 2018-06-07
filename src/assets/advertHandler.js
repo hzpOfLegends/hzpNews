@@ -23,7 +23,7 @@ export default {
                             targetDom.parentNode.parentNode.insertBefore(advertDom.cloneNode(true),targetDom.parentNode.nextElementSibling)  //由于img做了处理，因此在其父元素下面嵌入
                         }else{
                             targetDom.parentNode.appendChild(advertDom.cloneNode(true))  //在次元素末尾嵌入
-                        } 
+                        }
                     }
                     return;
                 }
@@ -41,6 +41,36 @@ export default {
                 // return console.log('參數錯誤');
             }
         }
-    }
+    },
+    // 根據傳過來的數量
+    createDiv(target){
+      return document.querySelectorAll(target)
+    },
+    // 側邊插入廣告
+    insertToAside(target){
+      if(target){
+        let parent = target[0].parentNode
+          let reg =  /^\+?[1-9][0-9]*$/
+          // if(parent.lastChild == target){
+          //   let newVdvert = document.createElement("div")
+          //   newVdvert.innerHTML='<div style="background:red;width: 300px;height: 250px;margin: 0 auto">廣告</div>'
+          //   parent.insertBefore(newVdvert,target.nextSibling)
+          // }
+          if(target.length>=3){
+          for(let i = 0 ; i<target.length+1;i++){
+            if(reg.test(i/3)){
+              let newVdvert = document.createElement("div")
+              newVdvert.setAttribute("class","advertising")
+              newVdvert.innerHTML='<div style="background:red;width: 300px;height: 250px;margin: 0 auto">廣告</div>'
+              let a = target[i-1].nextSibling
+              parent.insertBefore(newVdvert,a )
+            }
+          }
+        }else{
 
+        }
+      }
+
+
+    }
 }

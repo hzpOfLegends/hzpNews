@@ -1,34 +1,35 @@
 <template>
   <div class="recent_hot card">
-    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart" style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
+    <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart"
+                                                    style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
     <div class=" recent_hot_wrap">
-      <div class="recent_hot_content clearfix " v-for="(item,index) in recent_hots" :key="index"
-           >
+      <div class="recent_hot_content clearfix recent_hot_advert" v-for="(item,index) in recent_hots" :key="index"
+      >
         <router-link :to="{path:'/article/'+item.RelationID}">
-        <div class="row">
-          <div class="photo">
-            <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
-          </div>
-          <div class="charater">
-            <div class="top">
-              <div><p>{{item.CategoryName }}</p></div>
-              <div><p>{{item.NewsTitle}}</p></div>
+          <div class="row">
+            <div class="photo">
+              <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
             </div>
-            <div class="center">
-              <p>{{item.Profile}}</p>
-            </div>
-            <div class="bottom">
-              <div class="author">
-                <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
-                <span>{{item.AuthorName}}</span>
-                <i class="fa fa-clock-o"></i>
-                <span>發表時間：</span>
-                <!--| timezone_filter-->
-                <span>{{item.PublishTime |timezone_filter}}</span>
+            <div class="charater">
+              <div class="top">
+                <div><p>{{item.CategoryName }}</p></div>
+                <div><p style=" -webkit-box-orient: vertical">{{item.NewsTitle}}</p></div>
+              </div>
+              <div class="center">
+                <p>{{item.Profile}}</p>
+              </div>
+              <div class="bottom">
+                <div class="author">
+                  <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
+                  <span>{{item.AuthorName}}</span>
+                  <i class="fa fa-clock-o"></i>
+                  <span>發表時間：</span>
+                  <!--| timezone_filter-->
+                  <span>{{item.PublishTime |timezone_filter}}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </router-link>
       </div>
     </div>
@@ -38,6 +39,8 @@
 <script>
   // 时区转换
   import filtration from '@/assets/filtration'
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
 
   export default {
     name: "recent_hot_",
@@ -47,17 +50,37 @@
         default_backgrund_photo: "/static/img/OopsDaily.png" //默认背景图
       }
     },
-    props:["recent_hots"],
-    created() {
-
+    props: ["recent_hots"],
+    watch: {
+      "recent_hots": {
+        deep: true,
+        handler(newval, oldval) {
+          if(newval){
+            let parent = document.querySelector(".recent_hot_wrap")
+            let advertisings = document.querySelectorAll(".recent_hot_wrap .advertising")
+            if(advertisings.length>1){
+              for(let i = 0 ; i<advertisings.length ; i++){
+                parent.removeChild(advertisings[i])
+              }
+            }else{
+              parent.removeChild(advertisings[0])
+            }
+            let recent_hot_content = advertising.createDiv(".recent_hot_advert")
+            advertising.insertToAside(recent_hot_content)
+          }
+        }
+      }
     },
     filters: {
       timezone_filter: function (value) {
         return filtration.timezone_filter(value)
       }
     },
-    methods: {
-    }
+    mounted() {
+     let recent_hot_content = advertising.createDiv(".recent_hot_advert")
+      advertising.insertToAside(recent_hot_content)
+    },
+    methods: {}
   }
 </script>
 
@@ -68,27 +91,31 @@
       width: 100%;
     }
   }
-  @media screen and(max-width: 768px){
-    .photo{
+
+  @media screen and(max-width: 768px) {
+    .photo {
       width: 30% !important;
       vertical-align: top;
     }
-    .charater{
+
+    .charater {
       max-width: 69% !important;
     }
   }
-  @media screen and(max-width: 430px){
-    .recent_hot_content{
-      .photo{
+
+  @media screen and(max-width: 430px) {
+    .recent_hot_content {
+      .photo {
         width: 100% !important;
       }
-      .charater{
+      .charater {
         margin-top: 10px;
         max-width: 100% !important;
       }
     }
 
   }
+
   .recent_hot {
     width: 100%;
     height: 100%;
@@ -97,15 +124,15 @@
     border-top: 8px solid #f39900;
     padding: 10px 20px 20px;
     text-align: left;
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     .recent_hot_wrap {
       padding: 0;
       margin: 0;
       max-width: 846px;
-      .recent_hot_content:last-child{
+      .recent_hot_content:last-child {
         border-bottom: none;
       }
-      .row{
+      .row {
         margin: 0;
       }
       h5 {
@@ -116,7 +143,7 @@
         border-bottom: 1px solid #f6f6f6;
         margin-top: 20px;
         cursor: pointer;
-        a{
+        a {
           color: black;
           display: block;
         }
@@ -143,16 +170,16 @@
           padding-left: 15px;
           .top {
             display: flex;
-            height:100%;
-            :nth-child(1)> p{
-              margin-top:2px;
+            height: 100%;
+            :nth-child(1) > p {
+              margin-top: 2px;
               display: inline-block;
               vertical-align: top;
               min-width: 46px;
               padding: 0 5px;
               overflow: hidden;
               word-break: keep-all;
-              height:26px;
+              height: 26px;
               color: #f89c98;
               border: 1px solid #f89c98;
               font-size: 12px;
@@ -160,11 +187,11 @@
               line-height: 26px;
               border-radius: 3px;
             }
-            :nth-child(2){
+            :nth-child(2) {
               max-width: 460px;
               overflow: hidden;
             }
-            :nth-child(2)> p {
+            :nth-child(2) > p {
               width: 100%;
               height: 100%;
               margin: 0;
@@ -175,7 +202,9 @@
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp: 3;
+              /*! autoprefixer: off */
               -webkit-box-orient: vertical
+              /* autoprefixer: on */
             }
           }
           .center {
@@ -184,7 +213,7 @@
             font-size: 14px;
             max-height: 80px;
             color: #666;
-            p{
+            p {
               max-height: 60px;
               height: 100%;
               display: -webkit-box;

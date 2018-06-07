@@ -76,7 +76,6 @@
       imgHandler(dom, htmlStr,callback1,callback2) {
         if (dom.nodeType !== 1 || (typeof htmlStr) !== 'string') return
         let viewWidth = dom.offsetWidth
-        console.log("viewWidth",viewWidth)
         // let viewWidth = this.$refs.content.offsetWidth
         htmlStr.replace(/<\s?img[^>]*>/gi, '')
         let newContent = htmlStr.replace(/<\s?img[^>]*>/gi, function (tag) {
@@ -127,7 +126,7 @@
       facebook_comment
     },
     mounted(){
-      console.log(advertising.insertToContent)
+
       // 獲取包裹詳情内容的 標簽
       let detail_wrap = document.querySelector('.article_conten label')
       let a =this.imgHandler(detail_wrap,this.details.Content,advertising.insertToContent,this.img_set_width)
