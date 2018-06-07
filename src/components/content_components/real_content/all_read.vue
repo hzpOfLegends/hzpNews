@@ -86,22 +86,19 @@
     },
     props: ['all_read'],
     watch: {
+      // 插广告
       "all_read": {
         deep: true,
         handler(newval, oldval) {
           if (newval) {
-            let parent = document.querySelector(".all_read_wrap")
             let advertisings = document.querySelectorAll(".all_read_wrap .advertising")
-            // if (advertisings.length > 1) {
-            //   for (let i = advertisings.length; i >=0; i--) {
-            //     parent.removeChild(advertisings[i])
-            //   }
-            // } else {
-            //   parent.removeChild(advertisings[0])
-            // }
-            let all_read_content = advertising.createDiv(".all_read_content")
-            console.log(all_read_content)
-            // advertising.insertToAside(all_read_content)
+            advertising.reloadAdvert(advertisings)
+            setTimeout(() => {
+              let all_read_content = advertising.createDiv(".all_read_content")
+              if (all_read_content.length > 0) {
+                advertising.insertToAside(all_read_content)
+              }
+            }, 30)
           }
         }
       }
@@ -113,8 +110,14 @@
     },
     methods: {},
     mounted() {
+      // 插广告
+      setTimeout(()=>{
       let all_read_content = document.querySelectorAll('.all_read_content')
-      advertising.insertToAside(all_read_content)
+      if (all_read_content.length > 0) {
+        advertising.insertToAside(all_read_content)
+      }
+      },30)
+
       // 用于判断 防止重复请求
       var isbool = true
       var that = this
@@ -259,10 +262,7 @@
               overflow: hidden;
               text-overflow: ellipsis;
               display: -webkit-box;
-              -webkit-line-clamp: 3;
-              /*! autoprefixer: off */
-              -webkit-box-orient: vertical
-              /* autoprefixer: on */
+              -webkit-line-clamp: 3
             }
           }
           .center {

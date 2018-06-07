@@ -5,7 +5,7 @@
       <span style="font-weight: 900">相關文章</span>
       <span class="hot_article_title_line"></span>
     </div>
-    <div class="hot_article_content clearfix" v-for="(item,index) in hot_article" :key="index">
+    <div class="hot_article_content clearfix related_articles_content" v-for="(item,index) in related_article" :key="index">
       <router-link :to="{path:'/article/'+ item.RelationID}">
         <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
         <p>{{item.NewsTitle}}</p>
@@ -17,7 +17,8 @@
 <script>
   // 引入路由
   import inside_page_message from '@/axios_joggle/axios_inside'
-
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
   export default {
     name: "related_articles",
     data() {
@@ -26,16 +27,34 @@
       }
     },
     watch: {
-      // "$route":function () {
-      //   inside_page_message.relevance_article({newsId:this.$route.path.split('/')[2],size:20}).then(res => {
-      //     this.hot_article = res.data.Data
-      //   }).catch(err => {
-      //     console.log(err)
-      //   })
-      // }
+      "related_article" :{
+        deep :true ,
+        handler(newval,oldval){
+          if(newval){
+            let advertisings = document.querySelectorAll(".related_articles .advertising")
+            advertising.reloadAdvert(advertisings)
+            setTimeout(()=>{
+            let related_articles_content = advertising.createDiv(".related_articles_content")
+              if(related_articles_content.length>0) {
+                advertising.insertToAside(related_articles_content)
+              }
+            },30)
+          }
+        }
+      }
     },
-    props: ["hot_article"],
+    props: ["related_article"],
     created() {
+    },
+    mounted(){
+      setTimeout(()=>{
+        let related_articles_content = document.querySelectorAll('.related_articles_content')
+        console.log("222",related_articles_content)
+        if(related_articles_content.length>0){
+          advertising.insertToAside(related_articles_content)
+        }
+      },30)
+
     }
   }
 </script>
@@ -78,7 +97,7 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 18px;
+    padding: 0 7px;
     border-top: 7px solid #f1463f;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
@@ -116,7 +135,7 @@
       img {
         width: 100%;
         object-fit: cover;
-        max-height: 130px;
+        height: 130px;
       }
       p {
         margin: 5px 0 10px 0;

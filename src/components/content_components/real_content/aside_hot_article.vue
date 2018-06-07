@@ -32,17 +32,15 @@
         deep :true ,
         handler(newval,oldval){
           if(newval){
-            let parent = document.querySelector(".aside_hot")
             let advertisings = document.querySelectorAll(".aside_hot .advertising")
-            if(advertisings.length>1){
-              for(let i = 0 ; i<advertisings.length ; i++){
-                parent.removeChild(advertisings[i])
+            advertising.reloadAdvert(advertisings)
+            setTimeout(()=>{
+              let aside_hot = advertising.createDiv(".aside_hot")
+              if(aside_hot.length>0){
+                advertising.insertToAside(aside_hot)
               }
-            }else{
-              parent.removeChild(advertisings[0])
-            }
-            let aside_hot = advertising.createDiv(".aside_hot")
-            advertising.insertToAside(aside_hot)
+            },30)
+
           }
         }
       }
@@ -50,16 +48,14 @@
     methods: {
     },
     mounted(){
-      let aside_hot = document.querySelectorAll('.aside_hot')
-      advertising.insertToAside(aside_hot)
-    },
-    watch:{
-      "hot_article": {
-        deep: true,
-        handler(newval, oldval) {
-
+      setTimeout(()=>{
+        let aside_hot = document.querySelectorAll('.aside_hot')
+        if(aside_hot.length>0) {
+          advertising.insertToAside(aside_hot)
         }
-      }
+      },30)
+
+
     },
     created() {
 
@@ -134,7 +130,7 @@
       }
       img {
         width: 100%;
-        max-height: 130px;
+        height: 130px;
         object-fit: cover;
       }
       p {

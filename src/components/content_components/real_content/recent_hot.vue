@@ -55,18 +55,16 @@
       "recent_hots": {
         deep: true,
         handler(newval, oldval) {
-          if(newval){
-            let parent = document.querySelector(".recent_hot_wrap")
+          if (newval) {
             let advertisings = document.querySelectorAll(".recent_hot_wrap .advertising")
-            if(advertisings.length>1){
-              for(let i = 0 ; i<advertisings.length ; i++){
-                parent.removeChild(advertisings[i])
+            advertising.reloadAdvert(advertisings)
+            setTimeout(()=>{
+              let recent_hot_content = advertising.createDiv(".recent_hot_advert")
+              if (recent_hot_content.length > 0) {
+                advertising.insertToAside(recent_hot_content)
               }
-            }else{
-              parent.removeChild(advertisings[0])
-            }
-            let recent_hot_content = advertising.createDiv(".recent_hot_advert")
-            advertising.insertToAside(recent_hot_content)
+            },30)
+
           }
         }
       }
@@ -77,8 +75,12 @@
       }
     },
     mounted() {
-     let recent_hot_content = advertising.createDiv(".recent_hot_advert")
-      advertising.insertToAside(recent_hot_content)
+      setTimeout(() => {
+        let recent_hot_content = advertising.createDiv(".recent_hot_advert")
+        if (recent_hot_content.length > 0) {
+          advertising.insertToAside(recent_hot_content)
+        }
+      }, 30)
     },
     methods: {}
   }
@@ -202,9 +204,6 @@
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp: 3;
-              /*! autoprefixer: off */
-              -webkit-box-orient: vertical
-              /* autoprefixer: on */
             }
           }
           .center {

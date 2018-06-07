@@ -2,7 +2,7 @@ export default {
   // 创建广告内容 (測試用)
   createAdvert() {
     let advertContent = document.createElement("div")
-    advertContent.innerHTML = '<div style="width:100%;height:100px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">廣告內容</div>'
+    advertContent.innerHTML = '<div style="width:100%;height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">廣告內容</div>'
     return advertContent
   },
   // 内文广告嵌入 （大於屏幕高度 嵌入）
@@ -61,7 +61,7 @@ export default {
   },
   // 側邊插入廣告
   insertToAside(target) {
-    if (target) {
+    if (target.length>1) {
       let parent = target[0].parentNode
       let reg = /^\+?[1-9][0-9]*$/
       // if(parent.lastChild == target){
@@ -83,7 +83,16 @@ export default {
 
       }
     }
-
-
-  }
+  },
+  // 监听 新数据回来 刷新 重新加载广告
+    reloadAdvert(target){
+      if (target.length > 1) {
+        for (let i = target.length; i >= 0; i--) {
+          let ele = target[i]
+          $(ele).remove()
+        }
+      } else {
+        $(target[0]).remove()
+      }
+    }
 }
