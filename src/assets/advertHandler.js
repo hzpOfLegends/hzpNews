@@ -13,39 +13,46 @@ export default {
     insert(target, advert)
 
     function insert(targetDom, advertDom, noParent) {  //noParent表示非始祖父元素
-      if (targetDom.nodeType === 1) {
-        let doms = targetDom.children
-        if (doms.length < 1) {
-          if (!noParent) return //排除了非始祖父元素
-          if (targetDom.offsetTop + targetDom.offsetHeight > (offset + vh)) {
-            offset = (targetDom.offsetTop + targetDom.offsetHeight)
-            if (targetDom.nodeName === "IMG") {
-              targetDom.parentNode.parentNode.insertBefore(advertDom.cloneNode(true), targetDom.parentNode.nextElementSibling)  //由于img做了处理，因此在其父元素下面嵌入
-              // i++
-            } else {
-              targetDom.appendChild(advertDom.cloneNode(true))  //作为子元素嵌入
+        if (targetDom.nodeType === 1) {
+            let doms = targetDom.children
+            if(!noParent){  //当始祖父节点总高度不足一屏
+                if( (targetDom.lastElementChild.offsetTop + targetDom.lastElementChild.offsetHeight)<(offset+vh) ){
+                    targetDom.appendChild(advertDom.cloneNode(true)) //末尾插入一个广告
+                    return
+                }
+
             }
-            offset = (targetDom.offsetTop + targetDom.offsetHeight)
-          }
-          return;
-        }
-        for (let i = 0; i < doms.length; i++) {
-          if ((doms[i].offsetTop + doms[i].offsetHeight) > (offset + vh) && (doms[i].offsetTop + doms[i].offsetHeight) < (offset + ah + vh * 2)) {
-            offset = (doms[i].offsetTop + doms[i].offsetHeight)
-            if (i !== (doms.length - 1)) {
-              targetDom.insertBefore(advertDom.cloneNode(true), doms[i].nextElementSibling)  //不是最后一个元素，在下一個元素前嵌入
-            } else {
-              targetDom.parentNode.appendChild(advertDom.cloneNode(true))  // 最后一个元素，嵌入末尾
+            if (doms.length < 1) {
+                if (!noParent) return //排除了非始祖父元素
+                if (targetDom.offsetTop + targetDom.offsetHeight > (offset + vh)) {
+                    offset = (targetDom.offsetTop + targetDom.offsetHeight)+ah
+                    if (targetDom.nodeName === "IMG") {
+                    targetDom.parentNode.parentNode.insertBefore(advertDom.cloneNode(true), targetDom.parentNode.nextElementSibling)  //由于img做了处理，因此在其父元素下面嵌入
+                    // i++
+                    } else {
+                    targetDom.appendChild(advertDom.cloneNode(true))  //作为子元素嵌入
+                    }
+                    offset = (targetDom.offsetTop + targetDom.offsetHeight)+ah
+                }
+                return;
             }
-            // i++
-          } else if ((doms[i].offsetTop + doms[i].offsetHeight) >= (offset + ah + vh * 2)) {
-            insert(doms[i], advertDom, true) //递归遍历（对于大于两个屏幕以上的元素） true参数表示非始祖父元素
-            // i--
-          }
+            for (let i = 0; i < doms.length; i++) {
+            if ((doms[i].offsetTop + doms[i].offsetHeight) > (offset + vh) && (doms[i].offsetTop + doms[i].offsetHeight) < (offset + ah + vh * 2)) {
+                offset = (doms[i].offsetTop + doms[i].offsetHeight)+ah
+                if (i !== (doms.length - 1)) {
+                    targetDom.insertBefore(advertDom.cloneNode(true), doms[i].nextElementSibling)  //不是最后一个元素，在下一個元素前嵌入
+                } else {
+                    targetDom.parentNode.appendChild(advertDom.cloneNode(true))  // 最后一个元素，嵌入末尾
+                }
+                // i++
+            } else if ((doms[i].offsetTop + doms[i].offsetHeight) >= (offset + ah + vh * 2)) {
+                insert(doms[i], advertDom, true) //递归遍历（对于大于两屏以上的元素） true参数表示非始祖父元素
+                // i--
+            }
+            }
+        } else {
+            // return console.log('參數錯誤');
         }
-      } else {
-        // return console.log('參數錯誤');
-      }
     }
   },
   // 根據傳過來的數量
