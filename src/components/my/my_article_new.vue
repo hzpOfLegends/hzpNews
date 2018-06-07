@@ -33,7 +33,7 @@
             <form>
             <div class="form-group">
                     <label for="category" style="color:#747474">分類：</label>
-                    <select class="form-control" id="cotegory" style="max-width:320px;color:#999999" v-model="article.category">
+                    <select class="form-control" id="cotegory" style="max-width:320px;color:#777" v-model="article.category">
                         <option value="" selected style="color:#ccc">請選擇</option>
                         <option  v-for="(v,i) in $store.state.nav_type?$store.state.nav_type:1" :value="v.ID" :key="i">{{v.CategoryName}}</option>
                         <!--<option value="2">娱乐</option>

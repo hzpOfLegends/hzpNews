@@ -5,13 +5,6 @@
               <h5>全部文章</h5>
                 <!--<button type="button " class="btn btn-warning write-btn"><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫</button>-->
                 <router-link to="/my/article/new">
-                <!--<ul class="pager write-btn" style="margin:0">
-                    <li class="previous" style="">
-                        <a href="javascript:;" style="background:#fb8608;color:#fff;border:none;padding:8px 20px;font-size:12px;border-radius:34px;">
-                            <span aria-hidden="true"></span><i class="glyphicon glyphicon-plus-sign"></i> 文章撰寫
-                        </a>
-                    </li>
-                </ul>-->
                 <ul class="pager write-btn" style="margin:0">
                     <li class="previous" style="">
                         <a href="javascript:;"   id="btn-icon"  style="">
@@ -26,10 +19,6 @@
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                    <!--<th class="title-header">標題</th>
-                    <th style="width:190px">時間</th>
-                    <th style="width:220px">點閱</th>
-                    <th>操作</th>-->
                     <th class="title-header"  style="width:42%;padding-left:4%">標題</th>
                     <th style="width:20%">時間</th>
                     <th style="width:12%">點閱</th>
@@ -264,6 +253,11 @@ import Clipboard from 'clipboard';
         border:1px solid #2c80da;
         font-size:13px;
         padding:0;
+        &:hover {
+            // border-color: #1b53a0;
+            color:#1b53a0;
+            background-color: #d7e9fa;
+        }
     }
     .item {
         padding:2%;
