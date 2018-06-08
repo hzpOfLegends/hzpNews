@@ -8,7 +8,7 @@
     <div class="hot_article_content clearfix related_articles_content" v-for="(item,index) in related_article" :key="index">
       <router-link :to="{path:'/article/'+ item.RelationID}">
         <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
-        <p>{{item.NewsTitle}}</p>
+        <p style=" -webkit-box-orient: vertical">{{item.NewsTitle}}</p>
       </router-link>
     </div>
   </div>
@@ -92,7 +92,7 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 7px;
+    padding: 0 10px;
     border-top: 7px solid #f1463f;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
@@ -137,6 +137,10 @@
       }
       p {
         margin: 5px 0 10px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3
       }
     }
   }

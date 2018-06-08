@@ -166,6 +166,12 @@
   }
 
   @media screen and(max-width: 414px) {
+    .other_article{
+      padding: 10px !important;
+    }
+    .charater{
+      padding-left: 0 !important;
+    }
     .photo {
       max-width: 100% !important;
       width: 100%;

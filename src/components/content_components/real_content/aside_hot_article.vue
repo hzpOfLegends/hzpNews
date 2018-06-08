@@ -30,9 +30,16 @@
       "hot_article" :{
         deep :true ,
         handler(newval,oldval){
-          if(newval){
-            let advertisings = document.querySelectorAll(".aside_hot .advertising")
+          let advertisings = document.querySelectorAll(".aside_hot .advertising")
+          if(newval && oldval){
             advertising.reloadAdvert(advertisings)
+            setTimeout(()=>{
+              let aside_hot = advertising.createDiv(".aside_hot")
+              if(aside_hot.length>0){
+                advertising.insertToAside(aside_hot)
+              }
+            },30)
+          }else if(advertisings.length==0){
             setTimeout(()=>{
               let aside_hot = advertising.createDiv(".aside_hot")
               if(aside_hot.length>0){
@@ -44,7 +51,15 @@
       }
     },
     mounted(){
-
+      let aside_hot = advertising.createDiv(".aside_hot")
+      let advertisings = document.querySelectorAll(".aside_hot .advertising")
+      if(advertisings.length==0){
+        setTimeout(()=>{
+          if(aside_hot.length>0){
+            advertising.insertToAside(aside_hot)
+          }
+        },30)
+      }
     }
   }
 </script>
