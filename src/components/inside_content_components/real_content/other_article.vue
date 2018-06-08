@@ -211,7 +211,7 @@
           background-color: rgba(0, 0, 0, .1);
           max-width: 30%;
           width: 100%;
-          max-height: 160px;
+          height: 160px;
           overflow: hidden;
           position: relative;
           display: inline-block;
