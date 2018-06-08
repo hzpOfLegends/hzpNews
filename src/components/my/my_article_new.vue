@@ -179,7 +179,7 @@ export default {
                     Content: this.editor.txt.html(),
                     CategoryID: this.article.category
                 }).then(res=>{
-                    this.loading = false;
+                    this.loading = false; 
                     if(res.data.ResultCode==200){
                         this.$message({
                             message: '發表成功！',

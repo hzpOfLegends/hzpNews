@@ -1,17 +1,23 @@
 export default {
-  // 创建广告内容 (測試用)
-  createAdvert() {
-    let advertContent = document.createElement("div")
-    advertContent.innerHTML = '<div style="width:100%;height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">廣告內容</div>'
-    return advertContent
-  },
-  // 内文广告嵌入 （大於屏幕高度 嵌入）
-  insertToContent(target, advert) {
+  // 内文广告嵌入 （大於屏幕高度 嵌入）參數：傳入內容父容器
+  insertToContent(target) {
     let vh = window.innerHeight  // 用戶當前窗口高度
     let offset = 0
-    let ah = 100 + 15  //廣告dom高度 (先假設)
-    insert(target, advert)
-
+    // 创建广告内容
+    // <!-- In Article 這是內文部份 -->
+    let advertContent = document.createElement("div").innerHTML = `
+      <div style="width:100%;min-height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-0155854966618873"
+            data-ad-slot="9236758248"
+            data-ad-format="auto">
+          </ins>
+      </div>
+      `
+    // let advertContent = document.createElement("div").innerHTML = `<div style="width:100%;min-height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">廣告內容</div> `
+    let ah = 90 + 15  //廣告dom高度
+    insert(target, advertContent)
     function insert(targetDom, advertDom, noParent) {  //noParent表示非始祖父元素
         if (targetDom.nodeType === 1) {
             let doms = targetDom.children
@@ -95,4 +101,7 @@ export default {
         $(target[0]).remove()
       }
     }
+
+
+  
 }

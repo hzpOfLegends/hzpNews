@@ -93,8 +93,7 @@
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/text.png" alt="">
                             <div class="tit" style="color:#373737">
-                                <!--注：22汉字以内-->
-                                <div style="min-height:42px;max-height:55px;overflow:hidden;text-overflow:ellipsis;">
+                                <div style="height:36px;margin-bottom:5px">
                                     <p>{{v.Title}}</p>
                                 </div>
                                 <p class="type">類別:{{v.CategoryName}} <span style="padding:0 4px">|</span> ID:{{v.RelationID.length>12?v.RelationID.substr(0,12)+"...":v.RelationID}}</p>
@@ -144,7 +143,7 @@
                                     <span>點閱：{{v.ClickRate}}</span>
                                 </div>
                             </div>
-                            <div class="" style="margin:17px 0">
+                            <div class="" style="margin:17px 0 12px">
                                 <button type="button" :class="'btn btn-primary copy-link-'+i" style="width:100%" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                             </div>
                         </div>
@@ -254,7 +253,7 @@ import Clipboard from 'clipboard';
                 this.loading = true
                 // JSON {"pageSize":"15","pageIndex":"1","CategoryID":"-1","sDateTime":"","eDateTime":""} 
                 accountAxios.hotArticle({
-                    pageSize:"12",
+                    pageSize:"8",
                     pageIndex:"1",
                     CategoryID:"-1",
                     sDateTime:"",
@@ -323,15 +322,12 @@ import Clipboard from 'clipboard';
         margin:0;
     }
     .hot-title {
+        // 多行省略
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         overflow: hidden;
-        &:nth-child(1){
-            display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 3;
-overflow: hidden;
+        .txt {
         }
     }
     .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
@@ -468,6 +464,7 @@ overflow: hidden;
                 align-items:flex-start;
                 // border:none;
                 // border-bottom:1px solid #dddddd;
+
                 img {
                     width:33%;
                     max-height:80px;
@@ -477,6 +474,14 @@ overflow: hidden;
                 .tit {
                     font-size:13px;
                     padding-left:10px;
+                    &>div {
+                        // 多行省略
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                    }
+
                 }
                 p.type {
                     color:#bdbdbd;
@@ -511,7 +516,7 @@ overflow: hidden;
                 }
             }
             .news-title {
-                height:82px;
+                height:74px;
                 span.flag {
                     display:inline-block;
                     height:20px;
@@ -531,7 +536,13 @@ overflow: hidden;
                 .sub-title {
                     font-size:12px;
                     color:#999999;
-                    padding-top:8px;
+                    padding-top:5px;
+                    height:38px;
+                    // 多行省略
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
                 }
             }
             .btn-primary {
@@ -571,6 +582,9 @@ overflow: hidden;
                     .photo {
                         height:100px;
                     }
+                }
+                .sub-title {
+                    font-size:12px !important;
                 }
             }
     }

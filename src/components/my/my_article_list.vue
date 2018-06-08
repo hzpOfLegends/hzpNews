@@ -19,10 +19,11 @@
             <!--<caption>Optional table caption.</caption>-->
             <thead>
                 <tr>
-                    <th class="title-header"  style="width:42%;padding-left:4%">標題</th>
-                    <th style="width:20%">時間</th>
-                    <th style="width:12%">點閱</th>
-                    <th>操作</th>
+                    <th class="title-header"  style="padding-left:12.5%">標題</th>
+                    <th class="items-hidden" style="width:18%;padding-left:5%">時間</th>
+                    <th class="items-hidden" style="">點閱</th>
+                    <th class="items-hidden" style="">状态</th>
+                    <th class="head-ctrl" style="text-align:center">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +38,7 @@
                                 <!--注：22汉字以内-->
                                 <!--<p>美國朝鮮新加坡首次會晤，外交部緊急回應后，於是</p>-->
                                 <!--<p class="type">類別：政治</p>-->
-                                <div style="min-height:42px;max-height:55px;overflow:hidden;text-overflow:ellipsis;">
+                                <div style="height:35px;margin-bottom:7px;overflow:hidden">
                                     <p style="color:#333333">{{v.NewsTitle}}</p>
                                 </div>
                                 <p v-if="v.CategoryName" class="type">類別：{{v.CategoryName}}</p>
@@ -49,32 +50,29 @@
                             </router-link>
                     </td>
                     <!--时间-->
-                    <td>{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</td>
+                    <td  class="items-hidden">{{$moment(v.PublishTime).format("YYYY-MM-DD HH:mm:ss")}}</td>
                     <!--点阅数-->
-                    <td>{{v.ClickRate }}</td>
+                    <td  class="items-hidden">{{v.ClickRate }}</td>
+                    <td  class="items-hidden status">
+                        <div class="status-normal" v-if="v.State==0">
+                            正常
+                        </div>
+                        <div class="status-abnormal"  v-if="v.State==1">
+                            未通過
+                            <p>與其他文章重複</p>
+                        </div>
+                        <div class="status-waiting"  v-if="v.State==3">
+                            審核中
+                        </div>
+                    </td>
                     <td>
-                        <!--<div class="hidden-xs">
-                            <button type="button" class="btn btn-info" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> 編輯</button>
-                            <button type="button" class="btn btn-danger" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash"></i> 刪除</button>
-                            <button type="button" :class="'btn btn-primary copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
-                        </div>-->
-
-
-                        <div class="">
-                            <span class="edit-btn" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> </span>
-                            <span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-remove"></i> </span>
+                        <div class="ctrl-bar">
+                            <!--<span class="edit-btn" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="glyphicon glyphicon-pencil"></i> </span>-->
+                            <!--<span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-remove"></i> </span>-->
+                            <span class="edit-btn" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="el-icon-edit"></i> </span>
+                            <span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="el-icon-close"></i> </span>
                             <button type="button" :class="'btn btn-primary copy-btn copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                         </div>
-                        <!--<div class="btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" style="max-width:300px;min-width:100px">
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i><span class="btn-text hidden-xs"> 編輯</span></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i><span class="btn-text hidden-xs"> 刪除</span></a>
-                            <a href="#" class="btn btn-default" role="button"><i class="glyphicon glyphicon-duplicate"></i><span class="btn-text hidden-xs"> 複製鏈接</span></a>
-                        </div>-->
-                        <!--<div class="visible-xs btn-group btn-group-justified xs-button" role="group" aria-label="Justified button group" >
-                            <a href="javascript:;" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})" class="btn btn-default" role="button"><i class="glyphicon glyphicon-pencil"></i></a>
-                            <a href="javascript:;" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-trash" class="btn btn-default" role="button"><i class="glyphicon glyphicon-trash"></i></a>
-                            <a href="javascript:;" :class="'btn btn-default  copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID" @click="copyLink('copy-link-'+i)" role="button"><i class="glyphicon glyphicon-duplicate"></i></a>
-                        </div>-->
                     </td>
                 </tr>
 
@@ -239,15 +237,27 @@ import Clipboard from 'clipboard';
         }
     }
     .edit-btn,.del-btn {
-        color:#999999;
-        margin:0 10px;
+        color:#888;
+        margin:0 2px;
         cursor:pointer;
-        padding:7px;
+        // padding:5px 7px 5px 2px;
         display:inline-block;
+        font-size:19px;
+        width:28px;
+        height:37px;
+        line-height:37px ;
+        text-align:center;
+        &:hover {
+            color:#45abe1;
+            font-size:25px;
+        }
+    }
+    .del-btn { 
+        margin-right:8px;
     }
     .copy-btn {
-        width:72px !important;
-        height:28px;
+        width:63px !important;
+        height:26px;
         background-color: #e9f3fd;
         color:#2c80da;
         border:1px solid #2c80da;
@@ -296,6 +306,22 @@ import Clipboard from 'clipboard';
             th.title-header {
                 width:380px ;
             }
+            .status {
+                p {
+                    margin-bottom:0px;
+                    color:#9b9b9b;
+                    font-size:12px;
+                }
+                .status-normal {
+                    color:#3fe034;
+                }
+                .status-abnormal {
+                    color:#f46c6c;
+                }
+                .status-waiting {
+                    color:#fc9436;
+                }
+            }
             #doc-title {
                 // width:380px ;
                 display:flex;
@@ -311,6 +337,12 @@ import Clipboard from 'clipboard';
                 .tit {
                     font-size:13px;
                     padding-left:10px;
+                    &>div {
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical; //方向
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                    }
                 }
                 p.type {
                     color:#bdbdbd;
@@ -332,6 +364,16 @@ import Clipboard from 'clipboard';
         border-radius:34px;
         border:none
     }
+    .head-ctrl {
+        width:220px;
+        
+    }
+    .ctrl-bar {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-right:20px;
+    }
     @media screen and (max-width:992px) {
         .item .content {
             #doc-title {
@@ -349,9 +391,19 @@ import Clipboard from 'clipboard';
             font-size:12px;
         }
     }
-    @media screen and (max-width:475px) {
+    @media screen and (max-width:500px) {
         td,th {
-            font-size:12px !important;
+            font-size:13px !important;
+        }
+        .items-hidden {
+            display:none;
+        }   
+        .head-ctrl {
+            width:165px;
+            margin-right:0;
+        } 
+        .ctrl-bar {
+            margin-right:0px;
         }
         .item .content {
             #doc-title {
@@ -359,7 +411,7 @@ import Clipboard from 'clipboard';
                     display:none
                 }
                 .tit {
-                    font-size:11px;
+                    // font-size:12px;
                     padding-left:0px;
                 }
             }

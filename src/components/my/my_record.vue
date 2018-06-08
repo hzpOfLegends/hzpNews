@@ -78,8 +78,7 @@
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
                             <img v-else src="/static/img/text.png" alt="">
                             <div class="tit" style="color:#373737">
-                                <!--注：22汉字以内-->
-                                <div style="min-height:50px">
+                                <div style="height:36px;margin-bottom:5px">
                                     <p>{{v.Title}}</p>
                                 </div>
                                 <p class="type">類別:{{v.CategoryName}} <span style="padding:0 4px">|</span> ID:{{v.RelationID.length>10?v.RelationID.substr(0,9)+"...":v.RelationID}}</p>
@@ -366,6 +365,14 @@ import accountAxios from '../../axios_joggle/axios_account'
                 .tit {
                     font-size:13px;
                     padding-left:10px;
+                    &>div {
+                        // 多行省略
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+
+                    }
                 }
                 p.type {
                     color:#bdbdbd;
