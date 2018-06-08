@@ -54,8 +54,8 @@
       "recent_hots": {
         deep: true,
         handler(newval, oldval) {
+          let advertisings = document.querySelectorAll(".recent_hot_wrap .advertising")
           if (newval && oldval) {
-            let advertisings = document.querySelectorAll(".recent_hot_wrap .advertising")
             advertising.reloadAdvert(advertisings)
             setTimeout(()=>{
               let recent_hot_content = advertising.createDiv(".recent_hot_advert")
@@ -63,7 +63,16 @@
                 advertising.insertToAside(recent_hot_content)
               }
             },30)
-
+          }else if (newval){
+            if(advertisings.length==0){
+              console.log("0")
+              setTimeout(()=>{
+                let recent_hot_content = advertising.createDiv(".recent_hot_advert")
+                if (recent_hot_content.length > 0) {
+                  advertising.insertToAside(recent_hot_content)
+                }
+              },30)
+            }
           }
         }
       }
@@ -75,6 +84,7 @@
     },
     mounted() {
       setTimeout(() => {
+        console.log("2")
         let recent_hot_content = advertising.createDiv(".recent_hot_advert")
         if (recent_hot_content.length > 0) {
           advertising.insertToAside(recent_hot_content)

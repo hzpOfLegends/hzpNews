@@ -90,9 +90,16 @@
       "all_read": {
         deep: true,
         handler(newval, oldval) {
+          let advertisings = document.querySelectorAll(".all_read_wrap .advertising")
           if (newval && oldval) {
-            let advertisings = document.querySelectorAll(".all_read_wrap .advertising")
             advertising.reloadAdvert(advertisings)
+            setTimeout(() => {
+              let all_read_content = advertising.createDiv(".all_read_content")
+              if (all_read_content.length > 0) {
+                advertising.insertToAside(all_read_content)
+              }
+            }, 30)
+          }else if(advertisings.length==0){
             setTimeout(() => {
               let all_read_content = advertising.createDiv(".all_read_content")
               if (all_read_content.length > 0) {
