@@ -92,7 +92,7 @@
     width: 100%;
     background-color: white;
     text-align: left;
-    padding: 0 10px;
+    padding: 0 7px;
     border-top: 7px solid #f1463f;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
