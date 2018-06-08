@@ -20,7 +20,7 @@
         <other_article v-if="$store.state.phone_use==true" style="margin-top: 20px"/>
         <!--<div id="fb-root"><div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div></div>-->
       </div>
-      <div class="float-right right_content related_articles_browser">
+      <div class="float-right right_content related_articles_browser"  v-if="$store.state.related_article_cut == true">
         <!--&lt;!&ndash;相關文章&ndash;&gt;-->
         <vue-lazy-component v-if="$store.state.phone_use==false">
           <related_articles :related_article="related_article"/>
@@ -96,8 +96,14 @@
             if(res.data.Data){
               this.$store.state.other_article_content = res.data.Data.news
             }
-
-
+          })
+          // related
+          inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
+            this.related_article = res.data.Data
+            // 进度条加1
+            this.requestCount++
+          }).catch(err => {
+            console.log(err)
           })
           // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
@@ -120,15 +126,7 @@
         }).catch(err => {
         })
 
-        // related
-        inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
-          this.realated_article = res.data.Data
-          // 进度条加1
-          this.requestCount++
-          console.log(2, this.requestCount)
-        }).catch(err => {
-          console.log(err)
-        })
+
       },
       '$route': function () {
         // 將滾輪 滾到 頂部
@@ -201,6 +199,14 @@
           }
 
         })
+        // related
+        inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
+          this.related_article = res.data.Data
+          // 进度条加1
+          this.requestCount++
+        }).catch(err => {
+          console.log(err)
+        })
         // 10秒发送请求
         setTimeout(() => {
           verify_time.timed_10({
@@ -214,14 +220,7 @@
       }).catch(err => {
         console.log(err);
       })
-      // related
-      inside_page_message.relevance_article({newsId: this.$route.path.split('/')[2], size: 20}).then(res => {
-        this.related_article = res.data.Data
-        // 进度条加1
-        this.requestCount++
-      }).catch(err => {
-        console.log(err)
-      })
+
       //展示导航栏
       this.$store.state.nav_style = true
       //隐藏底部

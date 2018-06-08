@@ -26,7 +26,6 @@ export default {
                     targetDom.appendChild(advertDom.cloneNode(true)) //末尾插入一个广告
                     return
                 }
-
             }
             if (doms.length < 1) {
                 if (!noParent) return //排除了非始祖父元素
@@ -67,7 +66,8 @@ export default {
   },
   // 側邊插入廣告
   insertToAside(target) {
-    if (target.length>1) {
+     // 防止报错 有元素才进入
+    if (target.length>=1) {
       let parent = target[0].parentNode
       let reg = /^\+?[1-9][0-9]*$/
       // if(parent.lastChild == target){
@@ -75,6 +75,7 @@ export default {
       //   newVdvert.innerHTML='<div style="background:red;width: 300px;height: 250px;margin: 0 auto">廣告</div>'
       //   parent.insertBefore(newVdvert,target.nextSibling)
       // }
+      // 如果元素大于或者等于3 才插入广告
       if (target.length >= 3) {
         for (let i = 0; i < target.length + 1; i++) {
           if (reg.test(i / 3)) {
@@ -92,7 +93,7 @@ export default {
   },
   // 监听 新数据回来 刷新 重新加载广告
     reloadAdvert(target){
-      if (target.length > 1) {
+      if (target.length >=1) {
         for (let i = target.length; i >= 0; i--) {
           let ele = target[i]
           $(ele).remove()

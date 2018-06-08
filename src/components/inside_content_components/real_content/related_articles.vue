@@ -27,6 +27,7 @@
       }
     },
     watch: {
+      // 此处无需在mounted 中 插入广告 ， 因为 点进内页会触发 watch 函数
       "related_article" :{
         deep :true ,
         handler(newval,oldval){
@@ -44,18 +45,6 @@
       }
     },
     props: ["related_article"],
-    created() {
-    },
-    mounted(){
-      setTimeout(()=>{
-        let related_articles_content = document.querySelectorAll('.related_articles_content')
-        console.log("222",related_articles_content)
-        if(related_articles_content.length>0){
-          advertising.insertToAside(related_articles_content)
-        }
-      },30)
-
-    }
   }
 </script>
 
@@ -90,6 +79,12 @@
     .hot_article_content {
       max-width: 100%;
       display: inline-block;
+      max-height: 270px;
+      a{
+        img{
+          height: 170px !important;
+        }
+      }
     }
   }
 
@@ -127,15 +122,18 @@
       width: 100%;
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
-      margin-top: 0.9375rem;
+      margin-top: 15px;
       cursor: pointer;
       a {
+        display: inline-block;
+        width: 100%;
         color: black;
+        overflow: hidden;
       }
       img {
+        height: 130px;
         width: 100%;
         object-fit: cover;
-        height: 130px;
       }
       p {
         margin: 5px 0 10px 0;

@@ -3,8 +3,7 @@
     <h5 style="font-weight: 900;font-size: 20px"><i class="fa fa-line-chart"
                                                     style="color: #f39900;margin-right: 20px"></i>最近熱門</h5>
     <div class=" recent_hot_wrap">
-      <div class="recent_hot_content clearfix recent_hot_advert" v-for="(item,index) in recent_hots" :key="index"
-      >
+      <div class="recent_hot_content clearfix recent_hot_advert" v-for="(item,index) in recent_hots" :key="index">
         <router-link :to="{path:'/article/'+item.RelationID}">
           <div class="row">
             <div class="photo">
@@ -20,7 +19,7 @@
               </div>
               <div class="bottom">
                 <div class="author">
-                  <span><img :src="item.Avatar?item.Avatar:default_photo" alt=""></span>
+                  <span><img :src="item.Avatar?item.Avatar:default_photo"></span>
                   <span>{{item.AuthorName}}</span>
                   <i class="fa fa-clock-o"></i>
                   <span>發表時間：</span>
@@ -55,7 +54,7 @@
       "recent_hots": {
         deep: true,
         handler(newval, oldval) {
-          if (newval) {
+          if (newval && oldval) {
             let advertisings = document.querySelectorAll(".recent_hot_wrap .advertising")
             advertising.reloadAdvert(advertisings)
             setTimeout(()=>{

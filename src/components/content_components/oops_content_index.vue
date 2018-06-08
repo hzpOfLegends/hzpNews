@@ -271,13 +271,8 @@
       }
 
     },
-    mounted() {
-
-
-    },
     methods: {
       get_requestCount(val) {
-        console.log("fu", val)
       },
       // 加載更多
       load_more(val){

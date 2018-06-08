@@ -23,8 +23,6 @@
 </template>
 
 <script>
-  // 引入路由
-  import index_message from '@/axios_joggle/axios_index'
 
   export default {
     name: "aside_add_article",
@@ -41,12 +39,32 @@
     props: ["add_articles"],
     mounted() {
     },
-    methods: {
-    }
+    methods: {}
   }
 </script>
 
 <style scoped lang="less">
+  @media screen and (max-width: 1200px) {
+    .aside_add_article {
+      .hot_article_content {
+        .first {
+          a {
+            img {
+              height: 250px;
+            }
+
+            .Profile {
+              height: 35px;
+              line-height: 35px;
+            }
+
+          }
+        }
+
+      }
+    }
+  }
+
   .aside_add_article {
     width: 100%;
     background-color: white;
@@ -54,7 +72,7 @@
     padding: 0 18px;
     border-top: 7px solid #f1463f;
     padding-bottom: 60px;
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     .hot_article_title {
       padding: 14px 0;
       border-bottom: 3px solid #eeeeee;
@@ -81,15 +99,16 @@
       cursor: pointer;
       margin-top: 15px;
       a {
-        color: black;
+        display: inline-block;
+        width: 100%;
       }
       img {
         width: 100%;
         object-fit: cover;
-        height: 8.125rem;
+        height: 130px;
       }
       p {
-        margin: 0.3125rem 0 0.625rem 0;
+        margin: 5px 0 10px 0;
       }
       .first {
         position: relative;
@@ -104,7 +123,7 @@
           left: 0;
           color: white;
           font-size: 14px;
-          background-color: #333333;
+          background-color: rgba(0,0,0,.7);
           margin-top: 0;
         }
       }

@@ -50,14 +50,18 @@
   .facebook {
     position: relative;
     display: inline-block;
+    max-width: 110px;
     width: 100%;
     height: 40px;
     background-color: #2d4671;
     border-radius: 3px;
     line-height: 40px;
     text-align: center;
+    vertical-align: middle;
     a{
-      color: white;
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
       img{
         width: 100%;
       }

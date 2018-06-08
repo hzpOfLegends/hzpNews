@@ -6,7 +6,7 @@
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 oops_title_left" @click="close_nav_down"
                style="cursor: pointer">
             <router-link to="/">
-              <span>OOPSDAILY</span>
+              <span>OopsDaily</span>
               <span class="media_none">|</span>
               <span class="media_none">文章創作分享平臺</span>
             </router-link>
@@ -174,7 +174,6 @@
     methods: {
       // 點擊其他地方 關閉導航下拉
       close_nav_down() {
-        console.log(1)
         this.$store.state.nav_down = false;
         this.$store.state.nav_down_icon = "fa fa-bars"
       },

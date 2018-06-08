@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="detail_content" style="width: 100% ; font-weight:400 ; color: #666">
+      <label v-html="detail_content" style="width: 100% ;">
 
       </label>
     </div>
@@ -199,51 +199,6 @@
       }
       i {
         font-size: 20px;
-      }
-      .twitter {
-        display: inline-block;
-        max-width: 110px;
-        height: 40px;
-        background-color: #28a2f0;
-        border-radius: 3px;
-        line-height: 40px;
-        text-align: center;
-        a {
-          color: white;
-        }
-      }
-      .google {
-        display: inline-block;
-        max-width: 110px;
-        height: 40px;
-        background-color: #db443e;
-        border-radius: 3px;
-        line-height: 40px;
-        text-align: center;
-        a {
-          color: white;
-        }
-      }
-      .facebook {
-        position: relative;
-        display: inline-block;
-        max-width: 110px;
-        height: 40px;
-        background-color: #2d4671;
-        border-radius: 3px;
-        line-height: 40px;
-        text-align: center;
-        .fb-share-button {
-          z-index: 999;
-          opacity: 0;
-          position: absolute;
-          left: 0;
-          transform: translateX(30%);
-          top: -20%;
-        }
-        .charater {
-          color: white;
-        }
       }
     }
     .article_conten {

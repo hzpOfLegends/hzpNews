@@ -239,6 +239,7 @@
       }
     },
     created() {
+      // 此判断是 为了插入广告 relate_article 根据不同屏幕而改变 所以display:none 解决不了（因为在获取元素的时候会获取俩个） ， 所以 用v-if
       if(window.innerWidth<=1200){
         this.$store.state.related_article_cut = false
       }else{

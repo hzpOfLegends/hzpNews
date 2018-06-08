@@ -94,6 +94,7 @@
       }
     },
     watch:{
+      // 此处无需在mounted 中 插入广告 ， 因为 点进内页会触发 watch 函数
       "$store.state.other_article_content":{
         deep:true,
         handler(newval,oldval){
@@ -113,12 +114,6 @@
     methods: {
     },
     mounted() {
-      setTimeout(() => {
-        let other_article_content = advertising.createDiv(".other_article_content")
-        if(other_article_content.length > 0) {
-          advertising.insertToAside(other_article_content)
-        }
-      }, 30)
       var isbool = true
       var that = this
       // 監聽 滾動加載更多數據
