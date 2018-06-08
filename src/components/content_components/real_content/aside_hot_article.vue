@@ -26,10 +26,11 @@
     },
     props:["hot_article"],
     watch:{
+      // 因为
       "hot_article" :{
         deep :true ,
         handler(newval,oldval){
-          if(newval && oldval){
+          if(newval){
             let advertisings = document.querySelectorAll(".aside_hot .advertising")
             advertising.reloadAdvert(advertisings)
             setTimeout(()=>{
@@ -38,47 +39,65 @@
                 advertising.insertToAside(aside_hot)
               }
             },30)
-
           }
         }
       }
     },
-    methods: {
-    },
     mounted(){
-
-      setTimeout(()=>{
-        let aside_hot = document.querySelectorAll('.aside_hot')
-        if(aside_hot.length>0) {
-          advertising.insertToAside(aside_hot)
-        }
-      },30)
-
-
-    },
-    created() {
 
     }
   }
 </script>
 
 <style scoped lang="less">
-  @media screen and (max-width:768px ){
-    .hot_article_content{
-      width: 48%;
-      display: inline-block;
-      margin-right: 2%;
-      img{
-        height: 130px;
+  @media screen and (max-width: 430px){
+    .aside_hot_article {
+      background-color: transparent !important;
+      box-shadow: none !important;
+      .hot_article_content {
+        width: 100% !important;
+        display: inline-block;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+        img {
+          height: 130px;
+        }
       }
     }
   }
-  @media screen and (max-width:1200px ){
-
-    .hot_article_content{
-      width: 48%;
-      display: inline-block;
-      margin-right: 2%;
+  @media screen and (max-width:768px ) {
+    .aside_hot_article {
+      background-color: transparent !important;
+      box-shadow: none !important;
+      .hot_article_content {
+        width: 48%;
+        display: inline-block;
+        margin-right: 2%;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+        img {
+          height: 130px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width:1200px ) {
+    .aside_hot_article {
+      .hot_article_content {
+        width: 48%;
+        display: inline-block;
+        margin-right: 2%;
+        max-height: 270px !important;
+        border: 1px solid #e5e5e5 !important;
+        a {
+          img {
+            height: 172px !important;
+          }
+          p {
+            padding: 0 10px;
+            font-size: 16px;
+            color: #333333;
+          }
+        }
+      }
     }
   }
   .aside_hot_article {
@@ -133,7 +152,8 @@
         object-fit: cover;
       }
       p {
-        margin: 5px 0 10px 0;
+        color: #333333;
+        margin: 10px 0 10px 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

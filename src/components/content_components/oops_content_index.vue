@@ -40,7 +40,7 @@
         <!--</vue-lazy-component>-->
         <!--热门文章-->
         <vue-lazy-component v-if="$store.state.phone_use==false">
-          <aside_hot_article :hot_article="hot_article"/>
+          <aside_hot_article style="margin-top: 20px" :hot_article="hot_article"/>
           <aside_hot_article_skeleton slot="skeleton"/>
         </vue-lazy-component>
         <aside_hot_article style="margin-top: 20px" v-if="$store.state.phone_use==true" :hot_article="hot_article"/>
@@ -271,13 +271,8 @@
       }
 
     },
-    mounted() {
-
-
-    },
     methods: {
       get_requestCount(val) {
-        console.log("fu", val)
       },
       // 加載更多
       load_more(val){

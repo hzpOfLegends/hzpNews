@@ -174,7 +174,6 @@
     methods: {
       // 點擊其他地方 關閉導航下拉
       close_nav_down() {
-        console.log(1)
         this.$store.state.nav_down = false;
         this.$store.state.nav_down_icon = "fa fa-bars"
       },
