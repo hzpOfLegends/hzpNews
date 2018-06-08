@@ -52,6 +52,7 @@
 <style scoped lang="less">
   @media screen and (max-width: 430px){
     .aside_hot_article {
+      margin-top: 20px;
       background-color: transparent !important;
       box-shadow: none !important;
       .hot_article_content {
@@ -66,6 +67,7 @@
   }
   @media screen and (max-width:768px ) {
     .aside_hot_article {
+      margin-top: 20px;
       background-color: transparent !important;
       box-shadow: none !important;
       .hot_article_content {
