@@ -90,7 +90,7 @@
       "all_read": {
         deep: true,
         handler(newval, oldval) {
-          if (newval) {
+          if (newval && oldval) {
             let advertisings = document.querySelectorAll(".all_read_wrap .advertising")
             advertising.reloadAdvert(advertisings)
             setTimeout(() => {

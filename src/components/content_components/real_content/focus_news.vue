@@ -29,8 +29,6 @@
 </template>
 
 <script>
-  // 引入路由
-  import index_message from '@/axios_joggle/axios_index'
   // 时区转换 / 文章類型轉換
   import filtration from '@/assets/filtration'
   export default {

@@ -23,8 +23,6 @@
 </template>
 
 <script>
-  // 引入路由
-  import index_message from '@/axios_joggle/axios_index'
 
   export default {
     name: "aside_add_article",

@@ -30,7 +30,7 @@
       "related_article" :{
         deep :true ,
         handler(newval,oldval){
-          if(newval){
+          if(newval && oldval){
             let advertisings = document.querySelectorAll(".related_articles .advertising")
             advertising.reloadAdvert(advertisings)
             setTimeout(()=>{

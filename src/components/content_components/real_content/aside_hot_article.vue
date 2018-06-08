@@ -15,8 +15,6 @@
 </template>
 
 <script>
-  // 引入路由
-  import index_message from '@/axios_joggle/axios_index'
   // 引入广告 插件
   import advertising from '@/assets/advertHandler'
   export default {
@@ -31,7 +29,7 @@
       "hot_article" :{
         deep :true ,
         handler(newval,oldval){
-          if(newval){
+          if(newval && oldval){
             let advertisings = document.querySelectorAll(".aside_hot .advertising")
             advertising.reloadAdvert(advertisings)
             setTimeout(()=>{
@@ -48,6 +46,7 @@
     methods: {
     },
     mounted(){
+
       setTimeout(()=>{
         let aside_hot = document.querySelectorAll('.aside_hot')
         if(aside_hot.length>0) {
