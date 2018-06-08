@@ -5,7 +5,8 @@ export default {
     let offset = 0
     // 创建广告内容
     // <!-- In Article 這是內文部份 -->
-    let advertContent = document.createElement("div").innerHTML = `
+    let advertContent = document.createElement("div")
+    advertContent.innerHTML = `
       <div style="width:100%;min-height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">
           <ins class="adsbygoogle"
             style="display:block"

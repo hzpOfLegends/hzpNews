@@ -50,6 +50,10 @@ class account {
   getNewInfo(data){
       return axios.get(axios.path + 'api/Daily/GetNewInfo',{params:data})
   }
+  //獲取文章詳情
+  getNewInfoForLogin(data){
+      return axios.get(axios.path + 'api/Daily/GetNewInfoForLogin',{params:data})
+  }
   //編輯個人文章
   editArticle(data){
       return axios.post(axios.path + 'api/Daily/ModifyDaily',data)

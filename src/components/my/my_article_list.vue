@@ -71,7 +71,7 @@
                             <!--<span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="glyphicon glyphicon-remove"></i> </span>-->
                             <span class="edit-btn" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="el-icon-edit"></i> </span>
                             <span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="el-icon-close"></i> </span>
-                            <button type="button" :class="'btn btn-primary copy-btn copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
+                            <button v-if="v.State==0" type="button" :class="'btn btn-primary copy-btn copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
                         </div>
                     </td>
                 </tr>
