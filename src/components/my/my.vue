@@ -182,6 +182,7 @@
       //获取个人资料
       getUserInfo(callback){
           accountAxios.userInfo({}).then(res=>{
+            console.log('獲取uiser');
               if(res.data.ResultCode==200){
                   localStorage.setItem('user_info',JSON.stringify(res.data.Data))
                   this.$store.state.user_info = res.data.Data

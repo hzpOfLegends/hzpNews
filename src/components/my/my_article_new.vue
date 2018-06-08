@@ -243,7 +243,7 @@ export default {
         //   this.getCategories()
           if(this.$route.path.indexOf('/edit/')!==-1){
                 this.status = 'edit'
-                accountAxios.getNewInfo({
+                accountAxios.getNewInfoForLogin({
                     RelationID:this.$route.path.split('/')[4]
                 }).then(res=>{
                     if(res.data.ResultCode==200){

@@ -94,7 +94,7 @@
           return `<div class="details_img_wrap" style="display:inline-block;width:${w}px;height:${h}px;margin-bottom: 10px;"> ${tag}</div>`
         });
         setTimeout(()=>{
-          callback1 && callback1(dom,advertising.createAdvert())
+          callback1 && callback1(dom)
           // 回调 用来设置图片最大宽
           callback2()
         },50)
