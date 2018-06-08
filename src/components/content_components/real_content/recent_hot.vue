@@ -83,13 +83,16 @@
       }
     },
     mounted() {
-      setTimeout(() => {
-        console.log("2")
-        let recent_hot_content = advertising.createDiv(".recent_hot_advert")
-        if (recent_hot_content.length > 0) {
-          advertising.insertToAside(recent_hot_content)
-        }
-      }, 30)
+      let advertisings = document.querySelectorAll(".recent_hot_wrap .advertising")
+      let recent_hot_content = advertising.createDiv(".recent_hot_advert")
+      if(advertisings.length==0){
+        setTimeout(() => {
+          if (recent_hot_content.length > 0) {
+            advertising.insertToAside(recent_hot_content)
+          }
+        }, 30)
+      }
+
     },
     methods: {}
   }

@@ -118,12 +118,16 @@
     methods: {},
     mounted() {
       // 插广告
-      setTimeout(()=>{
+      let advertisings = document.querySelectorAll(".all_read_wrap .advertising")
       let all_read_content = document.querySelectorAll('.all_read_content')
-      if (all_read_content.length > 0) {
-        advertising.insertToAside(all_read_content)
+      if(advertisings.length==0){
+        setTimeout(()=>{
+          if (all_read_content.length > 0) {
+            advertising.insertToAside(all_read_content)
+          }
+        },30)
       }
-      },30)
+
 
       // 用于判断 防止重复请求
       var isbool = true
