@@ -69,6 +69,8 @@
 </template>
 
 <script>
+  // 引入广告 插件
+  import advertising from '@/assets/advertHandler'
   // 引入路由
   import index_message from '@/axios_joggle/axios_index'
   //引入组件  用于加载时 先显示骨架 后显示加载回来的内容----优化性能
@@ -227,6 +229,12 @@
       "requestCount": "closeNProgress",
       get_nav_id: function () {
         this.$NProgress.start()
+        // 此处在切换tab栏时删除 热门文章广告 因为广告会受前个广告影响存在
+        this.$nextTick(()=>{
+          let advertisings = document.querySelectorAll(".aside_hot_article .advertising")
+          advertising.reloadAdvert(advertisings)
+        })
+        this.$store.state.all_read_start = 1
         // 焦点新闻请求
         index_message.focus_news({CategoryID: this.$route.params.categoryId ? this.$route.params.categoryId : '-1'}).then(res => {
           this.focus_news_data = res.data.Data[0]

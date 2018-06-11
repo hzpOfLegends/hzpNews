@@ -126,7 +126,6 @@
       facebook_comment
     },
     mounted(){
-
       // 獲取包裹詳情内容的 標簽
       let detail_wrap = document.querySelector('.article_conten label')
       let a =this.imgHandler(detail_wrap,this.details.Content,advertising.insertToContent,this.img_set_width)
@@ -138,6 +137,7 @@
 <style scoped lang="less">
   @media screen and(max-width: 430px) {
     .details_content{
+      padding: 20px 10px !important;
       .share{
         .twitter,.google,.facebook{
           max-width: 80px !important;

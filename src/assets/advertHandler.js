@@ -98,7 +98,7 @@ export default {
           if (reg.test(i / 3)) {
             let newVdvert = document.createElement("div")
             newVdvert.setAttribute("class", "advertising")
-            newVdvert.innerHTML = '<div style="background:red;width: 300px;height: 250px;margin: 0 auto">廣告</div>'
+            newVdvert.innerHTML = '<div style="background:red;width: 300px;height: 250px;margin: 20px auto;color: white">廣告</div>'
             let a = target[i - 1].nextSibling
             parent.insertBefore(newVdvert, a)
           }
@@ -121,5 +121,5 @@ export default {
     }
 
 
-  
+
 }

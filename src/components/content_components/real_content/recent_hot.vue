@@ -118,6 +118,12 @@
   }
 
   @media screen and(max-width: 430px) {
+    .recent_hot{
+      padding: 10px 10px !important;
+    }
+    .charater{
+      padding-left: 0 !important;
+    }
     .recent_hot_content {
       .photo {
         width: 100% !important;

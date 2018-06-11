@@ -26,6 +26,7 @@ const state = {
   loading_more:true, // 判断返回的数据如果少于20条 就不在加载更多
   refreshUserInfo:false, //通知全局获取userinfo
   related_article_cut:false, // related_articles 页面 不同宽度 显示不同 如用display：none 会影响广告插入
+  all_read_start:0
 }
 const mutations = {
     setMeta(state,value){

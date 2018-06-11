@@ -188,10 +188,13 @@
     .all_read_wrap .photo {
       width: 100% !important;
     }
-
+    .all_read{
+      padding: 10px !important;
+    }
     .charater {
       margin-top: 10px;
       max-width: 100% !important;
+      padding-left: 0 !important;
     }
   }
 

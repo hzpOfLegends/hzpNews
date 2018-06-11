@@ -93,17 +93,24 @@
         return filtration.timezone_filter(value)
       }
     },
-    watch:{
+    watch: {
       // 此处无需在mounted 中 插入广告 ， 因为 点进内页会触发 watch 函数
-      "$store.state.other_article_content":{
-        deep:true,
-        handler(newval,oldval){
-          if (newval) {
-            let advertisings = document.querySelectorAll(".other_article_wrap .advertising")
+      "$store.state.other_article_content": {
+        deep: true,
+        handler(newval, oldval) {
+          let advertisings = document.querySelectorAll(".other_article_wrap .advertising")
+          if (newval && oldval) {
             advertising.reloadAdvert(advertisings)
             setTimeout(() => {
               let other_article_content = advertising.createDiv(".other_article_content")
-              if(other_article_content.length > 0) {
+              if (other_article_content.length > 0) {
+                advertising.insertToAside(other_article_content)
+              }
+            }, 30)
+          } else if (advertisings.length == 0) {
+            setTimeout(() => {
+              let other_article_content = advertising.createDiv(".other_article_content")
+              if (other_article_content.length > 0) {
                 advertising.insertToAside(other_article_content)
               }
             }, 30)
@@ -166,6 +173,12 @@
   }
 
   @media screen and(max-width: 414px) {
+    .other_article{
+      padding: 10px !important;
+    }
+    .charater{
+      padding-left: 0 !important;
+    }
     .photo {
       max-width: 100% !important;
       width: 100%;
