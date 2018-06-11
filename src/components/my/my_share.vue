@@ -163,7 +163,6 @@ import Clipboard from 'clipboard';
                     if(res.data.ResultCode==200){
                         this.hotList = res.data.Data.news
                         this.total = res.data.Data.total
-                        console.log(res);
                     }
                 }).catch(err=>{
                     this.loading = false

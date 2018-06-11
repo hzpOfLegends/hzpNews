@@ -20,7 +20,6 @@ import my_share from '@/components/my/my_share'
 import my_message from '@/components/my/my_message'
 import my_record from '@/components/my/my_record'
 import my_record_item from '@/components/my/my_record_item'
-import my_test from '@/components/my/my_test'
 // 注册
 import register from '@/components/login_register/register'
 // 登录
@@ -72,7 +71,6 @@ const vueRouter = new Router({
     {path:"/user/register",component:register}, //注册
     {path:"/user/forgetpassword",component:forget_password}, // 忘记密码
     // 个人中心
-    {path:"/test",component:my_test}, // 忘记密码
     {
       path:'/my',
       redirect:'/my/user/dashboard',

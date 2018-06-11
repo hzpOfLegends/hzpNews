@@ -91,7 +91,7 @@
                         <router-link :to="'/article/'+v.RelationID">
                         <div id="doc-title">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
-                            <img v-else src="/static/img/text.png" alt="">
+                            <img v-else src="/static/img/OopsDaily.png" alt="">
                             <div class="tit" style="color:#373737">
                                 <div style="height:36px;margin-bottom:5px">
                                     <p>{{v.Title}}</p>
@@ -264,7 +264,6 @@ import Clipboard from 'clipboard';
                     if(res.data.ResultCode==200){
                         this.hotList = res.data.Data.news
                         // this.pages = Math.ceil(res.data.Data.total/this.pageSize)
-                        console.log(res);
                         this.copyLink()
                     }
                 }).catch(err=>{
