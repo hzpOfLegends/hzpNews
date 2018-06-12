@@ -23,7 +23,7 @@
             </table>
             <p v-if="isEmpty" style="text-align:center">暫無數據</p>
         </div> 
-        <div style="text-align:center">
+        <div style="text-align:center;padding:20px 0;">
                 <el-pagination
                     background
                     layout="prev, pager, next"

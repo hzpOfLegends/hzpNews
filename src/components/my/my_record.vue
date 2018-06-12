@@ -76,7 +76,7 @@
                         <router-link :to="'/article/'+v.RelationID">
                         <div id="doc-title">
                             <img v-if="v.CoverImges" :src="v.CoverImges" alt="">
-                            <img v-else src="/static/img/text.png" alt="">
+                            <img v-else src="/static/img/OopsDaily.png" alt="">
                             <div class="tit" style="color:#373737">
                                 <div style="height:36px;margin-bottom:5px">
                                     <p>{{v.Title}}</p>
@@ -100,7 +100,7 @@
             </table>
             <p v-if="isEmpty" style="text-align:center;padding-top:18px">暫無數據</p>
         </div>
-        <nav style="text-align:center;padding-top:30px;">
+        <nav style="text-align:center;padding:40px 0 20px">
             <el-pagination
             background
             layout="prev, pager, next"

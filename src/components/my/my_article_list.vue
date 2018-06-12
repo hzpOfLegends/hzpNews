@@ -72,6 +72,8 @@
                             <span class="edit-btn" @click="$router.push({path:'/my/article/edit/'+ v.RelationID})"><i class="el-icon-edit"></i> </span>
                             <span class="del-btn" @click="deleteArticle(v.RelationID)"><i class="el-icon-close"></i> </span>
                             <button v-if="v.State==0" type="button" :class="'btn btn-primary copy-btn copy-link-'+i" :data-clipboard-text="linkPathOrigin+v.RelationID+'?r='+ShareID" @click="copyLink('copy-link-'+i)">複製鏈接</button>
+                            <!--隱藏時佔位-->
+                            <button v-else style="visibility:hidden" type="button" :class="'btn btn-primary copy-btn'"></button>
                         </div>
                     </td>
                 </tr>
@@ -80,7 +82,7 @@
             </table>
             <p v-if="isEmpty" style="text-align:center">暫無數據</p>
         </div>
-            <div style="text-align:center">
+            <div style="text-align:center;padding:20px 0">
                 <el-pagination
                     background
                     layout="prev, pager, next"
@@ -170,7 +172,6 @@ import Clipboard from 'clipboard';
             }
         },
         changePage(pageIndex){
-            console.log(pageIndex);
             let query = Object.assign({},this.$route.query)
             query.pageIndex = pageIndex
             this.$router.push({query:query})

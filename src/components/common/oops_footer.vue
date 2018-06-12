@@ -34,23 +34,23 @@
         <div class="" id="copy">
           <router-link to=""><span>@2018OopsDaily</span></router-link>
           <router-link to=""><span>隱私政策</span></router-link>
-          <router-link to=""><span>服務條款</span></router-link>
-          <router-link to=""><span>京ICP證080268號</span></router-link>
+          <router-link to=""><span>重要聲明</span></router-link>
+          <!--<router-link to=""><span>京ICP證080268號</span></router-link>-->
 
         </div>
         <div id="about">
-          <span class="want_line">
-            <router-link to="">
-              關於我們
-            </router-link>
-          </span>
+          <!--<span class="want_line">-->
+            <!--<router-link to="">-->
+              <!--關於我們-->
+            <!--</router-link>-->
+          <!--</span>-->
+          <!--<span class="want_line">-->
+            <!--<router-link to="/contactus">-->
+              <!--聯係我們-->
+            <!--</router-link>-->
+          <!--</span>-->
           <span class="want_line">
             <router-link to="/contactus">
-              聯係我們
-            </router-link>
-          </span>
-          <span class="want_line">
-            <router-link to="">
               意見反饋
             </router-link>
           </span>

@@ -104,7 +104,7 @@
             setTimeout(() => {
               let other_article_content = advertising.createDiv(".other_article_content")
               if (other_article_content.length > 0) {
-                advertising.insertToAside(other_article_content)
+                advertising.insertToDetails(other_article_content)
               }
             }, 30)
           }

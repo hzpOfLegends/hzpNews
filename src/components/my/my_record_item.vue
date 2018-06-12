@@ -108,7 +108,6 @@ import accountAxios from '../../axios_joggle/axios_account'
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
-                        console.log(res);
                         this.recordList = res.data.Data.ArticleView
                         // this.total = res.data.Data.total
                     }

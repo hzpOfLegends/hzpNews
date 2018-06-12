@@ -96,14 +96,14 @@
             setTimeout(() => {
               let all_read_content = advertising.createDiv(".all_read_content")
               if (all_read_content.length > 0) {
-                advertising.insertToAside(all_read_content)
+                advertising.insertToIndex(all_read_content)
               }
             }, 30)
           }else if(advertisings.length==0){
             setTimeout(() => {
               let all_read_content = advertising.createDiv(".all_read_content")
               if (all_read_content.length > 0) {
-                advertising.insertToAside(all_read_content)
+                advertising.insertToIndex(all_read_content)
               }
             }, 30)
           }
@@ -123,7 +123,7 @@
       if(advertisings.length==0){
         setTimeout(()=>{
           if (all_read_content.length > 0) {
-            advertising.insertToAside(all_read_content)
+            advertising.insertToIndex(all_read_content)
           }
         },30)
       }

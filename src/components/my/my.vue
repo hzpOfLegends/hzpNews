@@ -111,6 +111,10 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import VueHtml5Editor from 'vue-html5-editor'
+  import editorConfig from 'vue-html5-editor'
+  Vue.use(VueHtml5Editor,editorConfig)
   import accountAxios from '../../axios_joggle/axios_account'
   export default {
     data() {
@@ -181,8 +185,8 @@
       },
       //获取个人资料
       getUserInfo(callback){
+          this.$NProgress.start()
           accountAxios.userInfo({}).then(res=>{
-            console.log('獲取uiser');
               if(res.data.ResultCode==200){
                   localStorage.setItem('user_info',JSON.stringify(res.data.Data))
                   this.$store.state.user_info = res.data.Data
@@ -197,7 +201,7 @@
         if (localStorage.getItem('user_info')) {
             this.show = true;
         } else {
-          this.$message({
+          this.$message({ 
             showClose: true,
             message: '請先登錄',
             type: 'warning'
@@ -210,12 +214,13 @@
     },
     mounted() {
       this.changeRoute()
-      this.$NProgress.start()
+
     },
     created() {
       this.init()
       // 因爲 點進來 要刷新才出現 底部 所以 在這裏開啓
       this.$store.state.foot_all_style = true
+      
     }
   }
 </script>

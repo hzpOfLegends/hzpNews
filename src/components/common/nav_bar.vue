@@ -32,34 +32,34 @@
             <div class="triangle_border_up">
               <span></span>
             </div>
-            <div class="relation_us">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 relation_chara">
-                <div>
-                  <img src="/static/img/relation.png">
-                </div>
-                <div style="padding-left: 15px">
-                  <div>聯係我們</div>
-                  <div style="color: #999999;font-size: 12px">在綫時間：9:30-18:30</div>
-                </div>
-                <div></div>
-              </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 relation_btn">
-                <div>
-                  <router-link to="/contactus">
-                    在綫留言
-                  </router-link>
-                </div>
-              </div>
-            </div>
+            <!--<div class="relation_us">-->
+              <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 relation_chara">-->
+                <!--<div>-->
+                  <!--<img src="/static/img/relation.png">-->
+                <!--</div>-->
+                <!--<div style="padding-left: 15px">-->
+                  <!--<div>聯係我們</div>-->
+                  <!--<div style="color: #999999;font-size: 12px">在綫時間：9:30-18:30</div>-->
+                <!--</div>-->
+                <!--<div></div>-->
+              <!--</div>-->
+              <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 relation_btn">-->
+                <!--<div>-->
+                  <!--<router-link to="/contactus">-->
+                    <!--在綫留言-->
+                  <!--</router-link>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
             <div class="line"></div>
             <nav_bar_down/>
             <div class="line"></div>
             <div class="relation_foot row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 chara">
                 <div>
-                  <router-link to="">意見反饋</router-link>
+                  <router-link to="/contactus">意見反饋</router-link>
                   <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
-                  <router-link to="">幫助中心</router-link>
+                  <router-link to="/help">幫助中心</router-link>
                 </div>
                 <div style="color: #999">
                   2018OopsDaily
