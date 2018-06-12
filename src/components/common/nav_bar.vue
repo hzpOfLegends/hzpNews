@@ -55,17 +55,19 @@
             <nav_bar_down/>
             <div class="line"></div>
             <div class="relation_foot row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 chara">
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 chara">
                 <div>
                   <router-link to="/contactus">意見反饋</router-link>
                   <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
                   <router-link to="/help">幫助中心</router-link>
+                  <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
+                  <router-link to="">隱私政策</router-link>
                 </div>
                 <div style="color: #999">
                   2018OopsDaily
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 " style="text-align: right">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 " style="text-align: right">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-share-alt"></i>
@@ -135,12 +137,15 @@
     .media_414_none {
       display: none;
     }
+    .dropdown-menu{
+      transform: none !important;
+    }
   }
-
   @media screen and(min-width: 768px ) {
     .media_block {
       display: none;
     }
+
   }
 
   @media screen and(max-width: 768px) {
@@ -151,7 +156,6 @@
       width: 100%;
       max-width: 110px;
       min-width: 110px;
-      transform: translateX(46%) !important;
       li{
         padding: 3px 0;
         text-align: center;
@@ -336,7 +340,7 @@
         width: 100%;
         max-width: 110px;
         min-width: 110px;
-        transform: translateX(80%);
+        transform: translateX(20%);
         li{
           padding: 3px 0;
           text-align: center;

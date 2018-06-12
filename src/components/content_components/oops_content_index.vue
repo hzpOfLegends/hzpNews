@@ -155,11 +155,7 @@
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
         }
       })
-      //展示导航栏
-      this.$store.state.nav_style = true
-      //隐藏底部
-      this.$store.state.foot_all_style = false
-      this.$store.state.footer_style1 = true
+
       if (localStorage.getItem('ShareID')) {
         this.$store.state.foot_all_style = false
       }

@@ -218,12 +218,6 @@
       }).catch(err => {
         console.log(err);
       })
-
-      //展示导航栏
-      this.$store.state.nav_style = true
-      //隐藏底部
-      this.$store.state.foot_all_style = false
-
     }
   }
 </script>

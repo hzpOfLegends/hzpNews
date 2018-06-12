@@ -205,6 +205,13 @@
         }
         // 控制背景圖 儅在登錄 注冊 忘記 密碼的時候換背景圖
         if(this.$route.fullPath.indexOf("/user/login")!="-1" || this.$route.fullPath.indexOf("/user/register")!="-1" || this.$route.fullPath.indexOf("/user/forgetpassword")!="-1" ||this.$route.fullPath.indexOf("/contactus")!="-1" || this.$route.fullPath.indexOf("/help")!="-1" ){
+          // 底部样式 控制
+            //隐藏导航栏
+            this.$store.state.nav_style = false
+            // 显示底部
+            this.$store.state.foot_all_style = false
+            // 隐藏底部1
+            this.$store.state.footer_style1 = false
           // 更换背景
           setTimeout(()=>{
             let oops_content_wrap = document.querySelector('.oops_content_wrap')
@@ -213,13 +220,30 @@
             oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
             oops_content_wrap.style.backgroundSize = "cover"
           },1)
-        }else{
+        }else if(this.$route.fullPath!="/" || this.$route.fullPath.indexOf("/article")=="-1"){
+          //隐藏导航栏
+          this.$store.state.nav_style = true
+          // 显示底部
+          this.$store.state.foot_all_style = true
+          // 隐藏底部1
+          this.$store.state.footer_style1 = true
+        }else if(this.$route.fullPath==="/" || this.$route.fullPath.indexOf("/article")!="-1"){
+          //隐藏导航栏
+          this.$store.state.nav_style = false
+          // 显示底部
+          this.$store.state.foot_all_style = false
+          // 隐藏底部1
+          this.$store.state.footer_style1 = false
+        }
+        else{
           // 更换背景
           setTimeout(()=>{
           let oops_content_wrap = document.querySelector('.oops_content_wrap')
           oops_content_wrap.style.background = "#f4f4f4"
           },1)
         }
+        console.log(this.$route.fullPath)
+        // if(this.$route.fullPath.indexOf(""))
         // 點擊其他地方 關閉導航下拉
         this.$store.state.nav_down = false;
         this.$store.state.nav_down_icon = "fa fa-bars"
