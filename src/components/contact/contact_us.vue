@@ -93,7 +93,6 @@
       }
     },
     mounted(){
-      this.$store.state.footer_style1 = true
     }
   }
 </script>

@@ -2,40 +2,40 @@
     <span class="facebook">
        <a class="fb-xfbml-parse-ignore" target="_blank" @click="skpi_page"
           :href="share_url">
-         <img src="/static/img/team2.png">
+         <img src="/static/img/team7.png">
        </a>
-     </span>
+          </span>
 </template>
 
 <script>
   export default {
     name: "facebook_share_btn",
-    data() {
+    data(){
       return {
-        share: "",
-        share_url: ""
+        share:"",
+        share_url:""
       }
     },
-    methods: {
-      skpi_page() {
-        this.share = localStorage.getItem('ShareID') ? localStorage.getItem('ShareID') : ""
-        if (this.share) {
-          let a = window.location.href + "?r=" + this.share
-          this.share_url = "http://www.facebook.com/sharer/sharer.php?u=" + a + ""
-        } else {
-          this.share_url = "http://www.facebook.com/sharer/sharer.php?u=" + window.location.href + "";
+    methods:{
+      skpi_page(){
+        this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):""
+        if(this.share){
+          let a = window.location.href + "?r="+this.share
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+""
+        }else{
+          this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
 
         }
         window.open(this.share_url, 'Facebook', 'width=600,height=600')
       }
     },
-    created() {
-      this.share = localStorage.getItem('ShareID') ? localStorage.getItem('ShareID') : ""
-      if (this.share) {
-        let a = window.location.href + "?r=" + this.share
-        this.share_url = "http://www.facebook.com/sharer/sharer.php?u=" + a + ""
-      } else {
-        this.share_url = "http://www.facebook.com/sharer/sharer.php?u=" + window.location.href + "";
+    created(){
+      this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):""
+      if(this.share){
+        let a = window.location.href + "?r="+this.share
+        this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+a+""
+      }else{
+        this.share_url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href+"";
 
       }
 
@@ -55,12 +55,12 @@
     text-align: center;
     margin-left: 15px;
     vertical-align: middle;
-    a {
+    a{
       color: white;
       display: inline-block;
       width: 100%;
       overflow: hidden;
-      img {
+      img{
         width: 100%;
       }
     }

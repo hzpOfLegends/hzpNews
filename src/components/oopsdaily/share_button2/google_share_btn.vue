@@ -3,7 +3,7 @@
             <a target="_blank"
                @click="skip_page"
                :href="web_url">
-              <img src="/static/img/team4.png" alt="">
+              <img src="/static/img/team9.png" alt="">
             </a>
           </span>
 </template>
@@ -21,17 +21,17 @@
     created() {
       this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):"";
       if(this.share){
-        this.web_url ="https://plus.google.com/share?url="+ window.location.href+'?r='+this.share
+        this.web_url ="https://plus.google.com/share?url="+ this.share_path+'?r='+this.share
       }
-      this.web_url ="https://plus.google.com/share?url="+ window.location.href
+      this.web_url ="https://plus.google.com/share?url="+ this.share_path
     },
     methods:{
       skip_page(){
         this.share = localStorage.getItem('ShareID')?localStorage.getItem('ShareID'):"";
         if(this.share){
-          this.web_url ="https://plus.google.com/share?url="+ window.location.href+'?r='+this.share
+          this.web_url ="https://plus.google.com/share?url="+ this.share_path+'?r='+this.share
         }
-        this.web_url ="https://plus.google.com/share?url="+ window.location.href
+        this.web_url ="https://plus.google.com/share?url="+ this.share_path
         window.open(this.web_url,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
       }
     }

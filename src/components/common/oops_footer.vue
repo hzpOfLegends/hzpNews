@@ -32,7 +32,7 @@
     <div class="oops_footer2" v-if="$store.state.footer_style2">
       <div class="oops_footer_wrap2 clearfix" style="font-size:12px">
         <div class="" id="copy">
-          <router-link to=""><span>@2018OopsDaily</span></router-link>
+          <router-link to=""><span>©2018 OopsDaily</span></router-link>
           <router-link to=""><span>隱私政策</span></router-link>
           <router-link to=""><span>重要聲明</span></router-link>
           <!--<router-link to=""><span>京ICP證080268號</span></router-link>-->

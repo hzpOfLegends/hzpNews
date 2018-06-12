@@ -54,8 +54,13 @@
             <div class="line"></div>
             <nav_bar_down/>
             <div class="line"></div>
+            <div class="col-lg-0 col-md-0 col-sm-0 col-xs-12 phone_share" style="margin: 20px 0;display: none">
+              <facebook_share2/>
+              <google_share2/>
+              <twitter_share2/>
+            </div>
             <div class="relation_foot row">
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 chara">
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 chara">
                 <div>
                   <router-link to="/contactus">意見反饋</router-link>
                   <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
@@ -63,11 +68,11 @@
                   <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
                   <router-link to="">隱私政策</router-link>
                 </div>
-                <div style="color: #999">
-                  2018OopsDaily
+                <div style="color: #999;text-align: center;margin: 10px 0">
+                  © 2018 OopsDaily
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 " style="text-align: right">
+              <div class="col-lg-4 col-md-4 col-sm-4 share_modil" style="text-align: right">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-share-alt"></i>
@@ -80,6 +85,10 @@
                     <li><twitter_share/></li>
                   </ul>
                 </div>
+              </div>
+
+              <div class="col-xs-12">
+
               </div>
             </div>
           </div>
@@ -95,6 +104,9 @@
   import google_share from "@/components/common/share_button/google_share_btn"
   import twitter_share from "@/components/common/share_button/twitter_share_btn"
 
+  import facebook_share2 from "@/components/common/share_button2/facebook_share_btn"
+  import google_share2 from "@/components/common/share_button2/google_share_btn"
+  import twitter_share2 from "@/components/common/share_button2/twitter_share_btn"
   export default {
     name: "nav_bar",
     data() {
@@ -105,6 +117,9 @@
       "facebook_share": facebook_share,
       "google_share": google_share,
       "twitter_share": twitter_share,
+      "facebook_share2":facebook_share2,
+      "google_share2":google_share2,
+      "twitter_share2":twitter_share2,
       nav_type: []
     },
     created() {
@@ -135,6 +150,15 @@
 <style scoped lang="less">
   @media screen and(max-width: 414px) {
     .media_414_none {
+      display: none;
+    }
+    .phone_share{
+      display: block ;
+    }
+    .nav_bar_down .relation_foot{
+      padding: 13px !important;
+    }
+    .share_modil{
       display: none;
     }
     .dropdown-menu{

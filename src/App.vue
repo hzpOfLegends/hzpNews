@@ -1,5 +1,5 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <!--導航-->
     <oops-header></oops-header>
     <!--面包屑-->
@@ -43,6 +43,9 @@
       }
     },
     methods: {
+      default_setting(){
+        console.log("fuck")
+      },
       getMeta() {
         accountAxios.getMeta({url: this.$route.fullPath}).then(res => {
           let d = res.data.Data
@@ -197,50 +200,79 @@
           }
           this.$store.commit('setMeta', meta)
         })
-        // 判斷底部 分類
-        if(this.$route.fullPath.indexOf("/my")!="-1"){
-          this.$store.state.footer_style1 = true
+        if(this.$route.fullPath.indexOf('/oopsdaily')=="-1"){
+          this.$store.state.oopsdaily_control = true
         }else{
+          this.$store.state.oopsdaily_control = false
+        }
+        // 判斷底部 分類
+        if (this.$route.fullPath.indexOf("/my") != "-1") {
+          this.$store.state.footer_style1 = true
+        } else {
           this.$store.state.footer_style1 = false
         }
         // 控制背景圖 儅在登錄 注冊 忘記 密碼的時候換背景圖
-        if(this.$route.fullPath.indexOf("/user/login")!="-1" || this.$route.fullPath.indexOf("/user/register")!="-1" || this.$route.fullPath.indexOf("/user/forgetpassword")!="-1" ||this.$route.fullPath.indexOf("/contactus")!="-1" || this.$route.fullPath.indexOf("/help")!="-1" ){
+        if (this.$route.fullPath.indexOf("/user/login") != "-1" || this.$route.fullPath.indexOf("/user/register") != "-1" || this.$route.fullPath.indexOf("/user/forgetpassword") != "-1") {
+
           // 底部样式 控制
-            //隐藏导航栏
-            this.$store.state.nav_style = false
-            // 显示底部
-            this.$store.state.foot_all_style = false
-            // 隐藏底部1
-            this.$store.state.footer_style1 = false
-          // 更换背景
-          setTimeout(()=>{
-            let oops_content_wrap = document.querySelector('.oops_content_wrap')
-            let user_login = document.querySelector('.user_login')
-            user_login.style.height = 1080 + "px"
-            oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
-            oops_content_wrap.style.backgroundSize = "cover"
-          },1)
-        }else if(this.$route.fullPath!="/" || this.$route.fullPath.indexOf("/article")=="-1"){
-          //隐藏导航栏
-          this.$store.state.nav_style = true
-          // 显示底部
-          this.$store.state.foot_all_style = true
-          // 隐藏底部1
-          this.$store.state.footer_style1 = true
-        }else if(this.$route.fullPath==="/" || this.$route.fullPath.indexOf("/article")!="-1"){
           //隐藏导航栏
           this.$store.state.nav_style = false
           // 显示底部
           this.$store.state.foot_all_style = false
           // 隐藏底部1
           this.$store.state.footer_style1 = false
-        }
-        else{
+          // 只是显示底部2
+          this.$store.state.footer_style2 = true
+
           // 更换背景
-          setTimeout(()=>{
-          let oops_content_wrap = document.querySelector('.oops_content_wrap')
-          oops_content_wrap.style.background = "#f4f4f4"
-          },1)
+          setTimeout(() => {
+            let oops_content_wrap = document.querySelector('.oops_content_wrap')
+            let user_login = document.querySelector('.user_login')
+            user_login.style.height = 1080 + "px"
+            oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
+            oops_content_wrap.style.backgroundSize = "cover"
+          }, 1)
+          // 判斷是否登錄過
+          if(localStorage.getItem('ShareID') ){
+            this.$router.push({path:"/my"})
+          }
+        } else if (this.$route.fullPath != "/" && this.$route.fullPath.indexOf("/article") == "-1" && this.$route.fullPath.indexOf("/category") == "-1") {
+
+          //隐藏导航栏
+          this.$store.state.nav_style = true
+          // 显示底部
+          this.$store.state.foot_all_style = true
+          // 隐藏底部1
+          this.$store.state.footer_style1 = true
+          // 隐藏底部2
+          this.$store.state.footer_style2 = true
+          // 更换背景
+          setTimeout(() => {
+            let oops_content_wrap = document.querySelector('.oops_content_wrap')
+            oops_content_wrap.style.background = "#f4f4f4"
+          }, 1)
+        } else if (this.$route.fullPath === "/" || this.$route.fullPath.indexOf("/article") != "-1" || this.$route.fullPath.indexOf("/category") != "-1") {
+
+          //隐藏导航栏
+          this.$store.state.nav_style = false
+          // 显示底部
+          this.$store.state.foot_all_style = false
+          // 隐藏底部1
+          this.$store.state.footer_style1 = false
+          // 隐藏底部2
+          this.$store.state.footer_style2 = false
+          // 更换背景
+          setTimeout(() => {
+            let oops_content_wrap = document.querySelector('.oops_content_wrap')
+            oops_content_wrap.style.background = "#f4f4f4"
+          }, 1)
+        }
+        else {
+          // 更换背景
+          setTimeout(() => {
+            let oops_content_wrap = document.querySelector('.oops_content_wrap')
+            oops_content_wrap.style.background = "#f4f4f4"
+          }, 1)
         }
         console.log(this.$route.fullPath)
         // if(this.$route.fullPath.indexOf(""))
@@ -264,27 +296,27 @@
     },
     created() {
       // 此判断是 为了插入广告 relate_article 根据不同屏幕而改变 所以display:none 解决不了（因为在获取元素的时候会获取俩个） ， 所以 用v-if
-      if(window.innerWidth<=1200){
+      if (window.innerWidth <= 1200) {
         this.$store.state.related_article_cut = false
-      }else{
+      } else {
         this.$store.state.related_article_cut = true
       }
-      if(window.innerWidth<=768){
+      if (window.innerWidth <= 768) {
         this.$store.state.phone_use = true
-      }else{
+      } else {
         this.$store.state.phone_use = false
       }
       // 獲取導航分類
-        header_message.nav_type().then(res => {
-          if(res.data.Data){
-            this.$store.state.nav_type = res.data.Data
-          }
-        }).catch(err => {
-          console.log(err)
-        })
+      header_message.nav_type().then(res => {
+        if (res.data.Data) {
+          this.$store.state.nav_type = res.data.Data
+        }
+      }).catch(err => {
+        console.log(err)
+      })
       // 獲取登錄后返回的用戶信息 存於 vuex
-      if(localStorage.getItem("user_info")){
-        this.$store.state.user_info=JSON.parse(localStorage.getItem("user_info"))
+      if (localStorage.getItem("user_info")) {
+        this.$store.state.user_info = JSON.parse(localStorage.getItem("user_info"))
         this.$store.state.judge_login = true
       }
       this.getMeta()
