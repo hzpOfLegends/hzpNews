@@ -35,6 +35,9 @@ import no_get_email from "@/components/help/no_get_email"
 import change_password from "@/components/help/change_password"
 import how_embody from "@/components/help/how_embody"
 import account_class from "@/components/help/account_class"
+// 隐私政策 和 重要声明
+import privacy from "@/components/other/privacy"
+import disclaimer from "@/components/other/disclaimer"
 const vueRouter = new Router({
   mode: 'history',
   routes: [
@@ -96,7 +99,10 @@ const vueRouter = new Router({
         {path:'record/:articleId', component:my_record_item}, //点阅詳情
       ]
     },
-    // 此配置的位置不可移动
+    //隐私政策
+    {path:'/privacy',component:privacy},
+    {path:'/disclaimer',component:disclaimer}
+
     // {path:'*',redirect:'/'}
   ]
 })

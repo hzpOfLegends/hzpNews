@@ -3,8 +3,8 @@ import router from '@/router/index'
 import {Message} from 'element-ui'
 import store from '../store/store'
 // axios.path = "http://192.168.30.10:3300/"
-axios.path = "https://www.oopsdaily.com/"
-// axios.path = "/apis/"
+// axios.path = "https://www.oopsdaily.com/"
+axios.path = "/apis/"
 // http 请求拦截器
 axios.interceptors.request.use(config => {
 let Ticket = localStorage.getItem("Ticket");
@@ -16,27 +16,27 @@ return config;
 // http响应拦截器
 axios.interceptors.response.use(data => {// 响应成功关闭loading
 
-// if(data.data.Data){
-//     data.data.Data = dataHandler(JSON.parse(JSON.stringify(data.data.Data)))
-//    function dataHandler(d){
-//       if(Object.prototype.toString.call(d)==='[object Object]'){
-//           for(let key in d){
-//               if(typeof d[key] === "string"){
-//                  if(/\/upload\//.test(d[key])){
-//                     d[key] = d[key].replace(/\/upload\//g,'http://35.234.61.6/upload/')
-//                  } 
-//               }else{
-//                  dataHandler(d[key])
-//               }
-//           }
-//       }else if(Object.prototype.toString.call(d)==='[object Array]'){
-//           d.forEach((v,i)=>{
-//              dataHandler(v)
-//           })
-//       }
-//       return d
-//    }
-// }
+if(data.data.Data){
+    data.data.Data = dataHandler(JSON.parse(JSON.stringify(data.data.Data)))
+   function dataHandler(d){
+      if(Object.prototype.toString.call(d)==='[object Object]'){
+          for(let key in d){
+              if(typeof d[key] === "string"){
+                 if(/\/upload\//.test(d[key])){
+                    d[key] = d[key].replace(/\/upload\//g,'http://35.234.61.6/upload/')
+                 } 
+              }else{
+                 dataHandler(d[key])
+              }
+          }
+      }else if(Object.prototype.toString.call(d)==='[object Array]'){
+          d.forEach((v,i)=>{
+             dataHandler(v)
+          })
+      }
+      return d
+   }
+}
 
   switch (data.data.ResultCode) {
     case 200 :
