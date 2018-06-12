@@ -1,5 +1,5 @@
 <template>
-  <div class="oops_header" onselectstart="return false">
+  <div class="oops_header" onselectstart="return false" v-if="$store.state.oopsdaily_control">
     <div class="oops_header_content">
       <div class="container head1">
         <div class="oops_title row">

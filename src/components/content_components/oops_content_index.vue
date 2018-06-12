@@ -34,10 +34,10 @@
       </div>
       <div class="float-right right_content">
         <!--广告-->
-        <!--<vue-lazy-component class="advertising_aside1_browser">-->
-          <!--<advertising_aside1/>-->
-          <!--<advertising_aside1_skeleton slot="skeleton"/>-->
-        <!--</vue-lazy-component>-->
+        <vue-lazy-component class="advertising_aside1_browser">
+          <advertising_aside1/>
+          <advertising_aside1_skeleton slot="skeleton"/>
+        </vue-lazy-component>
         <!--热门文章-->
         <vue-lazy-component v-if="$store.state.phone_use==false">
           <aside_hot_article :hot_article="hot_article"/>
@@ -155,11 +155,7 @@
         if (($(this).scrollTop() + $(window).height()) >= $(document).height() && isbool == true) {
         }
       })
-      //展示导航栏
-      this.$store.state.nav_style = true
-      //隐藏底部
-      this.$store.state.foot_all_style = false
-      this.$store.state.footer_style1 = true
+
       if (localStorage.getItem('ShareID')) {
         this.$store.state.foot_all_style = false
       }
@@ -209,9 +205,7 @@
         // 定义个空数组 用来存储 2-20的新闻
         let b = []
         // 取出第一个  因为第一条新闻展示图片
-        if(b.c){
           b.c = res.data.Data.shift()
-        }
 
         // 取出剩余的新闻
         b.d = a

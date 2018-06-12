@@ -54,21 +54,27 @@
             <div class="line"></div>
             <nav_bar_down/>
             <div class="line"></div>
+            <div class="col-lg-0 col-md-0 col-sm-0 col-xs-12 phone_share" style="margin: 20px 0;display: none">
+              <facebook_share2/>
+              <google_share2/>
+              <twitter_share2/>
+            </div>
             <div class="relation_foot row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 chara">
-                <div style="">
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 chara">
+                <div>
                   <router-link to="/disclaimer">重要聲明</router-link>
                   <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
-                  <router-link to="/privacy">隱私政策</router-link> <br>
+                  <router-link to="/privacy">隱私政策</router-link>
+                  <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
                   <router-link to="/contactus">意見反饋</router-link>
                   <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
                   <router-link to="/help">幫助中心</router-link>
                 </div>
-                <!--<div style="color: #999">
-                  2018OopsDaily
-                </div>-->
+                <div style="color: #999;text-align: center;margin: 10px 0">
+                  © 2018 OopsDaily
+                </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 " style="text-align: right">
+              <div class="col-lg-4 col-md-4 col-sm-4 share_modil" style="text-align: right">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-share-alt"></i>
@@ -81,6 +87,10 @@
                     <li><twitter_share/></li>
                   </ul>
                 </div>
+              </div>
+
+              <div class="col-xs-12">
+
               </div>
             </div>
           </div>
@@ -96,6 +106,9 @@
   import google_share from "@/components/common/share_button/google_share_btn"
   import twitter_share from "@/components/common/share_button/twitter_share_btn"
 
+  import facebook_share2 from "@/components/common/share_button2/facebook_share_btn"
+  import google_share2 from "@/components/common/share_button2/google_share_btn"
+  import twitter_share2 from "@/components/common/share_button2/twitter_share_btn"
   export default {
     name: "nav_bar",
     data() {
@@ -106,6 +119,9 @@
       "facebook_share": facebook_share,
       "google_share": google_share,
       "twitter_share": twitter_share,
+      "facebook_share2":facebook_share2,
+      "google_share2":google_share2,
+      "twitter_share2":twitter_share2,
       nav_type: []
     },
     created() {
@@ -138,12 +154,27 @@
     .media_414_none {
       display: none;
     }
+    .chara{
+      text-align: center !important;
+    }
+    .phone_share{
+      display: block !important;
+    }
+    .nav_bar_down .relation_foot{
+      padding: 13px !important;
+    }
+    .share_modil{
+      display: none;
+    }
+    .dropdown-menu{
+      transform: none !important;
+    }
   }
-
   @media screen and(min-width: 768px ) {
     .media_block {
       display: none;
     }
+
   }
 
   @media screen and(max-width: 768px) {
@@ -154,7 +185,6 @@
       width: 100%;
       max-width: 110px;
       min-width: 110px;
-      transform: translateX(46%) !important;
       li{
         padding: 3px 0;
         text-align: center;
@@ -339,7 +369,7 @@
         width: 100%;
         max-width: 110px;
         min-width: 110px;
-        transform: translateX(80%);
+        transform: translateX(20%);
         li{
           padding: 3px 0;
           text-align: center;

@@ -6,7 +6,7 @@
                 :href="web_url"
                 target="_blank"
                 data-size="large">
-                <img src="/static/img/team3.png" alt="">
+                <img src="/static/img/team8.png" alt="">
               </a>
           </span>
 </template>

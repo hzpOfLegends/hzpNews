@@ -9,7 +9,7 @@
       <div class="first" v-if="add_articles.c">
         <router-link :to="{path:'/article/'+ add_articles.c.RelationID}">
           <img :src="add_articles.c.CoverImges?add_articles.c.CoverImges:default_backgrund_photo">
-          <div class="Profile">{{add_articles.c.NewsTitle}}</div>
+          <p class="Profile" style="padding-left: 15px">{{add_articles.c.NewsTitle}}</p>
         </router-link>
       </div>
       <div class="other" v-if="add_articles.d" v-for="(item,index) in add_articles.d" :key="index"
@@ -109,12 +109,13 @@
       }
       p {
         margin: 5px 0 10px 0;
+        color: #333;
       }
       .first {
         position: relative;
         .Profile {
           width: 100%;
-          padding-bottom: 5px;
+          padding: 3px 0;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -123,8 +124,9 @@
           left: 0;
           color: white;
           font-size: 14px;
-          background-color: rgba(0,0,0,.7);
+          background-color: rgba(0,0,0,.5);
           margin-top: 0;
+          margin-bottom: 0;
         }
       }
       .other {
@@ -140,6 +142,10 @@
           margin: 0;
           span {
             font-size: 20px;
+            vertical-align: middle;
+            font-weight: 600;
+            color: rgb(202, 202, 202);
+            margin-right: 5px;
           }
         }
       }

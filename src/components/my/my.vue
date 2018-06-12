@@ -201,7 +201,7 @@
         if (localStorage.getItem('user_info')) {
             this.show = true;
         } else {
-          this.$message({ 
+          this.$message({
             showClose: true,
             message: '請先登錄',
             type: 'warning'
@@ -218,9 +218,6 @@
     },
     created() {
       this.init()
-      // 因爲 點進來 要刷新才出現 底部 所以 在這裏開啓
-      this.$store.state.foot_all_style = true
-      
     }
   }
 </script>

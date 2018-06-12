@@ -125,6 +125,7 @@
     border-top: 7px solid #f1463f;
     padding-bottom: 60px;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
+    margin-top: 20px;
     .hot_article_title {
       padding: 14px 0;
       border-bottom: 3px solid #eeeeee;

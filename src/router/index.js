@@ -30,6 +30,9 @@ import forget_password from '@/components/login_register/forget_password'
 import contact_us from "@/components/contact/contact_us"
 // 幫助中心
 import help_center from "@/components/help/help_center"
+// 矿池宣传页
+import oopsdaily from "@/components/oopsdaily/oopsdaily"
+
 // 沒有收到驗證碼
 import no_get_email from "@/components/help/no_get_email"
 import change_password from "@/components/help/change_password"
@@ -50,7 +53,10 @@ const vueRouter = new Router({
         {path: "article/:RelationID", component: inside_page_content},
         // 聯係我們
         {
-          path:"/contactus",component:contact_us
+          path:"contactus",component:contact_us
+        },
+        {
+          path:"/oopsdaily",component:oopsdaily
         },
         {path:'help',component:help_center,redirect:"/help/notgetemail",children:[
             {path:"notgetemail",component:no_get_email},
@@ -88,7 +94,7 @@ const vueRouter = new Router({
         //      {path:'list',component: my_article_list}
         //   ]
         // }, //文章列表
-        {path:'article/list', component:my_article_list,name:'articleList'}, //文章列表
+        {path:'articleda/list', component:my_article_list,name:'articleList'}, //文章列表
         {path:'article/new', component:my_article_new}, // 新增文章
         {path:'article/edit/:articleId', component:my_article_new}, // 編輯文章
         {path:'payment/income', component:my_payment}, //收益紀錄

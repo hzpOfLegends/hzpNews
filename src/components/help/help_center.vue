@@ -20,9 +20,6 @@
 
   export default {
     name: "help_center",
-    mounted(){
-      this.$store.state.footer_style1 = true
-    }
   }
 </script>
 

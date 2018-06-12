@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <div class="my-nav">
+    <div class="my-nav"  v-if="$store.state.oopsdaily_control">
       <!--<div class="bx" style="position: relative">-->
       <!--<nav class="navbar navbar-default">-->
       <div class="navbar">

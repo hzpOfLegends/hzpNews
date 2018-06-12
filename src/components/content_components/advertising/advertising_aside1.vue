@@ -1,6 +1,11 @@
 <template>
     <div class="advertising card">
-        廣告位
+      <router-link to="/oopsdaily">
+        <img src="/static/img/join_OopsDaily.png" alt="">
+        <span class="ggao">
+        廣告
+      </span>
+      </router-link>
     </div>
 </template>
 
@@ -25,5 +30,20 @@
     width: 100%;
     height: 15.625rem;
     background: white;
+    overflow: hidden;
+    position: relative;
+    img{
+      width: 100%;
+      object-fit: cover;
+    }
+    .ggao{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: inline-block;
+      background-color: rgba(0,0,0,.5);
+      color: white;
+      width: 40px;
+    }
   }
 </style>
