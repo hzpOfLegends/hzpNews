@@ -194,6 +194,8 @@
           localStorage.setItem('user_info', "")
           // 清除TICKET
           localStorage.setItem('Ticket', "")
+
+          this.$store.commit('setIs401', false)
         }).catch(err => {
 
         })
@@ -208,7 +210,6 @@
       is401Handler() {
         if (this.$store.state.is401) {
           this.login_out()
-          this.$store.commit('setIs401', false)
         }
       }
     },

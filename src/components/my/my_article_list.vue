@@ -341,7 +341,7 @@ import Clipboard from 'clipboard';
                     &>div {
                         display: -webkit-box;
                         -webkit-box-orient: vertical; //方向
-                        -webkit-line-clamp: 2;
+                        -webkit-line-clamp: 1;
                         overflow: hidden;
                     }
                 }
