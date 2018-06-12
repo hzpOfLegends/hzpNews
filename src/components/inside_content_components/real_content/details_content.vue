@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="article_conten">
-      <label v-html="detail_content" style="width: 100% ;">
+      <label v-html="detail_content" style="width: 100% ;font-size: 16px;line-height: 24px">
 
       </label>
     </div>

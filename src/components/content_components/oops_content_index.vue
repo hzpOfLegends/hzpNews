@@ -146,6 +146,8 @@
       skip_top //點擊到頂部
     },
     created() {
+      // 控制最頂部 進度條 將進度條歸零
+      this.requestCount = 0
       // 进度条开始
       this.$NProgress.start()
       var isbool = true
@@ -207,7 +209,10 @@
         // 定义个空数组 用来存储 2-20的新闻
         let b = []
         // 取出第一个  因为第一条新闻展示图片
-        b.c = res.data.Data.shift()
+        if(b.c){
+          b.c = res.data.Data.shift()
+        }
+
         // 取出剩余的新闻
         b.d = a
         this.add_articles = b

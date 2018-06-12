@@ -54,6 +54,9 @@
     text-align: center;
     a{
       color: white;
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
       img{
         width: 100%;
       }

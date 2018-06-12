@@ -107,7 +107,7 @@
           })
           // 將返回的圖片 設置為100% 因爲返回的圖片太大 超出屏幕
           setTimeout(() => {
-            let imgs = document.querySelectorAll('img')
+            let imgs = document.querySelectorAll('.details_content img')
             for (let i = 0; i < imgs.length; i++) {
               imgs[i].style.maxWidth = '100%'
               imgs[i].style.height = "auto"
@@ -125,8 +125,6 @@
           }, 10000)
         }).catch(err => {
         })
-
-
       },
       '$route': function () {
         // 將滾輪 滾到 頂部
