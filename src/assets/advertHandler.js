@@ -10,14 +10,12 @@ export default {
       let ah = 90  //預設廣告dom高度
       insert(target, createAdvert())
       function insert(targetDom, advertDom, noParent) {  //noParent表示非始祖父元素
-          console.log('HHHHHHHHHHHHHHHH');
           let count = 0
           if (targetDom.nodeType === 1) {
               let doms = targetDom.children
               if(!noParent){  //当始祖父节点总高度不足一屏
                   if( (targetDom.lastElementChild.offsetTop + targetDom.lastElementChild.offsetHeight)<(offset+vh) ){
                       targetDom.appendChild(advertDom.cloneNode(true)) //末尾嵌入 
-                      console.log(count++,'不足一屏')
                       return
                   }
               }
@@ -27,11 +25,9 @@ export default {
                       offset = (targetDom.offsetTop + targetDom.offsetHeight)+ah
                       if (targetDom.nodeName === "IMG") {
                         targetDom.parentNode.parentNode.insertBefore(advertDom.cloneNode(true), targetDom.parentNode.nextElementSibling)  //由于img做了处理，因此在其父元素下面嵌入
-                        console.log(count++,'IMG')
                       // i++
                       } else {
                         targetDom.appendChild(advertDom.cloneNode(true))  //作为子元素嵌入
-                        console.log(count++,"length<1")
                       }
                       offset = (targetDom.offsetTop + targetDom.offsetHeight)+ah
                   }
@@ -41,12 +37,9 @@ export default {
                   if ((doms[i].offsetTop + doms[i].offsetHeight) > (offset + vh) && (doms[i].offsetTop + doms[i].offsetHeight) < (offset + ah + vh * 2)) {
                       offset = (doms[i].offsetTop + doms[i].offsetHeight)+ah
                       if (i !== (doms.length - 1)) {
-                          console.log(doms[i].nextElementSibling)
                           targetDom.insertBefore(advertDom.cloneNode(true), doms[i].nextElementSibling)  //不是最后一个元素，在下一個元素前嵌入
-                          console.log(count++,"正常")
                       } else {
                           targetDom.parentNode.appendChild(advertDom.cloneNode(true))  // 最后一个元素，嵌入末尾
-                          console.log(count++,"末尾插入")
                       }
                       // i++
                   } else if ((doms[i].offsetTop + doms[i].offsetHeight) >= (offset + ah + vh * 2)) {
@@ -72,7 +65,7 @@ export default {
             </div>
             `
           let jsDom = document.createElement('script')
-        //   jsDom.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({})'
+          jsDom.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({})'
           advertContainer.appendChild(jsDom)
           return advertContainer
       }
