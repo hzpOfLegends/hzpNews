@@ -60,7 +60,7 @@
             setTimeout(()=>{
               let recent_hot_content = advertising.createDiv(".recent_hot_advert")
               if (recent_hot_content.length > 0) {
-                advertising.insertToAside(recent_hot_content)
+                advertising.insertToIndex(recent_hot_content)
               }
             },30)
           }else if (newval){
@@ -69,7 +69,7 @@
               setTimeout(()=>{
                 let recent_hot_content = advertising.createDiv(".recent_hot_advert")
                 if (recent_hot_content.length > 0) {
-                  advertising.insertToAside(recent_hot_content)
+                  advertising.insertToIndex(recent_hot_content)
                 }
               },30)
             }
@@ -88,7 +88,7 @@
       if(advertisings.length==0){
         setTimeout(() => {
           if (recent_hot_content.length > 0) {
-            advertising.insertToAside(recent_hot_content)
+            advertising.insertToIndex(recent_hot_content)
           }
         }, 30)
       }

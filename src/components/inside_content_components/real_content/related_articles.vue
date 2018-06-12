@@ -15,8 +15,6 @@
 </template>
 
 <script>
-  // 引入路由
-  import inside_page_message from '@/axios_joggle/axios_inside'
   // 引入广告 插件
   import advertising from '@/assets/advertHandler'
   export default {
@@ -45,6 +43,18 @@
       }
     },
     props: ["related_article"],
+    mounted(){
+      // 插广告
+      let advertisings = document.querySelectorAll(".related_articles .advertising")
+      let related_articles_content = document.querySelectorAll('.related_articles_content')
+      if(advertisings.length==0){
+        setTimeout(()=>{
+          if (related_articles_content.length > 0) {
+            advertising.insertToAside(related_articles_content)
+          }
+        },30)
+      }
+    }
   }
 </script>
 

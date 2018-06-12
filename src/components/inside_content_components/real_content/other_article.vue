@@ -99,19 +99,12 @@
         deep: true,
         handler(newval, oldval) {
           let advertisings = document.querySelectorAll(".other_article_wrap .advertising")
-          if (newval && oldval) {
+          if (newval) {
             advertising.reloadAdvert(advertisings)
             setTimeout(() => {
               let other_article_content = advertising.createDiv(".other_article_content")
               if (other_article_content.length > 0) {
-                advertising.insertToAside(other_article_content)
-              }
-            }, 30)
-          } else if (advertisings.length == 0) {
-            setTimeout(() => {
-              let other_article_content = advertising.createDiv(".other_article_content")
-              if (other_article_content.length > 0) {
-                advertising.insertToAside(other_article_content)
+                advertising.insertToDetails(other_article_content)
               }
             }, 30)
           }
