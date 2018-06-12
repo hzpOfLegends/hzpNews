@@ -32,6 +32,7 @@ import contact_us from "@/components/contact/contact_us"
 import help_center from "@/components/help/help_center"
 // 矿池宣传页
 import oopsdaily from "@/components/oopsdaily/oopsdaily"
+
 // 沒有收到驗證碼
 import no_get_email from "@/components/help/no_get_email"
 import change_password from "@/components/help/change_password"
