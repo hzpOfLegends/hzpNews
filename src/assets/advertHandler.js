@@ -7,7 +7,7 @@ export default {
     // <!-- In Article 這是內文部份 -->
 
     // advertContent.innerHTML = `<div style="width:100%;min-height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">廣告內容</div> `
-    let ah = 90  //預設廣告dom高度
+    let ah = 0  //預設廣告dom高度
     insert(target, createAdvert())
 
     function insert(targetDom, advertDom, noParent) {  //noParent表示非始祖父元素
@@ -57,7 +57,7 @@ export default {
     function createAdvert() {
       let advertContainer = document.createElement("div")
       advertContainer.innerHTML = `
-            <div style="width:100%;min-height:90px;line-height:100px;background:red;text-align:center;font-size:22px;color:#fff;margin-bottom:15px">
+            <div style="width:100%;margin:10px 0">
                 <ins class="adsbygoogle"
                   style="display:block"
                   data-ad-client="ca-pub-0155854966618873"
@@ -93,7 +93,7 @@ export default {
           if (reg.test(i / 3)) {
             let newVdvert = document.createElement("div")
             newVdvert.setAttribute("class", "advertising")
-            newVdvert.innerHTML = `<div style="background:red;width: 300px;height: 250px;margin: 20px auto;color: white">
+            newVdvert.innerHTML = `<div style="width: 300px;;margin: 10px auto;">
                 <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-0155854966618873"
@@ -129,7 +129,7 @@ export default {
           if (reg.test(i / 3)) {
             let newVdvert = document.createElement("div")
             newVdvert.setAttribute("class", "advertising")
-            newVdvert.innerHTML = `<div style="background:red;width: 300px;height: 250px;margin: 20px auto;color: white">
+            newVdvert.innerHTML = `<div style="width: 300px;margin: 10px auto;">
                 <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-0155854966618873"
@@ -166,7 +166,7 @@ export default {
             let newVdvert = document.createElement("div")
             newVdvert.setAttribute("class", "advertising")
             newVdvert.innerHTML = `
-          <div style="background:red;width: 300px;height: 250px;margin: 20px auto;color: white">
+          <div style="width: 300px;margin: 10px auto;color: white">
                 <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-0155854966618873"
