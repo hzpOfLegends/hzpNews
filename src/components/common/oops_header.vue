@@ -208,6 +208,7 @@
       is401Handler() {
         if (this.$store.state.is401) {
           this.login_out()
+          this.$store.commit('setIs401', false)
         }
       }
     },

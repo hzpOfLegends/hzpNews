@@ -21,7 +21,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="position: relative">
           <div @click="nav_toggle" class="click_icon" style="position: absolute;top: 13px;right: 10px">
-            <i :class="$store.state.nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px"></i>
+            <i :class="$store.state.nav_down_icon" id="nav_down_icon" style="color:white;font-size: 20px;cursor:pointer"></i>
           </div>
         </div>
       </div>
@@ -62,11 +62,13 @@
             <div class="relation_foot row">
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 chara">
                 <div>
+                  <router-link to="/disclaimer">重要聲明</router-link>
+                  <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
+                  <router-link to="/privacy">隱私政策</router-link>
+                  <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
                   <router-link to="/contactus">意見反饋</router-link>
-                  <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
+                  <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
                   <router-link to="/help">幫助中心</router-link>
-                  <span style="border-right: 1px solid #999999;margin: 0 20px;"></span>
-                  <router-link to="">隱私政策</router-link>
                 </div>
                 <div style="color: #999;text-align: center;margin: 10px 0">
                   © 2018 OopsDaily
@@ -152,8 +154,11 @@
     .media_414_none {
       display: none;
     }
+    .chara{
+      text-align: center !important;
+    }
     .phone_share{
-      display: block ;
+      display: block !important;
     }
     .nav_bar_down .relation_foot{
       padding: 13px !important;
@@ -356,7 +361,7 @@
       }
       .dropdown{
         .btn{
-          padding: 6px 20px;
+          padding: 8px 20px;
           color: #999;
         }
       }
@@ -375,6 +380,7 @@
         a{
           color: #999;
           background: none;
+          font-size:13px;
         }
       }
     }

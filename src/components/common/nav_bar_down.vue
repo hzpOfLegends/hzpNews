@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="row all_type">
+    <div class="row all_type" >
       <ul class="col-lg-4 col-md-4 col-sm-4 col-xs-4" v-for="(item,index) in $store.state.nav_type" :key="index">
         <li>
           <router-link :to="{path:'/category/'+item.ID}" >{{item.CategoryName}}</router-link>
@@ -207,7 +207,7 @@
         color: #d2d2d2;
         a {
           color: #9a9a9a;
-          font-size: 12px;
+          font-size: 13px;
         }
       }
       .division {

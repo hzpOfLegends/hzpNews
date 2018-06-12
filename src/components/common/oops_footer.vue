@@ -37,6 +37,7 @@
           <router-link to=""><span>重要聲明</span></router-link>
           <!--<router-link to=""><span>京ICP證080268號</span></router-link>-->
 
+
         </div>
         <div id="about">
           <!--<span class="want_line">-->
@@ -49,6 +50,16 @@
               <!--聯係我們-->
             <!--</router-link>-->
           <!--</span>-->
+          <span class="want_line">
+            <router-link to="/disclaimer">
+              重要聲明
+            </router-link>
+          </span >
+          <span style="padding-left: 10px"  class="want_line">
+            <router-link to="/privacy">
+              隱私政策
+            </router-link>
+          </span>
           <span class="want_line">
             <router-link to="/contactus">
               意見反饋
@@ -192,6 +203,7 @@
         justify-content: space-between;
         max-width: 1180px;
         width: 100%;
+
         & > div {
           flex: 0 0 50%;
         }
@@ -205,7 +217,7 @@
           min-height: 44px;
           line-height: 44px;
           color: #8d8d8d;
-
+          font-size:14px;
 
         }
         .want_line {
@@ -246,7 +258,7 @@
     @media screen and  (max-width: 414px) {
       #copy, #about {
         span, a {
-          font-size: 12px !important;
+          font-size: 13px !important;
         }
 
       }
