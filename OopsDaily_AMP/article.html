@@ -5,6 +5,7 @@
     <title>Hello, AMPs</title>
     <link rel="icon" href="./static/img/headIcon.jpg">
     <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <script type="application/ld+json">
       {
@@ -212,7 +213,26 @@
         .identical .a-footer .name {
             color:#62a5f6;
         }
-
+        /* 導航 */
+        nav .nav_wrap{
+            display: flex;
+            justify-content:space-between;
+            height: 50px;
+            background-color: rgb(16, 84, 160);
+            font-size: 22px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        nav .nav_wrap >div{
+            line-height: 50px;
+        }
+        nav .nav_wrap .first{
+            padding-left: 18px;
+            font-size: 30px;
+        }
+        nav .nav_wrap .second{
+            padding-right: 18px
+        }
         /*适配不同屏幕*/
         @media screen and (max-width:575px) {
             .relation .items {
@@ -248,7 +268,11 @@
       <div class="oops">
             <!--导航-->
             <nav>
-
+                <div class="nav_wrap">
+                    <div class="first"><i class="fa fa-angle-left"></i></div>
+                    <div>文章詳情</div>
+                    <div class="second"><i class="fa fa-bars"></i></div>
+                </div>
             </nav>
             <!--文章-->
             <article>
