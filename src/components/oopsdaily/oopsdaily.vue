@@ -5,12 +5,14 @@
         <div style="border-bottom: 1px solid #5067cd;">
           <div class="oops_header row">
             <div class="oops_chara col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: left">
+              <router-link to="/">
               <strong>
-                <router-link to="/">OopsDaily</router-link>
+                OopsDaily
 
               </strong>
               <span class="line" style="vertical-align: middle"></span>
               <span style="font-size: 16px;color: #eaecf8;vertical-align: middle">文章創作分享平臺</span>
+              </router-link>
             </div>
             <div class="oops_share col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: right">
               <facebook_share/>

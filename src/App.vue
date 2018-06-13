@@ -51,7 +51,6 @@
         let insideReg = /^\/article?/
         // 匹配分類 首頁
         let typeIndex = /^\/category?/
-        console.log(888,insideReg.test(this.$route.fullPath))
         accountAxios.getMeta({url: this.$route.fullPath}).then(res => {
           let d = res.data.Data
           let meta = {
@@ -241,9 +240,9 @@
           if(localStorage.getItem('ShareID') ){
             this.$router.push({path:"/my"})
           }
-        } else if (this.$route.fullPath != "/" && !insideReg.test("/article")  && !typeIndex.test("/category") ) {
-
+        } else if (this.$route.fullPath != "/" && insideReg.test(this.$route.fullPath)==false  && !typeIndex.test(this.$route.fullPath) ) {
           //显示导航栏
+          console.log("111")
           this.$store.state.nav_style = true
           // 显示底部
           this.$store.state.foot_all_style = true
@@ -256,7 +255,7 @@
             let oops_content_wrap = document.querySelector('.oops_content_wrap')
             oops_content_wrap.style.background = "#f4f4f4"
           }, 1)
-        } else if (this.$route.fullPath === "/" || insideReg.test("/article") || typeIndex.test("/category")) {
+        } else if (this.$route.fullPath === "/" || insideReg.test(this.$route.fullPath) == true || typeIndex.test(this.$route.fullPath)) {
 
           //隐藏导航栏
           this.$store.state.nav_style = false
