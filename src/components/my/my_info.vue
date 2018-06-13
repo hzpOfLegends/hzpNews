@@ -55,9 +55,11 @@
                            <div>
                                 <p style="margin-bottom:2px;">綁定郵箱</p>
                                 <span style="color:#5aa1fa">{{userInfo.Email}}</span>
+                                <span v-if="userInfo.IsEmailVerified==0"  style="color:#fb8507"><i class="glyphicon glyphicon-exclamation-sign"></i> 未激活</span>
                            </div>
                            <div class="u-btn">
-                              <button type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('mail')">修改</button>
+                              <button v-if="userInfo.IsEmailVerified==0" type="button" class="btn btn-warning" style="padding:6px 22px;background:#f78323"  @click="clickModify('activeMail','')">激活</button>
+                              <button v-else type="button" class="btn btn-primary" style="padding:6px 22px;" @click="clickModify('mail')">修改</button>
                            </div>
                         </li>
                         <li>
@@ -108,6 +110,7 @@
                 <imgUpload @closeMe="closeSubcomponent" v-if="modify==='avatar'"></imgUpload>
                 <modifyPWD @closeMe="closeSubcomponent" v-if="modify==='pwd'"></modifyPWD>
                 <modifyMail @closeMe="closeSubcomponent" v-if="modify==='mail'" :email="userInfo.Email"></modifyMail>
+                <activeMail @closeMe="closeSubcomponent" v-if="modify==='activeMail'" :email="userInfo.Email"></activeMail>
                 <modifyPhone @closeMe="closeSubcomponent" v-if="modify==='phone'" :phoneNum="phoneNum"></modifyPhone>
                 <modifyPayment @closeMe="closeSubcomponent" v-if="modify==='payment'" :accountNumber="userInfo.AccountNumber" :paymentMethod="userInfo.PaymentMethod" :phoneNum="phoneNum"></modifyPayment>
           </div>
@@ -121,6 +124,7 @@
 import accountAxios from '../../axios_joggle/axios_account'
 import modifyPWD from './subcomponent/modify_pwd'
 import modifyMail from './subcomponent/modify_mail'
+import activeMail from './subcomponent/active_mail'
 import modifyPhone from './subcomponent/modify_phone'
 import modifyPayment from './subcomponent/modify_payment'
 import imgUpload from './subcomponent/img_upload'
@@ -140,7 +144,12 @@ export default {
         }
     },
     components:{
-        modifyPWD,modifyMail,modifyPhone,imgUpload,modifyPayment
+        modifyPWD,
+        modifyMail,
+        modifyPhone,
+        imgUpload,
+        modifyPayment,
+        activeMail
     },
     methods:{
         // 重新獲取個人信息（修改成功后調用）
@@ -211,6 +220,7 @@ export default {
                 this.modify=value
                 return
             }
+            //激活邮箱 或 修改邮箱
             this.modify=value
         },
         init(){

@@ -10,7 +10,7 @@
               <div class="msg">
                   <h5 style="margin:0 0 5px 0">{{$store.state.user_info.Name}}</h5>
                   <span>我的會員等級：</span><span style="color:#fcae69">1級</span> <br/>
-                  <span>我的賬戶金額：</span><span style="color:#fb8b82">{{$store.state.user_info.Profit || 0}}</span>
+                  <span>我的賬戶金額：</span><span style="color:#fb8b82">$ {{$store.state.user_info.Profit || 0}}</span>
               </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 r-box">
@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <div class="bg bg3" @click="$router.push({path:'/my/payment/income?CategoryID=0&pageIndex=1'})"></div>
-                    <p>我的收益(<span>{{$store.state.user_info.Profit || 0}}</span>)</p> 
+                    <p>我的收益(<span>$ {{$store.state.user_info.Profit || 0}}</span>)</p> 
                     
                 </div>
           </div>
@@ -119,7 +119,9 @@
       
       <div class="gains item row">
           <div class="title">
+              <router-link to="/my/share?pageIndex=1&CategoryID=-1">
               <h5>熱門文章</h5>
+              </router-link>
           </div>
         <div class="content" style="text-align:left;min-height:300px" v-loading="loading">
             <div class="news-list">
@@ -375,6 +377,10 @@ import Clipboard from 'clipboard';
                 h5 {
                     font-size:15px;
                     font-weight: 700;
+                    color:#2e3e4f;
+                    &:hover{
+                        color:#2e3e4f
+                    }
                 }
                 span {
                     font-size:13px;
@@ -434,6 +440,10 @@ import Clipboard from 'clipboard';
                 padding:2px 3px;
                 font-weight:700;
                 position: relative;
+                color:#2e3e4f;
+                &:hover{
+                    color:#2e3e4f
+                }
                 &:after {
                     content:"";
                     display:block;
