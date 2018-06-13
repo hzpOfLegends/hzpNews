@@ -94,7 +94,7 @@ const vueRouter = new Router({
         //      {path:'list',component: my_article_list}
         //   ]
         // }, //文章列表
-        {path:'articleda/list', component:my_article_list,name:'articleList'}, //文章列表
+        {path:'article/list', component:my_article_list,name:'articleList'}, //文章列表
         {path:'article/new', component:my_article_new}, // 新增文章
         {path:'article/edit/:articleId', component:my_article_new}, // 編輯文章
         {path:'payment/income', component:my_payment}, //收益紀錄

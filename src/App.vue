@@ -236,13 +236,8 @@
             oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
             oops_content_wrap.style.backgroundSize = "cover"
           }, 1)
-          // 判斷是否登錄過
-          if(localStorage.getItem('ShareID') ){
-            this.$router.push({path:"/my"})
-          }
         } else if (this.$route.fullPath != "/" && insideReg.test(this.$route.fullPath)==false  && !typeIndex.test(this.$route.fullPath) ) {
           //显示导航栏
-          console.log("111")
           this.$store.state.nav_style = true
           // 显示底部
           this.$store.state.foot_all_style = true
