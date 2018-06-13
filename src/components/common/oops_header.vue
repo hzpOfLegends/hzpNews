@@ -195,10 +195,11 @@
           // 清除TICKET
           localStorage.setItem('Ticket', "")
 
-          this.$store.commit('setIs401', false)
+          // this.$store.commit('setIs401', false)
         }).catch(err => {
 
         })
+          console.log('HHHHH');
 
         // 隱藏 用戶欄
         this.$store.state.judge_login = false
@@ -209,6 +210,7 @@
       },
       is401Handler() {
         if (this.$store.state.is401) {
+          console.log('HHHHH');
           this.login_out()
         }
       }
