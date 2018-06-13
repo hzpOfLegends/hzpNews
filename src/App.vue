@@ -47,6 +47,10 @@
         console.log("fuck")
       },
       getMeta() {
+        // 匹配内文
+        let insideReg = /^\/article?/
+        // 匹配分類 首頁
+        let typeIndex = /^\/category?/
         accountAxios.getMeta({url: this.$route.fullPath}).then(res => {
           let d = res.data.Data
           let meta = {
@@ -217,7 +221,7 @@
           // 底部样式 控制
           //隐藏导航栏
           this.$store.state.nav_style = false
-          // 显示底部
+          // 隐藏底部
           this.$store.state.foot_all_style = false
           // 隐藏底部1
           this.$store.state.footer_style1 = false
@@ -236,22 +240,22 @@
           if(localStorage.getItem('ShareID') ){
             this.$router.push({path:"/my"})
           }
-        } else if (this.$route.fullPath != "/" && this.$route.fullPath.indexOf("/article") == "-1" && this.$route.fullPath.indexOf("/category") == "-1") {
-
-          //隐藏导航栏
+        } else if (this.$route.fullPath != "/" && insideReg.test(this.$route.fullPath)==false  && !typeIndex.test(this.$route.fullPath) ) {
+          //显示导航栏
+          console.log("111")
           this.$store.state.nav_style = true
           // 显示底部
           this.$store.state.foot_all_style = true
-          // 隐藏底部1
+          // 显示底部1
           this.$store.state.footer_style1 = true
-          // 隐藏底部2
+          // 显示底部2
           this.$store.state.footer_style2 = true
           // 更换背景
           setTimeout(() => {
             let oops_content_wrap = document.querySelector('.oops_content_wrap')
             oops_content_wrap.style.background = "#f4f4f4"
           }, 1)
-        } else if (this.$route.fullPath === "/" || this.$route.fullPath.indexOf("/article") != "-1" || this.$route.fullPath.indexOf("/category") != "-1") {
+        } else if (this.$route.fullPath === "/" || insideReg.test(this.$route.fullPath) == true || typeIndex.test(this.$route.fullPath)) {
 
           //隐藏导航栏
           this.$store.state.nav_style = false
@@ -274,13 +278,11 @@
             oops_content_wrap.style.background = "#f4f4f4"
           }, 1)
         }
-        console.log(this.$route.fullPath)
         // if(this.$route.fullPath.indexOf(""))
         // 點擊其他地方 關閉導航下拉
         this.$store.state.nav_down = false;
         this.$store.state.nav_down_icon = "fa fa-bars"
       }
-
     },
     data() {
       return {

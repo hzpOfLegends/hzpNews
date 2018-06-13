@@ -70,7 +70,7 @@
                   <span style="border-right: 1px solid #ccc;margin: 0px 5px 0 3px;"></span>
                   <router-link to="/help">幫助中心</router-link>
                 </div>
-                <div style="color: #999;text-align: center;margin: 10px 0">
+                <div class="oo" style="color: #999;text-align: left;margin: 10px 0;font-size: 12px">
                   © 2018 OopsDaily
                 </div>
               </div>
@@ -153,6 +153,9 @@
   @media screen and(max-width: 414px) {
     .media_414_none {
       display: none;
+    }
+    .oo{
+      text-align: center !important;
     }
     .chara{
       text-align: center !important;
@@ -347,6 +350,9 @@
     }
     .relation_foot{
       padding: 26px;
+      a{
+        font-size: 12px !important;
+      }
       .open > .dropdown-toggle.btn-default:hover{
         background: none;
       }
