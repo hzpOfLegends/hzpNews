@@ -11,14 +11,12 @@
       <div class="oops_content">
         <router-view></router-view>
         <!--點擊到頂部-->
-
       </div>
     </div>
     <!--底部-->
     <oops-footer></oops-footer>
   </div>
 </template>
-
 <script>
   import oopsFooter from '@/components/common/oops_footer'
   import oopsHeader from '@/components/common/oops_header'
@@ -200,7 +198,6 @@
             for (let i = 0; i < inside.length; i++) {
               meta.meta.push(inside[i])
             }
-
           }
           this.$store.commit('setMeta', meta)
         })
@@ -236,13 +233,8 @@
             oops_content_wrap.style.background = "url('/static/img/background1.jpg')"
             oops_content_wrap.style.backgroundSize = "cover"
           }, 1)
-          // 判斷是否登錄過
-          if(localStorage.getItem('ShareID') ){
-            this.$router.push({path:"/my"})
-          }
         } else if (this.$route.fullPath != "/" && insideReg.test(this.$route.fullPath)==false  && !typeIndex.test(this.$route.fullPath) ) {
           //显示导航栏
-          console.log("111")
           this.$store.state.nav_style = true
           // 显示底部
           this.$store.state.foot_all_style = true
