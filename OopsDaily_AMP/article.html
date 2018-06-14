@@ -145,6 +145,7 @@
       flex: 1;
       max-width: 105px;
       height: 34px;
+      margin-right: 5px;
     }
 
     article .a-content {
@@ -352,11 +353,14 @@
     .footer ul {
       width: 100%;
     }
-
+    .footer ul{
+      padding-left: 0;
+    }
     .footer ul li {
       display: inline-block;
       padding: 10px 0;
       width: 32%;
+      text-align: center;
     }
 
     .footer a {
@@ -378,6 +382,7 @@
 
     .footer .chara {
       text-align: center;
+      margin-top: 20px;
     }
 
     .footer p {
@@ -413,7 +418,19 @@
       .relation .items .img-box {
         height: 47vw;
       }
+      
     }
+    @media screen and (max-width:320px){
+      article .share-ctrl a {
+        max-width: 90px ;
+      }
+      .footer .chara{
+        font-size: 12px;
+      }
+      .footer .type ul li{
+        overflow: hidden;
+      }
+    } 
 
   </style>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -465,13 +482,13 @@
       <div class="share-ctrl">
         <div>分享至：</div>
         <a class="fb-xfbml-parse-ignore" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=">
-          <amp-img src="./static/img/facebook.png" width="103" height="34" alt="an image"></amp-img>
+          <amp-img src="./static/img/facebook.png" height="34" alt="an image"></amp-img>
         </a>
         <a target="_blank" href="https://plus.google.com/share?url=">
-          <amp-img src="./static/img/google.png" width="103" height="34" alt="an image"></amp-img>
+          <amp-img src="./static/img/google.png" height="34" alt="an image"></amp-img>
         </a>
         <a class="twitter-share-button" href="web_url" target="_blank" data-size="large">
-          <amp-img src="./static/img/twitter.png" width="103" height="34" alt="an image"></amp-img>
+          <amp-img src="./static/img/twitter.png" height="34" alt="an image"></amp-img>
         </a>
       </div>
       <!--文章内容-->
@@ -480,6 +497,7 @@
         <p>馬斯克創建了SpaceX，並且現在是特斯拉（Tesla）首席執行官。他在電視採訪和社交媒體上警告世界，人工智能(AI)“可能比核武器更危險”。</p>
         <p>2014年11月19日，扎克伯格邀請馬斯克，在自己位於加州帕洛阿爾托（Palo Alto）的家中共進晚餐。此外，來自Facebook新人工智能實驗室的兩名頂尖研究人員和另外兩名Facebook高管也受邀參加了這次晚餐活動。</p>
       </div>
+      <div class="fb-comments"  data-numposts="5" data-href="window"></div>
     </article>
     <!--相关文章-->
     <div class="relation">
