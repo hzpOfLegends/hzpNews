@@ -130,6 +130,15 @@
       let detail_wrap = document.querySelector('.article_conten label')
       let a =this.imgHandler(detail_wrap,this.details.Content,advertising.insertToContent,this.img_set_width)
       this.detail_content = a ;
+      // facebook 插件
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.0';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'))
     }
   }
 </script>
