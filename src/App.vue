@@ -45,6 +45,7 @@
         console.log("fuck")
       },
       getMeta() {
+        console.log(window.location.origin);
         // 匹配内文
         let insideReg = /^\/article?/
         // 匹配分類 首頁

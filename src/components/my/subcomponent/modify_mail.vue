@@ -124,6 +124,8 @@ import verify from '../../../assets/verify'
                     if(res.data.ResultCode==200){
                         this.step1.sendCode = true
                         this.step1.btnTXT = "驗證碼已發送"
+                    }else{
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -154,6 +156,8 @@ import verify from '../../../assets/verify'
                     if(res.data.ResultCode==200){
                         this.step2.sendCode = true
                         this.step2.btnTXT = "驗證碼已發送"
+                    }else{
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -178,12 +182,14 @@ import verify from '../../../assets/verify'
                 this.loading = true
                 // GET api/User/verifyEmail?Email={Email}&Code={Code}	邮箱验证接口
                 accountAxios.verifyEmail({
-                    Email:this.step1.name,
+                    Email:"",
                     Code:this.step1.vCode
                 }).then(res=>{
                     this.loading = false
                     if(res.data.ResultCode==200){
                         this.currentStep = 2
+                    }else{
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -207,6 +213,8 @@ import verify from '../../../assets/verify'
                     this.loading = false
                     if(res.data.ResultCode==200){
                         this.modifyEmail()
+                    }else{
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -235,6 +243,8 @@ import verify from '../../../assets/verify'
                 this.loading = false
                 if(res.data.ResultCode==200){
                     this.currentStep = 3
+                }else{
+                    this.$message.error('操作失敗');
                 }
             }).catch(err=>{
                 this.loading = false
