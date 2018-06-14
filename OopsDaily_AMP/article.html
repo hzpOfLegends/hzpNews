@@ -144,6 +144,7 @@
       display: flex;
       align-items: center;
       padding: 15px 0;
+      color:#999999;
     }
 
     article .share-ctrl a {
@@ -357,13 +358,16 @@
 
     .footer ul {
       width: 100%;
+      font-size:15px;
     }
     .footer ul{
       padding-left: 0;
+      box-sizing: border-box;
     }
     .footer ul li {
+      box-sizing: border-box;
       display: inline-block;
-      padding: 10px 0;
+      padding: 5px 0;
       width: 32%;
       text-align: center;
     }
@@ -380,19 +384,29 @@
 
     .footer .line {
       display: inline-block;
-      border-right: 1px solid #9a9a9a;
+      border-right: 1px solid #e7e7e7;
       height: 15px;
-      margin: 0 10px;
+      margin: 0 8px;
     }
 
     .footer .chara {
+      vertical-align: middle;
       text-align: center;
-      margin-top: 20px;
+      padding-top: 20px;
+      border-top:1px solid #eee;
+      
     }
 
     .footer p {
       color: #9a9a9a;
       padding-bottom: 20px;
+    }
+    article i.fa {
+        font-size:14px;
+    }
+    a {
+        color:#000052;
+        text-decoration: none;
     }
 
     /*适配不同屏幕*/
@@ -417,12 +431,19 @@
       }
 
     }
-
     @media screen and (max-width:414px) {
       .relation .items {}
       .relation .items .img-box {
         height: 47vw;
       }
+        article .share-ctrl {
+            flex-wrap:wrap;
+        }
+
+        article .share-ctrl .share-title {
+            flex:0 0 100%;
+            padding:5px 0;
+        }
       
     }
     @media screen and (max-width:320px){
@@ -430,7 +451,7 @@
         max-width: 90px ;
       }
       .footer .chara{
-        font-size: 12px;
+        font-size:13px;;
       }
       .footer .type ul li{
         overflow: hidden;
@@ -445,17 +466,6 @@
     <!--广告加载代码-->
     <amp-auto-ads type="adsense" data-ad-client="ca-pub-0155854966618873"></amp-auto-ads>
 
-    <!--广告加载代码 在内容区嵌入-->
-    <amp-ad width="100vw" height=320
-    type="adsense"
-    data-ad-client="ca-pub-0155854966618873"
-    data-ad-slot="3348881018"
-    data-auto-format="rspv"
-    data-full-width>
-        <div overflow></div>
-    </amp-ad>
-
-
   <div class="oops">
     <!--导航-->
     <nav>
@@ -465,7 +475,7 @@
             <i class="fa fa-angle-left"></i>
           </a>
         </div>
-        <div>文章詳情</div>
+        <!--<div>文章詳情</div>-->
         <div class="second">
           <i class="fa fa-bars"></i>
         </div>
@@ -485,21 +495,21 @@
         </div>
         <div class="info">
 
-          <span class="name"> 探路者00fdsffffffffffdsf5</span>
+          <span class="name"> 探路者00fdsff5</span>&nbsp;
           <span class="clock">
             <i class="fa fa-clock-o"></i>
           </span>
-          <span class="date">發表時間：2018-06-05 16:15:40 </span>
+          <span class="date">發表時間：2018-06-05 16:15:40 </span>&nbsp;
           <span class="eye">
             <i class="fa fa-eye"></i>
           </span>
-          <span class="date">閲讀量: 40 </span>
+          <span class="date">閲讀量: 40 </span>&nbsp;
         </div>
 
       </div>
       <!--分享操作-->
       <div class="share-ctrl">
-        <div>分享至：</div>
+        <div class="share-title">分享至：</div> <br>
         <a class="fb-xfbml-parse-ignore" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=">
           <amp-img src="./static/img/facebook.png" height="34" alt="an image"></amp-img>
         </a>
@@ -512,9 +522,9 @@
       </div>
       <!--文章内容-->
       <div class="a-content">
-        <p>網易科技訊6月12日消息，據國外媒體報導，社交媒體Facebook創始人馬克·扎克伯格（Mark Zuckerberg）認為，他的朋友、矽谷億萬富翁埃隆·馬斯克（Elon Musk）表現得像個危言聳聽者。</p>
-        <p>馬斯克創建了SpaceX，並且現在是特斯拉（Tesla）首席執行官。他在電視採訪和社交媒體上警告世界，人工智能(AI)“可能比核武器更危險”。</p>
-        <p>2014年11月19日，扎克伯格邀請馬斯克，在自己位於加州帕洛阿爾托（Palo Alto）的家中共進晚餐。此外，來自Facebook新人工智能實驗室的兩名頂尖研究人員和另外兩名Facebook高管也受邀參加了這次晚餐活動。</p>
+            <p>網易科技訊6月12日消息，據國外媒體報導，社交媒體Facebook創始人馬克·扎克伯格（Mark Zuckerberg）認為，他的朋友、矽谷億萬富翁埃隆·馬斯克（Elon Musk）表現得像個危言聳聽者。</p>
+            <p>馬斯克創建了SpaceX，並且現在是特斯拉（Tesla）首席執行官。他在電視採訪和社交媒體上警告世界，人工智能(AI)“可能比核武器更危險”。</p>
+            <p>2014年11月19日，扎克伯格邀請馬斯克，在自己位於加州帕洛阿爾托（Palo Alto）的家中共進晚餐。此外，來自Facebook新人工智能實驗室的兩名頂尖研究人員和另外兩名Facebook高管也受邀參加了這次晚餐活動。</p>
       </div>
       <!--分享操作-->
       <div class="share-ctrl">
@@ -538,7 +548,7 @@
         相關文章
       </div>
       <div class="r-content">
-        <div class="items">
+        <a class="items" href="/article/088ejr35">
           <div class="img-box">
             <amp-img src="./static/img/join_OopsDaily.png" width="500" height="300" heights="50%" alt="an image">
             </amp-img>
@@ -546,8 +556,8 @@
           <div class="art-title">
             多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
           </div>
-        </div>
-        <div class="items">
+        </a>
+        <a class="items" href="/article/088ejr35">
           <div class="img-box">
             <amp-img src="./static/img/join_OopsDaily.png" width="500" height="300" heights="50%" alt="an image">
             </amp-img>
@@ -555,43 +565,18 @@
           <div class="art-title">
             多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
           </div>
-        </div>
-        <div class="items">
-          <div class="img-box">
-            <amp-img src="./static/img/join_OopsDaily.png" width="500" height="300" heights="50%" alt="an image">
-            </amp-img>
-          </div>
-          <div class="art-title">
-            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-          </div>
-        </div>
-        <div class="items">
-          <div class="img-box">
-            <amp-img src="" width="500" height="300" heights="50%" alt="an image">
-            </amp-img>
-          </div>
-          <div class="art-title">
-            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-          </div>
-        </div>
-        <div class="items">
-          <div class="img-box">
-            <amp-img src="" width="500" height="300" heights="50%" alt="an image">
-            </amp-img>
-          </div>
-          <div class="art-title">
-            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-          </div>
-        </div>
-        <div class="items">
-          <div class="img-box">
-            <amp-img src="" width="500" height="300" heights="50%" alt="an image">
-            </amp-img>
-          </div>
-          <div class="art-title">
-            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-          </div>
-        </div>
+        </a>
+
+        <!--广告加载代码 在内容区嵌入(3条插入一个广告)-->
+        <amp-ad width="100vw" height=320
+        type="adsense"
+        data-ad-client="ca-pub-0155854966618873"
+        data-ad-slot="3348881018"
+        data-auto-format="rspv"
+        data-full-width>
+            <div overflow></div>
+        </amp-ad>
+
       </div>
     </div>
     <!--同区其他文章-->
@@ -601,7 +586,7 @@
         同區的其他文章
       </div>
       <div class="i-content">
-        <div class="items">
+        <a class="items"  href="/article/088ejr35">
           <div class="img-box">
             <amp-img src="./static/img/join_OopsDaily.png" width="250" height="170" heights="50%" alt="an image">
             </amp-img>
@@ -622,102 +607,129 @@
                 </div>
               </div>
               <div class="info">
-                <span class="name"> 探路者00fdsffffffffffdsf5</span>
-                <span class="date">發表時間：2018-06-05 16:15:40 </span>
+                <span class="name"> 探路者00fdsffffffffffdsf5</span>&nbsp;
+                <span class="date">          
+                    <span class="clock">
+                        <i class="fa fa-clock-o"></i>
+                    </span>發表時間：2018-06-05 16:15:40 </span>
                 <!--<span class="date">閲讀量: 40 </span>  -->
               </div>
 
             </div>
           </div>
-        </div>
-        <div class="items">
-          <div class="img-box">
-            <amp-img src="./static/img/join_OopsDaily.png" width="250" height="170" heights="50%" alt="an image">
-            </amp-img>
-          </div>
-          <div class="art-title">
-            <div class="a-header">
-              <span class="category">旅游</span>
-              <span>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</span>
-            </div>
-            <div class="a-body">
-              多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-            </div>
-            <div class="a-footer">
-              <div class="author">
-                <div class="photo">
-                  <amp-img src="./static/img/team4.png" width="30" height="30" alt="an image">
-                  </amp-img>
-                </div>
-              </div>
-              <div class="info">
-                <span class="name"> 探路者00fdsffffffffffdsf5</span>
-                <span class="date">發表時間：2018-06-05 16:15:40 </span>
-                <!--<span class="date">閲讀量: 40 </span>  -->
-              </div>
+        </a>
 
-            </div>
-          </div>
-        </div>
+    <!--广告加载代码 在内容区嵌入(3条插入一个广告)-->
+    <amp-ad width="100vw" height=320
+    type="adsense"
+    data-ad-client="ca-pub-0155854966618873"
+    data-ad-slot="3348881018"
+    data-auto-format="rspv"
+    data-full-width>
+        <div overflow></div>
+    </amp-ad>
+
       </div>
     </div>
     <div class="footer">
       <div class="type">
         <ul>
           <li>
-            <a href="#">电影</a>
+            <a href="/category/24">电影</a>
           </li>
           <li>
-            <a href="#">音乐</a>
+            <a href="/category/24">音乐</a>
           </li>
           <li>
-            <a href="#">软件</a>
+            <a href="/category/24">软件</a>
           </li>
           <li>
-            <a href="#">自然灾害</a>
+            <a href="/category/24">自然灾害</a>
           </li>
           <li>
-            <a href="#">电影</a>
+            <a href="/category/24">电影</a>
           </li>
           <li>
-            <a href="#">音乐</a>
+            <a href="/category/24">音乐</a>
           </li>
           <li>
-            <a href="#">软件</a>
+            <a href="/category/24">软件</a>
           </li>
           <li>
-            <a href="#">自然灾害</a>
+            <a href="/category/24">自然灾害</a>
           </li>
           <li>
-            <a href="#">电影</a>
+            <a href="/category/24">电影</a>
           </li>
           <li>
-            <a href="#">音乐</a>
+            <a href="/category/24">音乐</a>
           </li>
           <li>
-            <a href="#">软件</a>
+            <a href="/category/24">软件</a>
           </li>
           <li>
-            <a href="#">自然灾害</a>
+            <a href="/category/24">自然灾害</a>
           </li>
           <li>
-            <a href="#">电影</a>
+            <a href="/category/24">电影</a>
           </li>
           <li>
-            <a href="#">音乐</a>
+            <a href="/category/24">音乐</a>
           </li>
           <li>
-            <a href="#">软件</a>
+            <a href="/category/24">软件</a>
           </li>
           <li>
-            <a href="#">自然灾害</a>
+            <a href="/category/24">自然灾害</a>
+          </li>
+          <li>
+            <a href="/category/24">音乐</a>
+          </li>
+          <li>
+            <a href="/category/24">软件</a>
+          </li>
+          <li>
+            <a href="/category/24">自然灾害</a>
+          </li>
+          <li>
+            <a href="/category/24">电影</a>
+          </li>
+          <li>
+            <a href="/category/24">音乐</a>
+          </li>
+          <li>
+            <a href="/category/24">软件</a>
+          </li>
+          <li>
+            <a href="/category/24">自然灾害</a>
+          </li>
+          <li>
+            <a href="/category/24">音乐</a>
+          </li>
+          <li>
+            <a href="/category/24">软件</a>
+          </li>
+          <li>
+            <a href="/category/24">自然灾害</a>
+          </li>
+          <li>
+            <a href="/category/24">电影</a>
+          </li>
+          <li>
+            <a href="/category/24">音乐</a>
+          </li>
+          <li>
+            <a href="/category/24">软件</a>
+          </li>
+          <li>
+            <a href="/category/24">自然灾害</a>
           </li>
         </ul>
       </div>
       <div class="chara">
-        <a href="#">重要聲明</a>
+        <a href="/disclaimer">重要聲明</a>
         <span class="line"></span>
-        <a href="#">隱私政策</a>
+        <a href="/privacy">隱私政策</a>
         <span class="line"></span>
         <a href="#">意見反饋</a>
         <span class="line"></span>
