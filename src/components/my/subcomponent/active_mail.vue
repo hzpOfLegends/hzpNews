@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group f-code">
                     <label for="exampleInputPassword1">驗證碼</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!!step1.sendCode">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="驗證碼" v-model="step1.vCode" :disabled="!step1.sendCode">
                     <!--發送驗證碼-->
                     <button v-if="!step1.sendCode" type="" class="btn btn-default code-btn"  @click="sendEmailCode('old')">發送驗證碼</button>
                     <button v-else type="" class="btn btn-default code-btn"  style="background:#f0f9ec;color:#48c321" disabled>驗證碼已發送</button>
@@ -115,6 +115,8 @@ import verify from '../../../assets/verify'
                     if(res.data.ResultCode==200){
                         this.step1.sendCode = true
                         this.step1.btnTXT = "驗證碼已發送"
+                    }else{
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false
@@ -143,6 +145,8 @@ import verify from '../../../assets/verify'
                     this.loading = false
                     if(res.data.ResultCode==200){
                         this.currentStep = 2
+                    }else{
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false

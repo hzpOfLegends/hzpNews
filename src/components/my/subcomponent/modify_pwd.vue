@@ -140,7 +140,7 @@ import verify from '../../../assets/verify'
                         });
                         this.$router.push({path:'/user/login'})
                     }else{
-                        this.$message.error('修改失败！');
+                        this.$message.error('操作失敗');
                     }
                 }).catch(err=>{
                     this.loading = false

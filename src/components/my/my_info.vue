@@ -116,7 +116,6 @@
           </div>
       </div>
       <!--<imgUpload></imgUpload>-->
-
   </div>
 </template>
 
@@ -139,8 +138,12 @@ export default {
         }
     },
     watch:{
-        'this.$store.state.refreshUserInfo':function(){
-            this.init()
+        '$store.state.refreshUserInfo':function(){
+            if(!this.$store.state.refreshUserInfo){ //数据获取完成 状态false
+                setTimeout(()=>{
+                    this.init()
+                },50)
+            }
         }
     },
     components:{
@@ -152,16 +155,6 @@ export default {
         activeMail
     },
     methods:{
-        // 重新獲取個人信息（修改成功后調用）
-        getUserInfo(){
-            accountAxios.userInfo({}).then(res=>{
-                if(res.data.ResultCode==200){
-                    localStorage.setItem('user_info',JSON.stringify(res.data.Data))
-                    this.$store.state.user_info = res.data.Data
-                    this.init()  //重新初始化頁面
-                }
-            })
-        },
         // 監聽子組件關閉信號
         closeSubcomponent(success){
             if(success){

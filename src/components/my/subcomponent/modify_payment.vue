@@ -138,6 +138,8 @@ import phoneAreaCode from '../../../assets/area_code'
                 if(res.data.ResultCode==200){
                     this.step1.r_id = res.data.Data.request_id
                     this.step1.sendCode = true
+                }else{
+                    this.$message.error('操作失敗');
                 }
             }).catch(err=>{
                 this.loading = false
@@ -165,6 +167,8 @@ import phoneAreaCode from '../../../assets/area_code'
                 this.loading = false
                 if(res.data.ResultCode==200){
                     this.currentStep = 2
+                }else{
+                    this.$message.error('操作失敗');
                 }
             }).catch(err=>{
                 this.loading = false
@@ -189,6 +193,8 @@ import phoneAreaCode from '../../../assets/area_code'
                 this.loading = false
                 if(res.data.ResultCode==200){
                     this.currentStep = 3
+                }else{
+                    this.$message.error('操作失敗');
                 }
             }).catch(err=>{
                 this.loading = false

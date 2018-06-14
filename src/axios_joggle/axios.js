@@ -36,7 +36,7 @@ if(data.data.Data){
       }
       return d
    }
-}
+} 
 
   switch (data.data.ResultCode) {
     case 200 :
