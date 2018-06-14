@@ -1,468 +1,788 @@
 <!doctype html>
 <html amp lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, AMPs</title>
-    <link rel="icon" href="./static/img/headIcon.jpg">
-    <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "NewsArticle",
-        "headline": "Open-source framework for publishing content",
-        "datePublished": "2015-10-07T12:02:41Z",
-        "image": [
-          "logo.jpg"
-        ]
-      }
-    </script>
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    <style amp-custom>
-        html {
-            background-color: #f4f4f4;
-            font-size:16px;
-        }
-        .oops {
-            max-width:768px;
-            margin:0 auto;
-        }
-        h1 {
-            font-size:21px;
-        }
-        /*文章显示区*/
-        article {
-            padding:3.5%;
-            background-color:#fff;
-            margin-bottom:15px;
-        }
-        article .article-info {
-            display:flex;
-            /*align-items:flex-start;*/
-            flex-wrap:wrap;
-            border-bottom:1px solid #f0f0f0;
-            padding-bottom:10px;
-        }
-        article .article-info>div {
-            font-size:14px;
-        }
-        article .article-info .author {
-            flex:0 0 30px;
-            display:flex;
-            align-items:center;
-        }
-        article .article-info .author .photo {
-            width:30px;
-            height:30px;
-            border-radius:50%;
-            overflow: hidden;
-        }
-        article .article-info .info {
-            flex:1;
-            padding:6px 4px;
-            color:#9e9fa2 ;
-            font-size:14px;
-        }
-        article .article-info .name {
-            color:#62a5f6;
-        }
-        article .share-ctrl {
-            display:flex;
-            align-items:center;
-            padding:15px 0;
-        }
-        article .share-ctrl a {
-            flex:1;
-            background-color:skyblue;
-            border:1px solid red;
-            max-width:105px;
-            height:34px;
-        }
-        article .a-content {
-            border-bottom:1px solid #eeeeee;
-        }
-        .title {
-            height:38px;
-            line-height: 38px;
-            font-size:16px;
-            font-weight:600;
-            margin-bottom:15px;
-            border-bottom:3px solid #eeeeee;
-        }
-        /*关联文章*/
-        .relation {
-            padding:3.5%;
-            padding-top:5px;
-            margin-bottom:22px;
-            background-color:#fff;
-            border-top:6px solid #ed4244;
-            border-radius:4px 4px 0 0 ;
-        }
-        .relation .r-content {
-            display:flex;
-            /*justify-content: space-between;*/
-            justify-content: space-around;
-            flex-wrap:wrap;
-        }
-        .relation .items {
-            max-width:260px;
-            min-width:260px;
-            margin-bottom:22px;
-            border-bottom:4px dashed #f6f6f6;
-            font-size:16px;
-        }
-        .relation .items .art-title {
-            margin-bottom:3%;
-            padding-top:3px;    
-            font-weight:600;
-            height:45px;
-            display: -webkit-box;    
-            -webkit-box-orient: vertical;    
-            -webkit-line-clamp: 2;    
-            overflow: hidden;
-        }
-        .relation .items .img-box {
-            height:133px;
-        }
-        /*同区文章*/
-        .identical {
-            padding:3.5%;
-            padding-top:5px;
-            background-color:#fff;
-            border-top:6px solid #ef9822;
-            border-radius:4px 4px 0 0 ;
-        }
-        .identical .i-content {
-            display:flex;
-            justify-content: space-around;
-            flex-wrap:wrap;
-        }
-        .identical .items {
-            display:flex;
-            border-bottom:1px solid #f6f6f6;
-            margin-bottom:18px;
-        }
-        .identical .items .img-box{
-            flex:0 0 250px;
-            width:250px;
-            height:140px;
-            margin-bottom:7px;
-            overflow: hidden;
-        }
-        .identical .items .art-title{
-            padding-left:8px;
-        }
-        .identical .items .a-header{
-            display: -webkit-box;    
-            -webkit-box-orient: vertical;    
-            -webkit-line-clamp: 2;    
-            overflow: hidden;
-            font-weight:600;
-            font-size:16px;
-            max-height:44px;
-            min-height:30px;
-        }
-        .identical .items .a-body{
-            width:100%;
-            margin-bottom:2px;
-            display: -webkit-box;    
-            -webkit-box-orient: vertical;    
-            -webkit-line-clamp: 3;    
-            overflow: hidden;
-            font-size:15px;
-            height:60px;
-        }
-        .identical .items .a-header .category {
-            display:inline-block;
-            height:18px;
-            line-height: 18px;
-            padding:0px 2px;
-            border:1px solid #f59b99;
-            color:#f59b99;
-            font-size:13px;
-            border-radius:3px;
-        }
 
-        .identical .items .a-footer{
-            flex:1;
-            padding:6px 0px 6px;
-            color:#9e9fa2 ;
-            font-size:13px;
-            display:flex;
-            align-items:center;
-            /*justify-content: flex-start;*/
-        }
-        .identical .a-footer .author {
-            /*flex:0 0 30px;
+<head>
+  <meta charset="utf-8">
+  <title>Hello, AMPs</title>
+  <link rel="icon" href="./static/img/headIcon.jpg">
+  <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <meta charset="UTF-8" name="apple-mobile-web-app-capable" content="yes" data-vue-meta="true">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" data-vue-meta="true">
+  <meta name="mobile-web-app-capable" content="yes" data-vue-meta="true">
+  <meta name="referrer" content="no-referrer" data-vue-meta="true">
+  <meta name="theme-color" content="#00709F" data-vue-meta="true">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=5" data-vue-meta="true">
+  <meta title="较真 | 瓶装水致癌？如果你真被吓到了，那一定要看这篇文章" data-vue-meta="true">
+  <meta name="description" content="较真要点（赶时间？看要点就够了！）：1、最近网上出现了一篇文章《喝一口，就会致癌！最新权威确认，BBC紧急曝光，国人尤其要当心……》。文章说的是瓶装水，并列举了“致癌”的三点原因：微塑料颗粒、塑化剂和"
+    data-vue-meta="true">
+  <meta name="keywords" content="塑料,塑化剂,双酚,瓶装水,文章,中的,健康,进行,塑料颗粒,含有" data-vue-meta="true">
+  <meta name="title" content="较真 | 瓶装水致癌？如果你真被吓到了，那一定要看这篇文章" data-vue-meta="true">
+  <meta name="twitter:card" content="summary_large_image" data-vue-meta="true">
+  <meta name="twitter:creator" content="@OopsDaily" data-vue-meta="true">
+  <meta name="twitter:description" content="较真要点（赶时间？看要点就够了！）：1、最近网上出现了一篇文章《喝一口，就会致癌！最新权威确认，BBC紧急曝光，国人尤其要当心……》。文章说的是瓶装水，并列举了“致癌”的三点原因：微塑料颗粒、塑化剂和"
+    data-vue-meta="true">
+  <meta name="twitter:image" content="http://35.234.61.6/upload/image/2018/060502/iAgxGyhQ.jpeg" data-vue-meta="true">
+  <meta name="twitter:site" content="@OopsDaily" data-vue-meta="true">
+  <meta name="twitter:title" content="较真 | 瓶装水致癌？如果你真被吓到了，那一定要看这篇文章" data-vue-meta="true">
+  <meta name="twitter:url" content="/article/QpbawpOl" data-vue-meta="true">
+  <meta property="fb:app_id" content="397225927297277" data-vue-meta="true">
+  <meta property="fb:pages" content="917192401780115" data-vue-meta="true">
+  <meta property="og:description" content="较真要点（赶时间？看要点就够了！）：1、最近网上出现了一篇文章《喝一口，就会致癌！最新权威确认，BBC紧急曝光，国人尤其要当心……》。文章说的是瓶装水，并列举了“致癌”的三点原因：微塑料颗粒、塑化剂和"
+    data-vue-meta="true">
+  <meta property="og:image" content="http://35.234.61.6/upload/image/2018/060502/iAgxGyhQ.jpeg" data-vue-meta="true">
+  <meta property="og:site_name" content="OopsDaily" data-vue-meta="true">
+  <meta property="og:title" content="较真 | 瓶装水致癌？如果你真被吓到了，那一定要看这篇文章" data-vue-meta="true">
+  <meta property="og:type" content="article" data-vue-meta="true">
+  <meta property="og:url" content="/article/QpbawpOl" data-vue-meta="true">
+  <meta property="article:tag" content="塑料" data-vue-meta="true">
+  <meta property="article:tag" content="塑化剂" data-vue-meta="true">
+  <meta property="article:tag" content="双酚" data-vue-meta="true">
+  <meta property="article:tag" content="瓶装水" data-vue-meta="true">
+  <meta property="article:tag" content="文章" data-vue-meta="true">
+  <meta property="article:tag" content="中的" data-vue-meta="true">
+  <meta property="article:tag" content="健康" data-vue-meta="true">
+  <meta property="article:tag" content="进行" data-vue-meta="true">
+  <meta property="article:tag" content="塑料颗粒" data-vue-meta="true">
+  <meta property="article:tag" content="含有" data-vue-meta="true">
+  <meta property="article:author" content="https://www.facebook.com/oopsdaily/" data-vue-meta="true">
+  <meta property="article:published_time" content="2018年6月5日" data-vue-meta="true">
+  <meta property="article:publisher" content="OopsDaily" data-vue-meta="true">
+  <meta property="article:section" content="医药" data-vue-meta="true">
+  <link rel="canonical" href="/article/QpbawpOl" data-vue-meta="true">
+  <link rel="shortcut icon" href="/static/img/headIcon.jpg" type="image/x-icon" data-vue-meta="true">
+  <link rel="apple-touch-icon" href="/static/img/sharePhone.jpg" data-vue-meta="true">
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Open-source framework for publishing content",
+      "datePublished": "2015-10-07T12:02:41Z",
+      "image": [
+        "logo.jpg"
+      ]
+    }
+
+  </script>
+  <style amp-boilerplate>
+    body {
+      -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      animation: -amp-start 8s steps(1, end) 0s 1 normal both
+    }
+
+    @-webkit-keyframes -amp-start {
+      from {
+        visibility: hidden
+      }
+      to {
+        visibility: visible
+      }
+    }
+
+    @-moz-keyframes -amp-start {
+      from {
+        visibility: hidden
+      }
+      to {
+        visibility: visible
+      }
+    }
+
+    @-ms-keyframes -amp-start {
+      from {
+        visibility: hidden
+      }
+      to {
+        visibility: visible
+      }
+    }
+
+    @-o-keyframes -amp-start {
+      from {
+        visibility: hidden
+      }
+      to {
+        visibility: visible
+      }
+    }
+
+    @keyframes -amp-start {
+      from {
+        visibility: hidden
+      }
+      to {
+        visibility: visible
+      }
+    }
+
+  </style>
+  <noscript>
+    <style amp-boilerplate>
+      body {
+        -webkit-animation: none;
+        -moz-animation: none;
+        -ms-animation: none;
+        animation: none
+      }
+
+    </style>
+  </noscript>
+  <style amp-custom>
+    html {
+      background-color: #f4f4f4;
+      font-size: 16px;
+    }
+
+    .oops {
+      max-width: 768px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 21px;
+    }
+
+    /*文章显示区*/
+
+    article {
+      padding: 3.5%;
+      background-color: #fff;
+      margin-bottom: 15px;
+    }
+
+    article .article-info {
+      display: flex;
+      /*align-items:flex-start;*/
+      flex-wrap: wrap;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+
+    article .article-info>div {
+      font-size: 14px;
+    }
+
+    article .article-info .author {
+      flex: 0 0 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    article .article-info .author .photo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    article .article-info .info {
+      flex: 1;
+      padding: 6px 4px;
+      color: #9e9fa2;
+      font-size: 14px;
+    }
+
+    article .article-info .info .clock {
+      font-size: 18px;
+      font-weight: 100;
+    }
+
+    article .article-info .info .eye {
+      font-size: 18px;
+      font-weight: 100;
+    }
+
+    article .article-info .name {
+      color: #62a5f6;
+    }
+
+    article .share-ctrl {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    article .share-ctrl a {
+      flex: 1;
+      max-width: 105px;
+      height: 34px;
+    }
+
+    article .a-content {
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .title {
+      height: 38px;
+      line-height: 38px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #eeeeee;
+    }
+
+    /*关联文章*/
+
+    .relation {
+      padding: 3.5%;
+      padding-top: 5px;
+      margin-bottom: 22px;
+      background-color: #fff;
+      border-top: 6px solid #ed4244;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .relation .title>i {
+      font-size: 20px;
+      color: rgb(235, 62, 72);
+    }
+
+    .relation .r-content {
+      display: flex;
+      /*justify-content: space-between;*/
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .relation .items {
+      max-width: 260px;
+      min-width: 260px;
+      margin-bottom: 22px;
+      border-bottom: 4px dashed #f6f6f6;
+      font-size: 16px;
+    }
+
+    .relation .items .art-title {
+      margin-bottom: 3%;
+      padding-top: 3px;
+      font-weight: 600;
+      height: 45px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .relation .items .img-box {
+      height: 133px;
+    }
+
+    /*同区文章*/
+
+    .identical {
+      padding: 3.5%;
+      padding-top: 5px;
+      background-color: #fff;
+      border-top: 6px solid #ef9822;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .identical .title>i {
+      font-size: 20px;
+      color: rgb(243, 153, 0);
+    }
+
+    .identical .i-content {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .identical .items {
+      display: flex;
+      border-bottom: 1px solid #f6f6f6;
+      margin-bottom: 18px;
+    }
+
+    .identical .items .img-box {
+      flex: 0 0 250px;
+      width: 250px;
+      height: 140px;
+      margin-bottom: 7px;
+      overflow: hidden;
+    }
+
+    .identical .items .art-title {
+      padding-left: 8px;
+    }
+
+    .identical .items .a-header {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      font-weight: 600;
+      font-size: 16px;
+      max-height: 44px;
+      min-height: 30px;
+    }
+
+    .identical .items .a-body {
+      width: 100%;
+      margin-bottom: 2px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      font-size: 15px;
+      height: 60px;
+    }
+
+    .identical .items .a-header .category {
+      display: inline-block;
+      height: 18px;
+      line-height: 18px;
+      padding: 0px 2px;
+      border: 1px solid #f59b99;
+      color: #f59b99;
+      font-size: 13px;
+      border-radius: 3px;
+    }
+
+    .identical .items .a-footer {
+      flex: 1;
+      padding: 6px 0px 6px;
+      color: #9e9fa2;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      /*justify-content: flex-start;*/
+    }
+
+    .identical .a-footer .author {
+      /*flex:0 0 30px;
             display:flex;
             align-items:center;*/
-        }
-        .identical .a-footer .photo {
-            width:30px;
-            height:30px;
-            border-radius:50%;
-            overflow: hidden;
-        }
-        .identical .a-footer .info {
-            flex:1;
-            padding:0px 4px;
-            color:#9e9fa2 ;
-            font-size:14px;
-        }
-        .identical .a-footer .name {
-            color:#62a5f6;
-        }
+    }
 
-        /*适配不同屏幕*/
-        @media screen and (max-width:575px) {
-            .relation .items {
-                max-width:390px;
-                min-width:100px;
-            }
-            .relation .items .img-box {
-                height:200px;
-            }
-            .identical .items {
-                flex-wrap:wrap;
-            }
-            .identical .items .art-title{
-                padding-left:0px;
-            }
-            .identical .items .img-box{
-                flex:0 0 100%;
-                height:47vw;
-            }
+    .identical .a-footer .photo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
 
-        }
-        @media screen and (max-width:414px) {
-            .relation .items {
-            }
-            .relation .items .img-box {
-                height:47vw;
-            }
-        }
-    </style>
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-  </head>
-  <body>
-      <div class="oops">
-            <!--导航-->
-            <nav>
+    .identical .a-footer .info {
+      flex: 1;
+      padding: 0px 4px;
+      color: #9e9fa2;
+      font-size: 14px;
+    }
 
-            </nav>
-            <!--文章-->
-            <article>
-                    <!--标题-->
-                    <h1>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</h1>
-                    <!--文章说明信息-->
-                    <div class="article-info">
-                        <div class="author">
-                            <div class="photo">
-                                <amp-img
-                                    src="./static/img/team4.png"
-                                    width="30"
-                                    height="30"
-                                    alt="an image">
-                                </amp-img>
-                            </div>
-                        </div>
-                        <div class="info">
-                            <span class="name"> 探路者00fdsffffffffffdsf5</span>
-                            <span class="date">發表時間：2018-06-05 16:15:40 </span>  
-                            <span class="date">閲讀量: 40 </span>  
-                        </div>
-                        
-                    </div>
-                    <!--分享操作-->
-                    <div class="share-ctrl">
-                        <span>分享至：</span>
-                        <a href="face.com" target="_blank">facebook</a>
-                        <a href="face.com" target="_blank">Google</a>
-                        <a href="face.com" target="_blank">Ttwitter</a>
-                    </div>
-                    <!--文章内容-->
-                    <div class="a-content"> 
-                        <p>網易科技訊6月12日消息，據國外媒體報導，社交媒體Facebook創始人馬克·扎克伯格（Mark Zuckerberg）認為，他的朋友、矽谷億萬富翁埃隆·馬斯克（Elon Musk）表現得像個危言聳聽者。</p><p>馬斯克創建了SpaceX，並且現在是特斯拉（Tesla）首席執行官。他在電視採訪和社交媒體上警告世界，人工智能(AI)“可能比核武器更危險”。</p><p>2014年11月19日，扎克伯格邀請馬斯克，在自己位於加州帕洛阿爾托（Palo Alto）的家中共進晚餐。此外，來自Facebook新人工智能實驗室的兩名頂尖研究人員和另外兩名Facebook高管也受邀參加了這次晚餐活動。</p>
-                    </div>
-            </article>
-            <!--相关文章-->
-            <div class="relation">
-                <div class="title">
-                    相關文章
-                </div>
-                <div class="r-content">
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src="./static/img/join_OopsDaily.png"
-                                width="500"
-                                height="300"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src="./static/img/join_OopsDaily.png"
-                                width="500"
-                                height="300"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src="./static/img/join_OopsDaily.png"
-                                width="500"
-                                height="300"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src=""
-                                width="500"
-                                height="300"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src=""
-                                width="500"
-                                height="300"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src=""
-                                width="500"
-                                height="300"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--同区其他文章-->
-            <div class="identical">
-                <div class="title">
-                    同區的其他文章
-                </div>
-                <div class="i-content">
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src="./static/img/join_OopsDaily.png"
-                                width="250"
-                                height="170"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            <div class="a-header">
-                                <span class="category">旅游</span>
-                                <span>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</span>
-                            </div>
-                            <div class="a-body">
-                                多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                            </div>
-                            <div class="a-footer">
-                                <div class="author">
-                                    <div class="photo">
-                                        <amp-img
-                                            src="./static/img/team4.png"
-                                            width="30"
-                                            height="30"
-                                            alt="an image">
-                                        </amp-img>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <span class="name"> 探路者00fdsffffffffffdsf5</span>
-                                    <span class="date">發表時間：2018-06-05 16:15:40 </span>  
-                                    <!--<span class="date">閲讀量: 40 </span>  -->
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="img-box">
-                            <amp-img
-                                src="./static/img/join_OopsDaily.png"
-                                width="250"
-                                height="170"
-                                heights="50%"
-                                alt="an image">
-                            </amp-img>
-                        </div>
-                        <div class="art-title">
-                            <div class="a-header">
-                                <span class="category">旅游</span>
-                                <span>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</span>
-                            </div>
-                            <div class="a-body">
-                                多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
-                            </div>
-                            <div class="a-footer">
-                                <div class="author">
-                                    <div class="photo">
-                                        <amp-img
-                                            src="./static/img/team4.png"
-                                            width="30"
-                                            height="30"
-                                            alt="an image">
-                                        </amp-img>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <span class="name"> 探路者00fdsffffffffffdsf5</span>
-                                    <span class="date">發表時間：2018-06-05 16:15:40 </span>  
-                                    <!--<span class="date">閲讀量: 40 </span>  -->
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    .identical .a-footer .name {
+      color: #62a5f6;
+    }
+
+    /* 導航 */
+
+    nav .nav_wrap {
+      display: flex;
+      justify-content: space-between;
+      height: 50px;
+      background-color: rgb(16, 84, 160);
+      font-size: 22px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    nav .nav_wrap a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav .nav_wrap>div {
+      line-height: 50px;
+    }
+
+    nav .nav_wrap .first {
+      padding-left: 18px;
+      font-size: 30px;
+    }
+
+    nav .nav_wrap .second {
+      padding-right: 18px
+    }
+
+    /* 底部導航 */
+
+    .footer {
+      background: white;
+    margin-top: 20px;
+    }
+
+    .footer ul {
+      width: 100%;
+    }
+
+    .footer ul li {
+      display: inline-block;
+      padding: 10px 0;
+      width: 32%;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: #9a9a9a;
+    }
+    .footer .type{
+      height: 270px;
+      overflow-y: auto;
+    }
+    .footer .line {
+      display: inline-block;
+      border-right: 1px solid #9a9a9a;
+      height: 15px;
+      margin: 0 10px;
+    }
+
+    .footer .chara {
+      text-align: center;
+    }
+
+    .footer p {
+      color: #9a9a9a;
+      padding-bottom: 20px;
+    }
+
+    /*适配不同屏幕*/
+
+    @media screen and (max-width:575px) {
+      .relation .items {
+        max-width: 390px;
+        min-width: 100px;
+      }
+      .relation .items .img-box {
+        height: 200px;
+      }
+      .identical .items {
+        flex-wrap: wrap;
+      }
+      .identical .items .art-title {
+        padding-left: 0px;
+      }
+      .identical .items .img-box {
+        flex: 0 0 100%;
+        height: 47vw;
+      }
+
+    }
+
+    @media screen and (max-width:414px) {
+      .relation .items {}
+      .relation .items .img-box {
+        height: 47vw;
+      }
+    }
+
+  </style>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+</head>
+
+<body>
+  <div class="oops">
+    <!--导航-->
+    <nav>
+      <div class="nav_wrap">
+        <div class="first">
+          <a href="/">
+            <i class="fa fa-angle-left"></i>
+          </a>
+        </div>
+        <div>文章詳情</div>
+        <div class="second">
+          <i class="fa fa-bars"></i>
+        </div>
       </div>
-    
+    </nav>
+    <!--文章-->
+    <article>
+      <!--标题-->
+      <h1>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</h1>
+      <!--文章说明信息-->
+      <div class="article-info">
+        <div class="author">
+          <div class="photo">
+            <amp-img src="./static/img/team4.png" width="30" height="30" alt="an image">
+            </amp-img>
+          </div>
+        </div>
+        <div class="info">
 
-  </body>
+          <span class="name"> 探路者00fdsffffffffffdsf5</span>
+          <span class="clock">
+            <i class="fa fa-clock-o"></i>
+          </span>
+          <span class="date">發表時間：2018-06-05 16:15:40 </span>
+          <span class="eye">
+            <i class="fa fa-eye"></i>
+          </span>
+          <span class="date">閲讀量: 40 </span>
+        </div>
+
+      </div>
+      <!--分享操作-->
+      <div class="share-ctrl">
+        <div>分享至：</div>
+        <a class="fb-xfbml-parse-ignore" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=">
+          <amp-img src="./static/img/facebook.png" width="103" height="34" alt="an image"></amp-img>
+        </a>
+        <a target="_blank" href="https://plus.google.com/share?url=">
+          <amp-img src="./static/img/google.png" width="103" height="34" alt="an image"></amp-img>
+        </a>
+        <a class="twitter-share-button" href="web_url" target="_blank" data-size="large">
+          <amp-img src="./static/img/twitter.png" width="103" height="34" alt="an image"></amp-img>
+        </a>
+      </div>
+      <!--文章内容-->
+      <div class="a-content">
+        <p>網易科技訊6月12日消息，據國外媒體報導，社交媒體Facebook創始人馬克·扎克伯格（Mark Zuckerberg）認為，他的朋友、矽谷億萬富翁埃隆·馬斯克（Elon Musk）表現得像個危言聳聽者。</p>
+        <p>馬斯克創建了SpaceX，並且現在是特斯拉（Tesla）首席執行官。他在電視採訪和社交媒體上警告世界，人工智能(AI)“可能比核武器更危險”。</p>
+        <p>2014年11月19日，扎克伯格邀請馬斯克，在自己位於加州帕洛阿爾托（Palo Alto）的家中共進晚餐。此外，來自Facebook新人工智能實驗室的兩名頂尖研究人員和另外兩名Facebook高管也受邀參加了這次晚餐活動。</p>
+      </div>
+    </article>
+    <!--相关文章-->
+    <div class="relation">
+      <div class="title">
+        <i class="fa fa-file-text"></i>
+        相關文章
+      </div>
+      <div class="r-content">
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="./static/img/join_OopsDaily.png" width="500" height="300" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+          </div>
+        </div>
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="./static/img/join_OopsDaily.png" width="500" height="300" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+          </div>
+        </div>
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="./static/img/join_OopsDaily.png" width="500" height="300" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+          </div>
+        </div>
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="" width="500" height="300" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+          </div>
+        </div>
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="" width="500" height="300" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+          </div>
+        </div>
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="" width="500" height="300" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--同区其他文章-->
+    <div class="identical">
+      <div class="title">
+        <i class="fa fa-line-chart"></i>
+        同區的其他文章
+      </div>
+      <div class="i-content">
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="./static/img/join_OopsDaily.png" width="250" height="170" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            <div class="a-header">
+              <span class="category">旅游</span>
+              <span>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</span>
+            </div>
+            <div class="a-body">
+              多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+            </div>
+            <div class="a-footer">
+              <div class="author">
+                <div class="photo">
+                  <amp-img src="./static/img/team4.png" width="30" height="30" alt="an image">
+                  </amp-img>
+                </div>
+              </div>
+              <div class="info">
+                <span class="name"> 探路者00fdsffffffffffdsf5</span>
+                <span class="date">發表時間：2018-06-05 16:15:40 </span>
+                <!--<span class="date">閲讀量: 40 </span>  -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="items">
+          <div class="img-box">
+            <amp-img src="./static/img/join_OopsDaily.png" width="250" height="170" heights="50%" alt="an image">
+            </amp-img>
+          </div>
+          <div class="art-title">
+            <div class="a-header">
+              <span class="category">旅游</span>
+              <span>多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！</span>
+            </div>
+            <div class="a-body">
+              多少人沖著鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴鹿晗看《擇天記》，卻在Ta的身上找到了共鳴！
+            </div>
+            <div class="a-footer">
+              <div class="author">
+                <div class="photo">
+                  <amp-img src="./static/img/team4.png" width="30" height="30" alt="an image">
+                  </amp-img>
+                </div>
+              </div>
+              <div class="info">
+                <span class="name"> 探路者00fdsffffffffffdsf5</span>
+                <span class="date">發表時間：2018-06-05 16:15:40 </span>
+                <!--<span class="date">閲讀量: 40 </span>  -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="type">
+        <ul>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+          <li>
+            <a href="#">12</a>
+          </li>
+        </ul>
+      </div>
+      <div class="chara">
+        <a href="#">重要聲明</a>
+        <span class="line"></span>
+        <a href="#">隱私政策</a>
+        <span class="line"></span>
+        <a href="#">意見反饋</a>
+        <span class="line"></span>
+        <a href="#">幫助中心</a>
+        <p>© 2018 OopsDaily</p>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+
 </html>
