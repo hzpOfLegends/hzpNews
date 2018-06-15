@@ -79,7 +79,7 @@
     }
     .photo {
       width: 100%;
-      max-height: 338px;
+      height: 338px;
       text-align: center;
       background-color: rgba(0,0,0,.1);
       overflow: hidden;

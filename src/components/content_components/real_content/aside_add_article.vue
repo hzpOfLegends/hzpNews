@@ -101,11 +101,12 @@
       a {
         display: inline-block;
         width: 100%;
+        height: 130px;
       }
       img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
-        height: 130px;
       }
       p {
         margin: 5px 0 10px 0;

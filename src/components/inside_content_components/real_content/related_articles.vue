@@ -139,9 +139,10 @@
         width: 100%;
         color: black;
         overflow: hidden;
+        height: 130px;
       }
       img {
-        height: 130px;
+        height: 100%;
         width: 100%;
         object-fit: cover;
       }
