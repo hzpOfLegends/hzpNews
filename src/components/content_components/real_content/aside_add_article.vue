@@ -135,6 +135,7 @@
         cursor: pointer;
         p {
           width: 100%;
+        color: #333333;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;

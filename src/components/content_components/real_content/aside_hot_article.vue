@@ -8,7 +8,7 @@
     <div class="hot_article_content aside_hot" v-for="(item,index) in hot_article" :key="index" style="text-align:left">
       <router-link :to="{path:'/article/'+item.RelationID}">
       <img :src="item.CoverImges?item.CoverImges:default_backgrund_photo">
-      <p>{{item.NewsTitle}}</p>
+      <p style=" -webkit-box-orient: vertical">{{item.NewsTitle}}</p>
       </router-link>
     </div>
   </div>
@@ -152,7 +152,6 @@
     .hot_article_content {
       font-size: 14px;
       border-bottom: 3px dashed #f6f6f6;
-      max-height: 165px;
       margin-top: 15px;
       cursor: pointer;
       text-align: center;
@@ -171,10 +170,13 @@
       }
       p {
         color: #333333;
-        margin: 10px 0 10px 0;
+        margin: 5px 0 10px 0;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        white-space: normal;
+        
       }
     }
 

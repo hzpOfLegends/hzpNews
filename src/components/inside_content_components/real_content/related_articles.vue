@@ -139,10 +139,9 @@
         width: 100%;
         color: black;
         overflow: hidden;
-        height: 130px;
       }
       img {
-        height: 100%;
+        height: 130px;
         width: 100%;
         object-fit: cover;
       }
@@ -151,6 +150,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
+        white-space: normal;
         -webkit-line-clamp: 3
       }
     }
